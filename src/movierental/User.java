@@ -6,17 +6,32 @@
 
 package movierental;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+
 /**
  *
  * @author stefano
  */
 public class User extends javax.swing.JFrame {
 
-    /**
-     * Creates new form User2
-     */
+    String uid, username, email, isAdmin, activationCode="123", lastLogin, birthday, prename, surname, address, zipcode, city, iban, bic;
+    char[] password;
+    ArrayList<VideoLibrary> movies = new ArrayList<>();
+    
     public User() {
         initComponents();
+    }
+    
+    public static void register( String username, char[] password, String email, String birthday, String prename, String surname, String address, String zipcode, String city, String iban, String bic) throws SQLException{
+       Verbindung db = new Verbindung();
+       db.start();
+       Connection conn = db.getVerbindung();
+       Statement stmt = conn.createStatement();
+       stmt.executeUpdate("INSERT INTO `movierental`.`user`(`username`, `password`, `email`, `isAdmin`, `activationCode`, `birthday`, `prename`, `surname`, `address`, `zipcode`, `city`, `iban`, `bic`) VALUES "
++ "('" + username + "','" + password + "','" + email + "', 0, '" + "123" + "','" +  birthday + "','" + prename + "','" + surname + "','" + address + "','" + zipcode + "','" + city + "','" + iban + "','" + bic + "')");
     }
 
     /**

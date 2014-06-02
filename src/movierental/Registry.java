@@ -349,8 +349,11 @@ public class Registry extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Please fill all mandatory fields.");
                 
             }else{
-               
-                 
+                try {
+                    User.register(username, password, email, birthday, prename, surname, address, zipcode, city, iban, bic);
+                } catch (SQLException ex) {
+                    Logger.getLogger(Registry.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 JOptionPane.showMessageDialog(null, "Congratulation your registration was succesfull." + username);
             }
         } 
