@@ -19,7 +19,7 @@ public class MovieRental {
         // TODO code application logic here
         int abc = 5;
         int def = 8;
-        int xyz = 10;
+        int xyz = 12;
         
     }
     
