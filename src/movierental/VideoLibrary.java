@@ -32,11 +32,11 @@ public class VideoLibrary extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jButtonWatchMovie = new javax.swing.JButton();
+        jLabelTitle = new javax.swing.JLabel();
+        jLabelDeadline = new javax.swing.JLabel();
+        jButtonExtend = new javax.swing.JButton();
+        jButtonReturn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -48,20 +48,20 @@ public class VideoLibrary extends javax.swing.JFrame {
 
         jLabel3.setText("Rented Movies:");
 
-        jButton1.setText("Watch Movie");
+        jButtonWatchMovie.setText("Watch Movie");
 
-        jLabel4.setText("Turbo - Kleine Schnecke, großer Traum");
+        jLabelTitle.setText("Turbo - Kleine Schnecke, großer Traum");
 
-        jLabel5.setText("1 day left");
+        jLabelDeadline.setText("1 day left");
 
-        jButton2.setText("Extend");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButtonExtend.setText("Extend");
+        jButtonExtend.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButtonExtendActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Return");
+        jButtonReturn.setText("Return");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -73,15 +73,15 @@ public class VideoLibrary extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton3)
+                    .addComponent(jButtonReturn)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4)
+                        .addComponent(jLabelTitle)
                         .addGap(61, 61, 61)
-                        .addComponent(jLabel5)
+                        .addComponent(jLabelDeadline)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1)
+                        .addComponent(jButtonWatchMovie)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2))
+                        .addComponent(jButtonExtend))
                     .addComponent(jLabel3)
                     .addComponent(jLabel1))
                 .addContainerGap(55, Short.MAX_VALUE))
@@ -96,21 +96,21 @@ public class VideoLibrary extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5)
-                    .addComponent(jButton2))
+                    .addComponent(jButtonWatchMovie)
+                    .addComponent(jLabelTitle)
+                    .addComponent(jLabelDeadline)
+                    .addComponent(jButtonExtend))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 187, Short.MAX_VALUE)
-                .addComponent(jButton3)
+                .addComponent(jButtonReturn)
                 .addGap(32, 32, 32))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jButtonExtendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExtendActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jButtonExtendActionPerformed
 
     /**
      * @param args the command line arguments
@@ -149,13 +149,13 @@ public class VideoLibrary extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButtonExtend;
+    private javax.swing.JButton jButtonReturn;
+    private javax.swing.JButton jButtonWatchMovie;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabelDeadline;
+    private javax.swing.JLabel jLabelTitle;
     // End of variables declaration//GEN-END:variables
 }

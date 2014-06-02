@@ -33,9 +33,9 @@ public class RentedMovies extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        jLabel30Days = new javax.swing.JLabel();
+        jLabel7Days = new javax.swing.JLabel();
+        jLabel24Hours = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -52,11 +52,11 @@ public class RentedMovies extends javax.swing.JFrame {
 
         jLabel5.setText("Last 24 hours:");
 
-        jLabel6.setText("89 Movies");
+        jLabel30Days.setText("89 Movies");
 
-        jLabel7.setText("34 Movies");
+        jLabel7Days.setText("34 Movies");
 
-        jLabel8.setText("8 Movies");
+        jLabel24Hours.setText("8 Movies");
 
         jButton1.setText("Return");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -85,9 +85,9 @@ public class RentedMovies extends javax.swing.JFrame {
                                     .addComponent(jLabel5))
                                 .addGap(106, 106, 106)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel8)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jLabel6)))))
+                                    .addComponent(jLabel24Hours)
+                                    .addComponent(jLabel7Days)
+                                    .addComponent(jLabel30Days)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(25, 25, 25)
                         .addComponent(jButton1)))
@@ -102,15 +102,15 @@ public class RentedMovies extends javax.swing.JFrame {
                 .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel6))
+                    .addComponent(jLabel30Days))
                 .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jLabel7))
+                    .addComponent(jLabel7Days))
                 .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jLabel8))
+                    .addComponent(jLabel24Hours))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(18, 18, 18))
@@ -162,11 +162,11 @@ public class RentedMovies extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel24Hours;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30Days;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel7Days;
     // End of variables declaration//GEN-END:variables
 }

@@ -39,21 +39,21 @@ public class Account extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jLabelUsername = new javax.swing.JLabel();
+        jLabelPassword = new javax.swing.JLabel();
+        jLabelEmail = new javax.swing.JLabel();
+        jLabelBirthday = new javax.swing.JLabel();
+        jLabelPrename = new javax.swing.JLabel();
+        jLabelSurname = new javax.swing.JLabel();
+        jLabelAddress = new javax.swing.JLabel();
+        jLabelIban = new javax.swing.JLabel();
+        jLabelBic = new javax.swing.JLabel();
+        jButtonChange = new javax.swing.JButton();
+        jButtonReturn = new javax.swing.JButton();
         jLabel21 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
+        jLabelCity = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
-        jLabel24 = new javax.swing.JLabel();
+        jLabelZipcode = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -75,41 +75,41 @@ public class Account extends javax.swing.JFrame {
 
         jLabel8.setText("Surname:");
 
-        jLabel9.setText("Adress:");
+        jLabel9.setText("Address:");
 
         jLabel10.setText("IBAN:");
 
         jLabel11.setText("BIC:");
 
-        jLabel12.setText("Halloo123");
+        jLabelUsername.setText("Halloo123");
 
-        jLabel13.setText("******");
+        jLabelPassword.setText("******");
 
-        jLabel14.setText("Hallo@gmail.de");
+        jLabelEmail.setText("Hallo@gmail.de");
 
-        jLabel15.setText("12.05.1983");
+        jLabelBirthday.setText("12.05.1983");
 
-        jLabel16.setText("Max");
+        jLabelPrename.setText("Max");
 
-        jLabel17.setText("Musterman");
+        jLabelSurname.setText("Musterman");
 
-        jLabel18.setText("hallostr.19");
+        jLabelAddress.setText("hallostr.19");
 
-        jLabel19.setText("DE23100000001234567890");
+        jLabelIban.setText("DE23100000001234567890");
 
-        jLabel20.setText("DEUTDEDB110");
+        jLabelBic.setText("DEUTDEDB110");
 
-        jButton1.setText("Change");
+        jButtonChange.setText("Change");
 
-        jButton2.setText("Return");
+        jButtonReturn.setText("Return");
 
         jLabel21.setText("City:");
 
-        jLabel22.setText("Frankfurt");
+        jLabelCity.setText("Frankfurt");
 
         jLabel23.setText("Zipcode:");
 
-        jLabel24.setText("60487");
+        jLabelZipcode.setText("60487");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -132,45 +132,45 @@ public class Account extends javax.swing.JFrame {
                                     .addComponent(jLabel6))
                                 .addGap(29, 29, 29)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel15)
-                                    .addComponent(jLabel14)
-                                    .addComponent(jLabel13)
-                                    .addComponent(jLabel12))))
+                                    .addComponent(jLabelBirthday)
+                                    .addComponent(jLabelEmail)
+                                    .addComponent(jLabelPassword)
+                                    .addComponent(jLabelUsername))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 127, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel11)
                                 .addGap(18, 18, 18)
-                                .addComponent(jLabel20))
+                                .addComponent(jLabelBic))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel10)
                                 .addGap(18, 18, 18)
-                                .addComponent(jLabel19))
+                                .addComponent(jLabelIban))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel21)
                                 .addGap(18, 18, 18)
-                                .addComponent(jLabel22))
+                                .addComponent(jLabelCity))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel7)
                                 .addGap(18, 18, 18)
-                                .addComponent(jLabel16))
+                                .addComponent(jLabelPrename))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel8)
                                 .addGap(18, 18, 18)
-                                .addComponent(jLabel17))
+                                .addComponent(jLabelSurname))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel9)
                                 .addGap(18, 18, 18)
-                                .addComponent(jLabel18))
+                                .addComponent(jLabelAddress))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel23)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel24)))
+                                .addComponent(jLabelZipcode)))
                         .addGap(112, 112, 112))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton2)
+                        .addComponent(jButtonReturn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)
+                        .addComponent(jButtonChange)
                         .addGap(29, 29, 29))))
         );
         layout.setVerticalGroup(
@@ -183,47 +183,47 @@ public class Account extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jLabel7)
-                    .addComponent(jLabel12)
-                    .addComponent(jLabel16))
+                    .addComponent(jLabelUsername)
+                    .addComponent(jLabelPrename))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jLabel8)
-                    .addComponent(jLabel13)
-                    .addComponent(jLabel17))
+                    .addComponent(jLabelPassword)
+                    .addComponent(jLabelSurname))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jLabel9)
-                    .addComponent(jLabel14)
-                    .addComponent(jLabel18))
+                    .addComponent(jLabelEmail)
+                    .addComponent(jLabelAddress))
                 .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
-                            .addComponent(jLabel15))
+                            .addComponent(jLabelBirthday))
                         .addGap(98, 98, 98))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel23)
-                            .addComponent(jLabel24))
+                            .addComponent(jLabelZipcode))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel21)
-                            .addComponent(jLabel22))
+                            .addComponent(jLabelCity))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel10)
-                            .addComponent(jLabel19))
+                            .addComponent(jLabelIban))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel11)
-                            .addComponent(jLabel20))))
+                            .addComponent(jLabelBic))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1))
+                    .addComponent(jButtonReturn)
+                    .addComponent(jButtonChange))
                 .addGap(31, 31, 31))
         );
 
@@ -266,25 +266,14 @@ public class Account extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButtonChange;
+    private javax.swing.JButton jButtonReturn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -292,5 +281,16 @@ public class Account extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabelAddress;
+    private javax.swing.JLabel jLabelBic;
+    private javax.swing.JLabel jLabelBirthday;
+    private javax.swing.JLabel jLabelCity;
+    private javax.swing.JLabel jLabelEmail;
+    private javax.swing.JLabel jLabelIban;
+    private javax.swing.JLabel jLabelPassword;
+    private javax.swing.JLabel jLabelPrename;
+    private javax.swing.JLabel jLabelSurname;
+    private javax.swing.JLabel jLabelUsername;
+    private javax.swing.JLabel jLabelZipcode;
     // End of variables declaration//GEN-END:variables
 }
