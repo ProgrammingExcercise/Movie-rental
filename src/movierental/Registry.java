@@ -6,17 +6,31 @@
 
 package movierental;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
+
+
+
 /**
  *
  * @author stefano
  */
 public class Registry extends javax.swing.JFrame {
-
+    String username,email,prename,surname,address,birthday,day,month,year,city,zipcode,bic,iban;
+    char []password;
+         
+       
     /**
      * Creates new form Registry1
      */
     public Registry() {
         initComponents();
+        
     }
 
     /**
@@ -55,8 +69,8 @@ public class Registry extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jButtonRegister = new javax.swing.JButton();
+        jButtonReturn = new javax.swing.JButton();
         jPassword = new javax.swing.JPasswordField();
         jTextIban = new javax.swing.JTextField();
         jTextCity = new javax.swing.JTextField();
@@ -122,9 +136,14 @@ public class Registry extends javax.swing.JFrame {
 
         jLabel11.setText("Zipcode :");
 
-        jButton1.setText("Register");
+        jButtonRegister.setText("Register");
+        jButtonRegister.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRegisterActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Return");
+        jButtonReturn.setText("Return");
 
         jPassword.setText("jPasswordField1");
 
@@ -140,9 +159,9 @@ public class Registry extends javax.swing.JFrame {
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton2)
+                        .addComponent(jButtonReturn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1))
+                        .addComponent(jButtonRegister))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -263,8 +282,8 @@ public class Registry extends javax.swing.JFrame {
                         .addComponent(jLabel19)))
                 .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1))
+                    .addComponent(jButtonReturn)
+                    .addComponent(jButtonRegister))
                 .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
@@ -309,6 +328,34 @@ public class Registry extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextEmailActionPerformed
 
+    private void jButtonRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegisterActionPerformed
+        username = jTextUsername.getText();
+        password = jPassword.getPassword();
+        email = jTextEmail.getText();
+        day = jTextDay.getText();
+        month = jTextMonth.getText();
+        year = jTextYear.getText();
+        birthday = year + "-" + day + "-" + month;
+        prename = jTextPrename.getText();
+        surname = jTextSurname.getText();
+        address = jTextAddress.getText();
+        zipcode = jTextZipcode.getText();
+        city = jTextCity.getText();
+        iban = jTextIban.getText();
+        bic = jTextBic.getText();
+        if(evt.getSource() == jButtonRegister){
+        
+            if(username.equals("") || password.equals("") || email.equals("") || birthday.equals("")){
+                JOptionPane.showMessageDialog(null, "Please fill all mandatory fields.");
+                
+            }else{
+               
+                 
+                JOptionPane.showMessageDialog(null, "Congratulation your registration was succesfull." + username);
+            }
+        } 
+    }//GEN-LAST:event_jButtonRegisterActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -346,8 +393,8 @@ public class Registry extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButtonRegister;
+    private javax.swing.JButton jButtonReturn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

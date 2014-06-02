@@ -20,7 +20,7 @@ public class Verbindung {
         try{
                Class.forName("com.mysql.jdbc.Driver").newInstance();
                con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/movierental","root","");
-               con.setReadOnly(true);
+               
                
         }catch(Exception e){
             System.out.println("Verbindung zur Datenbank fehlgeschlagen!!" + e);

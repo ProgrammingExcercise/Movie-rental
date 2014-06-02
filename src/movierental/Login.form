@@ -24,8 +24,39 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
+              <Component id="jLabel2" min="-2" pref="276" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jLabel15" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel16" alignment="0" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jTextUsername" alignment="0" min="-2" pref="151" max="-2" attributes="0"/>
+                  <Component id="jPassword" alignment="0" min="-2" pref="151" max="-2" attributes="0"/>
+                  <Component id="jButtonLogin" alignment="0" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jButtonForgottenPass" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonRegistry" alignment="0" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <Component id="jSeparator1" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace min="0" pref="18" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace pref="595" max="-2" attributes="0"/>
+                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" min="-2" pref="132" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                  </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jComboGenre" min="-2" pref="117" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
@@ -46,30 +77,24 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabelBild2" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabelBild7" min="-2" pref="138" max="-2" attributes="0"/>
+                          <Component id="jLabelBild2" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabelBild7" alignment="0" min="-2" pref="138" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabelBild3" min="-2" pref="70" max="-2" attributes="0"/>
-                          <Component id="jLabelBild8" min="-2" pref="138" max="-2" attributes="0"/>
+                          <Component id="jLabelBild3" alignment="0" min="-2" pref="70" max="-2" attributes="0"/>
+                          <Component id="jLabelBild8" alignment="0" min="-2" pref="138" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabelBild4" min="-2" pref="137" max="-2" attributes="0"/>
-                          <Component id="jLabelBild9" min="-2" pref="133" max="-2" attributes="0"/>
+                          <Component id="jLabelBild4" alignment="0" min="-2" pref="137" max="-2" attributes="0"/>
+                          <Component id="jLabelBild9" alignment="0" min="-2" pref="133" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabelBild5" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabelBild10" min="-2" pref="137" max="-2" attributes="0"/>
+                          <Component id="jLabelBild5" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabelBild10" alignment="0" min="-2" pref="137" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jLabel13" min="-2" pref="138" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jLabel12" min="-2" pref="138" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -78,83 +103,43 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabelBild13" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabelBild16" min="-2" pref="138" max="-2" attributes="0"/>
+                          <Component id="jLabelBild13" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabelBild16" alignment="0" min="-2" pref="138" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabelBild19" min="-2" pref="70" max="-2" attributes="0"/>
-                          <Component id="jLabelBild17" min="-2" pref="138" max="-2" attributes="0"/>
+                          <Component id="jLabelBild19" alignment="0" min="-2" pref="70" max="-2" attributes="0"/>
+                          <Component id="jLabelBild17" alignment="0" min="-2" pref="138" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabelBild14" min="-2" pref="137" max="-2" attributes="0"/>
-                          <Component id="jLabelBild12" min="-2" pref="133" max="-2" attributes="0"/>
+                          <Component id="jLabelBild14" alignment="0" min="-2" pref="137" max="-2" attributes="0"/>
+                          <Component id="jLabelBild12" alignment="0" min="-2" pref="133" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabelBild15" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabelBild18" min="-2" pref="137" max="-2" attributes="0"/>
+                          <Component id="jLabelBild15" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabelBild18" alignment="0" min="-2" pref="137" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jSeparator1" alignment="0" max="32767" attributes="0"/>
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jScrollPane1" min="-2" pref="132" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace min="-2" pref="300" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <Component id="jLabel2" min="-2" pref="276" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel15" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel16" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jTextUsername" alignment="0" min="-2" pref="151" max="-2" attributes="0"/>
-                          <Component id="jPassword" alignment="0" min="-2" pref="151" max="-2" attributes="0"/>
-                          <Component id="jButtonLogin" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jButtonForgottenPass" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButtonRegistry" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="32767" attributes="0"/>
-                  </Group>
-              </Group>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
+          <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jLabel2" min="-2" pref="93" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
+                  <Component id="jLabel2" alignment="0" min="-2" pref="93" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="103" alignment="1" groupAlignment="3" attributes="0">
                               <Component id="jTextUsername" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jButtonRegistry" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel15" alignment="1" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
@@ -162,15 +147,15 @@
                               <Component id="jPassword" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jButtonForgottenPass" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel16" alignment="1" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jButtonLogin" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jScrollPane1" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel1" alignment="1" min="-2" pref="16" max="-2" attributes="0"/>
@@ -178,7 +163,7 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jComboRating" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
+                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                       <Component id="jComboAgeRating" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jComboPrice" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jComboGenre" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -188,37 +173,25 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="jLabel12" alignment="1" min="-2" max="-2" attributes="0"/>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                      </Group>
-                      <Component id="jLabel11" alignment="1" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="jLabelBild1" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                      <Component id="jLabelBild3" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabelBild4" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabelBild5" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabelBild2" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jLabelBild1" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                              <Component id="jLabelBild3" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabelBild4" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabelBild5" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabelBild2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                              <Component id="jLabelBild8" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabelBild9" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabelBild10" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                              <Component id="jLabelBild6" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabelBild7" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
+              </Group>
+              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                      <Component id="jLabelBild8" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabelBild9" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabelBild10" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                      <Component id="jLabelBild6" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabelBild7" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
@@ -245,19 +218,54 @@
                       <Component id="jLabelBild16" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="51" max="32767" attributes="0"/>
+              <EmptySpace pref="111" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="jLabelBild6">
+    <Component class="javax.swing.JLabel" name="jLabelBild5">
       <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Verbindung/Gravity.jpg"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="jLabel6"/>
+        <Property name="text" type="java.lang.String" value="jLabel19"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabelBild11">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jLabel17"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabelBild1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jLabel17"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabelBild2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jLabel18"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonForgottenPass">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Forgotten Password"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonRegistry">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Registry"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel16">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Password:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonLogin">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Login"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonLoginActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
@@ -267,18 +275,38 @@
         <Property name="text" type="java.lang.String" value="Top 10"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel13">
+    <Component class="javax.swing.JTextField" name="jTextUsername">
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel15">
       <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Verbindung/Turbo.jpg"/>
-        </Property>
+        <Property name="text" type="java.lang.String" value="Username:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="jComboPrice">
+    <Component class="javax.swing.JLabel" name="jLabelBild12">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jLabel9"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabelBild9">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jLabel9"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabelBild4">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jLabel4"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabelBild7">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jLabel7"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="jComboGenre">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="4">
-            <StringItem index="0" value="Price"/>
+            <StringItem index="0" value="Genre"/>
             <StringItem index="1" value="Item 2"/>
             <StringItem index="2" value="Item 3"/>
             <StringItem index="3" value="Item 4"/>
@@ -286,8 +314,7 @@
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jComboPriceItemStateChanged"/>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboPriceActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboGenreActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JComboBox" name="jComboLanguage">
@@ -337,35 +364,11 @@
         <Property name="text" type="java.lang.String" value="Search:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabelBild9">
-      <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Verbindung/Tribute.jpg"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="jLabel9"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabelBild4">
-      <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Verbindung/FackYouG&#xf6;hte.jpg"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="jLabel4"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabelBild7">
-      <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Verbindung/Medicus.jpg"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="jLabel7"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JComboBox" name="jComboGenre">
+    <Component class="javax.swing.JComboBox" name="jComboPrice">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="4">
-            <StringItem index="0" value="Genre"/>
+            <StringItem index="0" value="Price"/>
             <StringItem index="1" value="Item 2"/>
             <StringItem index="2" value="Item 3"/>
             <StringItem index="3" value="Item 4"/>
@@ -373,34 +376,22 @@
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboGenreActionPerformed"/>
+        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jComboPriceItemStateChanged"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboPriceActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabelBild8">
+    <Component class="javax.swing.JPasswordField" name="jPassword">
       <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Verbindung/Thor.jpg"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="jLabel8"/>
+        <Property name="text" type="java.lang.String" value="jPasswor"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jPasswordActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel2">
+    <Component class="javax.swing.JLabel" name="jLabelBild13">
       <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/movierental/Logo.png"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="jLabel2"/>
+        <Property name="text" type="java.lang.String" value="jLabel18"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabelBild10">
-      <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Verbindung/EscapePlan.jpg"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="jLabel14"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JSeparator" name="jSeparator1">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
@@ -408,6 +399,11 @@
           <Font name="Calibri" size="20" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Newest 10"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabelBild14">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jLabel4"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
@@ -421,107 +417,6 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JLabel" name="jLabelBild3">
-      <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Verbindung/DerHobbit.jpg"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="jLabel4"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel11">
-      <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Verbindung/Mighty.jpg"/>
-        </Property>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel12">
-      <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Verbindung/RunnerRunner.jpg"/>
-        </Property>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JPasswordField" name="jPassword">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jPasswor"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jPasswordActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JTextField" name="jTextUsername">
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel15">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Username:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel16">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Password:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="jButtonLogin">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Login"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonLoginActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="jButtonForgottenPass">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Forgotten Password"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="jButtonRegistry">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Registry"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabelBild1">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jLabel17"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabelBild2">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jLabel18"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabelBild5">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jLabel19"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabelBild11">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jLabel17"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabelBild12">
-      <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Verbindung/Tribute.jpg"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="jLabel9"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabelBild13">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jLabel18"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabelBild14">
-      <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Verbindung/FackYouG&#xf6;hte.jpg"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="jLabel4"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JLabel" name="jLabelBild15">
       <Properties>
         <Property name="text" type="java.lang.String" value="jLabel19"/>
@@ -529,41 +424,56 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabelBild16">
       <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Verbindung/Medicus.jpg"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="jLabel7"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabelBild3">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jLabel4"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabelBild17">
       <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Verbindung/Thor.jpg"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="jLabel8"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabelBild18">
       <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Verbindung/EscapePlan.jpg"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="jLabel14"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel2">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/movierental/Logo.png"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="jLabel2"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabelBild19">
       <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Verbindung/DerHobbit.jpg"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="jLabel4"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabelBild10">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jLabel14"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabelBild20">
       <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Verbindung/Gravity.jpg"/>
-        </Property>
+        <Property name="text" type="java.lang.String" value="jLabel6"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JSeparator" name="jSeparator1">
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabelBild8">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jLabel8"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabelBild6">
+      <Properties>
         <Property name="text" type="java.lang.String" value="jLabel6"/>
       </Properties>
     </Component>

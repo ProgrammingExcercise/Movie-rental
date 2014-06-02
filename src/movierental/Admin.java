@@ -28,52 +28,80 @@ public class Admin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabelBild18 = new javax.swing.JLabel();
+        jLabelBild1 = new javax.swing.JLabel();
+        jButtonrentedMovies = new javax.swing.JButton();
+        jLabelBild2 = new javax.swing.JLabel();
+        jLabelBild9 = new javax.swing.JLabel();
+        jLabelBild5 = new javax.swing.JLabel();
+        jLabelBild4 = new javax.swing.JLabel();
+        jLabelBild17 = new javax.swing.JLabel();
+        jLabelBild8 = new javax.swing.JLabel();
+        jLabelBild16 = new javax.swing.JLabel();
+        jLabelBild7 = new javax.swing.JLabel();
+        jLabelBild15 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
+        jLabelBild14 = new javax.swing.JLabel();
+        jLabelBild13 = new javax.swing.JLabel();
         jComboPrice = new javax.swing.JComboBox();
+        jLabelBild12 = new javax.swing.JLabel();
         jComboLanguage = new javax.swing.JComboBox();
-        jComboAgeRating = new javax.swing.JComboBox();
+        jLabelBild11 = new javax.swing.JLabel();
+        jLabelBild6 = new javax.swing.JLabel();
+        jLabelBild3 = new javax.swing.JLabel();
+        jLabelBild10 = new javax.swing.JLabel();
         jComboRating = new javax.swing.JComboBox();
+        jComboAgeRating = new javax.swing.JComboBox();
         jLabel1 = new javax.swing.JLabel();
-        jButtonChangeMovie = new javax.swing.JButton();
-        jButtonAddMovie = new javax.swing.JButton();
-        jComboGenre = new javax.swing.JComboBox();
-        jLabel2 = new javax.swing.JLabel();
-        jButtonLogOut = new javax.swing.JButton();
-        jSeparator1 = new javax.swing.JSeparator();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextSearch = new javax.swing.JTextPane();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jButtonrentedMovies = new javax.swing.JButton();
-        jLabelBild1 = new javax.swing.JLabel();
-        jLabelBild9 = new javax.swing.JLabel();
-        jLabelBild2 = new javax.swing.JLabel();
-        jLabelBild4 = new javax.swing.JLabel();
-        jLabelBild5 = new javax.swing.JLabel();
-        jLabelBild7 = new javax.swing.JLabel();
-        jLabelBild8 = new javax.swing.JLabel();
-        jLabelBild10 = new javax.swing.JLabel();
-        jLabelBild3 = new javax.swing.JLabel();
-        jLabelBild6 = new javax.swing.JLabel();
-        jLabelBild11 = new javax.swing.JLabel();
-        jLabelBild12 = new javax.swing.JLabel();
-        jLabelBild13 = new javax.swing.JLabel();
-        jLabelBild14 = new javax.swing.JLabel();
-        jLabelBild15 = new javax.swing.JLabel();
-        jLabelBild16 = new javax.swing.JLabel();
-        jLabelBild17 = new javax.swing.JLabel();
-        jLabelBild18 = new javax.swing.JLabel();
-        jLabelBild19 = new javax.swing.JLabel();
+        jButtonLogOut = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
         jLabelBild20 = new javax.swing.JLabel();
+        jComboGenre = new javax.swing.JComboBox();
+        jLabelBild19 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jButtonChangeMovie = new javax.swing.JButton();
+        jButtonAddMovie = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabelBild18.setText("jLabel14");
+
+        jLabelBild1.setText("jLabel17");
+
+        jButtonrentedMovies.setText("Rented Movies");
+        jButtonrentedMovies.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonrentedMoviesActionPerformed(evt);
+            }
+        });
+
+        jLabelBild2.setText("jLabel18");
+
+        jLabelBild9.setText("jLabel9");
+
+        jLabelBild5.setText("jLabel19");
+
+        jLabelBild4.setText("jLabel4");
+
+        jLabelBild17.setText("jLabel8");
+
+        jLabelBild8.setText("jLabel8");
+
+        jLabelBild16.setText("jLabel7");
+
+        jLabelBild7.setText("jLabel7");
+
+        jLabelBild15.setText("jLabel19");
 
         jLabel5.setFont(new java.awt.Font("Calibri", 0, 20)); // NOI18N
         jLabel5.setText("Top 10");
 
-        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Verbindung/Turbo.jpg"))); // NOI18N
+        jLabelBild14.setText("jLabel4");
+
+        jLabelBild13.setText("jLabel18");
 
         jComboPrice.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Price", "Item 2", "Item 3", "Item 4" }));
         jComboPrice.addItemListener(new java.awt.event.ItemListener() {
@@ -87,12 +115,24 @@ public class Admin extends javax.swing.JFrame {
             }
         });
 
+        jLabelBild12.setText("jLabel9");
+
         jComboLanguage.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Language", "Item 2", "Item 3", "Item 4" }));
         jComboLanguage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboLanguageActionPerformed(evt);
             }
         });
+
+        jLabelBild11.setText("jLabel17");
+
+        jLabelBild6.setText("jLabel6");
+
+        jLabelBild3.setText("jLabel4");
+
+        jLabelBild10.setText("jLabel14");
+
+        jComboRating.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Rating", "Item 2", "Item 3", "Item 4" }));
 
         jComboAgeRating.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Age rating", "Item 2", "Item 3", "Item 4" }));
         jComboAgeRating.addActionListener(new java.awt.event.ActionListener() {
@@ -101,9 +141,28 @@ public class Admin extends javax.swing.JFrame {
             }
         });
 
-        jComboRating.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Rating", "Item 2", "Item 3", "Item 4" }));
-
         jLabel1.setText("Search:");
+
+        jLabel3.setFont(new java.awt.Font("Calibri", 0, 20)); // NOI18N
+        jLabel3.setText("Newest 10");
+
+        jScrollPane1.setViewportView(jTextSearch);
+
+        jButtonLogOut.setText("Log Out");
+
+        jLabelBild20.setText("jLabel6");
+
+        jComboGenre.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Genre", "Item 2", "Item 3", "Item 4" }));
+        jComboGenre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboGenreActionPerformed(evt);
+            }
+        });
+
+        jLabelBild19.setText("jLabel4");
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movierental/Logo.png"))); // NOI18N
+        jLabel2.setText("jLabel2");
 
         jButtonChangeMovie.setText("Change Movie");
         jButtonChangeMovie.addActionListener(new java.awt.event.ActionListener() {
@@ -119,74 +178,6 @@ public class Admin extends javax.swing.JFrame {
             }
         });
 
-        jComboGenre.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Genre", "Item 2", "Item 3", "Item 4" }));
-        jComboGenre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboGenreActionPerformed(evt);
-            }
-        });
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movierental/Logo.png"))); // NOI18N
-        jLabel2.setText("jLabel2");
-
-        jButtonLogOut.setText("Log Out");
-
-        jLabel3.setFont(new java.awt.Font("Calibri", 0, 20)); // NOI18N
-        jLabel3.setText("Newest 10");
-
-        jScrollPane1.setViewportView(jTextSearch);
-
-        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Verbindung/Mighty.jpg"))); // NOI18N
-
-        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Verbindung/RunnerRunner.jpg"))); // NOI18N
-
-        jButtonrentedMovies.setText("Rented Movies");
-        jButtonrentedMovies.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonrentedMoviesActionPerformed(evt);
-            }
-        });
-
-        jLabelBild1.setText("jLabel17");
-
-        jLabelBild9.setText("jLabel9");
-
-        jLabelBild2.setText("jLabel18");
-
-        jLabelBild4.setText("jLabel4");
-
-        jLabelBild5.setText("jLabel19");
-
-        jLabelBild7.setText("jLabel7");
-
-        jLabelBild8.setText("jLabel8");
-
-        jLabelBild10.setText("jLabel14");
-
-        jLabelBild3.setText("jLabel4");
-
-        jLabelBild6.setText("jLabel6");
-
-        jLabelBild11.setText("jLabel17");
-
-        jLabelBild12.setText("jLabel9");
-
-        jLabelBild13.setText("jLabel18");
-
-        jLabelBild14.setText("jLabel4");
-
-        jLabelBild15.setText("jLabel19");
-
-        jLabelBild16.setText("jLabel7");
-
-        jLabelBild17.setText("jLabel8");
-
-        jLabelBild18.setText("jLabel14");
-
-        jLabelBild19.setText("jLabel4");
-
-        jLabelBild20.setText("jLabel6");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -194,36 +185,63 @@ public class Admin extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonAddMovie)
                         .addGap(18, 18, 18)
+                        .addComponent(jButtonChangeMovie)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonrentedMovies)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonLogOut))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jComboGenre, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(60, 60, 60)
+                        .addComponent(jComboPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabelBild20, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabelBild11))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabelBild13)
-                                    .addComponent(jLabelBild16, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabelBild19, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabelBild17, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabelBild14, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabelBild12, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabelBild18, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
-                                    .addComponent(jLabelBild15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addComponent(jLabel3)
-                            .addGroup(layout.createSequentialGroup()
+                                .addGap(40, 40, 40)
+                                .addComponent(jComboAgeRating, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(235, 235, 235)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jComboGenre, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(60, 60, 60)
-                                        .addComponent(jComboPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jComboLanguage, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(63, 63, 63)
+                                        .addComponent(jComboRating, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel1)
+                                        .addGap(35, 35, 35)
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSeparator1)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel5)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabelBild20, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabelBild11))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabelBild13)
+                                            .addComponent(jLabelBild16, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabelBild19, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabelBild17, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabelBild14, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabelBild12, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jLabelBild18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jLabelBild15, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabelBild6, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -231,9 +249,7 @@ public class Admin extends javax.swing.JFrame {
                                         .addGap(18, 18, 18)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabelBild2)
-                                            .addComponent(jLabelBild7, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jLabelBild7, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(18, 18, 18)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabelBild3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -245,46 +261,8 @@ public class Admin extends javax.swing.JFrame {
                                         .addGap(18, 18, 18)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabelBild5)
-                                            .addComponent(jLabelBild10, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jLabel11))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(40, 40, 40)
-                                                .addComponent(jComboAgeRating, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                .addGap(235, 235, 235)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                    .addGroup(layout.createSequentialGroup()
-                                                        .addComponent(jComboLanguage, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addGap(63, 63, 63)
-                                                        .addComponent(jComboRating, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                    .addGroup(layout.createSequentialGroup()
-                                                        .addComponent(jLabel1)
-                                                        .addGap(35, 35, 35)
-                                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                                .addGap(245, 245, 245))))))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(65, 65, 65)
-                        .addComponent(jButtonAddMovie)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButtonChangeMovie)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonrentedMovies)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButtonLogOut)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jSeparator1)
-                        .addGap(245, 245, 245)))
+                                            .addComponent(jLabelBild10, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -292,16 +270,18 @@ public class Admin extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
+                        .addContainerGap()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(49, 49, 49)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButtonAddMovie)
                             .addComponent(jButtonChangeMovie)
                             .addComponent(jButtonrentedMovies)
-                            .addComponent(jButtonLogOut)))
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jButtonLogOut))))
+                .addGap(18, 18, 18)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -312,36 +292,26 @@ public class Admin extends javax.swing.JFrame {
                     .addComponent(jComboGenre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboLanguage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboRating, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(1, 1, 1)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(63, 63, 63)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel12)
-                            .addComponent(jLabel13)
-                            .addComponent(jLabel11))
-                        .addGap(45, 45, 45))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(7, 7, 7)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabelBild1)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabelBild3)
-                                .addComponent(jLabelBild4)
-                                .addComponent(jLabelBild5)
-                                .addComponent(jLabelBild2)))
-                        .addGap(20, 20, 20)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabelBild8)
-                                .addComponent(jLabelBild9)
-                                .addComponent(jLabelBild10))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabelBild6)
-                                .addComponent(jLabelBild7)))
-                        .addGap(18, 18, 18)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabelBild1)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabelBild3)
+                        .addComponent(jLabelBild4)
+                        .addComponent(jLabelBild5)
+                        .addComponent(jLabelBild2)))
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabelBild8)
+                        .addComponent(jLabelBild9)
+                        .addComponent(jLabelBild10))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabelBild6)
+                        .addComponent(jLabelBild7)))
+                .addGap(18, 18, 18)
                 .addComponent(jLabel5)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -360,11 +330,15 @@ public class Admin extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabelBild20)
                         .addComponent(jLabelBild16)))
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addGap(143, 143, 143))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonrentedMoviesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonrentedMoviesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonrentedMoviesActionPerformed
 
     private void jComboPriceItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboPriceItemStateChanged
         // TODO add your handling code here:
@@ -393,10 +367,6 @@ public class Admin extends javax.swing.JFrame {
     private void jButtonAddMovieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddMovieActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonAddMovieActionPerformed
-
-    private void jButtonrentedMoviesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonrentedMoviesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonrentedMoviesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -444,9 +414,6 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JComboBox jComboPrice;
     private javax.swing.JComboBox jComboRating;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
