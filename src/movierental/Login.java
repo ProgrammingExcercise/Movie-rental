@@ -117,7 +117,7 @@ public class Login extends javax.swing.JFrame {
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Verbindung/Thor.jpg"))); // NOI18N
         jLabel8.setText("jLabel8");
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Verbindung/Screenshot 2014-05-28 13.55.44.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movierental/Logo.png"))); // NOI18N
         jLabel2.setText("jLabel2");
 
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Verbindung/EscapePlan.jpg"))); // NOI18N

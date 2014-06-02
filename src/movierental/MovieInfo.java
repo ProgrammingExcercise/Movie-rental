@@ -53,7 +53,7 @@ public class MovieInfo extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         jLabel4.setText("Turbo");
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Verbindung/Screenshot 2014-05-28 13.55.44.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movierental/Logo.png"))); // NOI18N
         jLabel2.setText("jLabel2");
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Verbindung/Turbo_big.jpg"))); // NOI18N

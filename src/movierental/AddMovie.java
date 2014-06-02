@@ -74,7 +74,7 @@ public class AddMovie extends javax.swing.JFrame {
 
         jLabel4.setText("Title :");
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Acer\\Desktop\\Masken\\src\\masken\\Screenshot 2014-05-28 13.55.44.png")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movierental/Logo.png"))); // NOI18N
         jLabel2.setText("jLabel2");
 
         jLabel9.setText("IMG-Link :");

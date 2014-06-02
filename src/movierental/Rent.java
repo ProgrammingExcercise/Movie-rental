@@ -42,7 +42,7 @@ public class Rent extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Verbindung/Screenshot 2014-05-28 13.55.44.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movierental/Logo.png"))); // NOI18N
         jLabel2.setText("jLabel2");
 
         jLabel5.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
