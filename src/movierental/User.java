@@ -198,7 +198,7 @@ public class User extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Verbindung/Screenshot 2014-05-28 13.55.44.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movierental/Logo.png"))); // NOI18N
         jLabel2.setText("jLabel2");
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Verbindung/FackYouGöhte.jpg"))); // NOI18N
