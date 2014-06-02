@@ -20,6 +20,7 @@ public class MovieRental {
         int abc = 5;
         int def = 8;
         int xyz = 12;
+        int dscd= 23;
         
     }
     
