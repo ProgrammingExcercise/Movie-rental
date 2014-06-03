@@ -368,20 +368,22 @@ public class Registry extends javax.swing.JFrame {
         if(evt.getSource() == jButtonRegister){
         
             if(username.equals("") || password.equals("") || email.equals("") || birthday.equals("")){
-                JOptionPane.showMessageDialog(null, "Please fill all mandatory fields."+ ondate+dateFormat.format(date));
+                JOptionPane.showMessageDialog(null, "Please fill in all mandatory fields."+ ondate+dateFormat.format(date));
                 
             }else{
                         if(!(password.matches(pattern))){
-                            JOptionPane.showMessageDialog(null, "Password must have min 8 char and 1 special sign.");
+                            JOptionPane.showMessageDialog(null, "Password must have at least 8 characters and 1 special sign.");
                         }else if(!(email.matches(emailreg))){
-                            JOptionPane.showMessageDialog(null, "Email syntax is wrong.");
+                            JOptionPane.showMessageDialog(null, "Email address is wrong.");
                         }else {
                             try {
                             User.register(username, password, email, birthday, prename, surname, address, zipcode, city, iban, bic);
                             } catch (SQLException ex) {
                             Logger.getLogger(Registry.class.getName()).log(Level.SEVERE, null, ex);
                             }
-                            JOptionPane.showMessageDialog(null, "Congratulation your registration was succesfull." + username);
+                            JOptionPane.showMessageDialog(null, "Congratulation your registration was succesfull.");
+                            setVisible(false);
+
                         }
                 
                 }

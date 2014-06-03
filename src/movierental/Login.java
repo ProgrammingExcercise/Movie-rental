@@ -86,6 +86,11 @@ public class Login extends javax.swing.JFrame {
         jButtonForgottenPass.setText("Forgotten Password");
 
         jButtonRegistry.setText("Registry");
+        jButtonRegistry.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRegistryActionPerformed(evt);
+            }
+        });
 
         jLabel16.setText("Password:");
 
@@ -215,8 +220,7 @@ public class Login extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 595, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(8, 8, 8))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jComboGenre, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(39, 39, 39)
@@ -394,6 +398,10 @@ public class Login extends javax.swing.JFrame {
     private void jPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jPasswordActionPerformed
+
+    private void jButtonRegistryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistryActionPerformed
+        new Registry().setVisible(true);
+    }//GEN-LAST:event_jButtonRegistryActionPerformed
 
     /**
      * @param args the command line arguments
