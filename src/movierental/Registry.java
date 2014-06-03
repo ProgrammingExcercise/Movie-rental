@@ -21,8 +21,8 @@ import javax.swing.JOptionPane;
  * @author stefano
  */
 public class Registry extends javax.swing.JFrame {
-    String username,email,prename,surname,address,birthday,day,month,year,city,zipcode,bic,iban;
-    char []password;
+    String username,email,prename,surname,address,password,birthday,day,month,year,city,zipcode,bic,iban;
+    
          
        
     /**
@@ -330,7 +330,7 @@ public class Registry extends javax.swing.JFrame {
 
     private void jButtonRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegisterActionPerformed
         username = jTextUsername.getText();
-        password = jPassword.getPassword();
+        password = new String(jPassword.getPassword());
         email = jTextEmail.getText();
         day = jTextDay.getText();
         month = jTextMonth.getText();
@@ -343,6 +343,7 @@ public class Registry extends javax.swing.JFrame {
         city = jTextCity.getText();
         iban = jTextIban.getText();
         bic = jTextBic.getText();
+        
         if(evt.getSource() == jButtonRegister){
         
             if(username.equals("") || password.equals("") || email.equals("") || birthday.equals("")){
