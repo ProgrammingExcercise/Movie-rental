@@ -6,6 +6,11 @@
 
 package movierental;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFrame;
+
 /**
  *
  * @author stefano
@@ -345,7 +350,20 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoginActionPerformed
-        // TODO add your handling code here:
+        if(evt.getSource() == jButtonLogin){
+            User user = new User();
+            try {
+                if( (user.login(jTextUsername.getText(),new String(jPassword.getPassword())) ) == 1 ){
+                    setVisible(false);
+                    new User(user).setVisible(true);
+                    System.out.println(user.getUsername());
+                }
+                
+            } catch (SQLException ex) {
+                
+            }
+            
+        }
     }//GEN-LAST:event_jButtonLoginActionPerformed
 
     private void jComboGenreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboGenreActionPerformed

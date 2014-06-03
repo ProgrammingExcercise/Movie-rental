@@ -6,6 +6,10 @@
 
 package movierental;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author stefano
@@ -15,8 +19,19 @@ public class ChangeAccount extends javax.swing.JFrame {
     /**
      * Creates new form ChangeAccount
      */
-    public ChangeAccount() {
+    public ChangeAccount() throws SQLException {
         initComponents();
+        User user = new User();
+        user.login("test","test");
+        jTextUsername.setText(user.getUsername());
+        jTextEmail.setText(user.getEmail());
+        jTextPrename.setText(user.getPrename());
+        jTextSurname.setText(user.getSurname());
+        jTextAddress.setText(user.getAddress());
+        jTextZipcode.setText(user.getZipcode());
+        jTextCity.setText(user.getCity());
+        jTextIban.setText(user.getIban());
+        jTextBic.setText(user.getBic());
     }
 
     /**
@@ -315,41 +330,30 @@ public class ChangeAccount extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextEmailActionPerformed
 
     private void jButtonChangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonChangeActionPerformed
-        // TODO add your handling code here:
+        if(evt.getSource() == jButtonChange){
+            User user = new User();
+            String birthday = jTextYear.getText() + "/" + jTextMonth.getText() + "/" + jTextDay.getText();
+            try {
+                user.changeInformation(jTextUsername.getText(),new String(jPassword.getPassword()), jTextEmail.getText(), birthday, jTextPrename.getText(), jTextSurname.getText(), jTextAddress.getText(), jTextZipcode.getText(), jTextCity.getText(), jTextIban.getText(), jTextBic.getText());
+            } catch (SQLException ex) {
+                Logger.getLogger(ChangeAccount.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }//GEN-LAST:event_jButtonChangeActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ChangeAccount.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ChangeAccount.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ChangeAccount.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ChangeAccount.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
+    public static void main(String args[]) throws SQLException {
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new Registry().setVisible(true);
+                try {
+                    new ChangeAccount().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(ChangeAccount.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

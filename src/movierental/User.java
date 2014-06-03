@@ -11,6 +11,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /**
  *
@@ -18,12 +20,16 @@ import java.util.ArrayList;
  */
 public class User extends javax.swing.JFrame {
 
-    String uid, username, email, isAdmin, activationCode="123", lastLogin, birthday, prename, surname, address, zipcode, city, iban, bic;
-    char[] password;
+    String uid, username, password, email, isAdmin, activationCode="123", activated, lastLogin, birthday, prename, surname, address, zipcode, city, iban, bic;
     ArrayList<VideoLibrary> movies = new ArrayList<>();
     
     public User() {
+        
+    }
+    
+    public User(User user){
         initComponents();
+        this.username = username;
     }
     
     public static void register( String username, String password, String email, String birthday, String prename, String surname, String address, String zipcode, String city, String iban, String bic) throws SQLException{
@@ -32,17 +38,144 @@ public class User extends javax.swing.JFrame {
        Connection conn = db.getVerbindung();
        Statement stmt = conn.createStatement();
        stmt.executeUpdate("INSERT INTO `movierental`.`user`(`username`, `password`, `email`, `isAdmin`, `activationCode`, `birthday`, `prename`, `surname`, `address`, `zipcode`, `city`, `iban`, `bic`) VALUES "
-+ "('" + username + "','" + password + "','" + email + "', 0, '" + "123" + "','" +  birthday + "','" + prename + "','" + surname + "','" + address + "','" + zipcode + "','" + city + "','" + iban + "','" + bic + "')");
++ "('" + username + "','" + password + "','" + email + "', 0, '" + "123" + "',\"" +  birthday + "\",'" + prename + "','" + surname + "','" + address + "','" + zipcode + "','" + city + "','" + iban + "','" + bic + "')");
     }
     
-    public void login(String name, String password) throws SQLException{
+    public int login(String username, String password) throws SQLException{
        Verbindung db = new Verbindung();
        db.start();
        Connection conn = db.getVerbindung();
        Statement stmt = conn.createStatement();
        
-//       ResultSet rs = stmt.executeQuery("Select * from user where username = '"+username+"' and password = '" +password+ "'");
-//        System.out.println((rs.));
+       ResultSet rs = stmt.executeQuery("Select * from user where username = '"+username+"' and password = '" +password+ "'");
+       if(rs.next()){
+        uid = String.valueOf(rs.getInt("uid"));
+        this.username = rs.getString("username");
+        email = rs.getString("email");
+        isAdmin = rs.getString("isAdmin");
+        lastLogin = rs.getString("lastLogin");
+        activated = String.valueOf(rs.getInt("activated"));
+        birthday = rs.getString("birthday");
+        prename = rs.getString("prename");
+        surname = rs.getString("surname");
+        address = rs.getString("address");
+        zipcode = rs.getString("zipcode");
+        city = rs.getString("city");
+        iban = rs.getString("iban");
+        bic = rs.getString("bic");
+       
+       if(activated.equals("1")){
+           JOptionPane.showMessageDialog(null,"Successfully logged in.");
+           stmt.executeUpdate("UPDATE user SET lastLogin = now() where username ='"+username+"'");
+           return 1;
+                   }else{
+           JOptionPane.showMessageDialog(null,"You aren't activated! Please activate first.");
+           return 0;
+       }
+    }else{
+          JOptionPane.showMessageDialog(null,"Wrong username or password!");
+          return 0;
+    }
+}
+    
+    public int rentMovie(String mid) throws SQLException{
+        Verbindung db = new Verbindung();
+        db.start();
+        Connection conn = db.getVerbindung();
+        Statement stmt = conn.createStatement();
+        if(stmt.executeUpdate("INSERT INTO rents VALUES ('"+this.uid+"','"+mid+"',now())") == 1)
+            return 1;
+        else
+            return 0;
+    }
+    
+    public int changeInformation(String username, String password, String email, String birthday, String prename, String surname, String address, String zipcode, String city, String iban, String bic) throws SQLException{
+        Verbindung db = new Verbindung();
+        db.start();
+        Connection conn = db.getVerbindung();
+        Statement stmt = conn.createStatement();
+        ResultSet rsusername = stmt.executeQuery("Select * from user where username = '"+username+"'and username != '"+this.username+"'");
+        
+        Statement stmt2 = conn.createStatement();
+        ResultSet rsemail = stmt2.executeQuery("Select * from user where email = '"+email+"' and email != '"+this.email+"'");
+        
+        Statement stmt3 = conn.createStatement();
+        ResultSet rsiban = stmt3.executeQuery("Select * from user where iban = '"+iban+"'and iban != '"+this.iban+"'");
+        
+        Statement stmt4 = conn.createStatement();
+        ResultSet rsbic = stmt4.executeQuery("Select * from user where bic = '"+bic+"'and bic != '"+this.bic+"'");
+        if(rsusername.next()){
+            JOptionPane.showMessageDialog(null,"Username already used!");
+            return 0;
+            
+        }else if(rsemail.next())   {
+            JOptionPane.showMessageDialog(null,"EMail already used!");
+            return 0;
+        }else if(rsiban.next())   {
+            JOptionPane.showMessageDialog(null,"IBAN already used!");
+            return 0;
+        }else if(rsbic.next())   {
+            JOptionPane.showMessageDialog(null,"BIC already used!");
+            return 0;
+        }else{
+            String query = "UPDATE user SET username = '"+username+"', password = '"+password+"' , email = '"+email+"' , birthday = '" + birthday + "' , prename = '"+prename+"' , surname = '" + surname + "' , address = '" + address + "' , zipcode = '" + zipcode + "', city = '" + city + "' WHERE uid = '" + this.uid + "' ";
+            stmt.executeUpdate(query);
+            JOptionPane.showMessageDialog(null, "Account information successfully changed.");
+            return 1;
+        }
+        
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public String getPrename() {
+        return prename;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getZipcode() {
+        return zipcode;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public String getIban() {
+        return iban;
+    }
+
+    public String getBic() {
+        return bic;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public ArrayList<VideoLibrary> getMovies() {
+        return movies;
     }
     
     
@@ -362,31 +495,7 @@ public class User extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(User.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(User.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(User.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(User.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
+    public static void main(String args[]) throws SQLException {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new User().setVisible(true);
