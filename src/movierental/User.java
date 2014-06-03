@@ -7,6 +7,7 @@
 package movierental;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -40,7 +41,8 @@ public class User extends javax.swing.JFrame {
        Connection conn = db.getVerbindung();
        Statement stmt = conn.createStatement();
        
-//       stmt.executeQuery("Select * from user where username = '"+username+"' and password = '"+password"');
+//       ResultSet rs = stmt.executeQuery("Select * from user where username = '"+username+"' and password = '" +password+ "'");
+//        System.out.println((rs.));
     }
     
     
