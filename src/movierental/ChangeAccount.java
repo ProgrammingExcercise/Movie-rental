@@ -19,10 +19,8 @@ public class ChangeAccount extends javax.swing.JFrame {
     /**
      * Creates new form ChangeAccount
      */
-    public ChangeAccount() throws SQLException {
+    public ChangeAccount(User user) throws SQLException {
         initComponents();
-        User user = new User();
-        user.login("test","test");
         jTextUsername.setText(user.getUsername());
         jTextEmail.setText(user.getEmail());
         jTextPrename.setText(user.getPrename());
@@ -32,6 +30,10 @@ public class ChangeAccount extends javax.swing.JFrame {
         jTextCity.setText(user.getCity());
         jTextIban.setText(user.getIban());
         jTextBic.setText(user.getBic());
+    }
+
+    private ChangeAccount() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
@@ -335,6 +337,8 @@ public class ChangeAccount extends javax.swing.JFrame {
             String birthday = jTextYear.getText() + "/" + jTextMonth.getText() + "/" + jTextDay.getText();
             try {
                 user.changeInformation(jTextUsername.getText(),new String(jPassword.getPassword()), jTextEmail.getText(), birthday, jTextPrename.getText(), jTextSurname.getText(), jTextAddress.getText(), jTextZipcode.getText(), jTextCity.getText(), jTextIban.getText(), jTextBic.getText());
+                setVisible(false);
+                new Account(user).setVisible(true);
             } catch (SQLException ex) {
                 Logger.getLogger(ChangeAccount.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -349,11 +353,7 @@ public class ChangeAccount extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                try {
-                    new ChangeAccount().setVisible(true);
-                } catch (SQLException ex) {
-                    Logger.getLogger(ChangeAccount.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                new ChangeAccount().setVisible(true);
             }
         });
     }

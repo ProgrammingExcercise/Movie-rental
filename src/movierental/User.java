@@ -11,26 +11,28 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 
-/**
- *
- * @author stefano
- */
 public class User extends javax.swing.JFrame {
 
     String uid, username, password, email, isAdmin, activationCode="123", activated, lastLogin, birthday, prename, surname, address, zipcode, city, iban, bic;
-    ArrayList<VideoLibrary> movies = new ArrayList<>();
+    ArrayList<Movie> movies = new ArrayList<>();
+    User user;
+    public User(){
+        initComponents();
+    }
     
-    public User() {
+    public User(User obj){
+        initComponents();
+        user = obj;
+        System.out.println(user.getUsername());
         
     }
     
-    public User(User user){
-        initComponents();
-        this.username = username;
-    }
+    
+  
     
     public static void register( String username, String password, String email, String birthday, String prename, String surname, String address, String zipcode, String city, String iban, String bic) throws SQLException{
        Verbindung db = new Verbindung();
@@ -77,6 +79,10 @@ public class User extends javax.swing.JFrame {
           return 0;
     }
 }
+    
+    public int checkAdmin(){
+        return Integer.parseInt(this.isAdmin);
+    }
     
     public int rentMovie(String mid) throws SQLException{
         Verbindung db = new Verbindung();
@@ -174,12 +180,8 @@ public class User extends javax.swing.JFrame {
         return password;
     }
 
-    public ArrayList<VideoLibrary> getMovies() {
-        return movies;
-    }
-    
-    
 
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -273,10 +275,25 @@ public class User extends javax.swing.JFrame {
         });
 
         jButtonAccount.setText("Account");
+        jButtonAccount.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAccountActionPerformed(evt);
+            }
+        });
 
         jButtonVideoLibrary.setText("Video library");
+        jButtonVideoLibrary.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonVideoLibraryActionPerformed(evt);
+            }
+        });
 
         jButtonLogOut.setText("Log out");
+        jButtonLogOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonLogOutActionPerformed(evt);
+            }
+        });
 
         jScrollPane1.setViewportView(jTextSearch);
 
@@ -491,6 +508,22 @@ public class User extends javax.swing.JFrame {
     private void jComboLanguageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboLanguageActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboLanguageActionPerformed
+
+    private void jButtonAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAccountActionPerformed
+        if(evt.getSource() == jButtonAccount){
+            new Account(user).setVisible(true);
+        }
+    }//GEN-LAST:event_jButtonAccountActionPerformed
+
+    private void jButtonVideoLibraryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVideoLibraryActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonVideoLibraryActionPerformed
+
+    private void jButtonLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLogOutActionPerformed
+        setVisible(false);
+        JOptionPane.showMessageDialog(null, "Successfully logged out!");
+        new Login().setVisible(true);
+    }//GEN-LAST:event_jButtonLogOutActionPerformed
 
     /**
      * @param args the command line arguments

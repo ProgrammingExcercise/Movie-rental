@@ -6,19 +6,26 @@
 
 package movierental;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author stefano
  */
 public class Account extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Account
-     */
+    User user;
     public Account() {
         initComponents();
     }
-
+    public Account(User obj) {
+        initComponents();
+        user = obj;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -100,6 +107,11 @@ public class Account extends javax.swing.JFrame {
         jLabelBic.setText("DEUTDEDB110");
 
         jButtonChange.setText("Change");
+        jButtonChange.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonChangeActionPerformed(evt);
+            }
+        });
 
         jButtonReturn.setText("Return");
 
@@ -230,10 +242,21 @@ public class Account extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButtonChangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonChangeActionPerformed
+        if(evt.getSource() == jButtonChange){
+            try {
+                new ChangeAccount(user).setVisible(true);
+                setVisible(false);
+            } catch (SQLException ex) {
+                Logger.getLogger(Account.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_jButtonChangeActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[]) throws SQLException {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -256,7 +279,6 @@ public class Account extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Account.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

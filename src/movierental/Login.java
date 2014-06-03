@@ -354,9 +354,14 @@ public class Login extends javax.swing.JFrame {
             User user = new User();
             try {
                 if( (user.login(jTextUsername.getText(),new String(jPassword.getPassword())) ) == 1 ){
-                    setVisible(false);
-                    new User(user).setVisible(true);
-                    System.out.println(user.getUsername());
+                    if(user.checkAdmin() == 1){
+                        Admin admin = new Admin();
+                        setVisible(false);
+                        new Admin().setVisible(true);
+                }else{
+                        setVisible(false);
+                        new User(user).setVisible(true);
+                    }
                 }
                 
             } catch (SQLException ex) {
