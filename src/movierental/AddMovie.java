@@ -5,14 +5,23 @@
  */
 
 package movierental;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author stefano
  */
-public class AddMovie extends javax.swing.JFrame {
 
+public class AddMovie extends javax.swing.JFrame {
+    String title,genre,agerating,imglink,streamlink,description,duration,releaseyear,pricecat;
     /**
-     * Creates new form Registry1
+     * Creates new form AddMovie
      */
     public AddMovie() {
         initComponents();
@@ -102,6 +111,11 @@ public class AddMovie extends javax.swing.JFrame {
         });
 
         jButtonAdd.setText("Add");
+        jButtonAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAddActionPerformed(evt);
+            }
+        });
 
         jTextAreaDescription.setColumns(20);
         jTextAreaDescription.setRows(5);
@@ -244,6 +258,42 @@ public class AddMovie extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonReturnActionPerformed
 
+    private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddActionPerformed
+       
+       title = jTextTitle.getText();
+       genre = (String) jComboGenre.getSelectedItem();
+       agerating = (String) jComboAgeRating.getSelectedItem();
+       duration = jTextDuration.getText();
+       releaseyear = jTextReleaseYear.getText();
+       description = jTextAreaDescription.getText();
+       pricecat = (String) jComboPriceCat.getSelectedItem();
+       imglink = jTextImg.getText();
+       streamlink = jTextStreamlink.getText();
+       
+       if(evt.getSource() == jButtonAdd){
+          
+       if(title.equals("") || genre.equals("") || agerating.equals("") || duration.equals("") || releaseyear.equals("") || description.equals("") || pricecat.equals("") || imglink.equals("")|| streamlink.equals("") )
+       {    
+           JOptionPane.showMessageDialog(null, "Please fill all fields.");
+          
+        }else{
+            Verbindung db = new Verbindung();
+           db.start();
+           Connection conn = db.getVerbindung();
+      
+           try {
+              Statement stmt = conn.createStatement();
+               stmt.executeUpdate("INSERT INTO `movierental`.`movie`(`title`, `genre`, `ageRating`, `description`, `releaseDate`, `duration`, `link`, `Picture`, `Pid`) VALUES "
+                       + "('" + title + "','" + genre + "','" + agerating + "','" + description + "','" +  releaseyear + "','" + duration + "','" + streamlink + "','" + imglink + "','" + pricecat +"')");
+           } catch (SQLException ex) {
+               Logger.getLogger(AddMovie.class.getName()).log(Level.SEVERE, null, ex);
+           }
+           JOptionPane.showMessageDialog(null, "Movie was added."+ pricecat);
+       
+       }
+       }
+    }//GEN-LAST:event_jButtonAddActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -275,7 +325,7 @@ public class AddMovie extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new Registry().setVisible(true);
+                new AddMovie().setVisible(true);
             }
         });
     }
