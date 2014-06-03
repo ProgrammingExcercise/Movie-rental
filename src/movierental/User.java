@@ -94,16 +94,16 @@ public class User extends javax.swing.JFrame {
         db.start();
         Connection conn = db.getVerbindung();
         Statement stmt = conn.createStatement();
-        ResultSet rsusername = stmt.executeQuery("Select * from user where username = '"+username+"'and username != '"+this.username+"'");
+        ResultSet rsusername = stmt.executeQuery("Select * from user where username = '"+username+"'and uid != '"+this.uid+"'");
         
         Statement stmt2 = conn.createStatement();
-        ResultSet rsemail = stmt2.executeQuery("Select * from user where email = '"+email+"' and email != '"+this.email+"'");
+        ResultSet rsemail = stmt2.executeQuery("Select * from user where email = '"+email+"' and uid != '"+this.uid+"'");
         
         Statement stmt3 = conn.createStatement();
-        ResultSet rsiban = stmt3.executeQuery("Select * from user where iban = '"+iban+"'and iban != '"+this.iban+"'");
+        ResultSet rsiban = stmt3.executeQuery("Select * from user where iban = '"+iban+"'and uid != '"+this.uid+"'");
         
         Statement stmt4 = conn.createStatement();
-        ResultSet rsbic = stmt4.executeQuery("Select * from user where bic = '"+bic+"'and bic != '"+this.bic+"'");
+        ResultSet rsbic = stmt4.executeQuery("Select * from user where bic = '"+bic+"'and uid != '"+this.uid+"'");
         if(rsusername.next()){
             JOptionPane.showMessageDialog(null,"Username already used!");
             return 0;
