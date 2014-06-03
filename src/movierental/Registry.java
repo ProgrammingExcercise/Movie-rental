@@ -9,6 +9,9 @@ package movierental;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -22,8 +25,13 @@ import javax.swing.JOptionPane;
  */
 public class Registry extends javax.swing.JFrame {
     String username,email,prename,surname,address,password,birthday,day,month,year,city,zipcode,bic,iban;
+    String pattern = "^[_A-Za-z0-9-](?=.*[@#$%]).{8,50}";
+    String emailreg = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+    Date birth = new Date();
+    Date ondate = new Date();
+    long now = ondate.getTime();
+   
     
-         
        
     /**
      * Creates new form Registry1
@@ -76,6 +84,7 @@ public class Registry extends javax.swing.JFrame {
         jTextCity = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
+        canvas1 = new java.awt.Canvas();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -205,6 +214,10 @@ public class Registry extends javax.swing.JFrame {
                                     .addComponent(jTextBic, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jLabel18))))
                 .addGap(25, 25, 25))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(135, 135, 135)
+                .addComponent(canvas1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
@@ -233,7 +246,9 @@ public class Registry extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(180, Short.MAX_VALUE)
+                .addGap(35, 35, 35)
+                .addComponent(canvas1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 145, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel18)
                     .addComponent(jLabel17))
@@ -335,7 +350,7 @@ public class Registry extends javax.swing.JFrame {
         day = jTextDay.getText();
         month = jTextMonth.getText();
         year = jTextYear.getText();
-        birthday = year + "-" + day + "-" + month;
+        birthday = year + "-" + month + "-" + day;
         prename = jTextPrename.getText();
         surname = jTextSurname.getText();
         address = jTextAddress.getText();
@@ -343,21 +358,34 @@ public class Registry extends javax.swing.JFrame {
         city = jTextCity.getText();
         iban = jTextIban.getText();
         bic = jTextBic.getText();
+       
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+	   //get current date time with Date()
+	   Date date = new Date();
+	   
+        
         
         if(evt.getSource() == jButtonRegister){
         
             if(username.equals("") || password.equals("") || email.equals("") || birthday.equals("")){
-                JOptionPane.showMessageDialog(null, "Please fill all mandatory fields.");
+                JOptionPane.showMessageDialog(null, "Please fill all mandatory fields."+ ondate+dateFormat.format(date));
                 
             }else{
-                try {
-                    User.register(username, password, email, birthday, prename, surname, address, zipcode, city, iban, bic);
-                } catch (SQLException ex) {
-                    Logger.getLogger(Registry.class.getName()).log(Level.SEVERE, null, ex);
+                        if(!(password.matches(pattern))){
+                            JOptionPane.showMessageDialog(null, "Password must have min 8 char and 1 special sign.");
+                        }else if(!(email.matches(emailreg))){
+                            JOptionPane.showMessageDialog(null, "Email syntax is wrong.");
+                        }else {
+                            try {
+                            User.register(username, password, email, birthday, prename, surname, address, zipcode, city, iban, bic);
+                            } catch (SQLException ex) {
+                            Logger.getLogger(Registry.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                            JOptionPane.showMessageDialog(null, "Congratulation your registration was succesfull." + username);
+                        }
+                
                 }
-                JOptionPane.showMessageDialog(null, "Congratulation your registration was succesfull." + username);
-            }
-        } 
+        }
     }//GEN-LAST:event_jButtonRegisterActionPerformed
 
     /**
@@ -397,6 +425,7 @@ public class Registry extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private java.awt.Canvas canvas1;
     private javax.swing.JButton jButtonRegister;
     private javax.swing.JButton jButtonReturn;
     private javax.swing.JLabel jLabel1;
