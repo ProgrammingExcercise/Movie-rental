@@ -25,7 +25,7 @@ public class User extends javax.swing.JFrame {
         initComponents();
     }
     
-    public static void register( String username, char[] password, String email, String birthday, String prename, String surname, String address, String zipcode, String city, String iban, String bic) throws SQLException{
+    public static void register( String username, String password, String email, String birthday, String prename, String surname, String address, String zipcode, String city, String iban, String bic) throws SQLException{
        Verbindung db = new Verbindung();
        db.start();
        Connection conn = db.getVerbindung();
@@ -33,6 +33,17 @@ public class User extends javax.swing.JFrame {
        stmt.executeUpdate("INSERT INTO `movierental`.`user`(`username`, `password`, `email`, `isAdmin`, `activationCode`, `birthday`, `prename`, `surname`, `address`, `zipcode`, `city`, `iban`, `bic`) VALUES "
 + "('" + username + "','" + password + "','" + email + "', 0, '" + "123" + "','" +  birthday + "','" + prename + "','" + surname + "','" + address + "','" + zipcode + "','" + city + "','" + iban + "','" + bic + "')");
     }
+    
+    public void login(String name, String password) throws SQLException{
+       Verbindung db = new Verbindung();
+       db.start();
+       Connection conn = db.getVerbindung();
+       Statement stmt = conn.createStatement();
+       
+//       stmt.executeQuery("Select * from user where username = '"+username+"' and password = '"+password"');
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
