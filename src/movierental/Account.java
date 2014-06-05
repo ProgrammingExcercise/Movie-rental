@@ -18,12 +18,29 @@ import javax.swing.JOptionPane;
 public class Account extends javax.swing.JFrame {
 
     User user;
+    String password;
     public Account() {
         initComponents();
     }
     public Account(User obj) {
         initComponents();
         user = obj;
+        jLabelUsername.setText(user.getUsername());
+        jLabelPassword.setText(user.getPassword());
+        jLabelEmail.setText(user.getEmail());
+        jLabelBirthday.setText(user.getBirthday());
+        jLabelPrename.setText(user.getPrename());
+        jLabelSurname.setText(user.getSurname());
+        jLabelAddress.setText(user.getAddress());
+        jLabelZipcode.setText(user.getZipcode());
+        jLabelCity.setText(user.getCity());
+        String iban = user.getIban();
+        iban = "******************" + iban.substring(iban.length()-4,iban.length());
+        String bic = user.getBic();
+        bic = "*******" + bic.substring(bic.length()-4,bic.length());
+        jLabelIban.setText(iban);
+        jLabelBic.setText(bic);
+        
     }
     
     /**
@@ -244,13 +261,17 @@ public class Account extends javax.swing.JFrame {
 
     private void jButtonChangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonChangeActionPerformed
         if(evt.getSource() == jButtonChange){
+            if(!(user.getPassword().equals(JOptionPane.showInputDialog("Bitte geben Sie Ihr altes Passwort ein: ")))){
+            JOptionPane.showMessageDialog(null, "Password wrong!");
+            }else{
             try {
                 new ChangeAccount(user).setVisible(true);
                 setVisible(false);
             } catch (SQLException ex) {
                 Logger.getLogger(Account.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
+         }
+        }    
     }//GEN-LAST:event_jButtonChangeActionPerformed
 
     /**

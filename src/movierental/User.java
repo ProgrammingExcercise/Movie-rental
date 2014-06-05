@@ -27,7 +27,6 @@ public class User extends javax.swing.JFrame {
     public User(User obj){
         initComponents();
         user = obj;
-        System.out.println(user.getUsername());
         
     }
     
@@ -53,6 +52,7 @@ public class User extends javax.swing.JFrame {
        if(rs.next()){
         uid = String.valueOf(rs.getInt("uid"));
         this.username = rs.getString("username");
+        this.password = rs.getString("password");
         email = rs.getString("email");
         isAdmin = rs.getString("isAdmin");
         lastLogin = rs.getString("lastLogin");
@@ -95,42 +95,31 @@ public class User extends javax.swing.JFrame {
             return 0;
     }
     
-    public int changeInformation(String username, String password, String email, String birthday, String prename, String surname, String address, String zipcode, String city, String iban, String bic) throws SQLException{
+    public int changeInformation(String password, String password2, String email, String prename, String surname, String address, String zipcode, String city, String iban, String bic) throws SQLException{
         Verbindung db = new Verbindung();
         db.start();
         Connection conn = db.getVerbindung();
-        Statement stmt = conn.createStatement();
-        ResultSet rsusername = stmt.executeQuery("Select * from user where username = '"+username+"'and uid != '"+this.uid+"'");
-        
-        Statement stmt2 = conn.createStatement();
-        ResultSet rsemail = stmt2.executeQuery("Select * from user where email = '"+email+"' and uid != '"+this.uid+"'");
-        
-        Statement stmt3 = conn.createStatement();
-        ResultSet rsiban = stmt3.executeQuery("Select * from user where iban = '"+iban+"'and uid != '"+this.uid+"'");
-        
-        Statement stmt4 = conn.createStatement();
-        ResultSet rsbic = stmt4.executeQuery("Select * from user where bic = '"+bic+"'and uid != '"+this.uid+"'");
-        if(rsusername.next()){
-            JOptionPane.showMessageDialog(null,"Username already used!");
-            return 0;
-            
-        }else if(rsemail.next())   {
-            JOptionPane.showMessageDialog(null,"EMail already used!");
-            return 0;
-        }else if(rsiban.next())   {
-            JOptionPane.showMessageDialog(null,"IBAN already used!");
-            return 0;
-        }else if(rsbic.next())   {
-            JOptionPane.showMessageDialog(null,"BIC already used!");
-            return 0;
-        }else{
-            String query = "UPDATE user SET username = '"+username+"', password = '"+password+"' , email = '"+email+"' , birthday = '" + birthday + "' , prename = '"+prename+"' , surname = '" + surname + "' , address = '" + address + "' , zipcode = '" + zipcode + "', city = '" + city + "' WHERE uid = '" + this.uid + "' ";
-            stmt.executeUpdate(query);
-            JOptionPane.showMessageDialog(null, "Account information successfully changed.");
-            return 1;
-        }
-        
+
+        //Eingabe des alten Passworts
+            //Überprüfung ob Email bereits vorhanden
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("Select * from user where email = '"+email+"' and uid != '"+this.uid+"'");
+
+            if(rs.next()){
+                JOptionPane.showMessageDialog(null,"EMail already used!");
+                return 0;
+            }else if(!password.equals(password2)){
+                JOptionPane.showMessageDialog(null,"The two passwords aren't the same!");
+                return 0;
+            }
+            else{
+                String query = "UPDATE user SET password = '"+password+"' , email = '"+email+"', prename = '"+prename+"' , surname = '" + surname + "' , address = '" + address + "' , zipcode = '" + zipcode + "', city = '" + city + "' WHERE uid = '" + this.uid + "' ";
+                stmt.executeUpdate(query);
+                JOptionPane.showMessageDialog(null, "Account information successfully changed.");
+                return 1;
+            }   
     }
+
 
     public String getUid() {
         return uid;
