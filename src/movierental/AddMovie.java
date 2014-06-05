@@ -6,12 +6,10 @@
 
 package movierental;
 
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 import javax.swing.JOptionPane;
+
+import static movierental.Movie.addMovie;
 
 /**
  *
@@ -92,7 +90,7 @@ public class AddMovie extends javax.swing.JFrame {
 
         jLabel11.setText("Price Cat. :");
 
-        jComboGenre.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Action", "Item 2", "Item 3", "Item 4" }));
+        jComboGenre.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Action", "Adventure", "Thriller", "Fantasy", "Animation", "Comedy" }));
         jComboGenre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboGenreActionPerformed(evt);
@@ -276,20 +274,9 @@ public class AddMovie extends javax.swing.JFrame {
        {    
            JOptionPane.showMessageDialog(null, "Please fill all fields.");
           
-        }else{
-            Verbindung db = new Verbindung();
-           db.start();
-           Connection conn = db.getVerbindung();
-      
-           try {
-              Statement stmt = conn.createStatement();
-               stmt.executeUpdate("INSERT INTO `movierental`.`movie`(`title`, `genre`, `ageRating`, `description`, `releaseDate`, `duration`, `link`, `Picture`, `Pid`) VALUES "
-                       + "('" + title + "','" + genre + "','" + agerating + "','" + description + "','" +  releaseyear + "','" + duration + "','" + streamlink + "','" + imglink + "','" + pricecat +"')");
-           } catch (SQLException ex) {
-               Logger.getLogger(AddMovie.class.getName()).log(Level.SEVERE, null, ex);
-           }
-           JOptionPane.showMessageDialog(null, "Movie was added."+ pricecat);
-       
+        }else{ 
+          
+           addMovie(title,genre,agerating,description,releaseyear,duration,streamlink,imglink,pricecat);
        }
        }
     }//GEN-LAST:event_jButtonAddActionPerformed

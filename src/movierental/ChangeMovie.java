@@ -6,6 +6,14 @@
 
 package movierental;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 
 
 /**
@@ -13,14 +21,58 @@ package movierental;
  * @author stefano
  */
 public class ChangeMovie extends javax.swing.JFrame {
-
-    /**
+     String movieid,title,genre,imglink,streamlink,description,duration,releaseyear,suchetext,agerating,pricecat;
+     int age,price,combogenre,comboagerating,combopricecat;
+     Verbindung db;
+     Connection conn;
+     Statement stmt,stmt2;
+     ResultSet rs;
+     /**
      * Creates new form Registry1
      */
     public ChangeMovie() {
         initComponents();
     }
-
+    public static int comboIndex(String combo){
+         switch (combo) {
+             case "Action":
+                 return 0;
+             case "Adventure":
+                 return 1;
+             case "Thriller":
+                 return 2;
+             case "Fantasy":
+                 return 3;
+             case "Animation":
+                 return 4;
+             default:
+                 return 5;
+         }
+    
+    }
+    public static int comboAgerating(int combo){
+        if(combo == 0){
+       return 0;
+       }else if(combo == 6){
+       return 1;
+       }else if(combo == 12){
+       return 2;
+       }else if(combo == 16){
+       return 3;
+       }else {
+       return 4;
+       }
+    
+    }
+    public static int comboPricecat(int combo){
+         if(combo == 1){
+       return 0;
+       }else if(combo == 2){
+       return 1;
+       }else 
+       return 2;
+       }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -49,10 +101,14 @@ public class ChangeMovie extends javax.swing.JFrame {
         jComboGenre = new javax.swing.JComboBox();
         jComboAgeRating = new javax.swing.JComboBox();
         jComboPriceCategory = new javax.swing.JComboBox();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jButtonReturn = new javax.swing.JButton();
+        jButtonChange = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextDescription = new javax.swing.JTextArea();
+        jTextSuchText = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jButtonSuche = new javax.swing.JButton();
+        jLabelMovieid = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -104,28 +160,28 @@ public class ChangeMovie extends javax.swing.JFrame {
 
         jLabel11.setText("Price Cat. :");
 
-        jComboGenre.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Action", "Item 2", "Item 3", "Item 4" }));
+        jComboGenre.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Action", "Adventure", "Thriller", "Fantasy", "Animation", "Comedy" }));
         jComboGenre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboGenreActionPerformed(evt);
             }
         });
 
-        jComboAgeRating.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12", "Item 2", "Item 3", "Item 4" }));
+        jComboAgeRating.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "0", "6", "12", "16", "18" }));
 
-        jComboPriceCategory.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "Item 2", "Item 3", "Item 4" }));
+        jComboPriceCategory.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3" }));
 
-        jButton1.setText("Return");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonReturn.setText("Return");
+        jButtonReturn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonReturnActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Change");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButtonChange.setText("Change");
+        jButtonChange.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButtonChangeActionPerformed(evt);
             }
         });
 
@@ -133,6 +189,15 @@ public class ChangeMovie extends javax.swing.JFrame {
         jTextDescription.setRows(5);
         jTextDescription.setText("\n");
         jScrollPane1.setViewportView(jTextDescription);
+
+        jLabel5.setText("Suche:");
+
+        jButtonSuche.setText("Suche");
+        jButtonSuche.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSucheActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -145,63 +210,80 @@ public class ChangeMovie extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel6))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(7, 7, 7)
-                                        .addComponent(jComboAgeRating, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel3)
+                                            .addComponent(jLabel6))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(7, 7, 7)
+                                                .addComponent(jComboAgeRating, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(7, 7, 7)
+                                                .addComponent(jComboGenre, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jTextTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(7, 7, 7)
-                                        .addComponent(jComboGenre, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jLabel8))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextDuration, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextReleaseYear, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(19, 19, 19)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jLabel11)
-                                .addGap(18, 18, 18)
-                                .addComponent(jComboPriceCategory, 0, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel10)
-                                    .addComponent(jLabel9))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextFieldImgLink, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
-                                    .addComponent(jTextStreamlink)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jButton2)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel15)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addComponent(jButton1))
-                .addContainerGap(22, Short.MAX_VALUE))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel7)
+                                            .addComponent(jLabel8))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jTextDuration, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jTextReleaseYear, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jLabelMovieid))
+                                .addGap(19, 19, 19)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(jLabel11)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jComboPriceCategory, 0, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jButtonChange)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jLabel15)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jLabel5)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(jTextSuchText, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(jButtonSuche, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel10)
+                                                .addComponent(jLabel9))
+                                            .addGap(18, 18, 18)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(jTextFieldImgLink, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
+                                                .addComponent(jTextStreamlink))))))
+                            .addComponent(jButtonReturn))
+                        .addContainerGap(22, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(5, 5, 5)
-                            .addComponent(jLabel1)))
-                    .addContainerGap(492, Short.MAX_VALUE)))
+                    .addGap(11, 11, 11)
+                    .addComponent(jLabel1)
+                    .addContainerGap(632, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(174, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextSuchText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5)
+                            .addComponent(jButtonSuche, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -222,7 +304,9 @@ public class ChangeMovie extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextDuration, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jTextDuration, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(40, 40, 40)
+                        .addComponent(jLabelMovieid))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jTextFieldImgLink, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -242,16 +326,14 @@ public class ChangeMovie extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(23, 23, 23)
-                        .addComponent(jButton1))
+                        .addComponent(jButtonReturn))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2)))
+                        .addComponent(jButtonChange)))
                 .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(29, 29, 29)
+                    .addGap(128, 128, 128)
                     .addComponent(jLabel1)
                     .addContainerGap(244, Short.MAX_VALUE)))
         );
@@ -267,9 +349,9 @@ public class ChangeMovie extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboGenreActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButtonReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReturnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButtonReturnActionPerformed
 
     private void jTextTitleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextTitleActionPerformed
         // TODO add your handling code here:
@@ -283,9 +365,89 @@ public class ChangeMovie extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextStreamlinkActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void jButtonChangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonChangeActionPerformed
+       
+       if(evt.getSource() == jButtonChange){
+       
+       title = jTextTitle.getText();
+       genre = (String) jComboGenre.getSelectedItem();
+       agerating = (String) jComboAgeRating.getSelectedItem();
+       duration = jTextDuration.getText();
+       releaseyear = jTextReleaseYear.getText();
+       description = jTextDescription.getText();
+       pricecat = (String) jComboPriceCategory.getSelectedItem();
+       imglink = jTextFieldImgLink.getText();
+       streamlink = jTextStreamlink.getText();
+       movieid = jLabelMovieid.getText();
+          
+       db = new Verbindung();
+       db.start();
+       conn = db.getVerbindung();
+       if(suchetext != null){
+       
+           try {
+               stmt2 = conn.createStatement();
+               stmt2.executeUpdate("UPDATE movie SET title='"+ title + "', genre='"+ genre +"', ageRating='"+ agerating +"', description='"+ description 
+                                   + "', releaseDate='"+ releaseyear +"', duration='"+ duration + "', link='"+ streamlink + "', Picture='"+ imglink + "', Pid='"+ pricecat + "' WHERE mid = '"+ movieid + "'");
+               JOptionPane.showMessageDialog(null, "Change was succesfull.");
+           } catch (SQLException ex) {
+               Logger.getLogger(ChangeMovie.class.getName()).log(Level.SEVERE, null, ex);
+           }
+       }else{
+           JOptionPane.showMessageDialog(null, "You must Search a Movie before you can Change one. ");
+       }
+       }   
+    }//GEN-LAST:event_jButtonChangeActionPerformed
+
+    private void jButtonSucheActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSucheActionPerformed
+        
+        suchetext = jTextSuchText.getText();
+        
+        if(evt.getSource() == jButtonSuche){
+            
+            db = new Verbindung();
+            db.start();
+            conn = db.getVerbindung();
+            try {
+                stmt = conn.createStatement();
+                rs = stmt.executeQuery("SELECT * FROM movie WHERE title LIKE '%"+ suchetext +"%' ");
+                if(rs.next()){
+                    
+                    movieid = rs.getString(1);
+                    title = rs.getString(2);
+                    genre = rs.getString(3);
+                    age = rs.getInt(4);
+                    description = rs.getString(5);
+                    releaseyear = rs.getString(6);
+                    duration = rs.getString(7);
+                    streamlink = rs.getString(8);
+                    imglink = rs.getString(9);
+                    price = rs.getInt(10);
+                    
+                    combogenre = comboIndex(genre);
+                    comboagerating = comboAgerating(age);
+                    combopricecat = comboPricecat(price);
+                    
+                   
+                    jTextTitle.setText(title);
+                    jComboGenre.setSelectedIndex(combogenre);
+                    jTextDescription.setText(description);
+                    jTextReleaseYear.setText(releaseyear);
+                    jTextDuration.setText(duration);
+                    jTextStreamlink.setText(streamlink);
+                    jTextFieldImgLink.setText(imglink);
+                    jComboPriceCategory.setSelectedIndex(combopricecat);
+                    jComboAgeRating.setSelectedIndex(comboagerating);
+                    jLabelMovieid.setText(movieid);
+                    jLabelMovieid.setVisible(false);
+                }
+                
+            } catch (SQLException ex) {
+                Logger.getLogger(ChangeMovie.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        
+        }
+    }//GEN-LAST:event_jButtonSucheActionPerformed
 
     /**
      * @param args the command line arguments
@@ -318,14 +480,15 @@ public class ChangeMovie extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new Registry().setVisible(true);
+                new ChangeMovie().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButtonChange;
+    private javax.swing.JButton jButtonReturn;
+    private javax.swing.JButton jButtonSuche;
     private javax.swing.JComboBox jComboAgeRating;
     private javax.swing.JComboBox jComboGenre;
     private javax.swing.JComboBox jComboPriceCategory;
@@ -336,16 +499,19 @@ public class ChangeMovie extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabelMovieid;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextDescription;
     private javax.swing.JTextField jTextDuration;
     private javax.swing.JTextField jTextFieldImgLink;
     private javax.swing.JTextField jTextReleaseYear;
     private javax.swing.JTextField jTextStreamlink;
+    private javax.swing.JTextField jTextSuchText;
     private javax.swing.JTextField jTextTitle;
     // End of variables declaration//GEN-END:variables
 }
