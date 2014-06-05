@@ -6,6 +6,14 @@
 
 package movierental;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JLabel;
+
 /**
  *
  * @author stefano
@@ -15,8 +23,29 @@ public class RentedMovies extends javax.swing.JFrame {
     /**
      * Creates new form RentedMovies
      */
-    public RentedMovies() {
+    public RentedMovies() throws SQLException {
         initComponents();
+        Verbindung db = new Verbindung();
+        db.start();
+        Connection conn = db.getVerbindung();
+
+        // Last 24 Hours
+        Statement stmt = conn.createStatement();
+        ResultSet rs24 = stmt.executeQuery("SELECT * FROM movierental.rents WHERE DATEDIFF(now(), time) < 1");
+        rs24.last();
+        jLabel24Hours.setText(String.valueOf(rs24.getRow()) + " Movies");
+        
+        // Last 7 Days
+        Statement stmt2 = conn.createStatement();
+        ResultSet rs7 = stmt2.executeQuery("SELECT * FROM movierental.rents WHERE DATEDIFF(now(), time) < 7");
+        rs7.last();
+        jLabel7Days.setText(String.valueOf(rs7.getRow()) + " Movies");
+       
+        // Last 30 Days
+        Statement stmt3 = conn.createStatement();
+        ResultSet rs30 = stmt3.executeQuery("SELECT * FROM movierental.rents WHERE DATEDIFF(now(), time) < 30");
+        rs30.last();
+        jLabel30Days.setText(String.valueOf(rs30.getRow()) + " Movies");
     }
 
     /**
@@ -85,9 +114,9 @@ public class RentedMovies extends javax.swing.JFrame {
                                     .addComponent(jLabel5))
                                 .addGap(106, 106, 106)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel24Hours)
                                     .addComponent(jLabel7Days)
-                                    .addComponent(jLabel30Days)))))
+                                    .addComponent(jLabel30Days)
+                                    .addComponent(jLabel24Hours)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(25, 25, 25)
                         .addComponent(jButton1)))
@@ -101,16 +130,16 @@ public class RentedMovies extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel30Days))
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel24Hours))
                 .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jLabel7Days))
                 .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel24Hours))
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel30Days))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(18, 18, 18))
@@ -120,40 +149,22 @@ public class RentedMovies extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        setVisible(false);
+        new Admin().setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RentedMovies.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RentedMovies.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RentedMovies.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RentedMovies.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RentedMovies().setVisible(true);
+                try {
+                    new RentedMovies().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(RentedMovies.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
