@@ -22,9 +22,13 @@ public class ChangeAccount extends javax.swing.JFrame {
         jTextZipcode.setText(user.getZipcode());
         jTextCity.setText(user.getCity());
         String iban = user.getIban();
-        iban = "******************" + iban.substring(iban.length()-4,iban.length());
+        if(!iban.equals("")){
+            iban = "******************" + iban.substring(iban.length()-4,iban.length());
+        }
         String bic = user.getBic();
-        bic = "*******" + bic.substring(bic.length()-4,bic.length());
+        if(!bic.equals("")){
+             bic = "*******" + bic.substring(bic.length()-4,bic.length());
+        }
         jTextIban.setText(iban);
         jTextBic.setText(bic);
         

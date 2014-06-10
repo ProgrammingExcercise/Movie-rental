@@ -6,6 +6,7 @@
 
 package movierental;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -511,7 +512,13 @@ public class User extends javax.swing.JFrame {
     private void jButtonLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLogOutActionPerformed
         setVisible(false);
         JOptionPane.showMessageDialog(null, "Successfully logged out!");
-        new Login().setVisible(true);
+        try {
+            new Login().setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButtonLogOutActionPerformed
 
     /**

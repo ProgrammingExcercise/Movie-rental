@@ -1,16 +1,76 @@
 package movierental;
 
+import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 
 public class Login extends javax.swing.JFrame {
 
-    public Login() {
+    public Login() throws IOException, SQLException {
         initComponents();
-    }
+        
+        ArrayList<Movie> movies = Login.getTop10();
+        
+        System.out.println(movies.get(4).getTitle());
+        
+        
+        URL imgUrl = new URL(movies.get(0).getImglink()); 
+        jLabelBild1.setIcon(new ImageIcon(imgUrl));
+        jLabelBild1.setText(null);
+        jLabelBild1.addMouseListener(new MouseImpl(1));
 
+        
+        URL imgUrl2 = new URL(movies.get(1).getImglink()); 
+        jLabelBild2.setIcon(new ImageIcon(imgUrl2));
+         jLabelBild2.setText(null);
+         jLabelBild2.addMouseListener(new MouseImpl(2));
+        
+        URL imgUrl3 = new URL(movies.get(2).getImglink()); 
+        jLabelBild3.setIcon(new ImageIcon(imgUrl3));
+         jLabelBild3.setText(null);
+        
+        URL imgUrl4 = new URL(movies.get(3).getImglink()); 
+        jLabelBild4.setIcon(new ImageIcon(imgUrl4));
+         jLabelBild4.setText(null);
+        
+        URL imgUrl5 = new URL(movies.get(4).getImglink()); 
+        jLabelBild5.setIcon(new ImageIcon(imgUrl5));
+         jLabelBild5.setText(null);
+        
+        
+    }
+    
+    public static ArrayList<Movie> getTop10() throws SQLException{
+       ArrayList<Movie> movies = new ArrayList<>();
+        
+       Verbindung db = new Verbindung();
+       db.start();
+       Connection conn = db.getVerbindung();
+       Statement stmt = conn.createStatement();
+       ResultSet rs = stmt.executeQuery("Select * from movie");
+       
+       while(rs.next()){
+        Movie movie = new Movie(rs.getString("title"),rs.getString("picture"));
+        movies.add(movie);
+       }
+       
+       return movies;
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -196,7 +256,7 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(jSeparator1)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 18, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 595, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -224,9 +284,9 @@ public class Login extends javax.swing.JFrame {
                             .addComponent(jLabelBild2)
                             .addComponent(jLabelBild7, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelBild3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelBild8, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabelBild8, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+                            .addComponent(jLabelBild3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabelBild4, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -329,7 +389,7 @@ public class Login extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabelBild20)
                         .addComponent(jLabelBild16)))
-                .addContainerGap(111, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -389,33 +449,16 @@ public class Login extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Login().setVisible(true);
+                try {
+                    new Login().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

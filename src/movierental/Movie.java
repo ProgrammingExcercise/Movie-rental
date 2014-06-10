@@ -31,9 +31,15 @@ public class Movie {
     this.releasedate = releasedate;
     this.duration = duration;
     this.link = link;
+        }
+
     
-    
+    public Movie(String title, String imglink){
+        this.title = title;
+        this.imglink = imglink;
     }
+    
+    
     public static void addMovie(String title,String genre,String agerating,String description,String releaseyear,String duration,String streamlink,String imglink,String pricecat){
         
            Verbindung db = new Verbindung();
@@ -67,4 +73,13 @@ public class Movie {
            JOptionPane.showMessageDialog(null, "Movie was added."+ pricecat);
     
     }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getImglink() {
+        return imglink;
+    }
+    
 }

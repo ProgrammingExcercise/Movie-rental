@@ -25,7 +25,7 @@ import javax.swing.JOptionPane;
  */
 public class Registry extends javax.swing.JFrame {
     String username,email,prename,surname,address,password,password2,birthday,day,month,year,city,zipcode,bic,iban;
-    String pattern = "^[_A-Za-z0-9-](?=.*[@#$%]).{7,50}";
+    String pattern = "^[_A-Za-z0-9-](?=.*[!@#$%]).{7,50}";
     String emailreg = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
     Date birth = new Date();
     Date ondate = new Date();
@@ -157,6 +157,11 @@ public class Registry extends javax.swing.JFrame {
         jButtonReturn.setText("Return");
 
         jPassword.setText("jPasswordField1");
+        jPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPasswordActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("IBAN :");
 
@@ -410,6 +415,10 @@ public class Registry extends javax.swing.JFrame {
                 }
         }
     }//GEN-LAST:event_jButtonRegisterActionPerformed
+
+    private void jPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPasswordActionPerformed
 
     /**
      * @param args the command line arguments

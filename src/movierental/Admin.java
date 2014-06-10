@@ -6,6 +6,7 @@
 
 package movierental;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -347,7 +348,6 @@ public class Admin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonrentedMoviesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonrentedMoviesActionPerformed
-        setVisible(false);
         try {
             new RentedMovies().setVisible(true);
         } catch (SQLException ex) {
@@ -376,17 +376,23 @@ public class Admin extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboGenreActionPerformed
 
     private void jButtonChangeMovieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonChangeMovieActionPerformed
-        // TODO add your handling code here:
+        new ChangeMovie().setVisible(true);
     }//GEN-LAST:event_jButtonChangeMovieActionPerformed
 
     private void jButtonAddMovieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddMovieActionPerformed
-        // TODO add your handling code here:
+        new AddMovie().setVisible(true);
     }//GEN-LAST:event_jButtonAddMovieActionPerformed
 
     private void jButtonLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLogOutActionPerformed
         JOptionPane.showMessageDialog(null, "Successfully logged out!");
         setVisible(false);
-        new Login().setVisible(true);
+        try {
+            new Login().setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }//GEN-LAST:event_jButtonLogOutActionPerformed
 
