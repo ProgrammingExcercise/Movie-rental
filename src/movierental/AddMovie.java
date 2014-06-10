@@ -24,7 +24,18 @@ public class AddMovie extends javax.swing.JFrame {
     public AddMovie() {
         initComponents();
     }
-
+    
+    public void releaseArea(){
+        jTextTitle.setText("");
+        jComboGenre.setSelectedIndex(0);
+        jComboAgeRating.setSelectedIndex(0);
+        jTextImg.setText("");
+        jTextStreamlink.setText("");
+        jTextAreaDescription.setText("");
+        jTextDuration.setText("");
+        jTextReleaseYear.setText("");
+        jComboPriceCat.setSelectedIndex(0);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -97,9 +108,9 @@ public class AddMovie extends javax.swing.JFrame {
             }
         });
 
-        jComboAgeRating.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12", "Item 2", "Item 3", "Item 4" }));
+        jComboAgeRating.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "0", "6", "12", "16", "18" }));
 
-        jComboPriceCat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "Item 2", "Item 3", "Item 4" }));
+        jComboPriceCat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3" }));
 
         jButtonReturn.setText("Return");
         jButtonReturn.addActionListener(new java.awt.event.ActionListener() {
@@ -253,7 +264,7 @@ public class AddMovie extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboGenreActionPerformed
 
     private void jButtonReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReturnActionPerformed
-        // TODO add your handling code here:
+       this.dispose();
     }//GEN-LAST:event_jButtonReturnActionPerformed
 
     private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddActionPerformed
@@ -277,6 +288,7 @@ public class AddMovie extends javax.swing.JFrame {
         }else{ 
           
            addMovie(title,genre,agerating,description,releaseyear,duration,streamlink,imglink,pricecat);
+          releaseArea();
        }
        }
     }//GEN-LAST:event_jButtonAddActionPerformed
@@ -313,6 +325,7 @@ public class AddMovie extends javax.swing.JFrame {
             @Override
             public void run() {
                 new AddMovie().setVisible(true);
+                
             }
         });
     }

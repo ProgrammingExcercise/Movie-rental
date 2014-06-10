@@ -20,6 +20,20 @@ import javax.swing.JOptionPane;
 public class Movie {
     String mid, title, imglink, rating, description, genre, agerating, releasedate, duration, link;
     
+    Movie(String mid,String title,String imglink,String rating, String description,String genre,String agerating,String releasedate,String duration,String link){
+    this.mid = mid;
+    this.title = title;
+    this.imglink = imglink;
+    this.rating = rating;
+    this.description = description;
+    this.genre = genre;
+    this.agerating = agerating;
+    this.releasedate = releasedate;
+    this.duration = duration;
+    this.link = link;
+    
+    
+    }
     public static void addMovie(String title,String genre,String agerating,String description,String releaseyear,String duration,String streamlink,String imglink,String pricecat){
         
            Verbindung db = new Verbindung();
@@ -33,7 +47,7 @@ public class Movie {
            } catch (SQLException ex) {
                Logger.getLogger(AddMovie.class.getName()).log(Level.SEVERE, null, ex);
            }
-           JOptionPane.showMessageDialog(null, "Movie was added."+ pricecat);
+           JOptionPane.showMessageDialog(null, "Movie was added.");
     
     
     
