@@ -453,7 +453,9 @@ public class Login extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new Login().setVisible(true);
+                    Login login = new Login();
+                    login.pack();
+                    login.setVisible(true);
                 } catch (IOException ex) {
                     Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (SQLException ex) {
