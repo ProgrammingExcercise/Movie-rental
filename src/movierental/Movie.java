@@ -9,6 +9,7 @@ package movierental;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -18,9 +19,9 @@ import javax.swing.JOptionPane;
  * @author Acer
  */
 public class Movie {
-    String mid, title, imglink, rating, description, genre, agerating, releasedate, duration, link, language;
+    String mid, title, imglink, rating, description, genre, agerating, releasedate, duration, link, language, language2, price;
     
-    Movie(String mid,String title,String imglink,String rating, String description,String genre,String agerating,String releasedate,String duration,String link, String language){
+    Movie(String mid,String title,String imglink,String rating, String description,String genre,String agerating,String releasedate,String duration,String link, String language, String language2, String price){
     this.mid = mid;
     this.title = title;
     this.imglink = imglink;
@@ -32,6 +33,8 @@ public class Movie {
     this.duration = duration;
     this.link = link;
     this.language = language;
+    this.language2 = language2;
+    this.price = price;
         }
 
     
@@ -122,6 +125,14 @@ public class Movie {
 
     public String getLanguage() {
         return language;
+    }
+    
+    public String getLanguage2() {
+        return language2;
+    }
+    
+    public String getPrice() {
+        return price;
     }
     
     

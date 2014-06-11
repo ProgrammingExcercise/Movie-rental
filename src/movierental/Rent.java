@@ -45,7 +45,7 @@ public class Rent extends javax.swing.JFrame {
         jLabelDeadline.setText(dateFormat.format(future));
         jLabelBild.setIcon(new ImageIcon(new URL(movie.getImglink())));
         jLabelTitle.setText(movie.getTitle());
-        
+        jLabelPrice.setText(movie.getPrice() + "€");
     }
 
 

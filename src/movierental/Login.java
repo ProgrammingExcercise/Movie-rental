@@ -33,12 +33,23 @@ public class Login extends javax.swing.JFrame {
        db.start();
        Connection conn = db.getVerbindung();
        Statement stmt = conn.createStatement();
-       ResultSet rs = stmt.executeQuery("Select * from movie order by mid desc");
+       ResultSet rs = stmt.executeQuery("Select * from movie natural join pricecat order by mid desc");
+       
+       Statement stmt2 = conn.createStatement();
        
        while(rs.next()){
-        Movie movie = new Movie(rs.getString("mid"),rs.getString("title"),rs.getString("picture"),"5", rs.getString("description"),rs.getString("genre"),rs.getString("agerating"),rs.getString("releasedate"),rs.getString("duration"),rs.getString("link"),rs.getString("lid"));
+        ResultSet rs2 = stmt2.executeQuery("Select * from movie natural join haslang where mid = "+rs.getString("mid")+" ");
+        rs2.next();
+        String language = rs2.getString("Language");
+        rs2.last();
+        String language2 = rs2.getString("Language");
+        
+        if(language2.equals(language))
+            language2 = "";
+        
+        Movie movie = new Movie(rs.getString("mid"),rs.getString("title"),rs.getString("picture"),"5", rs.getString("description"),rs.getString("genre"),rs.getString("agerating"),rs.getString("releasedate"),rs.getString("duration"),rs.getString("link"),language, language2, rs.getString("price"));
 
-        movies.add(movie);
+       movies.add(movie);
        }       
        
         URL imgUrl = new URL(movies.get(0).getImglink()); 
