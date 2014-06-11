@@ -32,8 +32,8 @@ public class Login extends javax.swing.JFrame {
        Verbindung db = new Verbindung();
        db.start();
        Connection conn = db.getVerbindung();
-       Statement stmt = conn.createStatement();
-       ResultSet rs = stmt.executeQuery("Select * from movie natural join pricecat order by mid desc");
+       Statement stmt = conn.createStatement();     
+       ResultSet rs = stmt.executeQuery("Select *, avg(rating) as average from movie natural join pricecat natural left join rates group by mid order by mid desc");
        
        Statement stmt2 = conn.createStatement();
        
@@ -47,7 +47,7 @@ public class Login extends javax.swing.JFrame {
         if(language2.equals(language))
             language2 = "";
         
-        Movie movie = new Movie(rs.getString("mid"),rs.getString("title"),rs.getString("picture"),"5", rs.getString("description"),rs.getString("genre"),rs.getString("agerating"),rs.getString("releasedate"),rs.getString("duration"),rs.getString("link"),language, language2, rs.getString("price"));
+        Movie movie = new Movie(rs.getString("mid"),rs.getString("title"),rs.getString("picture"),rs.getString("average"), rs.getString("description"),rs.getString("genre"),rs.getString("agerating"),rs.getString("releasedate"),rs.getString("duration"),rs.getString("link"),language, language2, rs.getString("price"));
 
        movies.add(movie);
        }       

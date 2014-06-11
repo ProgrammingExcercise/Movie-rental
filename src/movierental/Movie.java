@@ -21,11 +21,15 @@ import javax.swing.JOptionPane;
 public class Movie {
     String mid, title, imglink, rating, description, genre, agerating, releasedate, duration, link, language, language2, price;
     
-    Movie(String mid,String title,String imglink,String rating, String description,String genre,String agerating,String releasedate,String duration,String link, String language, String language2, String price){
+    Movie(String mid,String title,String imglink, String rating, String description,String genre,String agerating,String releasedate,String duration,String link, String language, String language2, String price){
     this.mid = mid;
     this.title = title;
     this.imglink = imglink;
-    this.rating = rating;
+    if(rating == null)    
+        this.rating = "N/A";
+    else    
+        this.rating = rating.substring(0, 3);
+        
     this.description = description;
     this.genre = genre;
     this.agerating = agerating;
@@ -35,7 +39,8 @@ public class Movie {
     this.language = language;
     this.language2 = language2;
     this.price = price;
-        }
+    
+    }
 
     
     public Movie(String title, String imglink){
@@ -134,6 +139,5 @@ public class Movie {
     public String getPrice() {
         return price;
     }
-    
     
 }
