@@ -1,9 +1,9 @@
 package movierental;
 
-import java.awt.event.MouseListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -13,63 +13,125 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
 
 public class Login extends javax.swing.JFrame {
-
+    
+    Login login;
+    User user = new User();
+    ArrayList<Movie> movies;
+    
     public Login() throws IOException, SQLException {
         initComponents();
-        
-        ArrayList<Movie> movies = Login.getTop10();
-        
-        System.out.println(movies.get(4).getTitle());
-        
-        
-        URL imgUrl = new URL(movies.get(0).getImglink()); 
-        jLabelBild1.setIcon(new ImageIcon(imgUrl));
-        jLabelBild1.setText(null);
-        jLabelBild1.addMouseListener(new MouseImpl(1));
-
-        
-        URL imgUrl2 = new URL(movies.get(1).getImglink()); 
-        jLabelBild2.setIcon(new ImageIcon(imgUrl2));
-         jLabelBild2.setText(null);
-         jLabelBild2.addMouseListener(new MouseImpl(2));
-        
-        URL imgUrl3 = new URL(movies.get(2).getImglink()); 
-        jLabelBild3.setIcon(new ImageIcon(imgUrl3));
-         jLabelBild3.setText(null);
-        
-        URL imgUrl4 = new URL(movies.get(3).getImglink()); 
-        jLabelBild4.setIcon(new ImageIcon(imgUrl4));
-         jLabelBild4.setText(null);
-        
-        URL imgUrl5 = new URL(movies.get(4).getImglink()); 
-        jLabelBild5.setIcon(new ImageIcon(imgUrl5));
-         jLabelBild5.setText(null);
-        
-        
     }
     
-    public static ArrayList<Movie> getTop10() throws SQLException{
-       ArrayList<Movie> movies = new ArrayList<>();
+    public void Newest10() throws SQLException, MalformedURLException, IOException{
+       movies = new ArrayList<>();
+       MouseAdapter listener = new MouseImpl();
         
        Verbindung db = new Verbindung();
        db.start();
        Connection conn = db.getVerbindung();
        Statement stmt = conn.createStatement();
-       ResultSet rs = stmt.executeQuery("Select * from movie");
+       ResultSet rs = stmt.executeQuery("Select * from movie order by mid desc");
+       
+       while(rs.next()){
+        Movie movie = new Movie(rs.getString("mid"),rs.getString("title"),rs.getString("picture"),"5", rs.getString("description"),rs.getString("genre"),rs.getString("agerating"),rs.getString("releasedate"),rs.getString("duration"),rs.getString("link"),rs.getString("lid"));
+
+        movies.add(movie);
+       }       
+       
+        URL imgUrl = new URL(movies.get(0).getImglink()); 
+        jLabelBild1.setIcon(new ImageIcon(imgUrl));
+        jLabelBild1.setText(null);
+        jLabelBild1.addMouseListener(listener);
+        
+        URL imgUrl2 = new URL(movies.get(1).getImglink()); 
+        jLabelBild2.setIcon(new ImageIcon(imgUrl2));
+        jLabelBild2.setText(null);
+        jLabelBild2.addMouseListener(listener);
+        
+        URL imgUrl3 = new URL(movies.get(2).getImglink()); 
+        jLabelBild3.setIcon(new ImageIcon(imgUrl3));
+        jLabelBild3.setText(null);
+        jLabelBild3.addMouseListener(listener);
+
+        
+        URL imgUrl4 = new URL(movies.get(3).getImglink()); 
+        jLabelBild4.setIcon(new ImageIcon(imgUrl4));
+        jLabelBild4.setText(null);
+        jLabelBild4.addMouseListener(listener);
+        
+        URL imgUrl5 = new URL(movies.get(4).getImglink()); 
+        jLabelBild5.setIcon(new ImageIcon(imgUrl5));
+        jLabelBild5.setText(null);
+        jLabelBild5.addMouseListener(listener);
+        
+//        URL imgUrl6 = new URL(movies.get(0).getImglink()); 
+//        jLabelBild6.setIcon(new ImageIcon(imgUrl));
+//        jLabelBild6.setText(null);
+//        jLabelBild6.addMouseListener(listener);
+//        
+//        URL imgUrl7 = new URL(movies.get(1).getImglink()); 
+//        jLabelBild7.setIcon(new ImageIcon(imgUrl7));
+//        jLabelBild7.setText(null);
+//        jLabelBild7.addMouseListener(listener);
+//        
+//        URL imgUrl8 = new URL(movies.get(2).getImglink()); 
+//        jLabelBild8.setIcon(new ImageIcon(imgUrl8));
+//        jLabelBild8.setText(null);
+//        jLabelBild8.addMouseListener(listener);
+//        
+//        URL imgUrl9 = new URL(movies.get(3).getImglink()); 
+//        jLabelBild9.setIcon(new ImageIcon(imgUrl9));
+//        jLabelBild9.setText(null);
+//        jLabelBild9.addMouseListener(listener);
+//        
+//        URL imgUrl10 = new URL(movies.get(4).getImglink()); 
+//        jLabelBild10.setIcon(new ImageIcon(imgUrl10));
+//        jLabelBild10.setText(null);
+//        jLabelBild10.addMouseListener(listener);
+    }
+    
+    public void Top10() throws SQLException, MalformedURLException{
+       ArrayList<Movie> movies = new ArrayList<>();
+       MouseAdapter listener = new MouseImpl();
+       
+       Verbindung db = new Verbindung();
+       db.start();
+       Connection conn = db.getVerbindung();
+       Statement stmt = conn.createStatement();
+       ResultSet rs = stmt.executeQuery("SELECT * FROM movie");
        
        while(rs.next()){
         Movie movie = new Movie(rs.getString("title"),rs.getString("picture"));
         movies.add(movie);
        }
        
-       return movies;
+       URL imgUrl = new URL(movies.get(0).getImglink());
+       ImageIcon abc = new ImageIcon();
+       jLabelBild11.setIcon(new ImageIcon(imgUrl));
+       jLabelBild11.setText(null);
+       jLabelBild11.addMouseListener(new MouseImpl());
+
+        
+        URL imgUrl2 = new URL(movies.get(1).getImglink()); 
+        jLabelBild12.setIcon(new ImageIcon(imgUrl2));
+        jLabelBild12.setText(null);
+        jLabelBild12.addMouseListener(new MouseImpl());
+        
+        URL imgUrl3 = new URL(movies.get(2).getImglink()); 
+        jLabelBild13.setIcon(new ImageIcon(imgUrl3));
+        jLabelBild13.setText(null);
+        
+        URL imgUrl4 = new URL(movies.get(3).getImglink()); 
+        jLabelBild14.setIcon(new ImageIcon(imgUrl4));
+        jLabelBild14.setText(null);
+        
+        URL imgUrl5 = new URL(movies.get(4).getImglink()); 
+        jLabelBild16.setIcon(new ImageIcon(imgUrl5));
+        jLabelBild16.setText(null);
+       
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -292,29 +354,29 @@ public class Login extends javax.swing.JFrame {
                             .addComponent(jLabelBild4, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabelBild9, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelBild5)
-                            .addComponent(jLabelBild10, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabelBild10, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
+                            .addComponent(jLabelBild5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelBild20, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelBild11))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabelBild20, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+                            .addComponent(jLabelBild11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelBild13)
-                            .addComponent(jLabelBild16, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabelBild16, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+                            .addComponent(jLabelBild13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelBild19, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelBild17, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabelBild17, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+                            .addComponent(jLabelBild19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabelBild14, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabelBild12, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelBild15)
-                            .addComponent(jLabelBild18, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabelBild18, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
+                            .addComponent(jLabelBild15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -445,17 +507,17 @@ public class Login extends javax.swing.JFrame {
         new Registry().setVisible(true);
     }//GEN-LAST:event_jButtonRegistryActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
                     Login login = new Login();
+                    login.Newest10();
+//                    login.Top10();
                     login.pack();
                     login.setVisible(true);
+                 
                 } catch (IOException ex) {
                     Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (SQLException ex) {
@@ -506,4 +568,62 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JTextField jTextUsername;
     private javax.swing.JTextPane jTextsearch;
     // End of variables declaration//GEN-END:variables
+
+    class MouseImpl extends MouseAdapter {
+         @Override
+        public void mouseClicked(MouseEvent e) {
+            Object source = e.getSource();
+             try {
+                 user.login("abc","abc");
+             } catch (SQLException ex) {
+                 Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+             }
+            if (source == jLabelBild1) {
+                try {
+                    new MovieInfo(user,movies.get(0)).setVisible(true);
+                } catch (MalformedURLException ex) {
+                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (source == jLabelBild2) {
+                 try {
+                    MovieInfo window = new MovieInfo(user,movies.get(1));
+                    window.pack();
+                    window.setVisible(true);
+                } catch (MalformedURLException ex) {
+                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+ 
+            if (source == jLabelBild3) {
+                 try {
+                    MovieInfo window = new MovieInfo(user,movies.get(2));
+                    window.pack();
+                    window.setVisible(true);
+                } catch (MalformedURLException ex) {
+                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (source == jLabelBild4) {
+                 try {
+                    MovieInfo window = new MovieInfo(user,movies.get(3));
+                    window.pack();
+                    window.setVisible(true);
+                } catch (MalformedURLException ex) {
+                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (source == jLabelBild5) {
+                 try {
+                    MovieInfo window = new MovieInfo(user,movies.get(4));
+                    window.pack();
+                    window.setVisible(true);
+                } catch (MalformedURLException ex) {
+                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }
+    
 }
+

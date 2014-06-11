@@ -23,6 +23,7 @@ public class User extends javax.swing.JFrame {
     User user;
     public User(){
         initComponents();
+        this.uid = "0";
     }
     
     public User(User obj){
@@ -49,7 +50,7 @@ public class User extends javax.swing.JFrame {
        Connection conn = db.getVerbindung();
        Statement stmt = conn.createStatement();
        
-       ResultSet rs = stmt.executeQuery("Select * from user where username = '"+username+"' and password = '" +password+ "'");
+       ResultSet rs = stmt.executeQuery("Select * from user natural join bank where username = '"+username+"' and password = '" +password+ "'");
        if(rs.next()){
         uid = String.valueOf(rs.getInt("uid"));
         this.username = rs.getString("username");
