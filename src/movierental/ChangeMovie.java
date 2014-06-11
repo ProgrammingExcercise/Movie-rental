@@ -27,13 +27,13 @@ public class ChangeMovie extends javax.swing.JFrame {
      ChangeMovie Variablen 
      */
      
-    String movieid,title,genre,imglink,streamlink,description,duration,releaseyear,suchetext,agerating,pricecat,answer;
-    int age,price,combogenre,comboagerating,combopricecat;
+    String movieid,title,genre,imglink,streamlink,description,duration,releaseyear,suchetext,agerating,pricecat,answer,language,language2;
+    int age,price,combogenre,comboagerating,combopricecat,combolanguage,combolanguage2;
     
     Verbindung db;
     Connection conn;
-    Statement stmt,stmt2,stmt3;
-    ResultSet rs,rs2;
+    Statement stmt,stmt2,stmt3,stmt4;
+    ResultSet rs,rs2,rs3;
     
       
     /*
@@ -93,7 +93,18 @@ public class ChangeMovie extends javax.swing.JFrame {
        return 2;
        }// ende if bedingung
     }// ende der methode comboPricecat
-    
+    public static int comboLanguage(String lang){
+        switch(lang){
+            case "English":
+                return 1;
+            case "German":
+                return 2;
+            case "Spanish":
+                return 3;
+            default:
+                return 0;
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      
@@ -129,6 +140,9 @@ public class ChangeMovie extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jButtonSuche = new javax.swing.JButton();
         jLabelMovieid = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jComboLanguage = new javax.swing.JComboBox();
+        jComboLanguage2 = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -219,6 +233,12 @@ public class ChangeMovie extends javax.swing.JFrame {
             }
         });
 
+        jLabel12.setText("Language:");
+
+        jComboLanguage.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "First", "English", "German", "Spanish" }));
+
+        jComboLanguage2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Second", "English", "German", "Spanish" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -245,15 +265,20 @@ public class ChangeMovie extends javax.swing.JFrame {
                                             .addGroup(layout.createSequentialGroup()
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(jTextTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(jLabelMovieid)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel7)
-                                            .addComponent(jLabel8))
+                                            .addComponent(jLabel8)
+                                            .addComponent(jLabel12))
                                         .addGap(18, 18, 18)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jTextDuration, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jTextReleaseYear, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addComponent(jLabelMovieid))
+                                            .addComponent(jTextReleaseYear, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jComboLanguage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(jComboLanguage2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                                 .addGap(19, 19, 19)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
@@ -282,15 +307,12 @@ public class ChangeMovie extends javax.swing.JFrame {
                                                 .addComponent(jTextFieldImgLink, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
                                                 .addComponent(jTextStreamlink))))))
                             .addComponent(jButtonReturn))
-                        .addContainerGap(22, Short.MAX_VALUE))
+                        .addContainerGap(107, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))
                         .addGap(0, 0, Short.MAX_VALUE))))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(11, 11, 11)
-                    .addComponent(jLabel1)
-                    .addContainerGap(632, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -303,7 +325,9 @@ public class ChangeMovie extends javax.swing.JFrame {
                             .addComponent(jTextSuchText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5)
                             .addComponent(jButtonSuche, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -325,7 +349,12 @@ public class ChangeMovie extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextDuration, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(40, 40, 40)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel12)
+                            .addComponent(jComboLanguage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboLanguage2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabelMovieid))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -351,11 +380,6 @@ public class ChangeMovie extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jButtonChange)))
                 .addContainerGap())
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(128, 128, 128)
-                    .addComponent(jLabel1)
-                    .addContainerGap(244, Short.MAX_VALUE)))
         );
 
         pack();
@@ -399,6 +423,8 @@ public class ChangeMovie extends javax.swing.JFrame {
        imglink = jTextFieldImgLink.getText();
        streamlink = jTextStreamlink.getText();
        movieid = jLabelMovieid.getText();
+       language = (String)jComboLanguage.getSelectedItem();
+       language2 = (String)jComboLanguage2.getSelectedItem();
           
        db = new Verbindung();
        db.start();
@@ -453,11 +479,23 @@ public class ChangeMovie extends javax.swing.JFrame {
                     imglink = rs.getString(9);
                     price = rs.getInt(10);
                     
+                    stmt4 = conn.createStatement();
+                    rs3 = stmt4.executeQuery("SELECT Language FROM haslang WHERE Mid = '"+ movieid+"' ");
+                    
+                    rs3.first();
+                    language = rs3.getString("Language");
+                    if(rs3.next()){
+                    language2 = rs3.getString("Language");
+                    combolanguage2 = comboLanguage(language2);
+                    jComboLanguage2.setSelectedIndex(combolanguage2);
+                    }
+                    
                     combogenre = comboGenre(genre);
                     comboagerating = comboAgerating(age);
                     combopricecat = comboPricecat(price);
+                    combolanguage = comboLanguage(language);
                     
-                   
+                    
                     jTextTitle.setText(title);
                     jComboGenre.setSelectedIndex(combogenre);
                     jTextDescription.setText(description);
@@ -469,6 +507,8 @@ public class ChangeMovie extends javax.swing.JFrame {
                     jComboAgeRating.setSelectedIndex(comboagerating);
                     jLabelMovieid.setText(movieid);
                     jLabelMovieid.setVisible(false);
+                    jComboLanguage.setSelectedIndex(combolanguage);
+                   
                     
                     
                }else{
@@ -543,10 +583,21 @@ public class ChangeMovie extends javax.swing.JFrame {
                     imglink = rs2.getString(9);
                     price = rs2.getInt(10);
                     
+                    stmt4 = conn.createStatement();
+                    rs3 = stmt4.executeQuery("SELECT Language FROM haslang WHERE Mid = '"+movieid+"' ");
+                    
+                    rs3.first();
+                    language = rs3.getString("Language");
+                    if(rs3.next()){
+                    language2 = rs3.getString("Language");
+                    combolanguage2 = comboLanguage(language2);
+                    jComboLanguage2.setSelectedIndex(combolanguage2);
+                    }
                     combogenre = comboGenre(genre);
                     comboagerating = comboAgerating(age);
                     combopricecat = comboPricecat(price);
-                    
+                    combolanguage = comboLanguage(language);
+                   
                    
                     jTextTitle.setText(title);
                     jComboGenre.setSelectedIndex(combogenre);
@@ -559,6 +610,8 @@ public class ChangeMovie extends javax.swing.JFrame {
                     jComboAgeRating.setSelectedIndex(comboagerating);
                     jLabelMovieid.setText(movieid);
                     jLabelMovieid.setVisible(false);
+                    jComboLanguage.setSelectedIndex(combolanguage);
+                    
                     }
                }
               
@@ -613,10 +666,13 @@ public class ChangeMovie extends javax.swing.JFrame {
     private javax.swing.JButton jButtonSuche;
     private javax.swing.JComboBox jComboAgeRating;
     private javax.swing.JComboBox jComboGenre;
+    private javax.swing.JComboBox jComboLanguage;
+    private javax.swing.JComboBox jComboLanguage2;
     private javax.swing.JComboBox jComboPriceCategory;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
