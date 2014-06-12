@@ -268,10 +268,10 @@ public class MovieInfo extends javax.swing.JFrame {
             Statement stmt,stmt2;
             try {
                 stmt = conn.createStatement();
-                ResultSet rs = stmt.executeQuery("SELECT * from RENTS where uid = '"+user.getUid()+"' and mid = '"+movie.getMid()+"' ");
+                ResultSet rs = stmt.executeQuery("SELECT * FROM rates where uid = '"+user.getUid()+"' and mid = '"+movie.getMid()+"' ");
                 System.out.println(user.getUid());
                 System.out.println(movie.getMid());
-                System.out.println(rs.first());
+                System.out.println(rs.next());
                 if( rs.first() ){
                     JOptionPane.showMessageDialog(null, "You have already rated this movie!");
                 } else {        

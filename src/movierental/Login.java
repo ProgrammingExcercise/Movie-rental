@@ -23,6 +23,10 @@ public class Login extends javax.swing.JFrame {
     
     public Login() throws IOException, SQLException {
         initComponents();
+        this.Newest10();
+//      login.Top10();
+        this.pack();
+        this.setVisible(true);
     }
     
     public void Newest10() throws SQLException, MalformedURLException, IOException{
@@ -52,56 +56,46 @@ public class Login extends javax.swing.JFrame {
        movies.add(movie);
        }       
        
-        URL imgUrl = new URL(movies.get(0).getImglink()); 
-        jLabelBild1.setIcon(new ImageIcon(imgUrl));
+        jLabelBild1.setIcon(new ImageIcon(new URL(movies.get(0).getImglink())));
         jLabelBild1.setText(null);
         jLabelBild1.addMouseListener(listener);
         
-        URL imgUrl2 = new URL(movies.get(1).getImglink()); 
-        jLabelBild2.setIcon(new ImageIcon(imgUrl2));
+        jLabelBild2.setIcon(new ImageIcon(new URL(movies.get(1).getImglink())));
         jLabelBild2.setText(null);
         jLabelBild2.addMouseListener(listener);
         
-        URL imgUrl3 = new URL(movies.get(2).getImglink()); 
-        jLabelBild3.setIcon(new ImageIcon(imgUrl3));
+        jLabelBild3.setIcon(new ImageIcon(new URL(movies.get(2).getImglink())));
         jLabelBild3.setText(null);
         jLabelBild3.addMouseListener(listener);
 
         
-        URL imgUrl4 = new URL(movies.get(3).getImglink()); 
-        jLabelBild4.setIcon(new ImageIcon(imgUrl4));
+        jLabelBild4.setIcon(new ImageIcon(new URL(movies.get(3).getImglink())));
         jLabelBild4.setText(null);
         jLabelBild4.addMouseListener(listener);
         
-        URL imgUrl5 = new URL(movies.get(4).getImglink()); 
-        jLabelBild5.setIcon(new ImageIcon(imgUrl5));
+        jLabelBild5.setIcon(new ImageIcon(new URL(movies.get(4).getImglink())));
         jLabelBild5.setText(null);
         jLabelBild5.addMouseListener(listener);
         
-//        URL imgUrl6 = new URL(movies.get(0).getImglink()); 
-//        jLabelBild6.setIcon(new ImageIcon(imgUrl));
-//        jLabelBild6.setText(null);
-//        jLabelBild6.addMouseListener(listener);
-//        
-//        URL imgUrl7 = new URL(movies.get(1).getImglink()); 
-//        jLabelBild7.setIcon(new ImageIcon(imgUrl7));
-//        jLabelBild7.setText(null);
-//        jLabelBild7.addMouseListener(listener);
-//        
-//        URL imgUrl8 = new URL(movies.get(2).getImglink()); 
-//        jLabelBild8.setIcon(new ImageIcon(imgUrl8));
-//        jLabelBild8.setText(null);
-//        jLabelBild8.addMouseListener(listener);
-//        
-//        URL imgUrl9 = new URL(movies.get(3).getImglink()); 
-//        jLabelBild9.setIcon(new ImageIcon(imgUrl9));
-//        jLabelBild9.setText(null);
-//        jLabelBild9.addMouseListener(listener);
-//        
-//        URL imgUrl10 = new URL(movies.get(4).getImglink()); 
-//        jLabelBild10.setIcon(new ImageIcon(imgUrl10));
-//        jLabelBild10.setText(null);
-//        jLabelBild10.addMouseListener(listener);
+        jLabelBild6.setIcon(new ImageIcon(new URL(movies.get(0).getImglink())));
+        jLabelBild6.setText(null);
+        jLabelBild6.addMouseListener(listener);
+        
+        jLabelBild7.setIcon(new ImageIcon(new URL(movies.get(1).getImglink())));
+        jLabelBild7.setText(null);
+        jLabelBild7.addMouseListener(listener);
+        
+        jLabelBild8.setIcon(new ImageIcon(new URL(movies.get(2).getImglink())));
+        jLabelBild8.setText(null);
+        jLabelBild8.addMouseListener(listener);
+        
+        jLabelBild9.setIcon(new ImageIcon(new URL(movies.get(3).getImglink())));
+        jLabelBild9.setText(null);
+        jLabelBild9.addMouseListener(listener);
+        
+        jLabelBild10.setIcon(new ImageIcon(new URL(movies.get(4).getImglink())));
+        jLabelBild10.setText(null);
+        jLabelBild10.addMouseListener(listener);
     }
     
     public void Top10() throws SQLException, MalformedURLException{
@@ -119,30 +113,24 @@ public class Login extends javax.swing.JFrame {
         movies.add(movie);
        }
        
-       URL imgUrl = new URL(movies.get(0).getImglink());
        ImageIcon abc = new ImageIcon();
-       jLabelBild11.setIcon(new ImageIcon(imgUrl));
+       jLabelBild11.setIcon(new ImageIcon(new URL(movies.get(0).getImglink())));
        jLabelBild11.setText(null);
        jLabelBild11.addMouseListener(new MouseImpl());
 
         
-        URL imgUrl2 = new URL(movies.get(1).getImglink()); 
-        jLabelBild12.setIcon(new ImageIcon(imgUrl2));
+        jLabelBild12.setIcon(new ImageIcon(new URL(movies.get(1).getImglink())));
         jLabelBild12.setText(null);
         jLabelBild12.addMouseListener(new MouseImpl());
         
-        URL imgUrl3 = new URL(movies.get(2).getImglink()); 
-        jLabelBild13.setIcon(new ImageIcon(imgUrl3));
+        jLabelBild13.setIcon(new ImageIcon(new URL(movies.get(2).getImglink())));
         jLabelBild13.setText(null);
         
-        URL imgUrl4 = new URL(movies.get(3).getImglink()); 
-        jLabelBild14.setIcon(new ImageIcon(imgUrl4));
+        jLabelBild14.setIcon(new ImageIcon(new URL(movies.get(3).getImglink())));
         jLabelBild14.setText(null);
         
-        URL imgUrl5 = new URL(movies.get(4).getImglink()); 
-        jLabelBild16.setIcon(new ImageIcon(imgUrl5));
+        jLabelBild16.setIcon(new ImageIcon(new URL(movies.get(4).getImglink())));
         jLabelBild16.setText(null);
-       
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -524,11 +512,6 @@ public class Login extends javax.swing.JFrame {
             public void run() {
                 try {
                     Login login = new Login();
-                    login.Newest10();
-//                    login.Top10();
-                    login.pack();
-                    login.setVisible(true);
-                 
                 } catch (IOException ex) {
                     Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (SQLException ex) {
