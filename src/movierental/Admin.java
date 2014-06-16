@@ -1,4 +1,5 @@
 package movierental;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
@@ -13,13 +14,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-/**
- *
- * @author stefano
- */
+
+
 public class Admin extends javax.swing.JFrame {
-        Admin admin;
-        User user = new User();
+        User user;
         ArrayList<Movie> movies,movies2;
         String suchetext,gen,pri,age,rate,lang;
         int genre,price,agerating,rating,language,pages;
@@ -29,10 +27,8 @@ public class Admin extends javax.swing.JFrame {
         ResultSet rs,rs2,rs3,rsNewest,rsNewest2,rsSearch,rsTop10,rs2Top10;
         static int seitenanzahl = 0;
        
-    /**
-     * Creates new form Admin
-     */
-    public Admin() {
+    public Admin(User user) {
+        this.user = user;
             try {
                 initComponents();
                 this.Newest10();
@@ -210,31 +206,10 @@ public class Admin extends javax.swing.JFrame {
                          }
      }
      public void Newest10() throws SQLException, MalformedURLException, IOException{
-       movies = new ArrayList<>();
        MouseAdapter listener = new MouseImpl();
         
-       db = new Verbindung();
-       db.start();
-       conn = db.getVerbindung();
-       stmtNewest = conn.createStatement();     
-       rsNewest = stmtNewest.executeQuery("Select *, avg(rating) as average from movie natural join pricecat natural left join rates group by mid order by mid desc");
-       
-       stmtNewest2 = conn.createStatement();
-       
-       while(rsNewest.next()){
+      movies = Movie.getNewest10();
            
-        rsNewest2 = stmtNewest2.executeQuery("Select * from movie natural join haslang where mid = "+rsNewest.getString("mid")+" ");
-        rsNewest2.next();
-        String langNewest = rsNewest2.getString("Language");
-        rsNewest2.last();
-        String langNewest2 = rsNewest2.getString("Language");
-        
-        if(langNewest2.equals(langNewest))
-            langNewest2 = "";
-        
-        Movie movie = new Movie(rsNewest.getString("mid"),rsNewest.getString("title"),rsNewest.getString("picture"),rsNewest.getString("average"), rsNewest.getString("description"),rsNewest.getString("genre"),rsNewest.getString("agerating"),rsNewest.getString("releasedate"),rsNewest.getString("duration"),rsNewest.getString("link"),langNewest, langNewest2, rsNewest.getString("price"),"");
-        movies.add(movie);
-       }       
         jLabelBild1.setIcon(new ImageIcon(new URL(movies.get(0).getImglink())));
         jLabelBild1.setText(null);
         jLabelBild1.addMouseListener(listener);
@@ -277,29 +252,10 @@ public class Admin extends javax.swing.JFrame {
     }
      
       public void Top10() throws SQLException, MalformedURLException{
-       movies = new ArrayList<>();
        MouseAdapter listener = new MouseImpl();
-       
-       db = new Verbindung();
-       db.start();
-       conn = db.getVerbindung();
-       stmtTop10 = conn.createStatement();
-       rsTop10 = stmtTop10.executeQuery("Select *, avg(rating) as average from movie natural join pricecat natural left join rates group by mid order by average desc");
-       stmt2Top10 = conn.createStatement();
-       
-       while(rsTop10.next()){
-        rs2Top10 = stmt2Top10.executeQuery("Select * from movie natural join haslang where mid = "+rsTop10.getString("mid")+" ");
-        rs2Top10.next();
-        String langTop10 = rs2Top10.getString("Language");
-        rs2Top10.last();
-        String lang2Top10 = rs2Top10.getString("Language");
-        
-        if(lang2Top10.equals(langTop10))
-            lang2Top10 = "";
-        Movie movie = new Movie(rsTop10.getString("mid"),rsTop10.getString("title"),rsTop10.getString("picture"),rsTop10.getString("average"), rsTop10.getString("description"),rsTop10.getString("genre"),rsTop10.getString("agerating"),rsTop10.getString("releasedate"),rsTop10.getString("duration"),rsTop10.getString("link"),langTop10, lang2Top10, rsTop10.getString("price"),"");
 
-        movies.add(movie);
-       }
+       Movie.getTop10();
+       
         jLabelBild11.setIcon(new ImageIcon(new URL(movies.get(0).getImglink())));
         jLabelBild11.setText(null);
         jLabelBild11.addMouseListener(listener);
@@ -553,9 +509,9 @@ public class Admin extends javax.swing.JFrame {
                                     .addComponent(jLabelBild2)
                                     .addComponent(jLabelBild7, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
-                                .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabelBild3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabelBild8, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabelBild8, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+                                    .addComponent(jLabelBild3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabelBild4, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -574,9 +530,9 @@ public class Admin extends javax.swing.JFrame {
                                     .addComponent(jLabelBild13)
                                     .addComponent(jLabelBild16, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
-                                .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabelBild19, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabelBild17, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabelBild17, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+                                    .addComponent(jLabelBild19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabelBild14, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -669,7 +625,7 @@ public class Admin extends javax.swing.JFrame {
                         .addComponent(jComboGenre, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(60, 60, 60)
                         .addComponent(jComboPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(40, 40, 40)
@@ -875,9 +831,10 @@ public class Admin extends javax.swing.JFrame {
        }
     }//GEN-LAST:event_jButtonPreviousActionPerformed
 
+    
     private void jButtonReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReturnActionPerformed
        this.dispose();
-       new Admin().setVisible(true);
+       new Admin(new User()).setVisible(true);
        
     }//GEN-LAST:event_jButtonReturnActionPerformed
 
@@ -912,7 +869,7 @@ public class Admin extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                 new Admin();
+                 new Admin(new User());
             }
         });
     }
@@ -966,16 +923,11 @@ class MouseImpl extends MouseAdapter {
          @Override
         public void mouseClicked(MouseEvent e) {
             Object source = e.getSource();
-             try {
-                 user.login("abc","abc");
-             } catch (SQLException ex) {
-                 Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-             }
             if (source == jLabelBild1) {
                 try {
                     new MovieInfo(user,movies.get(0)).setVisible(true);
                 } catch (MalformedURLException ex) {
-                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
             if (source == jLabelBild2) {

@@ -7,6 +7,7 @@
 package movierental;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -20,7 +21,9 @@ import javax.swing.JOptionPane;
  */
 public class Movie {
     String mid, title, imglink, rating, description, genre, agerating, releasedate, duration, link, language, language2, price, deadline;
-    
+    ArrayList<Movie> movies;
+    static Verbindung db;
+    static Connection conn;
     Movie(String mid,String title,String imglink, String rating, String description,String genre,String agerating,String releasedate,String duration,String link, String language, String language2, String price, String deadline){
     this.mid = mid;
     this.title = title;
@@ -89,6 +92,62 @@ public class Movie {
     
     }
 
+    public static ArrayList<Movie> getNewest10() throws SQLException{
+        
+       ArrayList<Movie> movies = new ArrayList<>();
+       db = new Verbindung();
+       db.start();
+       conn = db.getVerbindung();
+       Statement stmt = conn.createStatement();     
+       ResultSet rs = stmt.executeQuery("Select *, avg(rating) as average from movie natural join pricecat natural left join rates group by mid order by mid desc");
+       
+       stmt = conn.createStatement();
+       Statement stmt2 = conn.createStatement();
+       while(rs.next()){
+           
+        ResultSet rs2 = stmt2.executeQuery("Select * from movie natural join haslang where mid = "+rs.getString("mid")+" ");
+        rs2.next();
+        String lang = rs2.getString("Language");
+        rs2.last();
+        String lang2 = rs2.getString("Language");
+        
+        if(lang2.equals(lang))
+            lang2 = "";
+        
+        Movie movie = new Movie(rs.getString("mid"),rs.getString("title"),rs.getString("picture"),rs.getString("average"), rs.getString("description"),rs.getString("genre"),rs.getString("agerating"),rs.getString("releasedate"),rs.getString("duration"),rs.getString("link"),lang, lang2, rs.getString("price"),"");
+        movies.add(movie);
+       }
+        return movies;
+    }
+    
+    public static ArrayList<Movie> getTop10() throws SQLException{
+        
+       ArrayList<Movie> movies = new ArrayList<>();
+       db = new Verbindung();
+       db.start();
+       conn = db.getVerbindung();
+       Statement stmt = conn.createStatement();     
+       ResultSet rs = stmt.executeQuery("Select *, avg(rating) as average from movie natural join pricecat natural left join rates  group by mid order by average desc");
+       
+       stmt = conn.createStatement();
+       Statement stmt2 = conn.createStatement();
+       while(rs.next()){
+           
+        ResultSet rs2 = stmt2.executeQuery("Select * from movie natural join haslang where mid = "+rs.getString("mid")+" ");
+        rs2.next();
+        String lang = rs2.getString("Language");
+        rs2.last();
+        String lang2 = rs2.getString("Language");
+        
+        if(lang2.equals(lang))
+            lang2 = "";
+        
+        Movie movie = new Movie(rs.getString("mid"),rs.getString("title"),rs.getString("picture"),rs.getString("average"), rs.getString("description"),rs.getString("genre"),rs.getString("agerating"),rs.getString("releasedate"),rs.getString("duration"),rs.getString("link"),lang, lang2, rs.getString("price"),"");
+        movies.add(movie);
+       }
+        return movies;
+    }
+    
     public String getTitle() {
         return title;
     }

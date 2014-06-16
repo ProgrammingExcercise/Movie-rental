@@ -44,7 +44,7 @@
                       <Component id="jComboGenre" min="-2" pref="117" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
                       <Component id="jComboPrice" min="-2" pref="117" max="-2" attributes="0"/>
-                      <EmptySpace pref="37" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
@@ -289,9 +289,9 @@
                                           <Component id="jLabelBild7" alignment="0" min="-2" pref="138" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jLabelBild3" alignment="0" min="-2" pref="70" max="-2" attributes="0"/>
-                                          <Component id="jLabelBild8" alignment="0" min="-2" pref="138" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="jLabelBild8" pref="138" max="32767" attributes="0"/>
+                                          <Component id="jLabelBild3" max="32767" attributes="0"/>
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
@@ -316,9 +316,9 @@
                                           <Component id="jLabelBild16" alignment="0" min="-2" pref="138" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jLabelBild19" alignment="0" min="-2" pref="70" max="-2" attributes="0"/>
-                                          <Component id="jLabelBild17" alignment="0" min="-2" pref="138" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="jLabelBild17" pref="138" max="32767" attributes="0"/>
+                                          <Component id="jLabelBild19" max="32767" attributes="0"/>
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">

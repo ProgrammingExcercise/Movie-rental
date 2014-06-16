@@ -462,9 +462,9 @@ public class Login extends javax.swing.JFrame {
             try {
                 if( (user.login(jTextUsername.getText(),new String(jPassword.getPassword())) ) == 1 ){
                     if(user.checkAdmin() == 1){
-                        Admin admin = new Admin();
+                        Admin admin = new Admin(user);
                         setVisible(false);
-                        new Admin().setVisible(true);              
+                        new Admin(user).setVisible(true);              
                 }else{
                         setVisible(false);
                         new User(user).setVisible(true);
