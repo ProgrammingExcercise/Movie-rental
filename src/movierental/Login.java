@@ -641,6 +641,8 @@ public class Login extends javax.swing.JFrame {
                 
             } catch (SQLException ex) {
                 
+            } catch (IOException ex) {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
             }
             
         }
