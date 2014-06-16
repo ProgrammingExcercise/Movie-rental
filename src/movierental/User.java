@@ -27,11 +27,12 @@ public class User extends javax.swing.JFrame {
     ArrayList<Movie> movies2 = new ArrayList<>();
     String suchetext,gen,pri,age,rate,lang;
     int genre,price,agerating,rating,language,pages;
-        Verbindung db;
-        Connection conn;
-        Statement stmt,stmt2,stmt3,stmt4,stmtNewest,stmtNewest2,stmtSearch,stmtTop10,stmt2Top10;
-        ResultSet rs,rs2,rs3,rsNewest,rsNewest2,rsSearch,rsTop10,rs2Top10;
-        static int seitenanzahl = 0;
+    Verbindung db;
+    Connection conn;
+    Statement stmt,stmt2,stmt3,stmt4,stmtNewest,stmtNewest2,stmtSearch,stmtTop10,stmt2Top10;
+    ResultSet rs,rs2,rs3,rsNewest,rsNewest2,rsSearch,rsTop10,rs2Top10;
+    static int seitenanzahl = 0;
+    
     public User(){
         initComponents();
         this.uid = "0";
@@ -328,48 +329,47 @@ public class User extends javax.swing.JFrame {
    public void Top10() throws SQLException, MalformedURLException{
        MouseAdapter listener = new MouseImpl();
 
-        jLabelBild11.setIcon(new ImageIcon(new URL(movies.get(0).getImglink())));
+        jLabelBild11.setIcon(new ImageIcon(new URL(movies.get(10).getImglink())));
         jLabelBild11.setText(null);
         jLabelBild11.addMouseListener(listener);
 
-        jLabelBild12.setIcon(new ImageIcon(new URL(movies.get(1).getImglink())));
+        jLabelBild12.setIcon(new ImageIcon(new URL(movies.get(11).getImglink())));
         jLabelBild12.setText(null);
         jLabelBild12.addMouseListener(listener);
         
-        jLabelBild13.setIcon(new ImageIcon(new URL(movies.get(2).getImglink())));
+        jLabelBild13.setIcon(new ImageIcon(new URL(movies.get(12).getImglink())));
         jLabelBild13.setText(null);
         jLabelBild13.addMouseListener(listener);
         
-        jLabelBild14.setIcon(new ImageIcon(new URL(movies.get(3).getImglink())));
+        jLabelBild14.setIcon(new ImageIcon(new URL(movies.get(13).getImglink())));
         jLabelBild14.setText(null);
         jLabelBild14.addMouseListener(listener);
         
-        jLabelBild15.setIcon(new ImageIcon(new URL(movies.get(4).getImglink())));
+        jLabelBild15.setIcon(new ImageIcon(new URL(movies.get(14).getImglink())));
         jLabelBild15.setText(null);
         jLabelBild15.addMouseListener(listener);
         
-        jLabelBild16.setIcon(new ImageIcon(new URL(movies.get(5).getImglink())));
+        jLabelBild16.setIcon(new ImageIcon(new URL(movies.get(15).getImglink())));
         jLabelBild16.setText(null);
         jLabelBild16.addMouseListener(listener);
         
-        jLabelBild17.setIcon(new ImageIcon(new URL(movies.get(6).getImglink())));
+        jLabelBild17.setIcon(new ImageIcon(new URL(movies.get(16).getImglink())));
         jLabelBild17.setText(null);
         jLabelBild17.addMouseListener(listener);
         
-        jLabelBild18.setIcon(new ImageIcon(new URL(movies.get(7).getImglink())));
+        jLabelBild18.setIcon(new ImageIcon(new URL(movies.get(17).getImglink())));
         jLabelBild18.setText(null);
         jLabelBild18.addMouseListener(listener);
         
-        jLabelBild19.setIcon(new ImageIcon(new URL(movies.get(8).getImglink())));
+        jLabelBild19.setIcon(new ImageIcon(new URL(movies.get(18).getImglink())));
         jLabelBild19.setText(null);
         jLabelBild19.addMouseListener(listener);
         
-        jLabelBild20.setIcon(new ImageIcon(new URL(movies.get(9).getImglink())));
+        jLabelBild20.setIcon(new ImageIcon(new URL(movies.get(19).getImglink())));
         jLabelBild20.setText(null);
         jLabelBild20.addMouseListener(listener);
     }
 
-   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
