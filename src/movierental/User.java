@@ -35,11 +35,13 @@ public class User extends javax.swing.JFrame {
     
     public User(){
         initComponents();
+        setLocationRelativeTo(null);
         this.uid = "0";
     }
     
     public User(User obj) throws SQLException, MalformedURLException, IOException{
         initComponents();
+        setLocationRelativeTo(null);
         user = obj;
         movies = Movie.getNewestAndTop10();
         this.Newest10();
@@ -602,11 +604,11 @@ public class User extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jButtonReturn)
-                        .addGap(286, 286, 286)
-                        .addComponent(jButtonPrevious, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(276, 276, 276)
+                        .addComponent(jButtonPrevious, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(41, 41, 41)
-                        .addComponent(jButtonNext, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(18, Short.MAX_VALUE))
+                        .addComponent(jButtonNext, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -696,7 +698,7 @@ public class User extends javax.swing.JFrame {
                                 .addComponent(jComboLanguage, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(51, 51, 51)
                                 .addComponent(jComboRating, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 13, Short.MAX_VALUE))
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addGap(18, 18, 18)
@@ -767,7 +769,11 @@ public class User extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonAccountActionPerformed
 
     private void jButtonVideoLibraryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVideoLibraryActionPerformed
-        // TODO add your handling code here:
+        try {
+            new VideoLibrary(user).setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButtonVideoLibraryActionPerformed
 
     private void jButtonLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLogOutActionPerformed

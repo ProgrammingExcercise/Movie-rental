@@ -25,6 +25,7 @@ public class MovieInfo extends javax.swing.JFrame {
     
     public MovieInfo(User obj, Movie obj2) throws MalformedURLException {
         initComponents();
+        setLocationRelativeTo(null);
         movie = obj2;
         user = obj;
         

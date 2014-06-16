@@ -41,6 +41,7 @@ public class ChangeMovie extends javax.swing.JFrame {
     */ 
     public ChangeMovie() {
         initComponents();
+        setLocationRelativeTo(null);
     }//ende Konstruktor
     
     /*

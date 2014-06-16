@@ -37,16 +37,15 @@ public class Login extends javax.swing.JFrame {
         static int seitenanzahl = 0;
     
     public Login() throws IOException, SQLException {
+        user.setUid("0");
         initComponents();
+        setLocationRelativeTo(null);
         this.Newest10();
         this.Top10();
-        this.pack();
         this.setVisible(true);
         jButtonPrevious.setVisible(false);
         jButtonNext.setVisible(false);
         jButtonReturn.setVisible(false);
-        
-        
     }
     public void searchResult(ArrayList<Movie> movies2) throws MalformedURLException{
                 MouseAdapter listener = new MouseImpl();
@@ -337,7 +336,6 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        jPassword.setText("jPasswor");
         jPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jPasswordActionPerformed(evt);
@@ -477,10 +475,10 @@ public class Login extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jButtonReturn)
-                        .addGap(286, 286, 286)
-                        .addComponent(jButtonPrevious, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(276, 276, 276)
+                        .addComponent(jButtonPrevious, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(41, 41, 41)
-                        .addComponent(jButtonNext, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButtonNext, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -568,7 +566,7 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(jComboLanguage, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(55, 55, 55)
                 .addComponent(jComboRating, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(9, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -768,7 +766,13 @@ public class Login extends javax.swing.JFrame {
 
     private void jButtonReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReturnActionPerformed
         this.dispose();
-        new User().setVisible(true);
+        try {
+            new Login().setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButtonReturnActionPerformed
 
     private void jButtonNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNextActionPerformed
@@ -849,11 +853,6 @@ public class Login extends javax.swing.JFrame {
          @Override
         public void mouseClicked(MouseEvent e) {
             Object source = e.getSource();
-             try {
-                 user.login("abc","abc");
-             } catch (SQLException ex) {
-                 Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-             }
             if (source == jLabelBild1) {
                 try {
                     new MovieInfo(user,movies.get(0)).setVisible(true);

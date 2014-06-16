@@ -30,6 +30,7 @@ public class AddMovie extends javax.swing.JFrame {
      */
     public AddMovie() {
         initComponents();
+        setLocationRelativeTo(null);
     }
     
     public void releaseArea(){

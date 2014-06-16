@@ -33,7 +33,7 @@ public class Admin extends javax.swing.JFrame {
         movies = Movie.getNewestAndTop10();
         this.Newest10();
         this.Top10();
-        this.pack();
+        setLocationRelativeTo(null);
         this.setVisible(true);
         jButtonPrevious.setVisible(false);
         jButtonNext.setVisible(false);
@@ -537,10 +537,10 @@ public class Admin extends javax.swing.JFrame {
                     .addGroup(jPanelMainLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jButtonReturn)
-                        .addGap(286, 286, 286)
-                        .addComponent(jButtonPrevious, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(275, 275, 275)
+                        .addComponent(jButtonPrevious, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(41, 41, 41)
-                        .addComponent(jButtonNext, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButtonNext, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(73, Short.MAX_VALUE))
         );
         jPanelMainLayout.setVerticalGroup(

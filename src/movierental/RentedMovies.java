@@ -25,6 +25,7 @@ public class RentedMovies extends javax.swing.JFrame {
      */
     public RentedMovies() throws SQLException {
         initComponents();
+        setLocationRelativeTo(null);
         Verbindung db = new Verbindung();
         db.start();
         Connection conn = db.getVerbindung();
