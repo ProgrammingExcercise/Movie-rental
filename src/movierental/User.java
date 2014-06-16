@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package movierental;
 
 import java.awt.event.MouseAdapter;
@@ -26,8 +20,6 @@ import static movierental.Admin.getLanguage;
 import static movierental.Admin.getPrice;
 import static movierental.Admin.getRating;
 
-
-
 public class User extends javax.swing.JFrame {
     User user;
     String uid, username, password, email, isAdmin, activationCode="123", activated, lastLogin, birthday, prename, surname, address, zipcode, city, iban, bic;
@@ -45,10 +37,17 @@ public class User extends javax.swing.JFrame {
         this.uid = "0";
     }
     
-    public User(User obj){
+    public User(User obj) throws SQLException, MalformedURLException, IOException{
         initComponents();
         user = obj;
-        
+        movies = Movie.getNewestAndTop10();
+        this.Newest10();
+        this.Top10();
+        this.pack();
+        this.setVisible(true);
+        jButtonPrevious.setVisible(false);
+        jButtonNext.setVisible(false);
+        jButtonReturn.setVisible(false);
     }
     
     
@@ -60,7 +59,7 @@ public class User extends javax.swing.JFrame {
        Connection conn = db.getVerbindung();
        Statement stmt = conn.createStatement();
        stmt.executeUpdate("INSERT INTO `movierental`.`user`(`username`, `password`, `email`, `isAdmin`, `activationCode`, `birthday`, `prename`, `surname`, `address`, `zipcode`, `city`, `iban`, `bic`) VALUES "
-+ "('" + username + "','" + password + "','" + email + "', 0, '" + "123" + "',\"" +  birthday + "\",'" + prename + "','" + surname + "','" + address + "','" + zipcode + "','" + city + "','" + iban + "','" + bic + "')");
+        + "('" + username + "','" + password + "','" + email + "', 0, '" + "123" + "',\"" +  birthday + "\",'" + prename + "','" + surname + "','" + address + "','" + zipcode + "','" + city + "','" + iban + "','" + bic + "')");
     }
     
     public int login(String username, String password) throws SQLException{
@@ -91,14 +90,14 @@ public class User extends javax.swing.JFrame {
            JOptionPane.showMessageDialog(null,"Successfully logged in.");
            stmt.executeUpdate("UPDATE user SET lastLogin = now() where username ='"+username+"'");
            return 1;
-                   }else{
+       }else{
            JOptionPane.showMessageDialog(null,"You aren't activated! Please activate first.");
            return 0;
        }
-    }else{
-          JOptionPane.showMessageDialog(null,"Wrong username or password!");
-          return 0;
-    }
+       }else{
+           JOptionPane.showMessageDialog(null,"Wrong username or password!");
+            return 0;
+       }
 }
     
     public int checkAdmin(){
@@ -140,7 +139,6 @@ public class User extends javax.swing.JFrame {
                 return 1;
             }   
     }
-
 
     public String getUid() {
         return uid;
@@ -195,100 +193,98 @@ public class User extends javax.swing.JFrame {
     }
 
     public void searchResult(ArrayList<Movie> movies2) throws MalformedURLException{
-                MouseAdapter listener = new MouseImpl();
-                        jLabelBild1.setVisible(false);
-                        jLabelBild2.setVisible(false);
-                        jLabelBild3.setVisible(false);
-                        jLabelBild4.setVisible(false);
-                        jLabelBild5.setVisible(false);
-                        jLabelBild6.setVisible(false);
-                        jLabelBild7.setVisible(false);
-                        jLabelBild8.setVisible(false);
-                        jLabelBild9.setVisible(false);
-                        jLabelBild10.setVisible(false);
-                        jLabelBild11.setVisible(false);
-                        jLabelBild12.setVisible(false);
-                        jLabelBild13.setVisible(false);
-                        jLabelBild14.setVisible(false);
-                        jLabelBild15.setVisible(false);
-                        jLabelBild16.setVisible(false);
-                        jLabelBild17.setVisible(false);
-                        jLabelBild18.setVisible(false);
-                        jLabelBild19.setVisible(false);
-                        jLabelBild20.setVisible(false);
-                        
-                        jLabelTop10.setVisible(false);
-                        jLabelNewest.setText("Search Result for '"+ suchetext +"':");
-                        
-                        jLabelBild1.setIcon(new ImageIcon(new URL(movies2.get(0+seitenanzahl).getImglink())));
-                        jLabelBild1.setText(null);
-                        jLabelBild1.addMouseListener(listener);
-                        jLabelBild1.setVisible(true);
-                       
-                        jLabelBild2.setIcon(new ImageIcon(new URL(movies2.get(1+seitenanzahl).getImglink())));
-                        jLabelBild2.setText(null);
-                        jLabelBild2.addMouseListener(listener);
-                        jLabelBild2.setVisible(true);
-                     
-                        jLabelBild3.setIcon(new ImageIcon(new URL(movies2.get(2+seitenanzahl).getImglink())));
-                        jLabelBild3.setText(null);
-                        jLabelBild3.addMouseListener(listener);
-                        jLabelBild3.setVisible(true);
-                        
-                        jLabelBild4.setIcon(new ImageIcon(new URL(movies2.get(3+seitenanzahl).getImglink())));
-                        jLabelBild4.setText(null);
-                        jLabelBild4.addMouseListener(listener);
-                        jLabelBild4.setVisible(true);
-                        
-                        jLabelBild5.setIcon(new ImageIcon(new URL(movies2.get(4+seitenanzahl).getImglink())));
-                        jLabelBild5.setText(null);
-                        jLabelBild5.addMouseListener(listener);
-                        jLabelBild5.setVisible(true);
-                        
-                        jLabelBild6.setIcon(new ImageIcon(new URL(movies2.get(5+seitenanzahl).getImglink())));
-                        jLabelBild6.setText(null);
-                        jLabelBild6.addMouseListener(listener);
-                        jLabelBild6.setVisible(true);
-                        
-                        jLabelBild7.setIcon(new ImageIcon(new URL(movies2.get(6+seitenanzahl).getImglink())));
-                        jLabelBild7.setText(null);
-                        jLabelBild7.addMouseListener(listener);
-                        jLabelBild7.setVisible(true);
-                        
-                        jLabelBild8.setIcon(new ImageIcon(new URL(movies2.get(7+seitenanzahl).getImglink())));
-                        jLabelBild8.setText(null);
-                        jLabelBild8.addMouseListener(listener);
-                        jLabelBild8.setVisible(true);
-                        
-                        jLabelBild9.setIcon(new ImageIcon(new URL(movies2.get(8+seitenanzahl).getImglink())));
-                        jLabelBild9.setText(null);
-                        jLabelBild9.addMouseListener(listener);
-                        jLabelBild9.setVisible(true);
-                        
-                        jLabelBild10.setIcon(new ImageIcon(new URL(movies2.get(9+seitenanzahl).getImglink())));
-                        jLabelBild10.setText(null);
-                        jLabelBild10.addMouseListener(listener);
-                        jLabelBild10.setVisible(true);
-                        
-                         if(movies2.size() > 10){
-                            jButtonNext.setVisible(true);
-                         }
-                         if(movies2.size() == seitenanzahl+10){
-                            jButtonNext.setVisible(false);
-                         }
-                         if(seitenanzahl != 0){
-                             jButtonPrevious.setVisible(true);
-                            
-                         }else{
-                             jButtonPrevious.setVisible(false);
-                         }
+        MouseAdapter listener = new MouseImpl();
+        jLabelBild1.setVisible(false);
+        jLabelBild2.setVisible(false);
+        jLabelBild3.setVisible(false);
+        jLabelBild4.setVisible(false);
+        jLabelBild5.setVisible(false);
+        jLabelBild6.setVisible(false);
+        jLabelBild7.setVisible(false);
+        jLabelBild8.setVisible(false);
+        jLabelBild9.setVisible(false);
+        jLabelBild10.setVisible(false);
+        jLabelBild11.setVisible(false);
+        jLabelBild12.setVisible(false);
+        jLabelBild13.setVisible(false);
+        jLabelBild14.setVisible(false);
+        jLabelBild15.setVisible(false);
+        jLabelBild16.setVisible(false);
+        jLabelBild17.setVisible(false);
+        jLabelBild18.setVisible(false);
+        jLabelBild19.setVisible(false);
+        jLabelBild20.setVisible(false);
+
+        jLabelTop10.setVisible(false);
+        jLabelNewest.setText("Search Result for '"+ suchetext +"':");
+
+        jLabelBild1.setIcon(new ImageIcon(new URL(movies2.get(0+seitenanzahl).getImglink())));
+        jLabelBild1.setText(null);
+        jLabelBild1.addMouseListener(listener);
+        jLabelBild1.setVisible(true);
+
+        jLabelBild2.setIcon(new ImageIcon(new URL(movies2.get(1+seitenanzahl).getImglink())));
+        jLabelBild2.setText(null);
+        jLabelBild2.addMouseListener(listener);
+        jLabelBild2.setVisible(true);
+
+        jLabelBild3.setIcon(new ImageIcon(new URL(movies2.get(2+seitenanzahl).getImglink())));
+        jLabelBild3.setText(null);
+        jLabelBild3.addMouseListener(listener);
+        jLabelBild3.setVisible(true);
+
+        jLabelBild4.setIcon(new ImageIcon(new URL(movies2.get(3+seitenanzahl).getImglink())));
+        jLabelBild4.setText(null);
+        jLabelBild4.addMouseListener(listener);
+        jLabelBild4.setVisible(true);
+
+        jLabelBild5.setIcon(new ImageIcon(new URL(movies2.get(4+seitenanzahl).getImglink())));
+        jLabelBild5.setText(null);
+        jLabelBild5.addMouseListener(listener);
+        jLabelBild5.setVisible(true);
+
+        jLabelBild6.setIcon(new ImageIcon(new URL(movies2.get(5+seitenanzahl).getImglink())));
+        jLabelBild6.setText(null);
+        jLabelBild6.addMouseListener(listener);
+        jLabelBild6.setVisible(true);
+
+        jLabelBild7.setIcon(new ImageIcon(new URL(movies2.get(6+seitenanzahl).getImglink())));
+        jLabelBild7.setText(null);
+        jLabelBild7.addMouseListener(listener);
+        jLabelBild7.setVisible(true);
+
+        jLabelBild8.setIcon(new ImageIcon(new URL(movies2.get(7+seitenanzahl).getImglink())));
+        jLabelBild8.setText(null);
+        jLabelBild8.addMouseListener(listener);
+        jLabelBild8.setVisible(true);
+
+        jLabelBild9.setIcon(new ImageIcon(new URL(movies2.get(8+seitenanzahl).getImglink())));
+        jLabelBild9.setText(null);
+        jLabelBild9.addMouseListener(listener);
+        jLabelBild9.setVisible(true);
+
+        jLabelBild10.setIcon(new ImageIcon(new URL(movies2.get(9+seitenanzahl).getImglink())));
+        jLabelBild10.setText(null);
+        jLabelBild10.addMouseListener(listener);
+        jLabelBild10.setVisible(true);
+
+         if(movies2.size() > 10){
+            jButtonNext.setVisible(true);
+         }
+         if(movies2.size() == seitenanzahl+10){
+            jButtonNext.setVisible(false);
+         }
+         if(seitenanzahl != 0){
+             jButtonPrevious.setVisible(true);
+
+         }else{
+             jButtonPrevious.setVisible(false);
+         }
      }
 
    public void Newest10() throws SQLException, MalformedURLException, IOException{
-       MouseAdapter listener = new MouseImpl();
-        
-      movies = Movie.getNewestAndTop10();
-           
+        MouseAdapter listener = new MouseImpl();
+                   
         jLabelBild1.setIcon(new ImageIcon(new URL(movies.get(0).getImglink())));
         jLabelBild1.setText(null);
         jLabelBild1.addMouseListener(listener);
@@ -332,8 +328,6 @@ public class User extends javax.swing.JFrame {
    public void Top10() throws SQLException, MalformedURLException{
        MouseAdapter listener = new MouseImpl();
 
-       movies = Movie.getNewestAndTop10();
-       
         jLabelBild11.setIcon(new ImageIcon(new URL(movies.get(0).getImglink())));
         jLabelBild11.setText(null);
         jLabelBild11.addMouseListener(listener);
@@ -374,11 +368,8 @@ public class User extends javax.swing.JFrame {
         jLabelBild20.setText(null);
         jLabelBild20.addMouseListener(listener);
     }
-    /**
-     * This method is called from within the constructor to initialize the form.
-     * WARNING: Do NOT modify this code. The content of this method is always
-     * regenerated by the Form Editor.
-     */
+
+   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -820,87 +811,84 @@ public class User extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonPreviousActionPerformed
 
     private void jButtonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchActionPerformed
-            db = new Verbindung();
-            db.start();
-            conn = db.getVerbindung();
-            
-            jButtonReturn.setVisible(true);
-            suchetext = jTextSearch.getText();
-            genre = jComboGenre.getSelectedIndex();
-            price = jComboPrice.getSelectedIndex();
-            agerating = jComboAgeRating.getSelectedIndex();
-            rating = jComboRating.getSelectedIndex();
-            language = jComboLanguage.getSelectedIndex();
-     
-            if(evt.getSource() == jButtonSearch){
-                movies2 = new ArrayList<>();
-                    try {
-                        gen = getGenre(genre);
-                        pri = getPrice(price);
-                        age = getAgerating(agerating);
-                        rate = getRating(rating);
-                        lang = getLanguage(language);
-                        
-                        if(!(rate.equals("%"))){
-                        stmt4 = conn.createStatement();
-                        rs3 = stmt4.executeQuery("SELECT *,avg(rating) as average FROM movierental.movie natural left join rates natural join haslang WHERE title LIKE '%"+ suchetext +"%' and genre LIKE '%" + gen + "%' and Pid LIKE '%" + pri + "%' and ageRating LIKE '%"+ age +"%' and Language LIKE '%"+ lang +"%' group by mid having average >= "+rate+"");
-                        stmtSearch = conn.createStatement();
-                        
-                        while(rs3.next()){
-                        rsSearch = stmtSearch.executeQuery("Select * from movie natural join haslang where mid = "+rs3.getString("mid")+" ");
-                        rsSearch.next();
-                        String language1 = rsSearch.getString("Language");
-                        rsSearch.last();
-                        String language2 = rsSearch.getString("Language");
-                        
-                        if(language2.equals(language1)){
-                            language2 = "";
-                        }
-                        Movie movie = new Movie(rs3.getString("mid"),rs3.getString("title"),rs3.getString("picture"),rs3.getString("average"), rs3.getString("description"),rs3.getString("genre"),rs3.getString("agerating"),rs3.getString("releasedate"),rs3.getString("duration"),rs3.getString("link"),language1, language2, rs3.getString("Pid"),"");
-                        movies2.add(movie);
-                        }
-                        
-                        while(movies2.size() %10 != 0){
-                        Movie dump = new Movie("","","http://stefano.bplaced.net/nothing.png",null,"","","","","","","","","","");
-                        movies2.add(dump);
-                        }
-                        this.searchResult(movies2);
-                        
-                        }else{
-                        stmt = conn.createStatement();
-                        rs = stmt.executeQuery("SELECT *,avg(rating) as average FROM movie natural join haslang natural left join rates natural join pricecat WHERE title LIKE '%"+ suchetext +"%' and genre LIKE '%" + gen + "%' and Pid LIKE '%" + pri + "%' and ageRating LIKE '%"+ age +"%' and Language LIKE '%"+ lang +"%' group by mid");
-                        stmtSearch = conn.createStatement();
-                        
-                        while(rs.next()){
-                     
-                        rsSearch = stmtSearch.executeQuery("Select * from movie natural join haslang where mid = "+rs.getString("mid")+" ");
-                        rsSearch.next();
-                        String language1 = rsSearch.getString("Language");
-                        rsSearch.last();
-                        String language2 = rsSearch.getString("Language");
-                        
-                        if(language2.equals(language1)){
-                            language2 = "";
-                        }
-                        Movie movie = new Movie(rs.getString("mid"),rs.getString("title"),rs.getString("picture"),rs.getString("average"), rs.getString("description"),rs.getString("genre"),rs.getString("agerating"),rs.getString("releasedate"),rs.getString("duration"),rs.getString("link"),language1, language2, rs.getString("price"),"");
-                        movies2.add(movie);
-                        }
-                        while(movies2.size() %10 != 0){
-                        Movie dump = new Movie("","","http://stefano.bplaced.net/nothing.png",null,"","","","","","","","","","");
-                        movies2.add(dump);
-                        }
-                        this.searchResult(movies2);
-                        }
-                        
-                    } catch (        SQLException | MalformedURLException ex) {
-                        Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+        db = new Verbindung();
+        db.start();
+        conn = db.getVerbindung();
+
+        jButtonReturn.setVisible(true);
+        suchetext = jTextSearch.getText();
+        genre = jComboGenre.getSelectedIndex();
+        price = jComboPrice.getSelectedIndex();
+        agerating = jComboAgeRating.getSelectedIndex();
+        rating = jComboRating.getSelectedIndex();
+        language = jComboLanguage.getSelectedIndex();
+
+        if(evt.getSource() == jButtonSearch){
+            movies2 = new ArrayList<>();
+            try {
+                gen = getGenre(genre);
+                pri = getPrice(price);
+                age = getAgerating(agerating);
+                rate = getRating(rating);
+                lang = getLanguage(language);
+
+                if(!(rate.equals("%"))){
+                stmt4 = conn.createStatement();
+                rs3 = stmt4.executeQuery("SELECT *,avg(rating) as average FROM movierental.movie natural left join rates natural join haslang WHERE title LIKE '%"+ suchetext +"%' and genre LIKE '%" + gen + "%' and Pid LIKE '%" + pri + "%' and ageRating LIKE '%"+ age +"%' and Language LIKE '%"+ lang +"%' group by mid having average >= "+rate+"");
+                stmtSearch = conn.createStatement();
+
+                while(rs3.next()){
+                rsSearch = stmtSearch.executeQuery("Select * from movie natural join haslang where mid = "+rs3.getString("mid")+" ");
+                rsSearch.next();
+                String language1 = rsSearch.getString("Language");
+                rsSearch.last();
+                String language2 = rsSearch.getString("Language");
+
+                if(language2.equals(language1)){
+                    language2 = "";
+                }
+                Movie movie = new Movie(rs3.getString("mid"),rs3.getString("title"),rs3.getString("picture"),rs3.getString("average"), rs3.getString("description"),rs3.getString("genre"),rs3.getString("agerating"),rs3.getString("releasedate"),rs3.getString("duration"),rs3.getString("link"),language1, language2, rs3.getString("Pid"),"");
+                movies2.add(movie);
+                }
+
+                while(movies2.size() %10 != 0){
+                Movie dump = new Movie("","","http://stefano.bplaced.net/nothing.png",null,"","","","","","","","","","");
+                movies2.add(dump);
+                }
+                this.searchResult(movies2);
+
+                }else{
+                stmt = conn.createStatement();
+                rs = stmt.executeQuery("SELECT *,avg(rating) as average FROM movie natural join haslang natural left join rates natural join pricecat WHERE title LIKE '%"+ suchetext +"%' and genre LIKE '%" + gen + "%' and Pid LIKE '%" + pri + "%' and ageRating LIKE '%"+ age +"%' and Language LIKE '%"+ lang +"%' group by mid");
+                stmtSearch = conn.createStatement();
+
+                while(rs.next()){
+
+                rsSearch = stmtSearch.executeQuery("Select * from movie natural join haslang where mid = "+rs.getString("mid")+" ");
+                rsSearch.next();
+                String language1 = rsSearch.getString("Language");
+                rsSearch.last();
+                String language2 = rsSearch.getString("Language");
+
+                if(language2.equals(language1)){
+                    language2 = "";
+                }
+                Movie movie = new Movie(rs.getString("mid"),rs.getString("title"),rs.getString("picture"),rs.getString("average"), rs.getString("description"),rs.getString("genre"),rs.getString("agerating"),rs.getString("releasedate"),rs.getString("duration"),rs.getString("link"),language1, language2, rs.getString("price"),"");
+                movies2.add(movie);
+                }
+                while(movies2.size() %10 != 0){
+                Movie dump = new Movie("","","http://stefano.bplaced.net/nothing.png",null,"","","","","","","","","","");
+                movies2.add(dump);
+                }
+                this.searchResult(movies2);
+                }
+
+            } catch (        SQLException | MalformedURLException ex) {
+                Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
             }
+        }
     }//GEN-LAST:event_jButtonSearchActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) throws SQLException {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -954,188 +942,188 @@ public class User extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
 class MouseImpl extends MouseAdapter {
-         @Override
-        public void mouseClicked(MouseEvent e) {
-            Object source = e.getSource();
-            if (source == jLabelBild1) {
-                try {
-                    new MovieInfo(user,movies.get(0)).setVisible(true);
-                } catch (MalformedURLException ex) {
-                    Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
-                }
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        Object source = e.getSource();
+        if (source == jLabelBild1) {
+            try {
+                new MovieInfo(user,movies.get(0)).setVisible(true);
+            } catch (MalformedURLException ex) {
+                Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
             }
-            if (source == jLabelBild2) {
-                 try {
-                    MovieInfo window = new MovieInfo(user,movies.get(1));
-                    window.pack();
-                    window.setVisible(true);
-                } catch (MalformedURLException ex) {
-                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-                }
+        }
+        if (source == jLabelBild2) {
+             try {
+                MovieInfo window = new MovieInfo(user,movies.get(1));
+                window.pack();
+                window.setVisible(true);
+            } catch (MalformedURLException ex) {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
             }
- 
-            if (source == jLabelBild3) {
-                 try {
-                    MovieInfo window = new MovieInfo(user,movies.get(2));
-                    window.pack();
-                    window.setVisible(true);
-                } catch (MalformedURLException ex) {
-                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-                }
+        }
+
+        if (source == jLabelBild3) {
+             try {
+                MovieInfo window = new MovieInfo(user,movies.get(2));
+                window.pack();
+                window.setVisible(true);
+            } catch (MalformedURLException ex) {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
             }
-            if (source == jLabelBild4) {
-                 try {
-                    MovieInfo window = new MovieInfo(user,movies.get(3));
-                    window.pack();
-                    window.setVisible(true);
-                } catch (MalformedURLException ex) {
-                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-                }
+        }
+        if (source == jLabelBild4) {
+             try {
+                MovieInfo window = new MovieInfo(user,movies.get(3));
+                window.pack();
+                window.setVisible(true);
+            } catch (MalformedURLException ex) {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
             }
-            if (source == jLabelBild5) {
-                 try {
-                    MovieInfo window = new MovieInfo(user,movies.get(4));
-                    window.pack();
-                    window.setVisible(true);
-                } catch (MalformedURLException ex) {
-                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-                }
+        }
+        if (source == jLabelBild5) {
+             try {
+                MovieInfo window = new MovieInfo(user,movies.get(4));
+                window.pack();
+                window.setVisible(true);
+            } catch (MalformedURLException ex) {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
             }
-            if (source == jLabelBild6) {
-                 try {
-                    MovieInfo window = new MovieInfo(user,movies.get(5));
-                    window.pack();
-                    window.setVisible(true);
-                } catch (MalformedURLException ex) {
-                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-                }
+        }
+        if (source == jLabelBild6) {
+             try {
+                MovieInfo window = new MovieInfo(user,movies.get(5));
+                window.pack();
+                window.setVisible(true);
+            } catch (MalformedURLException ex) {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
             }
-            if (source == jLabelBild7) {
-                 try {
-                    MovieInfo window = new MovieInfo(user,movies.get(6));
-                    window.pack();
-                    window.setVisible(true);
-                } catch (MalformedURLException ex) {
-                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-                }
+        }
+        if (source == jLabelBild7) {
+             try {
+                MovieInfo window = new MovieInfo(user,movies.get(6));
+                window.pack();
+                window.setVisible(true);
+            } catch (MalformedURLException ex) {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
             }
-            if (source == jLabelBild8) {
-                 try {
-                    MovieInfo window = new MovieInfo(user,movies.get(7));
-                    window.pack();
-                    window.setVisible(true);
-                } catch (MalformedURLException ex) {
-                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }  
-            if (source == jLabelBild9) {
-                 try {
-                    MovieInfo window = new MovieInfo(user,movies.get(8));
-                    window.pack();
-                    window.setVisible(true);
-                } catch (MalformedURLException ex) {
-                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-                }
+        }
+        if (source == jLabelBild8) {
+             try {
+                MovieInfo window = new MovieInfo(user,movies.get(7));
+                window.pack();
+                window.setVisible(true);
+            } catch (MalformedURLException ex) {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
             }
-            if (source == jLabelBild10) {
-                 try {
-                    MovieInfo window = new MovieInfo(user,movies.get(9));
-                    window.pack();
-                    window.setVisible(true);
-                } catch (MalformedURLException ex) {
-                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-                }     
+        }  
+        if (source == jLabelBild9) {
+             try {
+                MovieInfo window = new MovieInfo(user,movies.get(8));
+                window.pack();
+                window.setVisible(true);
+            } catch (MalformedURLException ex) {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
             }
-            if (source == jLabelBild11) {
-                try {
-                    new MovieInfo(user,movies.get(10)).setVisible(true);
-                } catch (MalformedURLException ex) {
-                    Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
-                }
+        }
+        if (source == jLabelBild10) {
+             try {
+                MovieInfo window = new MovieInfo(user,movies.get(9));
+                window.pack();
+                window.setVisible(true);
+            } catch (MalformedURLException ex) {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            }     
+        }
+        if (source == jLabelBild11) {
+            try {
+                new MovieInfo(user,movies.get(10)).setVisible(true);
+            } catch (MalformedURLException ex) {
+                Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
             }
-            if (source == jLabelBild12) {
-                 try {
-                    MovieInfo window = new MovieInfo(user,movies.get(11));
-                    window.pack();
-                    window.setVisible(true);
-                } catch (MalformedURLException ex) {
-                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-                }
+        }
+        if (source == jLabelBild12) {
+             try {
+                MovieInfo window = new MovieInfo(user,movies.get(11));
+                window.pack();
+                window.setVisible(true);
+            } catch (MalformedURLException ex) {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
             }
- 
-            if (source == jLabelBild13) {
-                 try {
-                    MovieInfo window = new MovieInfo(user,movies.get(12));
-                    window.pack();
-                    window.setVisible(true);
-                } catch (MalformedURLException ex) {
-                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-                }
+        }
+
+        if (source == jLabelBild13) {
+             try {
+                MovieInfo window = new MovieInfo(user,movies.get(12));
+                window.pack();
+                window.setVisible(true);
+            } catch (MalformedURLException ex) {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
             }
-            if (source == jLabelBild14) {
-                 try {
-                    MovieInfo window = new MovieInfo(user,movies.get(13));
-                    window.pack();
-                    window.setVisible(true);
-                } catch (MalformedURLException ex) {
-                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-                }
+        }
+        if (source == jLabelBild14) {
+             try {
+                MovieInfo window = new MovieInfo(user,movies.get(13));
+                window.pack();
+                window.setVisible(true);
+            } catch (MalformedURLException ex) {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
             }
-            if (source == jLabelBild15) {
-                 try {
-                    MovieInfo window = new MovieInfo(user,movies.get(14));
-                    window.pack();
-                    window.setVisible(true);
-                } catch (MalformedURLException ex) {
-                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-                }
+        }
+        if (source == jLabelBild15) {
+             try {
+                MovieInfo window = new MovieInfo(user,movies.get(14));
+                window.pack();
+                window.setVisible(true);
+            } catch (MalformedURLException ex) {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
             }
-            if (source == jLabelBild16) {
-                 try {
-                    MovieInfo window = new MovieInfo(user,movies.get(15));
-                    window.pack();
-                    window.setVisible(true);
-                } catch (MalformedURLException ex) {
-                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-                }
+        }
+        if (source == jLabelBild16) {
+             try {
+                MovieInfo window = new MovieInfo(user,movies.get(15));
+                window.pack();
+                window.setVisible(true);
+            } catch (MalformedURLException ex) {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
             }
-            if (source == jLabelBild17) {
-                 try {
-                    MovieInfo window = new MovieInfo(user,movies.get(16));
-                    window.pack();
-                    window.setVisible(true);
-                } catch (MalformedURLException ex) {
-                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-                }
+        }
+        if (source == jLabelBild17) {
+             try {
+                MovieInfo window = new MovieInfo(user,movies.get(16));
+                window.pack();
+                window.setVisible(true);
+            } catch (MalformedURLException ex) {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
             }
-            if (source == jLabelBild18) {
-                 try {
-                    MovieInfo window = new MovieInfo(user,movies.get(17));
-                    window.pack();
-                    window.setVisible(true);
-                } catch (MalformedURLException ex) {
-                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }  
-            if (source == jLabelBild19) {
-                 try {
-                    MovieInfo window = new MovieInfo(user,movies.get(18));
-                    window.pack();
-                    window.setVisible(true);
-                } catch (MalformedURLException ex) {
-                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-                }
+        }
+        if (source == jLabelBild18) {
+             try {
+                MovieInfo window = new MovieInfo(user,movies.get(17));
+                window.pack();
+                window.setVisible(true);
+            } catch (MalformedURLException ex) {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
             }
-            if (source == jLabelBild20) {
-                 try {
-                    MovieInfo window = new MovieInfo(user,movies.get(19));
-                    window.pack();
-                    window.setVisible(true);
-                } catch (MalformedURLException ex) {
-                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-                }     
+        }  
+        if (source == jLabelBild19) {
+             try {
+                MovieInfo window = new MovieInfo(user,movies.get(18));
+                window.pack();
+                window.setVisible(true);
+            } catch (MalformedURLException ex) {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
             }
-    }
+        }
+        if (source == jLabelBild20) {
+             try {
+                MovieInfo window = new MovieInfo(user,movies.get(19));
+                window.pack();
+                window.setVisible(true);
+            } catch (MalformedURLException ex) {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            }     
+        }
+        }
 }
 }
 
