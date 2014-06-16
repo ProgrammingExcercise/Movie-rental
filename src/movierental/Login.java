@@ -14,48 +14,134 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import static movierental.Admin.getAgerating;
+import static movierental.Admin.getGenre;
+import static movierental.Admin.getLanguage;
+import static movierental.Admin.getPrice;
+import static movierental.Admin.getRating;
+import static movierental.User.seitenanzahl;
 
 public class Login extends javax.swing.JFrame {
     
     Login login;
     User user = new User();
-    ArrayList<Movie> movies;
+    String uid, username, password, email, isAdmin, activationCode="123", activated, lastLogin, birthday, prename, surname, address, zipcode, city, iban, bic;
+    ArrayList<Movie> movies = new ArrayList<>();
+    ArrayList<Movie> movies2 = new ArrayList<>();
+    String suchetext,gen,pri,age,rate,lang;
+    int genre,price,agerating,rating,language,pages;
+        Verbindung db;
+        Connection conn;
+        Statement stmt,stmt2,stmt3,stmt4,stmtNewest,stmtNewest2,stmtSearch,stmtTop10,stmt2Top10;
+        ResultSet rs,rs2,rs3,rsNewest,rsNewest2,rsSearch,rsTop10,rs2Top10;
+        static int seitenanzahl = 0;
     
     public Login() throws IOException, SQLException {
         initComponents();
         this.Newest10();
-//      login.Top10();
+        this.Top10();
         this.pack();
         this.setVisible(true);
+        jButtonPrevious.setVisible(false);
+        jButtonNext.setVisible(false);
+        jButtonReturn.setVisible(false);
+        
+        
     }
-    
-    public void Newest10() throws SQLException, MalformedURLException, IOException{
-       movies = new ArrayList<>();
+    public void searchResult(ArrayList<Movie> movies2) throws MalformedURLException{
+                MouseAdapter listener = new MouseImpl();
+                        jLabelBild1.setVisible(false);
+                        jLabelBild2.setVisible(false);
+                        jLabelBild3.setVisible(false);
+                        jLabelBild4.setVisible(false);
+                        jLabelBild5.setVisible(false);
+                        jLabelBild6.setVisible(false);
+                        jLabelBild7.setVisible(false);
+                        jLabelBild8.setVisible(false);
+                        jLabelBild9.setVisible(false);
+                        jLabelBild10.setVisible(false);
+                        jLabelBild11.setVisible(false);
+                        jLabelBild12.setVisible(false);
+                        jLabelBild13.setVisible(false);
+                        jLabelBild14.setVisible(false);
+                        jLabelBild15.setVisible(false);
+                        jLabelBild16.setVisible(false);
+                        jLabelBild17.setVisible(false);
+                        jLabelBild18.setVisible(false);
+                        jLabelBild19.setVisible(false);
+                        jLabelBild20.setVisible(false);
+                        
+                        jLabelTop10.setVisible(false);
+                        jLabelNewest.setText("Search Result for '"+ suchetext +"':");
+                        
+                        jLabelBild1.setIcon(new ImageIcon(new URL(movies2.get(0+seitenanzahl).getImglink())));
+                        jLabelBild1.setText(null);
+                        jLabelBild1.addMouseListener(listener);
+                        jLabelBild1.setVisible(true);
+                       
+                        jLabelBild2.setIcon(new ImageIcon(new URL(movies2.get(1+seitenanzahl).getImglink())));
+                        jLabelBild2.setText(null);
+                        jLabelBild2.addMouseListener(listener);
+                        jLabelBild2.setVisible(true);
+                     
+                        jLabelBild3.setIcon(new ImageIcon(new URL(movies2.get(2+seitenanzahl).getImglink())));
+                        jLabelBild3.setText(null);
+                        jLabelBild3.addMouseListener(listener);
+                        jLabelBild3.setVisible(true);
+                        
+                        jLabelBild4.setIcon(new ImageIcon(new URL(movies2.get(3+seitenanzahl).getImglink())));
+                        jLabelBild4.setText(null);
+                        jLabelBild4.addMouseListener(listener);
+                        jLabelBild4.setVisible(true);
+                        
+                        jLabelBild5.setIcon(new ImageIcon(new URL(movies2.get(4+seitenanzahl).getImglink())));
+                        jLabelBild5.setText(null);
+                        jLabelBild5.addMouseListener(listener);
+                        jLabelBild5.setVisible(true);
+                        
+                        jLabelBild6.setIcon(new ImageIcon(new URL(movies2.get(5+seitenanzahl).getImglink())));
+                        jLabelBild6.setText(null);
+                        jLabelBild6.addMouseListener(listener);
+                        jLabelBild6.setVisible(true);
+                        
+                        jLabelBild7.setIcon(new ImageIcon(new URL(movies2.get(6+seitenanzahl).getImglink())));
+                        jLabelBild7.setText(null);
+                        jLabelBild7.addMouseListener(listener);
+                        jLabelBild7.setVisible(true);
+                        
+                        jLabelBild8.setIcon(new ImageIcon(new URL(movies2.get(7+seitenanzahl).getImglink())));
+                        jLabelBild8.setText(null);
+                        jLabelBild8.addMouseListener(listener);
+                        jLabelBild8.setVisible(true);
+                        
+                        jLabelBild9.setIcon(new ImageIcon(new URL(movies2.get(8+seitenanzahl).getImglink())));
+                        jLabelBild9.setText(null);
+                        jLabelBild9.addMouseListener(listener);
+                        jLabelBild9.setVisible(true);
+                        
+                        jLabelBild10.setIcon(new ImageIcon(new URL(movies2.get(9+seitenanzahl).getImglink())));
+                        jLabelBild10.setText(null);
+                        jLabelBild10.addMouseListener(listener);
+                        jLabelBild10.setVisible(true);
+                        
+                         if(movies2.size() > 10){
+                            jButtonNext.setVisible(true);
+                         }
+                         if(movies2.size() == seitenanzahl+10){
+                            jButtonNext.setVisible(false);
+                         }
+                         if(seitenanzahl != 0){
+                             jButtonPrevious.setVisible(true);
+                            
+                         }else{
+                             jButtonPrevious.setVisible(false);
+                         }
+     }
+     public void Newest10() throws SQLException, MalformedURLException, IOException{
        MouseAdapter listener = new MouseImpl();
         
-       Verbindung db = new Verbindung();
-       db.start();
-       Connection conn = db.getVerbindung();
-       Statement stmt = conn.createStatement();     
-       ResultSet rs = stmt.executeQuery("Select *, avg(rating) as average from movie natural join pricecat natural left join rates group by mid order by mid desc");
-       
-       Statement stmt2 = conn.createStatement();
-       
-       while(rs.next()){
-        ResultSet rs2 = stmt2.executeQuery("Select * from movie natural join haslang where mid = "+rs.getString("mid")+" ");
-        rs2.next();
-        String language = rs2.getString("Language");
-        rs2.last();
-        String language2 = rs2.getString("Language");
-        
-        if(language2.equals(language))
-            language2 = "";
-        
-        Movie movie = new Movie(rs.getString("mid"),rs.getString("title"),rs.getString("picture"),rs.getString("average"), rs.getString("description"),rs.getString("genre"),rs.getString("agerating"),rs.getString("releasedate"),rs.getString("duration"),rs.getString("link"),language, language2, rs.getString("price"), "");
-
-       movies.add(movie);
-       }       
-       
+      movies = Movie.getNewestAndTop10();
+           
         jLabelBild1.setIcon(new ImageIcon(new URL(movies.get(0).getImglink())));
         jLabelBild1.setText(null);
         jLabelBild1.addMouseListener(listener);
@@ -68,7 +154,6 @@ public class Login extends javax.swing.JFrame {
         jLabelBild3.setText(null);
         jLabelBild3.addMouseListener(listener);
 
-        
         jLabelBild4.setIcon(new ImageIcon(new URL(movies.get(3).getImglink())));
         jLabelBild4.setText(null);
         jLabelBild4.addMouseListener(listener);
@@ -77,65 +162,76 @@ public class Login extends javax.swing.JFrame {
         jLabelBild5.setText(null);
         jLabelBild5.addMouseListener(listener);
         
-        jLabelBild6.setIcon(new ImageIcon(new URL(movies.get(0).getImglink())));
+        jLabelBild6.setIcon(new ImageIcon(new URL(movies.get(5).getImglink())));
         jLabelBild6.setText(null);
         jLabelBild6.addMouseListener(listener);
         
-        jLabelBild7.setIcon(new ImageIcon(new URL(movies.get(1).getImglink())));
+        jLabelBild7.setIcon(new ImageIcon(new URL(movies.get(6).getImglink())));
         jLabelBild7.setText(null);
         jLabelBild7.addMouseListener(listener);
         
-        jLabelBild8.setIcon(new ImageIcon(new URL(movies.get(2).getImglink())));
+        jLabelBild8.setIcon(new ImageIcon(new URL(movies.get(7).getImglink())));
         jLabelBild8.setText(null);
         jLabelBild8.addMouseListener(listener);
         
-        jLabelBild9.setIcon(new ImageIcon(new URL(movies.get(3).getImglink())));
+        jLabelBild9.setIcon(new ImageIcon(new URL(movies.get(8).getImglink())));
         jLabelBild9.setText(null);
         jLabelBild9.addMouseListener(listener);
         
-        jLabelBild10.setIcon(new ImageIcon(new URL(movies.get(4).getImglink())));
+        jLabelBild10.setIcon(new ImageIcon(new URL(movies.get(9).getImglink())));
         jLabelBild10.setText(null);
         jLabelBild10.addMouseListener(listener);
     }
-    
-    public void Top10() throws SQLException, MalformedURLException{
-       ArrayList<Movie> movies = new ArrayList<>();
+   public void Top10() throws SQLException, MalformedURLException{
        MouseAdapter listener = new MouseImpl();
-       
-       Verbindung db = new Verbindung();
-       db.start();
-       Connection conn = db.getVerbindung();
-       Statement stmt = conn.createStatement();
-       ResultSet rs = stmt.executeQuery("SELECT * FROM movie");
-       
-       while(rs.next()){
-        Movie movie = new Movie(rs.getString("title"),rs.getString("picture"));
-        movies.add(movie);
-       }
-       
-       ImageIcon abc = new ImageIcon();
-       jLabelBild11.setIcon(new ImageIcon(new URL(movies.get(0).getImglink())));
-       jLabelBild11.setText(null);
-       jLabelBild11.addMouseListener(new MouseImpl());
 
-        
-        jLabelBild12.setIcon(new ImageIcon(new URL(movies.get(1).getImglink())));
+       movies = Movie.getNewestAndTop10();
+       
+        jLabelBild11.setIcon(new ImageIcon(new URL(movies.get(10).getImglink())));
+        jLabelBild11.setText(null);
+        jLabelBild11.addMouseListener(listener);
+
+        jLabelBild12.setIcon(new ImageIcon(new URL(movies.get(11).getImglink())));
         jLabelBild12.setText(null);
-        jLabelBild12.addMouseListener(new MouseImpl());
+        jLabelBild12.addMouseListener(listener);
         
-        jLabelBild13.setIcon(new ImageIcon(new URL(movies.get(2).getImglink())));
+        jLabelBild13.setIcon(new ImageIcon(new URL(movies.get(12).getImglink())));
         jLabelBild13.setText(null);
+        jLabelBild13.addMouseListener(listener);
         
-        jLabelBild14.setIcon(new ImageIcon(new URL(movies.get(3).getImglink())));
+        jLabelBild14.setIcon(new ImageIcon(new URL(movies.get(13).getImglink())));
         jLabelBild14.setText(null);
+        jLabelBild14.addMouseListener(listener);
         
-        jLabelBild16.setIcon(new ImageIcon(new URL(movies.get(4).getImglink())));
+        jLabelBild15.setIcon(new ImageIcon(new URL(movies.get(14).getImglink())));
+        jLabelBild15.setText(null);
+        jLabelBild15.addMouseListener(listener);
+        
+        jLabelBild16.setIcon(new ImageIcon(new URL(movies.get(15).getImglink())));
         jLabelBild16.setText(null);
+        jLabelBild16.addMouseListener(listener);
+        
+        jLabelBild17.setIcon(new ImageIcon(new URL(movies.get(16).getImglink())));
+        jLabelBild17.setText(null);
+        jLabelBild17.addMouseListener(listener);
+        
+        jLabelBild18.setIcon(new ImageIcon(new URL(movies.get(17).getImglink())));
+        jLabelBild18.setText(null);
+        jLabelBild18.addMouseListener(listener);
+        
+        jLabelBild19.setIcon(new ImageIcon(new URL(movies.get(18).getImglink())));
+        jLabelBild19.setText(null);
+        jLabelBild19.addMouseListener(listener);
+        
+        jLabelBild20.setIcon(new ImageIcon(new URL(movies.get(19).getImglink())));
+        jLabelBild20.setText(null);
+        jLabelBild20.addMouseListener(listener);
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jColorChooser1 = new javax.swing.JColorChooser();
         jButtonForgottenPass = new javax.swing.JButton();
         jButtonRegistry = new javax.swing.JButton();
         jLabel16 = new javax.swing.JLabel();
@@ -579,7 +675,82 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonRegistryActionPerformed
 
     private void jButtonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchActionPerformed
-        // TODO add your handling code here:
+        db = new Verbindung();
+            db.start();
+            conn = db.getVerbindung();
+            
+            jButtonReturn.setVisible(true);
+            suchetext = jTextSearch.getText();
+            genre = jComboGenre.getSelectedIndex();
+            price = jComboPrice.getSelectedIndex();
+            agerating = jComboAgeRating.getSelectedIndex();
+            rating = jComboRating.getSelectedIndex();
+            language = jComboLanguage.getSelectedIndex();
+     
+            if(evt.getSource() == jButtonSearch){
+                movies2 = new ArrayList<>();
+                    try {
+                        gen = getGenre(genre);
+                        pri = getPrice(price);
+                        age = getAgerating(agerating);
+                        rate = getRating(rating);
+                        lang = getLanguage(language);
+                        
+                        if(!(rate.equals("%"))){
+                        stmt4 = conn.createStatement();
+                        rs3 = stmt4.executeQuery("SELECT *,avg(rating) as average FROM movierental.movie natural left join rates natural join haslang WHERE title LIKE '%"+ suchetext +"%' and genre LIKE '%" + gen + "%' and Pid LIKE '%" + pri + "%' and ageRating LIKE '%"+ age +"%' and Language LIKE '%"+ lang +"%' group by mid having average >= "+rate+"");
+                        stmtSearch = conn.createStatement();
+                        
+                        while(rs3.next()){
+                        rsSearch = stmtSearch.executeQuery("Select * from movie natural join haslang where mid = "+rs3.getString("mid")+" ");
+                        rsSearch.next();
+                        String language1 = rsSearch.getString("Language");
+                        rsSearch.last();
+                        String language2 = rsSearch.getString("Language");
+                        
+                        if(language2.equals(language1)){
+                            language2 = "";
+                        }
+                        Movie movie = new Movie(rs3.getString("mid"),rs3.getString("title"),rs3.getString("picture"),rs3.getString("average"), rs3.getString("description"),rs3.getString("genre"),rs3.getString("agerating"),rs3.getString("releasedate"),rs3.getString("duration"),rs3.getString("link"),language1, language2, rs3.getString("Pid"),"");
+                        movies2.add(movie);
+                        }
+                        
+                        while(movies2.size() %10 != 0){
+                        Movie dump = new Movie("","","http://stefano.bplaced.net/nothing.png",null,"","","","","","","","","","");
+                        movies2.add(dump);
+                        }
+                        this.searchResult(movies2);
+                        
+                        }else{
+                        stmt = conn.createStatement();
+                        rs = stmt.executeQuery("SELECT *,avg(rating) as average FROM movie natural join haslang natural left join rates natural join pricecat WHERE title LIKE '%"+ suchetext +"%' and genre LIKE '%" + gen + "%' and Pid LIKE '%" + pri + "%' and ageRating LIKE '%"+ age +"%' and Language LIKE '%"+ lang +"%' group by mid");
+                        stmtSearch = conn.createStatement();
+                        
+                        while(rs.next()){
+                     
+                        rsSearch = stmtSearch.executeQuery("Select * from movie natural join haslang where mid = "+rs.getString("mid")+" ");
+                        rsSearch.next();
+                        String language1 = rsSearch.getString("Language");
+                        rsSearch.last();
+                        String language2 = rsSearch.getString("Language");
+                        
+                        if(language2.equals(language1)){
+                            language2 = "";
+                        }
+                        Movie movie = new Movie(rs.getString("mid"),rs.getString("title"),rs.getString("picture"),rs.getString("average"), rs.getString("description"),rs.getString("genre"),rs.getString("agerating"),rs.getString("releasedate"),rs.getString("duration"),rs.getString("link"),language1, language2, rs.getString("price"),"");
+                        movies2.add(movie);
+                        }
+                        while(movies2.size() %10 != 0){
+                        Movie dump = new Movie("","","http://stefano.bplaced.net/nothing.png",null,"","","","","","","","","","");
+                        movies2.add(dump);
+                        }
+                        this.searchResult(movies2);
+                        }
+                        
+                    } catch (        SQLException | MalformedURLException ex) {
+                        Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+            }
     }//GEN-LAST:event_jButtonSearchActionPerformed
 
     private void jButtonPreviousActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPreviousActionPerformed
@@ -600,7 +771,7 @@ public class Login extends javax.swing.JFrame {
 
     private void jButtonNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNextActionPerformed
         if(jButtonNext == evt.getSource()){
-            System.out.println(movies2.size());
+            
             seitenanzahl = seitenanzahl + 10;
             try {
                 this.searchResult(movies2);
@@ -616,9 +787,7 @@ public class Login extends javax.swing.JFrame {
             public void run() {
                 try {
                     Login login = new Login();
-                } catch (IOException ex) {
-                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (SQLException ex) {
+                } catch (        IOException | SQLException ex) {
                     Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
@@ -633,6 +802,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JButton jButtonRegistry;
     private javax.swing.JButton jButtonReturn;
     private javax.swing.JButton jButtonSearch;
+    private javax.swing.JColorChooser jColorChooser1;
     private javax.swing.JComboBox jComboAgeRating;
     private javax.swing.JComboBox jComboGenre;
     private javax.swing.JComboBox jComboLanguage;
