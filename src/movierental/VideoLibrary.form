@@ -31,23 +31,87 @@
               <Component id="jLabel2" min="-2" pref="276" max="-2" attributes="0"/>
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
           </Group>
-          <Group type="102" alignment="0" attributes="0">
+          <Group type="102" attributes="0">
               <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jButtonReturn" min="-2" max="-2" attributes="0"/>
                   <Group type="102" attributes="0">
-                      <Component id="jLabelTitle" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
-                      <Component id="jLabelDeadline" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jButtonWatchMovie" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jButtonExtend" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="322" max="32767" attributes="0"/>
                   </Group>
-                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jButtonReturn" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jButtonPrevious" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="jLabelTitle3" pref="251" max="32767" attributes="0"/>
+                                  <Component id="jLabelTitle2" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jLabelTitle1" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" alignment="0" groupAlignment="0" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="jLabelDeadline3" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="jButtonWatchMovie3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Component id="jLabelDeadline1" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="jButtonWatchMovie1" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="jLabelDeadline2" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="jButtonWatchMovie2" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="jLabelTitle4" pref="247" max="32767" attributes="0"/>
+                                  <Component id="jLabelTitle5" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jLabelDeadline5" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="jButtonWatchMovie5" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="jLabelDeadline4" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="jButtonWatchMovie4" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
+                              <Component id="jButtonNext" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="103" alignment="0" groupAlignment="0" attributes="0">
+                              <Component id="jButtonExtend2" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="jButtonExtend1" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jButtonExtend3" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="jButtonExtend4" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="jButtonExtend5" alignment="1" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace pref="55" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -61,14 +125,46 @@
               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jButtonWatchMovie" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabelTitle" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabelDeadline" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButtonExtend" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonWatchMovie1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabelTitle1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabelDeadline1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonExtend1" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="187" max="32767" attributes="0"/>
-              <Component id="jButtonReturn" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jButtonWatchMovie2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabelTitle2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabelDeadline2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonExtend2" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jButtonWatchMovie3" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabelTitle3" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabelDeadline3" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonExtend3" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jButtonWatchMovie4" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabelTitle4" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabelDeadline4" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonExtend4" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jButtonWatchMovie5" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabelTitle5" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabelDeadline5" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonExtend5" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="43" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jButtonReturn" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonNext" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonPrevious" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -95,33 +191,159 @@
         <Property name="text" type="java.lang.String" value="Rented Movies:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButtonWatchMovie">
+    <Component class="javax.swing.JButton" name="jButtonWatchMovie5">
       <Properties>
         <Property name="text" type="java.lang.String" value="Watch Movie"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonWatchMovie5ActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabelTitle">
+    <Component class="javax.swing.JLabel" name="jLabelTitle5">
       <Properties>
         <Property name="text" type="java.lang.String" value="Turbo - Kleine Schnecke, gro&#xdf;er Traum"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabelDeadline">
+    <Component class="javax.swing.JLabel" name="jLabelDeadline5">
       <Properties>
         <Property name="text" type="java.lang.String" value="1 day left"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButtonExtend">
+    <Component class="javax.swing.JButton" name="jButtonExtend5">
       <Properties>
         <Property name="text" type="java.lang.String" value="Extend"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonExtendActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonExtend5ActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonReturn">
       <Properties>
         <Property name="text" type="java.lang.String" value="Return"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonReturnActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonWatchMovie1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Watch Movie"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonWatchMovie1ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabelTitle1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Turbo - Kleine Schnecke, gro&#xdf;er Traum"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabelDeadline1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="1 day left"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonExtend1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Extend"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonExtend1ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonWatchMovie2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Watch Movie"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonWatchMovie2ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabelTitle2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Turbo - Kleine Schnecke, gro&#xdf;er Traum"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabelDeadline2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="1 day left"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonExtend2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Extend"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonExtend2ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonWatchMovie3">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Watch Movie"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonWatchMovie3ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabelTitle3">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Turbo - Kleine Schnecke, gro&#xdf;er Traum"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabelDeadline3">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="1 day left"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonExtend3">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Extend"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonExtend3ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonWatchMovie4">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Watch Movie"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonWatchMovie4ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabelTitle4">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Turbo - Kleine Schnecke, gro&#xdf;er Traum"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabelDeadline4">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="1 day left"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonExtend4">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Extend"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonExtend4ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonNext">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Next"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonNextActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonPrevious">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Previous"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonPreviousActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

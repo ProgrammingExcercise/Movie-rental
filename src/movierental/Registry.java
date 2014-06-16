@@ -155,6 +155,11 @@ public class Registry extends javax.swing.JFrame {
         });
 
         jButtonReturn.setText("Return");
+        jButtonReturn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonReturnActionPerformed(evt);
+            }
+        });
 
         jPassword.setText("jPasswordField1");
         jPassword.addActionListener(new java.awt.event.ActionListener() {
@@ -419,6 +424,10 @@ public class Registry extends javax.swing.JFrame {
     private void jPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jPasswordActionPerformed
+
+    private void jButtonReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReturnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonReturnActionPerformed
 
     /**
      * @param args the command line arguments
