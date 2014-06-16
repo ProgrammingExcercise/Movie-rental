@@ -55,41 +55,38 @@ public class Movie {
     
     public static void addMovie(String title,String genre,String agerating,String description,String releaseyear,String duration,String streamlink,String imglink,String pricecat,String language,String language2) throws SQLException{
         
-           Verbindung db = new Verbindung();
-           db.start();
-           Connection conn = db.getVerbindung();
-      
-         
-           Statement stmt = conn.createStatement();
-           stmt.executeUpdate("INSERT INTO `movierental`.`movie`(`title`, `genre`, `ageRating`, `description`, `releaseDate`, `duration`, `link`, `Picture`, `Pid`) VALUES "
-                              + "('" + title + "','" + genre + "','" + agerating + "','" + description + "','" +  releaseyear + "','" + duration + "','" + streamlink + "','" + imglink + "','" + pricecat +"')");
-           
-           Statement stmt2 = conn.createStatement();
-           stmt2.executeUpdate("INSERT INTO haslang (`Mid`,`Language`) VALUES ((SELECT mid FROM movie WHERE title = '"+ title +"'),'"+ language + "')");
-           
-           if(language2.equals("Second")){
-           JOptionPane.showMessageDialog(null, "Movie was added.");
-           }else{
-           stmt2.executeUpdate("INSERT INTO haslang (`Mid`,`Language`) VALUES ((SELECT mid FROM movie WHERE title = '"+ title +"'),'"+ language2 + "')");
-           JOptionPane.showMessageDialog(null, "Movie was added.");
-           }
-    
-    
+        Verbindung db = new Verbindung();
+        db.start();
+        Connection conn = db.getVerbindung();
+
+
+        Statement stmt = conn.createStatement();
+        stmt.executeUpdate("INSERT INTO `movierental`.`movie`(`title`, `genre`, `ageRating`, `description`, `releaseDate`, `duration`, `link`, `Picture`, `Pid`) VALUES "
+                           + "('" + title + "','" + genre + "','" + agerating + "','" + description + "','" +  releaseyear + "','" + duration + "','" + streamlink + "','" + imglink + "','" + pricecat +"')");
+
+        Statement stmt2 = conn.createStatement();
+        stmt2.executeUpdate("INSERT INTO haslang (`Mid`,`Language`) VALUES ((SELECT mid FROM movie WHERE title = '"+ title +"'),'"+ language + "')");
+
+        if(language2.equals("Second")){
+        JOptionPane.showMessageDialog(null, "Movie was added.");
+        }else{
+        stmt2.executeUpdate("INSERT INTO haslang (`Mid`,`Language`) VALUES ((SELECT mid FROM movie WHERE title = '"+ title +"'),'"+ language2 + "')");
+        JOptionPane.showMessageDialog(null, "Movie was added.");
+        }
     }
     public static void changeMovie(String title,String genre,String agerating,String description,String releaseyear,String duration,String streamlink,String imglink,String pricecat){
-           Verbindung db = new Verbindung();
-           db.start();
-           Connection conn = db.getVerbindung();
-           
-           try {
-              Statement stmt = conn.createStatement();
-               stmt.executeUpdate("INSERT INTO `movierental`.`movie`(`title`, `genre`, `ageRating`, `description`, `releaseDate`, `duration`, `link`, `Picture`, `Pid`) VALUES "
-               + "('" + title + "','" + genre + "','" + agerating + "','" + description + "','" +  releaseyear + "','" + duration + "','" + streamlink + "','" + imglink + "','" + pricecat +"')");
-           } catch (SQLException ex) {
-               Logger.getLogger(AddMovie.class.getName()).log(Level.SEVERE, null, ex);
-           }
-           JOptionPane.showMessageDialog(null, "Movie was added."+ pricecat);
-    
+        Verbindung db = new Verbindung();
+        db.start();
+        Connection conn = db.getVerbindung();
+
+        try {
+           Statement stmt = conn.createStatement();
+            stmt.executeUpdate("INSERT INTO `movierental`.`movie`(`title`, `genre`, `ageRating`, `description`, `releaseDate`, `duration`, `link`, `Picture`, `Pid`) VALUES "
+            + "('" + title + "','" + genre + "','" + agerating + "','" + description + "','" +  releaseyear + "','" + duration + "','" + streamlink + "','" + imglink + "','" + pricecat +"')");
+        } catch (SQLException ex) {
+            Logger.getLogger(AddMovie.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        JOptionPane.showMessageDialog(null, "Movie was added."+ pricecat);
     }
 
     public static ArrayList<Movie> getNewestAndTop10() throws SQLException{
@@ -131,7 +128,7 @@ public class Movie {
         String lang = rs3.getString("Language");
         rs3.last();
         String lang2 = rs3.getString("Language");
-        
+    
         if(lang2.equals(lang))
             lang2 = "";
         
