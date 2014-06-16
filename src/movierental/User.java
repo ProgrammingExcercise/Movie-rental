@@ -171,6 +171,11 @@ public class User extends javax.swing.JFrame {
         return password;
     }
 
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+
+    
 
    
     /**
