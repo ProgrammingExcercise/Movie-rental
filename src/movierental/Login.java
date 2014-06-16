@@ -51,7 +51,7 @@ public class Login extends javax.swing.JFrame {
         if(language2.equals(language))
             language2 = "";
         
-        Movie movie = new Movie(rs.getString("mid"),rs.getString("title"),rs.getString("picture"),rs.getString("average"), rs.getString("description"),rs.getString("genre"),rs.getString("agerating"),rs.getString("releasedate"),rs.getString("duration"),rs.getString("link"),language, language2, rs.getString("price"));
+        Movie movie = new Movie(rs.getString("mid"),rs.getString("title"),rs.getString("picture"),rs.getString("average"), rs.getString("description"),rs.getString("genre"),rs.getString("agerating"),rs.getString("releasedate"),rs.getString("duration"),rs.getString("link"),language, language2, rs.getString("price"), "");
 
        movies.add(movie);
        }       
