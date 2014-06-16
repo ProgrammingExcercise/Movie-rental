@@ -92,8 +92,8 @@ public class Movie {
     
     }
 
-    public static ArrayList<Movie> getNewest10() throws SQLException{
-        
+    public static ArrayList<Movie> getNewestAndTop10() throws SQLException{
+       //Newest10
        ArrayList<Movie> movies = new ArrayList<>();
        db = new Verbindung();
        db.start();
@@ -117,35 +117,28 @@ public class Movie {
         Movie movie = new Movie(rs.getString("mid"),rs.getString("title"),rs.getString("picture"),rs.getString("average"), rs.getString("description"),rs.getString("genre"),rs.getString("agerating"),rs.getString("releasedate"),rs.getString("duration"),rs.getString("link"),lang, lang2, rs.getString("price"),"");
         movies.add(movie);
        }
-        return movies;
-    }
-    
-    public static ArrayList<Movie> getTop10() throws SQLException{
-        
-       ArrayList<Movie> movies = new ArrayList<>();
-       db = new Verbindung();
-       db.start();
-       conn = db.getVerbindung();
-       Statement stmt = conn.createStatement();     
-       ResultSet rs = stmt.executeQuery("Select *, avg(rating) as average from movie natural join pricecat natural left join rates  group by mid order by average desc");
        
-       stmt = conn.createStatement();
-       Statement stmt2 = conn.createStatement();
-       while(rs.next()){
+       // Top10
+    
+       Statement stmt3 = conn.createStatement();     
+       ResultSet rs2 = stmt3.executeQuery("Select *, avg(rating) as average from movie natural join pricecat natural left join rates  group by mid order by average desc");
+       
+       Statement stmt4 = conn.createStatement();
+       while(rs2.next()){
            
-        ResultSet rs2 = stmt2.executeQuery("Select * from movie natural join haslang where mid = "+rs.getString("mid")+" ");
-        rs2.next();
-        String lang = rs2.getString("Language");
-        rs2.last();
-        String lang2 = rs2.getString("Language");
+        ResultSet rs3 = stmt4.executeQuery("Select * from movie natural join haslang where mid = "+rs2.getString("mid")+" ");
+        rs3.next();
+        String lang = rs3.getString("Language");
+        rs3.last();
+        String lang2 = rs3.getString("Language");
         
         if(lang2.equals(lang))
             lang2 = "";
         
-        Movie movie = new Movie(rs.getString("mid"),rs.getString("title"),rs.getString("picture"),rs.getString("average"), rs.getString("description"),rs.getString("genre"),rs.getString("agerating"),rs.getString("releasedate"),rs.getString("duration"),rs.getString("link"),lang, lang2, rs.getString("price"),"");
+        Movie movie = new Movie(rs2.getString("mid"),rs2.getString("title"),rs2.getString("picture"),rs2.getString("average"), rs2.getString("description"),rs2.getString("genre"),rs2.getString("agerating"),rs2.getString("releasedate"),rs2.getString("duration"),rs2.getString("link"),lang, lang2, rs2.getString("price"),"");
         movies.add(movie);
        }
-        return movies;
+       return movies;
     }
     
     public String getTitle() {
