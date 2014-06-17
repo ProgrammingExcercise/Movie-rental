@@ -1,8 +1,5 @@
 package movierental;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.IOException;
 import java.net.MalformedURLException;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -23,20 +20,8 @@ public class VideoLibrary extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         user = obj;
           
-        //user.setUid("1");
         this.listMovies();
-       
-//       int abc = 2;
-//       switch (abc) {
-//           case 1 : jLabelTitle1.setVisible(true); jLabelDeadline1.setVisible(true); jButtonExtend1.setVisible(true); jButtonWatchMovie1.setVisible(true);
-//           case 2 : jLabelTitle2.setVisible(true); jLabelDeadline2.setVisible(true); jButtonExtend2.setVisible(true); jButtonWatchMovie2.setVisible(true);
-//           case 3 : jLabelTitle3.setVisible(true); jLabelDeadline3.setVisible(true); jButtonExtend3.setVisible(true); jButtonWatchMovie3.setVisible(true);
-//           case 4 : jLabelTitle4.setVisible(true); jLabelDeadline4.setVisible(true); jButtonExtend4.setVisible(true); jButtonWatchMovie4.setVisible(true);
-//           case 5 : jLabelTitle5.setVisible(true); jLabelDeadline5.setVisible(true); jButtonExtend5.setVisible(true); jButtonWatchMovie5.setVisible(true);
-//           default: break;        
-//                   
-//        }
-    }
+    }       
     
     public void listMovies() throws SQLException{
        jButtonNext.setVisible(false);
@@ -128,7 +113,6 @@ public class VideoLibrary extends javax.swing.JFrame {
             jLabelDeadline5.setText(movies.get(4+count).getDeadline() + " Days left");             
          }       }
        
-        System.out.println(movies.size());
        if(movies.size()-count > 5){
             jButtonNext.setVisible(true);
        }else{
@@ -426,7 +410,9 @@ public class VideoLibrary extends javax.swing.JFrame {
 
     private void jButtonExtend2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExtend2ActionPerformed
         try {
-            new Rent(user, movies.get(1+count)).setVisible(true);
+            Rent rent = new Rent(user, movies.get(1+count));
+            rent.setPrevious(1);
+            rent.setVisible(true);
         } catch (MalformedURLException ex) {
             Logger.getLogger(VideoLibrary.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -436,29 +422,29 @@ public class VideoLibrary extends javax.swing.JFrame {
 
     private void jButtonExtend3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExtend3ActionPerformed
         try {
-            new Rent(user, movies.get(2+count)).setVisible(true);
-        } catch (MalformedURLException ex) {
-            Logger.getLogger(VideoLibrary.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
+            Rent rent = new Rent(user, movies.get(2+count));
+            rent.setPrevious(1);
+            rent.setVisible(true);
+        } catch (MalformedURLException | SQLException ex) {
             Logger.getLogger(VideoLibrary.class.getName()).log(Level.SEVERE, null, ex);
         }    }//GEN-LAST:event_jButtonExtend3ActionPerformed
 
     private void jButtonExtend4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExtend4ActionPerformed
         try {
-            new Rent(user, movies.get(3+count)).setVisible(true);
-        } catch (MalformedURLException ex) {
-            Logger.getLogger(VideoLibrary.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
+            Rent rent = new Rent(user, movies.get(3+count));
+            rent.setPrevious(1);
+            rent.setVisible(true);
+        } catch (MalformedURLException | SQLException ex) {
             Logger.getLogger(VideoLibrary.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButtonExtend4ActionPerformed
 
     private void jButtonExtend5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExtend5ActionPerformed
         try {
-            new Rent(user, movies.get(4+count)).setVisible(true);
-        } catch (MalformedURLException ex) {
-            Logger.getLogger(VideoLibrary.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
+            Rent rent = new Rent(user, movies.get(4+count));
+            rent.setPrevious(1);
+            rent.setVisible(true);
+        } catch (MalformedURLException | SQLException ex) {
             Logger.getLogger(VideoLibrary.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButtonExtend5ActionPerformed

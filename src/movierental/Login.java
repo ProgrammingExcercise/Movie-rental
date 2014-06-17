@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import static movierental.Admin.getAgerating;
@@ -21,7 +20,6 @@ import static movierental.Admin.getGenre;
 import static movierental.Admin.getLanguage;
 import static movierental.Admin.getPrice;
 import static movierental.Admin.getRating;
-import static movierental.User.seitenanzahl;
 
 public class Login extends javax.swing.JFrame {
     

@@ -193,6 +193,12 @@ public class Rent extends javax.swing.JFrame {
                 } catch (MalformedURLException ex) {
                     Logger.getLogger(Rent.class.getName()).log(Level.SEVERE, null, ex);
                 }
+            }else{
+                try {
+                    new VideoLibrary(user).setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(Rent.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
     }//GEN-LAST:event_jButtonReturnActionPerformed
@@ -203,7 +209,7 @@ public class Rent extends javax.swing.JFrame {
        db.start();
        Connection conn = db.getVerbindung();
        if(jCheckDirectDebitPayment.isSelected() && jCheckGTC.isSelected()){
-        if(JOptionPane.showConfirmDialog(jButtonRent, "Do you want to rent the movie "+movie.getTitle()+"?") == 0 ){
+        if(JOptionPane.showConfirmDialog(null, "Do you want to rent the movie "+movie.getTitle()+"?") == 0 ){
             try {
                 Statement stmt = conn.createStatement();
                 ResultSet rs = stmt.executeQuery("Select * from rents where uid = '"+user.getUid()+"' and mid = '"+movie.getMid()+"'");
