@@ -14,11 +14,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import static movierental.Admin.getAgerating;
 import static movierental.Admin.getGenre;
 import static movierental.Admin.getLanguage;
 import static movierental.Admin.getPrice;
 import static movierental.Admin.getRating;
+
 
 public class User extends javax.swing.JFrame {
     User user;
@@ -51,6 +54,7 @@ public class User extends javax.swing.JFrame {
         jButtonPrevious.setVisible(false);
         jButtonNext.setVisible(false);
         jButtonReturn.setVisible(false);
+        
     }
     
     
@@ -208,69 +212,99 @@ public class User extends javax.swing.JFrame {
         jLabelBild9.setVisible(false);
         jLabelBild10.setVisible(false);
         jLabelBild11.setVisible(false);
+        jLabelBild19.setVisible(false);
         jLabelBild12.setVisible(false);
-        jLabelBild13.setVisible(false);
         jLabelBild14.setVisible(false);
         jLabelBild15.setVisible(false);
-        jLabelBild16.setVisible(false);
         jLabelBild17.setVisible(false);
         jLabelBild18.setVisible(false);
-        jLabelBild19.setVisible(false);
         jLabelBild20.setVisible(false);
+        jLabelBild13.setVisible(false);
+        jLabelBild16.setVisible(false);
 
         jLabelTop10.setVisible(false);
         jLabelNewest.setText("Search Result for '"+ suchetext +"':");
 
+        if(!(movies2.get(0+seitenanzahl).getTitle().equals(""))){
         jLabelBild1.setIcon(new ImageIcon(new URL(movies2.get(0+seitenanzahl).getImglink())));
         jLabelBild1.setText(null);
         jLabelBild1.addMouseListener(listener);
         jLabelBild1.setVisible(true);
-
+        }else{
+        jLabelBild1.setVisible(false);
+        }
+        if(!(movies2.get(1+seitenanzahl).getTitle().equals(""))){
         jLabelBild2.setIcon(new ImageIcon(new URL(movies2.get(1+seitenanzahl).getImglink())));
         jLabelBild2.setText(null);
         jLabelBild2.addMouseListener(listener);
         jLabelBild2.setVisible(true);
-
+        }else{
+        jLabelBild2.setVisible(false);
+        }
+        if(!(movies2.get(2+seitenanzahl).getTitle().equals(""))){
         jLabelBild3.setIcon(new ImageIcon(new URL(movies2.get(2+seitenanzahl).getImglink())));
         jLabelBild3.setText(null);
         jLabelBild3.addMouseListener(listener);
         jLabelBild3.setVisible(true);
-
+        }else{
+        jLabelBild3.setVisible(false);
+        }
+        if(!(movies2.get(3+seitenanzahl).getTitle().equals(""))){
         jLabelBild4.setIcon(new ImageIcon(new URL(movies2.get(3+seitenanzahl).getImglink())));
         jLabelBild4.setText(null);
         jLabelBild4.addMouseListener(listener);
         jLabelBild4.setVisible(true);
-
+        }else{
+        jLabelBild4.setVisible(false);
+        }
+        if(!(movies2.get(4+seitenanzahl).getTitle().equals(""))){
         jLabelBild5.setIcon(new ImageIcon(new URL(movies2.get(4+seitenanzahl).getImglink())));
         jLabelBild5.setText(null);
         jLabelBild5.addMouseListener(listener);
         jLabelBild5.setVisible(true);
-
+        }else{
+        jLabelBild5.setVisible(false);
+        }
+        if(!(movies2.get(5+seitenanzahl).getTitle().equals(""))){
         jLabelBild6.setIcon(new ImageIcon(new URL(movies2.get(5+seitenanzahl).getImglink())));
         jLabelBild6.setText(null);
         jLabelBild6.addMouseListener(listener);
         jLabelBild6.setVisible(true);
-
+        }else{
+        jLabelBild6.setVisible(false);
+        }
+        if(!(movies2.get(6+seitenanzahl).getTitle().equals(""))){
         jLabelBild7.setIcon(new ImageIcon(new URL(movies2.get(6+seitenanzahl).getImglink())));
         jLabelBild7.setText(null);
         jLabelBild7.addMouseListener(listener);
         jLabelBild7.setVisible(true);
-
+        }else{
+        jLabelBild7.setVisible(false);
+        }
+        if(!(movies2.get(7+seitenanzahl).getTitle().equals(""))){
         jLabelBild8.setIcon(new ImageIcon(new URL(movies2.get(7+seitenanzahl).getImglink())));
         jLabelBild8.setText(null);
         jLabelBild8.addMouseListener(listener);
         jLabelBild8.setVisible(true);
-
+        }else{
+        jLabelBild8.setVisible(false);
+        }
+        if(!(movies2.get(8+seitenanzahl).getTitle().equals(""))){
         jLabelBild9.setIcon(new ImageIcon(new URL(movies2.get(8+seitenanzahl).getImglink())));
         jLabelBild9.setText(null);
         jLabelBild9.addMouseListener(listener);
         jLabelBild9.setVisible(true);
-
+        }else{
+        jLabelBild9.setVisible(false);
+        }
+        if(!(movies2.get(9+seitenanzahl).getTitle().equals(""))){
         jLabelBild10.setIcon(new ImageIcon(new URL(movies2.get(9+seitenanzahl).getImglink())));
         jLabelBild10.setText(null);
         jLabelBild10.addMouseListener(listener);
         jLabelBild10.setVisible(true);
-
+        }else{
+        jLabelBild10.setVisible(false);
+        }
          if(movies2.size() > 10){
             jButtonNext.setVisible(true);
          }
@@ -284,10 +318,10 @@ public class User extends javax.swing.JFrame {
              jButtonPrevious.setVisible(false);
          }
      }
-
    public void Newest10() throws SQLException, MalformedURLException, IOException{
         MouseAdapter listener = new MouseImpl();
-                   
+           
+      
         jLabelBild1.setIcon(new ImageIcon(new URL(movies.get(0).getImglink())));
         jLabelBild1.setText(null);
         jLabelBild1.addMouseListener(listener);
@@ -330,7 +364,7 @@ public class User extends javax.swing.JFrame {
     }
    public void Top10() throws SQLException, MalformedURLException{
        MouseAdapter listener = new MouseImpl();
-
+       
         jLabelBild11.setIcon(new ImageIcon(new URL(movies.get(10).getImglink())));
         jLabelBild11.setText(null);
         jLabelBild11.addMouseListener(listener);
@@ -391,31 +425,31 @@ public class User extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
-        jLabelBild9 = new javax.swing.JLabel();
-        jLabelBild4 = new javax.swing.JLabel();
-        jButtonReturn = new javax.swing.JButton();
-        jLabelBild5 = new javax.swing.JLabel();
+        jLabelBild2 = new javax.swing.JLabel();
         jLabelBild17 = new javax.swing.JLabel();
-        jLabelBild3 = new javax.swing.JLabel();
+        jLabelBild12 = new javax.swing.JLabel();
+        jLabelBild20 = new javax.swing.JLabel();
+        jLabelBild5 = new javax.swing.JLabel();
+        jLabelBild4 = new javax.swing.JLabel();
+        jLabelBild9 = new javax.swing.JLabel();
         jLabelBild7 = new javax.swing.JLabel();
         jLabelNewest = new javax.swing.JLabel();
-        jLabelBild11 = new javax.swing.JLabel();
-        jLabelBild18 = new javax.swing.JLabel();
         jLabelBild10 = new javax.swing.JLabel();
-        jLabelBild20 = new javax.swing.JLabel();
-        jLabelBild2 = new javax.swing.JLabel();
+        jLabelBild3 = new javax.swing.JLabel();
+        jLabelBild11 = new javax.swing.JLabel();
+        jButtonReturn = new javax.swing.JButton();
+        jLabelBild18 = new javax.swing.JLabel();
         jLabelBild1 = new javax.swing.JLabel();
-        jLabelBild12 = new javax.swing.JLabel();
-        jLabelBild14 = new javax.swing.JLabel();
+        jButtonPrevious = new javax.swing.JButton();
+        jLabelBild16 = new javax.swing.JLabel();
+        jLabelBild15 = new javax.swing.JLabel();
+        jButtonNext = new javax.swing.JButton();
+        jLabelBild6 = new javax.swing.JLabel();
+        jLabelBild8 = new javax.swing.JLabel();
+        jLabelTop10 = new javax.swing.JLabel();
         jLabelBild19 = new javax.swing.JLabel();
         jLabelBild13 = new javax.swing.JLabel();
-        jButtonNext = new javax.swing.JButton();
-        jLabelBild15 = new javax.swing.JLabel();
-        jLabelTop10 = new javax.swing.JLabel();
-        jLabelBild16 = new javax.swing.JLabel();
-        jLabelBild8 = new javax.swing.JLabel();
-        jButtonPrevious = new javax.swing.JButton();
-        jLabelBild6 = new javax.swing.JLabel();
+        jLabelBild14 = new javax.swing.JLabel();
         jButtonSearch = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -483,9 +517,33 @@ public class User extends javax.swing.JFrame {
 
         jLabel1.setText("Search:");
 
-        jLabelBild9.setText("jLabel9");
+        jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane2.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+
+        jLabelBild2.setText("jLabel18");
+
+        jLabelBild17.setText("jLabel8");
+
+        jLabelBild12.setText("jLabel9");
+
+        jLabelBild20.setText("jLabel6");
+
+        jLabelBild5.setText("jLabel19");
 
         jLabelBild4.setText("jLabel4");
+
+        jLabelBild9.setText("jLabel9");
+
+        jLabelBild7.setText("jLabel7");
+
+        jLabelNewest.setFont(new java.awt.Font("Calibri", 0, 20)); // NOI18N
+        jLabelNewest.setText("Newest 10");
+
+        jLabelBild10.setText("jLabel14");
+
+        jLabelBild3.setText("jLabel4");
+
+        jLabelBild11.setText("jLabel17");
 
         jButtonReturn.setText("Return");
         jButtonReturn.addActionListener(new java.awt.event.ActionListener() {
@@ -494,52 +552,9 @@ public class User extends javax.swing.JFrame {
             }
         });
 
-        jLabelBild5.setText("jLabel19");
-
-        jLabelBild17.setText("jLabel8");
-
-        jLabelBild3.setText("jLabel4");
-
-        jLabelBild7.setText("jLabel7");
-
-        jLabelNewest.setFont(new java.awt.Font("Calibri", 0, 20)); // NOI18N
-        jLabelNewest.setText("Newest 10");
-
-        jLabelBild11.setText("jLabel17");
-
         jLabelBild18.setText("jLabel14");
 
-        jLabelBild10.setText("jLabel14");
-
-        jLabelBild20.setText("jLabel6");
-
-        jLabelBild2.setText("jLabel18");
-
         jLabelBild1.setText("jLabel17");
-
-        jLabelBild12.setText("jLabel9");
-
-        jLabelBild14.setText("jLabel4");
-
-        jLabelBild19.setText("jLabel4");
-
-        jLabelBild13.setText("jLabel18");
-
-        jButtonNext.setText(">");
-        jButtonNext.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonNextActionPerformed(evt);
-            }
-        });
-
-        jLabelBild15.setText("jLabel19");
-
-        jLabelTop10.setFont(new java.awt.Font("Calibri", 0, 20)); // NOI18N
-        jLabelTop10.setText("Top 10");
-
-        jLabelBild16.setText("jLabel7");
-
-        jLabelBild8.setText("jLabel8");
 
         jButtonPrevious.setText("<");
         jButtonPrevious.addActionListener(new java.awt.event.ActionListener() {
@@ -548,7 +563,29 @@ public class User extends javax.swing.JFrame {
             }
         });
 
+        jLabelBild16.setText("jLabel7");
+
+        jLabelBild15.setText("jLabel19");
+
+        jButtonNext.setText(">");
+        jButtonNext.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonNextActionPerformed(evt);
+            }
+        });
+
         jLabelBild6.setText("jLabel6");
+
+        jLabelBild8.setText("jLabel8");
+
+        jLabelTop10.setFont(new java.awt.Font("Calibri", 0, 20)); // NOI18N
+        jLabelTop10.setText("Top 10");
+
+        jLabelBild19.setText("jLabel4");
+
+        jLabelBild13.setText("jLabel18");
+
+        jLabelBild14.setText("jLabel4");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -577,9 +614,9 @@ public class User extends javax.swing.JFrame {
                                     .addComponent(jLabelBild4, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabelBild9, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabelBild5)
-                                    .addComponent(jLabelBild10, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabelBild10, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
+                                    .addComponent(jLabelBild5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addComponent(jLabelNewest)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -604,11 +641,11 @@ public class User extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jButtonReturn)
-                        .addGap(276, 276, 276)
-                        .addComponent(jButtonPrevious, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(275, 275, 275)
+                        .addComponent(jButtonPrevious, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(41, 41, 41)
-                        .addComponent(jButtonNext, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(24, Short.MAX_VALUE))
+                        .addComponent(jButtonNext, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -682,7 +719,7 @@ public class User extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jButtonLogOut)
                 .addGap(9, 9, 9))
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jSeparator1)
@@ -697,16 +734,18 @@ public class User extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jComboLanguage, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(51, 51, 51)
-                                .addComponent(jComboRating, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
+                                .addComponent(jComboRating, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addGap(18, 18, 18)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButtonSearch)))))
+                                .addGap(18, 18, 18)
+                                .addComponent(jButtonSearch)))
+                        .addGap(0, 14, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -735,8 +774,7 @@ public class User extends javax.swing.JFrame {
                     .addComponent(jComboLanguage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboRating, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 525, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -787,35 +825,6 @@ public class User extends javax.swing.JFrame {
             Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButtonLogOutActionPerformed
-
-    private void jButtonReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReturnActionPerformed
-        this.dispose();
-        new User().setVisible(true);
-
-    }//GEN-LAST:event_jButtonReturnActionPerformed
-
-    private void jButtonNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNextActionPerformed
-        if(jButtonNext == evt.getSource()){
-            System.out.println(movies2.size());
-            seitenanzahl = seitenanzahl + 10;
-            try {
-                this.searchResult(movies2);
-            } catch (MalformedURLException ex) {
-                Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-    }//GEN-LAST:event_jButtonNextActionPerformed
-
-    private void jButtonPreviousActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPreviousActionPerformed
-        if(jButtonPrevious == evt.getSource()){
-            seitenanzahl = seitenanzahl - 10;
-            try {
-                this.searchResult(movies2);
-            } catch (MalformedURLException ex) {
-                Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-    }//GEN-LAST:event_jButtonPreviousActionPerformed
 
     private void jButtonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchActionPerformed
         db = new Verbindung();
@@ -896,7 +905,42 @@ public class User extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonSearchActionPerformed
 
-    public static void main(String args[]) throws SQLException {
+    private void jButtonReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReturnActionPerformed
+        this.dispose();
+        try {
+            new Admin(new User()).setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButtonReturnActionPerformed
+
+    private void jButtonPreviousActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPreviousActionPerformed
+        if(jButtonPrevious == evt.getSource()){
+            seitenanzahl = seitenanzahl - 10;
+            try {
+                this.searchResult(movies2);
+            } catch (MalformedURLException ex) {
+                Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_jButtonPreviousActionPerformed
+
+    private void jButtonNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNextActionPerformed
+        if(jButtonNext == evt.getSource()){
+            System.out.println(movies2.size());
+            seitenanzahl = seitenanzahl + 10;
+            try {
+                this.searchResult(movies2);
+            } catch (MalformedURLException ex) {
+                Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_jButtonNextActionPerformed
+
+    public static void main(String args[]) throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
+        UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new User().setVisible(true);
@@ -1048,7 +1092,7 @@ class MouseImpl extends MouseAdapter {
                 Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        if (source == jLabelBild12) {
+        if (source == jLabelBild19) {
              try {
                 MovieInfo window = new MovieInfo(user,movies.get(11));
                 window.pack();
@@ -1058,7 +1102,7 @@ class MouseImpl extends MouseAdapter {
             }
         }
 
-        if (source == jLabelBild13) {
+        if (source == jLabelBild12) {
              try {
                 MovieInfo window = new MovieInfo(user,movies.get(12));
                 window.pack();
@@ -1085,7 +1129,7 @@ class MouseImpl extends MouseAdapter {
                 Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        if (source == jLabelBild16) {
+        if (source == jLabelBild17) {
              try {
                 MovieInfo window = new MovieInfo(user,movies.get(15));
                 window.pack();
@@ -1094,7 +1138,7 @@ class MouseImpl extends MouseAdapter {
                 Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        if (source == jLabelBild17) {
+        if (source == jLabelBild18) {
              try {
                 MovieInfo window = new MovieInfo(user,movies.get(16));
                 window.pack();
@@ -1103,7 +1147,7 @@ class MouseImpl extends MouseAdapter {
                 Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        if (source == jLabelBild18) {
+        if (source == jLabelBild20) {
              try {
                 MovieInfo window = new MovieInfo(user,movies.get(17));
                 window.pack();
@@ -1112,7 +1156,7 @@ class MouseImpl extends MouseAdapter {
                 Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
             }
         }  
-        if (source == jLabelBild19) {
+        if (source == jLabelBild13) {
              try {
                 MovieInfo window = new MovieInfo(user,movies.get(18));
                 window.pack();
@@ -1121,7 +1165,7 @@ class MouseImpl extends MouseAdapter {
                 Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        if (source == jLabelBild20) {
+        if (source == jLabelBild16) {
              try {
                 MovieInfo window = new MovieInfo(user,movies.get(19));
                 window.pack();
@@ -1131,6 +1175,6 @@ class MouseImpl extends MouseAdapter {
             }     
         }
         }
-}
+    }
 }
 

@@ -23,7 +23,7 @@ public class VideoLibrary extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         user = obj;
           
-        user.setUid("1");
+        //user.setUid("1");
         this.listMovies();
        
 //       int abc = 2;
@@ -502,7 +502,7 @@ public class VideoLibrary extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonWatchMovie5ActionPerformed
 
     private void jButtonReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReturnActionPerformed
-        dispose();
+        this.dispose();
     }//GEN-LAST:event_jButtonReturnActionPerformed
 
     /**

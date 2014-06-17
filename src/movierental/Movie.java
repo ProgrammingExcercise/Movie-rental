@@ -98,7 +98,7 @@ public class Movie {
        Statement stmt = conn.createStatement();     
        ResultSet rs = stmt.executeQuery("Select *, avg(rating) as average from movie natural join pricecat natural left join rates group by mid order by mid desc");
        
-       stmt = conn.createStatement();
+       
        Statement stmt2 = conn.createStatement();
        while(rs.next()){
            
