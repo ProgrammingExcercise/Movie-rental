@@ -7,7 +7,10 @@
 package movierental;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JLabel;
@@ -278,17 +281,26 @@ public class Account extends javax.swing.JFrame {
                                      null, options, options[1]);
             if(option == 0) // pressing OK button
             {
-                String password = String.valueOf(pass.getPassword());
-                if(!(user.getPassword().equals(password))){
-                JOptionPane.showMessageDialog(null, "Password wrong!");
-                }else{
+                Verbindung db = new Verbindung();
+                db.start();
+                Connection conn = db.getVerbindung();
+                    Statement stmt;
                 try {
-                new ChangeAccount(user).setVisible(true);
-                setVisible(false);
-                } catch (SQLException ex) {
+                    stmt = conn.createStatement();
+                    ResultSet rs = stmt.executeQuery("SELECT SHA2('"+String.valueOf(pass.getPassword())+"',0) as password");
+                    if(!(user.getPassword().equals(rs.getString("password")))){
+                        JOptionPane.showMessageDialog(null, "Password wrong!");
+                    }else{
+                        try {
+                          new ChangeAccount(user).setVisible(true);
+                            setVisible(false);
+                        } catch (SQLException ex) {
+                            Logger.getLogger(Account.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                }  catch (SQLException ex) {
                     Logger.getLogger(Account.class.getName()).log(Level.SEVERE, null, ex);
                 }
-             }
             }
         }    
     }//GEN-LAST:event_jButtonChangeActionPerformed

@@ -44,10 +44,12 @@ public class Login extends javax.swing.JFrame {
         this.Newest10();
         this.Top10();
         this.setVisible(true);
+        getRootPane().setDefaultButton(jButtonLogin);
         jButtonPrevious.setVisible(false);
         jButtonNext.setVisible(false);
         jButtonReturn.setVisible(false);
     }
+    
     public void searchResult(ArrayList<Movie> movies2) throws MalformedURLException{
                 
                         jLabelBild1.setVisible(false);
@@ -157,7 +159,7 @@ public class Login extends javax.swing.JFrame {
              jButtonPrevious.setVisible(false);
          }
      }
-     public void Newest10() throws SQLException, MalformedURLException, IOException{
+    public void Newest10() throws SQLException, MalformedURLException, IOException{
        MouseAdapter listener = new MouseImpl();
         
         movies = Movie.getNewestAndTop10();
@@ -202,7 +204,7 @@ public class Login extends javax.swing.JFrame {
         jLabelBild10.setText(null);
         jLabelBild10.addMouseListener(listener);
     }
-   public void Top10() throws SQLException, MalformedURLException{
+    public void Top10() throws SQLException, MalformedURLException{
        MouseAdapter listener = new MouseImpl();
 
         jLabelBild11.setIcon(new ImageIcon(new URL(movies.get(10).getImglink())));
@@ -300,6 +302,11 @@ public class Login extends javax.swing.JFrame {
         setResizable(false);
 
         jButtonForgottenPass.setText("Forgotten Password");
+        jButtonForgottenPass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonForgottenPassActionPerformed(evt);
+            }
+        });
 
         jButtonRegistry.setText("Registry");
         jButtonRegistry.addActionListener(new java.awt.event.ActionListener() {
@@ -654,9 +661,8 @@ public class Login extends javax.swing.JFrame {
             User user = new User();
             try {
                 if( (user.login(jTextUsername.getText(),new String(jPassword.getPassword())) ) == 1 ){
+                    dispose();
                     if(user.checkAdmin() == 1){
-                        Admin admin = new Admin(user);
-                        setVisible(false);
                         new Admin(user).setVisible(true);              
                 }else{
                         setVisible(false);
@@ -783,10 +789,8 @@ public class Login extends javax.swing.JFrame {
     private void jButtonReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReturnActionPerformed
         this.dispose();
         try {
-            new Admin(new User()).setVisible(true);
-        } catch (SQLException ex) {
-            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
+            new Login().setVisible(true);
+        } catch (SQLException | IOException ex) {
             Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
         }
 
@@ -814,6 +818,10 @@ public class Login extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonNextActionPerformed
 
+    private void jButtonForgottenPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonForgottenPassActionPerformed
+        new ForgottenPassword();
+    }//GEN-LAST:event_jButtonForgottenPassActionPerformed
+
     public static void main(String args[]) throws ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
         /* Create and display the form */
         UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
@@ -821,9 +829,7 @@ public class Login extends javax.swing.JFrame {
             public void run() {
                 try {
                     Login login = new Login();
-                } catch (IOException ex) {
-                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (SQLException ex) {
+                } catch (IOException | SQLException ex) {
                     Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }

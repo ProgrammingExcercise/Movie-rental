@@ -34,10 +34,7 @@ public class VideoLibrary extends javax.swing.JFrame {
        ResultSet rs = stmt.executeQuery("Select *,DATEDIFF(time,now()) as deadline from rents natural join movie natural join user natural join pricecat where uid = '"+user.getUid()+"' having deadline >= 0 order by deadline");
        
        while(rs.next()){
-
            Movie movie = new Movie(rs.getString("mid"),rs.getString("title"),rs.getString("picture"), null, rs.getString("description"),rs.getString("genre"),rs.getString("agerating"),rs.getString("releasedate"),rs.getString("duration"),rs.getString("link"), "", "", rs.getString("price"), rs.getString("deadline"));
-
-           movie.getTitle();
            movies.add(movie);
        } 
        
@@ -45,6 +42,27 @@ public class VideoLibrary extends javax.swing.JFrame {
            Movie dump = new Movie("", "", "", null, "", "", "","", "", "", "", "", "", "");
            movies.add(dump);
        }
+       
+        jLabelTitle1.setVisible(true);
+        jLabelDeadline1.setVisible(true);
+        jButtonExtend1.setVisible(true);
+        jButtonWatchMovie1.setVisible(true);
+        jLabelTitle2.setVisible(true);
+        jLabelDeadline2.setVisible(true);
+        jButtonExtend2.setVisible(true);
+        jButtonWatchMovie2.setVisible(true);
+        jLabelTitle3.setVisible(true);
+        jLabelDeadline3.setVisible(true);
+        jButtonExtend3.setVisible(true);
+        jButtonWatchMovie3.setVisible(true);
+        jLabelTitle4.setVisible(true);
+        jLabelDeadline4.setVisible(true);
+        jButtonExtend4.setVisible(true);
+        jButtonWatchMovie4.setVisible(true);
+        jLabelTitle5.setVisible(true);
+        jLabelDeadline5.setVisible(true);
+        jButtonExtend5.setVisible(true);
+        jButtonWatchMovie5.setVisible(true);
        
        if(movies.get(0+count).getTitle().isEmpty()){
         jLabelTitle1.setVisible(false);
@@ -398,6 +416,7 @@ public class VideoLibrary extends javax.swing.JFrame {
 
     private void jButtonExtend1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExtend1ActionPerformed
         try {
+            dispose();
             Rent rent = new Rent(user, movies.get(0+count));
             rent.setPrevious(1);
             rent.setVisible(true);
@@ -410,6 +429,7 @@ public class VideoLibrary extends javax.swing.JFrame {
 
     private void jButtonExtend2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExtend2ActionPerformed
         try {
+            dispose();
             Rent rent = new Rent(user, movies.get(1+count));
             rent.setPrevious(1);
             rent.setVisible(true);
@@ -422,6 +442,7 @@ public class VideoLibrary extends javax.swing.JFrame {
 
     private void jButtonExtend3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExtend3ActionPerformed
         try {
+            dispose();
             Rent rent = new Rent(user, movies.get(2+count));
             rent.setPrevious(1);
             rent.setVisible(true);
@@ -431,6 +452,7 @@ public class VideoLibrary extends javax.swing.JFrame {
 
     private void jButtonExtend4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExtend4ActionPerformed
         try {
+            dispose();
             Rent rent = new Rent(user, movies.get(3+count));
             rent.setPrevious(1);
             rent.setVisible(true);
@@ -441,6 +463,7 @@ public class VideoLibrary extends javax.swing.JFrame {
 
     private void jButtonExtend5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExtend5ActionPerformed
         try {
+            dispose();
             Rent rent = new Rent(user, movies.get(4+count));
             rent.setPrevious(1);
             rent.setVisible(true);

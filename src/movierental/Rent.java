@@ -17,6 +17,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -209,29 +210,30 @@ public class Rent extends javax.swing.JFrame {
        db.start();
        Connection conn = db.getVerbindung();
        if(jCheckDirectDebitPayment.isSelected() && jCheckGTC.isSelected()){
-        if(JOptionPane.showConfirmDialog(null, "Do you want to rent the movie "+movie.getTitle()+"?") == 0 ){
+            JOptionPane.setDefaultLocale(Locale.ENGLISH);
             try {
                 Statement stmt = conn.createStatement();
                 ResultSet rs = stmt.executeQuery("Select * from rents where uid = '"+user.getUid()+"' and mid = '"+movie.getMid()+"'");
                 if(rs.next()){
+                    if(JOptionPane.showConfirmDialog(null, "Do you want to extend the Deadline of the movie "+movie.getTitle()+"?") == 0 ){
                     Statement stmtupdate = conn.createStatement();
                     stmtupdate.executeUpdate("UPDATE rents SET time = (SELECT DATE_ADD( time , INTERVAL 2 DAY) ) where uid = '"+user.getUid()+"' and mid = '"+movie.getMid()+"'");
                     JOptionPane.showMessageDialog(null, "Congratulations! You have extended the deadline for two days.");
                     dispose();
                     new VideoLibrary(user).setVisible(true);
-                }else{
+                    }
+             }else{
+                if(JOptionPane.showConfirmDialog(null, "Do you want to rent the movie "+movie.getTitle()+"?") == 0 ){
                 Statement stmtinsert = conn.createStatement();
                 stmt.executeUpdate("INSERT INTO rents (uid, mid, time) VALUES ('"+user.getUid()+"', '"+movie.getMid()+"', (SELECT DATE_ADD( {fn curdate()} , INTERVAL 2 DAY)) )");
                 JOptionPane.showMessageDialog(null, "Congratulations! You can now watch the movie in your video library.");                       
                 dispose();
                 new VideoLibrary(user).setVisible(true);
                 }
-                
-
+              }
             } catch (SQLException ex) {
                 Logger.getLogger(Rent.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
        }else{
            JOptionPane.showMessageDialog(null, "Please accept the Direct Debit Payment and the GTC!");
        }

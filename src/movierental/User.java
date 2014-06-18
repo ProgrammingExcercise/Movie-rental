@@ -52,22 +52,22 @@ public class User extends javax.swing.JFrame {
         this.Newest10();
         this.Top10();
         this.setVisible(true);
+        jLabelLastLogin.setText("Your last login was on the " + user.lastLogin);
         jButtonPrevious.setVisible(false);
         jButtonNext.setVisible(false);
         jButtonReturn.setVisible(false);
         
     }
     
-    
-  
-    
     public static void register( String username, String password, String email, String birthday, String prename, String surname, String address, String zipcode, String city, String iban, String bic) throws SQLException{
        Verbindung db = new Verbindung();
        db.start();
        Connection conn = db.getVerbindung();
        Statement stmt = conn.createStatement();
-       stmt.executeUpdate("INSERT INTO `movierental`.`user`(`username`, `password`, `email`, `isAdmin`, `activationCode`, `birthday`, `prename`, `surname`, `address`, `zipcode`, `city`, `iban`, `bic`) VALUES "
-        + "('" + username + "','" + password + "','" + email + "', 0, '" + "123" + "',\"" +  birthday + "\",'" + prename + "','" + surname + "','" + address + "','" + zipcode + "','" + city + "','" + iban + "','" + bic + "')");
+       Statement stmt2 = conn.createStatement();
+       stmt2.executeUpdate("INSERT INTO BANK (`iban`, `bic`) VALUES ('"+iban+"','"+bic+"')");
+       stmt.executeUpdate("INSERT INTO `movierental`.`user`(`username`, `password`, `email`, `isAdmin`, `activationCode`, `birthday`, `prename`, `surname`, `address`, `zipcode`, `city`, `bid`) VALUES "
+        + "('" + username + "',SHA2('" + password + "',0),'" + email + "', 0, '" + "123" + "',\"" +  birthday + "\",'" + prename + "','" + surname + "','" + address + "','" + zipcode + "','" + city + "', (SELECT bid FROM bank where iban = '"+iban+"' and bic = '"+bic+"')");
     }
     
     public int login(String username, String password) throws SQLException{
@@ -76,7 +76,7 @@ public class User extends javax.swing.JFrame {
        Connection conn = db.getVerbindung();
        Statement stmt = conn.createStatement();
        
-       ResultSet rs = stmt.executeQuery("Select * from user natural join bank where username = '"+username+"' and password = '" +password+ "'");
+       ResultSet rs = stmt.executeQuery("Select * from user natural join bank where username = '"+username+"' and password = SHA2('" +password+ "',0)");
        if(rs.next()){
         uid = String.valueOf(rs.getInt("uid"));
         this.username = rs.getString("username");
@@ -85,6 +85,7 @@ public class User extends javax.swing.JFrame {
         isAdmin = rs.getString("isAdmin");
         lastLogin = rs.getString("lastLogin");
         activated = String.valueOf(rs.getInt("activated"));
+        activationCode = rs.getString("activationCode");
         birthday = rs.getString("birthday");
         prename = rs.getString("prename");
         surname = rs.getString("surname");
@@ -93,13 +94,20 @@ public class User extends javax.swing.JFrame {
         city = rs.getString("city");
         iban = rs.getString("iban");
         bic = rs.getString("bic");
-       
+        lastLogin = rs.getString("lastLogin");
+        
        if(activated.equals("1")){
            JOptionPane.showMessageDialog(null,"Successfully logged in.");
            stmt.executeUpdate("UPDATE user SET lastLogin = now() where username ='"+username+"'");
            return 1;
        }else{
-           JOptionPane.showMessageDialog(null,"You aren't activated! Please activate first.");
+           if(activationCode.equals(JOptionPane.showInputDialog("You aren't activated.\n Please enter your activation code: "))){
+               stmt.executeUpdate("UPDATE user SET activated = 1 where username = '"+username+"' ");
+               JOptionPane.showMessageDialog(null, "Activation successfull! You can now login.");
+           }else{
+               JOptionPane.showMessageDialog(null, "Wrong activation code.");
+           }
+               
            return 0;
        }
        }else{
@@ -141,13 +149,29 @@ public class User extends javax.swing.JFrame {
                 return 0;
             }
             else{
-                String query = "UPDATE user SET password = '"+password+"' , email = '"+email+"', prename = '"+prename+"' , surname = '" + surname + "' , address = '" + address + "' , zipcode = '" + zipcode + "', city = '" + city + "' WHERE uid = '" + this.uid + "' ";
+                String query = "UPDATE user SET password = SHA2('"+password+"',0) , email = '"+email+"', prename = '"+prename+"' , surname = '" + surname + "' , address = '" + address + "' , zipcode = '" + zipcode + "', city = '" + city + "' WHERE uid = '" + this.uid + "' ";
                 stmt.executeUpdate(query);
                 JOptionPane.showMessageDialog(null, "Account information successfully changed.");
                 return 1;
             }   
     }
 
+    public static boolean forgottenPassword(String username, String email) throws SQLException{
+       Verbindung db = new Verbindung();
+       db.start();
+       Connection conn = db.getVerbindung();
+       Statement stmt = conn.createStatement();
+       ResultSet rs = stmt.executeQuery("Select * from user where username = '"+username+"' and email = '"+email+"' ");
+       
+       if(rs.next()){
+           JOptionPane.showMessageDialog(null, "A new password has been sent to your email address.");
+           return true;
+       }else{
+           JOptionPane.showMessageDialog(null, "Wrong username or email.");        
+           return false;
+       }
+    }
+    
     public String getUid() {
         return uid;
     }
@@ -200,7 +224,7 @@ public class User extends javax.swing.JFrame {
         this.uid = uid;
     }
 
-    public void searchResult(ArrayList<Movie> movies2) throws MalformedURLException{
+   public void searchResult(ArrayList<Movie> movies2) throws MalformedURLException{
         jLabelBild1.setVisible(false);
         jLabelBild2.setVisible(false);
         jLabelBild3.setVisible(false);
@@ -441,6 +465,7 @@ public class User extends javax.swing.JFrame {
         jLabelBild13 = new javax.swing.JLabel();
         jLabelBild14 = new javax.swing.JLabel();
         jButtonSearch = new javax.swing.JButton();
+        jLabelLastLogin = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(833, 535));
@@ -707,13 +732,19 @@ public class User extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonAccount)
-                .addGap(18, 18, 18)
-                .addComponent(jButtonVideoLibrary)
-                .addGap(18, 18, 18)
-                .addComponent(jButtonLogOut)
-                .addGap(21, 21, 21))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonAccount)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonVideoLibrary)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonLogOut)
+                        .addGap(21, 21, 21))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelLastLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
@@ -748,7 +779,9 @@ public class User extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(48, 48, 48)
+                        .addContainerGap()
+                        .addComponent(jLabelLastLogin)
+                        .addGap(23, 23, 23)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButtonAccount)
                             .addComponent(jButtonVideoLibrary)
@@ -910,10 +943,8 @@ public class User extends javax.swing.JFrame {
     private void jButtonReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReturnActionPerformed
         this.dispose();
         try {
-            new Admin(new User()).setVisible(true);
-        } catch (SQLException ex) {
-            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
+            new User(user).setVisible(true);
+        } catch (SQLException | IOException ex) {
             Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButtonReturnActionPerformed
@@ -984,6 +1015,7 @@ public class User extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelBild7;
     private javax.swing.JLabel jLabelBild8;
     private javax.swing.JLabel jLabelBild9;
+    private javax.swing.JLabel jLabelLastLogin;
     private javax.swing.JLabel jLabelNewest;
     private javax.swing.JLabel jLabelTop10;
     private javax.swing.JPanel jPanel1;

@@ -33,7 +33,7 @@ public class MovieInfo extends javax.swing.JFrame {
         jLabelRelease.setText(movie.getReleasedate());
         jLabelDuration.setText(movie.getDuration());
         jLabelGenre.setText(movie.getGenre());
-        jLabelAgeRating.setText(movie.getAgerating());
+        jLabelAgeRating.setText(movie.getAgerating() + " Years");
         jLabelRating.setText(movie.getRating());
         if(movie.getLanguage2().equals("")){
             jLabelLanguage.setText(movie.getLanguage());

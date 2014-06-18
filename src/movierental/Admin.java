@@ -39,7 +39,9 @@ public class Admin extends javax.swing.JFrame {
         jButtonPrevious.setVisible(false);
         jButtonNext.setVisible(false);
         jButtonReturn.setVisible(false);
+        jLabelLastLogin.setText("Your last login was on the " + user.lastLogin);
     }
+    
     public static String getGenre(int g){
         switch(g){
             case 1:
@@ -357,6 +359,8 @@ public class Admin extends javax.swing.JFrame {
         jLabelBild20 = new javax.swing.JLabel();
         jLabelBild1 = new javax.swing.JLabel();
         jButtonReturn = new javax.swing.JButton();
+        jLabelLastLogin = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -620,6 +624,13 @@ public class Admin extends javax.swing.JFrame {
 
         jScrollPane2.setViewportView(jPanelMain);
 
+        jButton1.setText("Overview");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -633,14 +644,20 @@ public class Admin extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonAddMovie)
                         .addGap(18, 18, 18)
-                        .addComponent(jButtonChangeMovie)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonrentedMovies)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButtonLogOut))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jButtonAddMovie)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButtonChangeMovie)
+                                .addGap(17, 17, 17)
+                                .addComponent(jButton1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButtonrentedMovies)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButtonLogOut))
+                            .addComponent(jLabelLastLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addComponent(jComboGenre, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -666,14 +683,19 @@ public class Admin extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButtonAddMovie)
-                        .addComponent(jButtonChangeMovie)
-                        .addComponent(jButtonrentedMovies)
-                        .addComponent(jButtonLogOut)))
-                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonAddMovie)
+                            .addComponent(jButtonChangeMovie)
+                            .addComponent(jButtonrentedMovies)
+                            .addComponent(jButtonLogOut)
+                            .addComponent(jButton1))
+                        .addGap(18, 18, 18))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabelLastLogin)
+                        .addGap(36, 36, 36)))
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -846,7 +868,7 @@ public class Admin extends javax.swing.JFrame {
     private void jButtonReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReturnActionPerformed
        this.dispose();
         try {
-            new Admin(new User()).setVisible(true);
+            new Admin(user).setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -854,6 +876,14 @@ public class Admin extends javax.swing.JFrame {
         }
        
     }//GEN-LAST:event_jButtonReturnActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+            try {
+                new Overview().setVisible(true);
+            } catch (SQLException ex) {
+                Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -898,6 +928,7 @@ public class Admin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonAddMovie;
     private javax.swing.JButton jButtonChangeMovie;
     private javax.swing.JButton jButtonLogOut;
@@ -933,6 +964,7 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelBild7;
     private javax.swing.JLabel jLabelBild8;
     private javax.swing.JLabel jLabelBild9;
+    private javax.swing.JLabel jLabelLastLogin;
     private javax.swing.JLabel jLabelNewest;
     private javax.swing.JLabel jLabelTop10;
     private javax.swing.JPanel jPanelMain;
