@@ -102,8 +102,8 @@
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="jTextFieldImgLink" max="32767" attributes="0"/>
-                                      <Component id="jTextStreamlink" min="-2" pref="318" max="-2" attributes="0"/>
+                                      <Component id="jTextFieldImgLink" min="-2" pref="318" max="-2" attributes="0"/>
+                                      <Component id="jTextStreamlink" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>

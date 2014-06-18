@@ -96,8 +96,7 @@ public class Movie {
        db.start();
        conn = db.getVerbindung();
        Statement stmt = conn.createStatement();     
-       ResultSet rs = stmt.executeQuery("Select *, avg(rating) as average from movie natural join pricecat natural left join rates group by mid order by mid desc");
-       
+       ResultSet rs = stmt.executeQuery("Select *, avg(rating) as average from movie natural join pricecat natural left join rates group by mid order by mid desc LIMIT 0,10");
        
        Statement stmt2 = conn.createStatement();
        while(rs.next()){
@@ -118,7 +117,7 @@ public class Movie {
        // Top10
     
        Statement stmt3 = conn.createStatement();     
-       ResultSet rs2 = stmt3.executeQuery("Select *, avg(rating) as average from movie natural join pricecat natural left join rates  group by mid order by average desc");
+       ResultSet rs2 = stmt3.executeQuery("Select *, avg(rating) as average from movie natural join pricecat natural left join rates  group by mid order by average desc LIMIT 0,10");
        
        Statement stmt4 = conn.createStatement();
        while(rs2.next()){

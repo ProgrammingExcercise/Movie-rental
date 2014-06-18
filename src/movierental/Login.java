@@ -205,20 +205,18 @@ public class Login extends javax.swing.JFrame {
    public void Top10() throws SQLException, MalformedURLException{
        MouseAdapter listener = new MouseImpl();
 
-       movies = Movie.getNewestAndTop10();
-       
         jLabelBild11.setIcon(new ImageIcon(new URL(movies.get(10).getImglink())));
         jLabelBild11.setText(null);
         jLabelBild11.addMouseListener(listener);
 
-        jLabelBild19.setIcon(new ImageIcon(new URL(movies.get(11).getImglink())));
-        jLabelBild19.setText(null);
-        jLabelBild19.addMouseListener(listener);
-        
-        jLabelBild12.setIcon(new ImageIcon(new URL(movies.get(12).getImglink())));
+        jLabelBild12.setIcon(new ImageIcon(new URL(movies.get(11).getImglink())));
         jLabelBild12.setText(null);
         jLabelBild12.addMouseListener(listener);
         
+        jLabelBild13.setIcon(new ImageIcon(new URL(movies.get(12).getImglink())));
+        jLabelBild13.setText(null);
+        jLabelBild13.addMouseListener(listener);
+                
         jLabelBild14.setIcon(new ImageIcon(new URL(movies.get(13).getImglink())));
         jLabelBild14.setText(null);
         jLabelBild14.addMouseListener(listener);
@@ -227,25 +225,25 @@ public class Login extends javax.swing.JFrame {
         jLabelBild15.setText(null);
         jLabelBild15.addMouseListener(listener);
         
-        jLabelBild17.setIcon(new ImageIcon(new URL(movies.get(15).getImglink())));
+        jLabelBild16.setIcon(new ImageIcon(new URL(movies.get(15).getImglink())));
+        jLabelBild16.setText(null);
+        jLabelBild16.addMouseListener(listener);
+        
+        jLabelBild17.setIcon(new ImageIcon(new URL(movies.get(16).getImglink())));
         jLabelBild17.setText(null);
         jLabelBild17.addMouseListener(listener);
         
-        jLabelBild18.setIcon(new ImageIcon(new URL(movies.get(16).getImglink())));
+        jLabelBild18.setIcon(new ImageIcon(new URL(movies.get(17).getImglink())));
         jLabelBild18.setText(null);
         jLabelBild18.addMouseListener(listener);
         
-        jLabelBild20.setIcon(new ImageIcon(new URL(movies.get(17).getImglink())));
+        jLabelBild19.setIcon(new ImageIcon(new URL(movies.get(18).getImglink())));
+        jLabelBild19.setText(null);
+        jLabelBild19.addMouseListener(listener);
+        
+        jLabelBild20.setIcon(new ImageIcon(new URL(movies.get(19).getImglink())));
         jLabelBild20.setText(null);
         jLabelBild20.addMouseListener(listener);
-        
-        jLabelBild13.setIcon(new ImageIcon(new URL(movies.get(18).getImglink())));
-        jLabelBild13.setText(null);
-        jLabelBild13.addMouseListener(listener);
-        
-        jLabelBild16.setIcon(new ImageIcon(new URL(movies.get(19).getImglink())));
-        jLabelBild16.setText(null);
-        jLabelBild16.addMouseListener(listener);
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -451,11 +449,35 @@ public class Login extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(35, 35, 35)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelTop10)
+                            .addComponent(jLabelBild11, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelBild16, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabelBild12, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(23, 23, 23)
+                                .addComponent(jLabelBild13, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabelBild17, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabelBild18, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabelBild14, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabelBild15, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabelBild19, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabelBild20, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(35, 35, 35))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabelBild6, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
@@ -476,34 +498,18 @@ public class Login extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabelBild10, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
                                     .addComponent(jLabelBild5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addComponent(jLabelNewest)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabelBild20, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
-                                    .addComponent(jLabelBild11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabelBild16, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
-                                    .addComponent(jLabelBild13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabelBild17, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
-                                    .addComponent(jLabelBild19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabelBild14, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabelBild12, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabelBild18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabelBild15, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addComponent(jLabelNewest))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jButtonReturn)
-                        .addGap(275, 275, 275)
-                        .addComponent(jButtonPrevious, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(41, 41, 41)
-                        .addComponent(jButtonNext, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabelTop10)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(jButtonReturn)
+                .addGap(275, 275, 275)
+                .addComponent(jButtonPrevious, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41)
+                .addComponent(jButtonNext, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35))
         );
         jPanel1Layout.setVerticalGroup(
@@ -532,28 +538,27 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(jLabelTop10)
                 .addGap(30, 30, 30)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabelBild11)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabelBild19)
+                        .addComponent(jLabelBild11)
+                        .addComponent(jLabelBild12))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabelBild14)
-                        .addComponent(jLabelBild15)
-                        .addComponent(jLabelBild13)))
+                        .addComponent(jLabelBild13)
+                        .addComponent(jLabelBild15)))
                 .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabelBild17)
-                        .addComponent(jLabelBild12)
-                        .addComponent(jLabelBild18))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabelBild20)
-                        .addComponent(jLabelBild16)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelBild17)
+                    .addComponent(jLabelBild19)
+                    .addComponent(jLabelBild16)
+                    .addComponent(jLabelBild18)
+                    .addComponent(jLabelBild20))
                 .addGap(1, 1, 1)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jButtonNext)
                         .addComponent(jButtonPrevious))
                     .addComponent(jButtonReturn))
-                .addGap(1, 1, 1))
+                .addGap(26, 26, 26))
         );
 
         jScrollPane2.setViewportView(jPanel1);
@@ -689,7 +694,7 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboPriceActionPerformed
 
     private void jPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here:**
     }//GEN-LAST:event_jPasswordActionPerformed
 
     private void jButtonRegistryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistryActionPerformed
@@ -916,6 +921,138 @@ public class Login extends javax.swing.JFrame {
             if (source == jLabelBild5) {
                  try {
                     MovieInfo window = new MovieInfo(user,movies.get(4));
+                    window.pack();
+                    window.setVisible(true);
+                } catch (MalformedURLException ex) {
+                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (source == jLabelBild6) {
+                try {
+                    new MovieInfo(user,movies.get(5)).setVisible(true);
+                } catch (MalformedURLException ex) {
+                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (source == jLabelBild7) {
+                 try {
+                    MovieInfo window = new MovieInfo(user,movies.get(6));
+                    window.pack();
+                    window.setVisible(true);
+                } catch (MalformedURLException ex) {
+                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+ 
+            if (source == jLabelBild8) {
+                 try {
+                    MovieInfo window = new MovieInfo(user,movies.get(7));
+                    window.pack();
+                    window.setVisible(true);
+                } catch (MalformedURLException ex) {
+                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (source == jLabelBild9) {
+                 try {
+                    MovieInfo window = new MovieInfo(user,movies.get(8));
+                    window.pack();
+                    window.setVisible(true);
+                } catch (MalformedURLException ex) {
+                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (source == jLabelBild10) {
+                 try {
+                    MovieInfo window = new MovieInfo(user,movies.get(9));
+                    window.pack();
+                    window.setVisible(true);
+                } catch (MalformedURLException ex) {
+                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (source == jLabelBild11) {
+                try {
+                    new MovieInfo(user,movies.get(10)).setVisible(true);
+                } catch (MalformedURLException ex) {
+                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (source == jLabelBild12) {
+                 try {
+                    MovieInfo window = new MovieInfo(user,movies.get(11));
+                    window.pack();
+                    window.setVisible(true);
+                } catch (MalformedURLException ex) {
+                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+ 
+            if (source == jLabelBild13) {
+                 try {
+                    MovieInfo window = new MovieInfo(user,movies.get(12));
+                    window.pack();
+                    window.setVisible(true);
+                } catch (MalformedURLException ex) {
+                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (source == jLabelBild14) {
+                 try {
+                    MovieInfo window = new MovieInfo(user,movies.get(13));
+                    window.pack();
+                    window.setVisible(true);
+                } catch (MalformedURLException ex) {
+                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (source == jLabelBild15) {
+                 try {
+                    MovieInfo window = new MovieInfo(user,movies.get(14));
+                    window.pack();
+                    window.setVisible(true);
+                } catch (MalformedURLException ex) {
+                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (source == jLabelBild16) {
+                try {
+                    new MovieInfo(user,movies.get(15)).setVisible(true);
+                } catch (MalformedURLException ex) {
+                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (source == jLabelBild17) {
+                 try {
+                    MovieInfo window = new MovieInfo(user,movies.get(16));
+                    window.pack();
+                    window.setVisible(true);
+                } catch (MalformedURLException ex) {
+                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+ 
+            if (source == jLabelBild18) {
+                 try {
+                    MovieInfo window = new MovieInfo(user,movies.get(17));
+                    window.pack();
+                    window.setVisible(true);
+                } catch (MalformedURLException ex) {
+                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (source == jLabelBild19) {
+                 try {
+                    MovieInfo window = new MovieInfo(user,movies.get(18));
+                    window.pack();
+                    window.setVisible(true);
+                } catch (MalformedURLException ex) {
+                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (source == jLabelBild20) {
+                 try {
+                    MovieInfo window = new MovieInfo(user,movies.get(19));
                     window.pack();
                     window.setVisible(true);
                 } catch (MalformedURLException ex) {

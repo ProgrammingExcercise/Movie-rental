@@ -330,8 +330,8 @@ public class ChangeMovie extends javax.swing.JFrame {
                                         .addComponent(jLabel9))
                                     .addGap(18, 18, 18)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jTextFieldImgLink)
-                                        .addComponent(jTextStreamlink, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addComponent(jTextFieldImgLink, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jTextStreamlink)))))
                         .addGap(72, 72, 72))))
         );
         layout.setVerticalGroup(
