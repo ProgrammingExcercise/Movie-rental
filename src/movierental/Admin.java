@@ -30,6 +30,7 @@ public class Admin extends javax.swing.JFrame {
     public Admin(User user) throws SQLException, MalformedURLException, IOException {
         this.user = user;
         initComponents();
+        this.setSize(870,700);
         movies = Movie.getNewestAndTop10();
         this.Newest10();
         this.Top10();
@@ -114,7 +115,7 @@ public class Admin extends javax.swing.JFrame {
         }
     }
     public void searchResult(ArrayList<Movie> movies2) throws MalformedURLException{
-        MouseAdapter listener = new MouseImpl();
+        
         jLabelBild1.setVisible(false);
         jLabelBild2.setVisible(false);
         jLabelBild3.setVisible(false);
@@ -126,15 +127,15 @@ public class Admin extends javax.swing.JFrame {
         jLabelBild9.setVisible(false);
         jLabelBild10.setVisible(false);
         jLabelBild11.setVisible(false);
+        jLabelBild19.setVisible(false);
         jLabelBild12.setVisible(false);
-        jLabelBild13.setVisible(false);
         jLabelBild14.setVisible(false);
         jLabelBild15.setVisible(false);
-        jLabelBild16.setVisible(false);
         jLabelBild17.setVisible(false);
         jLabelBild18.setVisible(false);
-        jLabelBild19.setVisible(false);
         jLabelBild20.setVisible(false);
+        jLabelBild13.setVisible(false);
+        jLabelBild16.setVisible(false);
 
         jLabelTop10.setVisible(false);
         jLabelNewest.setText("Search Result for '"+ suchetext +"':");
@@ -142,7 +143,6 @@ public class Admin extends javax.swing.JFrame {
         if(!(movies2.get(0+seitenanzahl).getTitle().equals(""))){
         jLabelBild1.setIcon(new ImageIcon(new URL(movies2.get(0+seitenanzahl).getImglink())));
         jLabelBild1.setText(null);
-        jLabelBild1.addMouseListener(listener);
         jLabelBild1.setVisible(true);
         }else{
         jLabelBild1.setVisible(false);
@@ -150,7 +150,6 @@ public class Admin extends javax.swing.JFrame {
         if(!(movies2.get(1+seitenanzahl).getTitle().equals(""))){
         jLabelBild2.setIcon(new ImageIcon(new URL(movies2.get(1+seitenanzahl).getImglink())));
         jLabelBild2.setText(null);
-        jLabelBild2.addMouseListener(listener);
         jLabelBild2.setVisible(true);
         }else{
         jLabelBild2.setVisible(false);
@@ -158,7 +157,6 @@ public class Admin extends javax.swing.JFrame {
         if(!(movies2.get(2+seitenanzahl).getTitle().equals(""))){
         jLabelBild3.setIcon(new ImageIcon(new URL(movies2.get(2+seitenanzahl).getImglink())));
         jLabelBild3.setText(null);
-        jLabelBild3.addMouseListener(listener);
         jLabelBild3.setVisible(true);
         }else{
         jLabelBild3.setVisible(false);
@@ -166,7 +164,6 @@ public class Admin extends javax.swing.JFrame {
         if(!(movies2.get(3+seitenanzahl).getTitle().equals(""))){
         jLabelBild4.setIcon(new ImageIcon(new URL(movies2.get(3+seitenanzahl).getImglink())));
         jLabelBild4.setText(null);
-        jLabelBild4.addMouseListener(listener);
         jLabelBild4.setVisible(true);
         }else{
         jLabelBild4.setVisible(false);
@@ -174,7 +171,6 @@ public class Admin extends javax.swing.JFrame {
         if(!(movies2.get(4+seitenanzahl).getTitle().equals(""))){
         jLabelBild5.setIcon(new ImageIcon(new URL(movies2.get(4+seitenanzahl).getImglink())));
         jLabelBild5.setText(null);
-        jLabelBild5.addMouseListener(listener);
         jLabelBild5.setVisible(true);
         }else{
         jLabelBild5.setVisible(false);
@@ -182,7 +178,6 @@ public class Admin extends javax.swing.JFrame {
         if(!(movies2.get(5+seitenanzahl).getTitle().equals(""))){
         jLabelBild6.setIcon(new ImageIcon(new URL(movies2.get(5+seitenanzahl).getImglink())));
         jLabelBild6.setText(null);
-        jLabelBild6.addMouseListener(listener);
         jLabelBild6.setVisible(true);
         }else{
         jLabelBild6.setVisible(false);
@@ -190,7 +185,6 @@ public class Admin extends javax.swing.JFrame {
         if(!(movies2.get(6+seitenanzahl).getTitle().equals(""))){
         jLabelBild7.setIcon(new ImageIcon(new URL(movies2.get(6+seitenanzahl).getImglink())));
         jLabelBild7.setText(null);
-        jLabelBild7.addMouseListener(listener);
         jLabelBild7.setVisible(true);
         }else{
         jLabelBild7.setVisible(false);
@@ -198,7 +192,6 @@ public class Admin extends javax.swing.JFrame {
         if(!(movies2.get(7+seitenanzahl).getTitle().equals(""))){
         jLabelBild8.setIcon(new ImageIcon(new URL(movies2.get(7+seitenanzahl).getImglink())));
         jLabelBild8.setText(null);
-        jLabelBild8.addMouseListener(listener);
         jLabelBild8.setVisible(true);
         }else{
         jLabelBild8.setVisible(false);
@@ -206,7 +199,6 @@ public class Admin extends javax.swing.JFrame {
         if(!(movies2.get(8+seitenanzahl).getTitle().equals(""))){
         jLabelBild9.setIcon(new ImageIcon(new URL(movies2.get(8+seitenanzahl).getImglink())));
         jLabelBild9.setText(null);
-        jLabelBild9.addMouseListener(listener);
         jLabelBild9.setVisible(true);
         }else{
         jLabelBild9.setVisible(false);
@@ -214,7 +206,6 @@ public class Admin extends javax.swing.JFrame {
         if(!(movies2.get(9+seitenanzahl).getTitle().equals(""))){
         jLabelBild10.setIcon(new ImageIcon(new URL(movies2.get(9+seitenanzahl).getImglink())));
         jLabelBild10.setText(null);
-        jLabelBild10.addMouseListener(listener);
         jLabelBild10.setVisible(true);
         }else{
         jLabelBild10.setVisible(false);
@@ -283,13 +274,13 @@ public class Admin extends javax.swing.JFrame {
         jLabelBild11.setText(null);
         jLabelBild11.addMouseListener(listener);
 
-        jLabelBild12.setIcon(new ImageIcon(new URL(movies.get(11).getImglink())));
+        jLabelBild19.setIcon(new ImageIcon(new URL(movies.get(11).getImglink())));
+        jLabelBild19.setText(null);
+        jLabelBild19.addMouseListener(listener);
+        
+        jLabelBild12.setIcon(new ImageIcon(new URL(movies.get(12).getImglink())));
         jLabelBild12.setText(null);
         jLabelBild12.addMouseListener(listener);
-        
-        jLabelBild13.setIcon(new ImageIcon(new URL(movies.get(12).getImglink())));
-        jLabelBild13.setText(null);
-        jLabelBild13.addMouseListener(listener);
         
         jLabelBild14.setIcon(new ImageIcon(new URL(movies.get(13).getImglink())));
         jLabelBild14.setText(null);
@@ -299,25 +290,25 @@ public class Admin extends javax.swing.JFrame {
         jLabelBild15.setText(null);
         jLabelBild15.addMouseListener(listener);
         
-        jLabelBild16.setIcon(new ImageIcon(new URL(movies.get(15).getImglink())));
-        jLabelBild16.setText(null);
-        jLabelBild16.addMouseListener(listener);
-        
-        jLabelBild17.setIcon(new ImageIcon(new URL(movies.get(16).getImglink())));
+        jLabelBild17.setIcon(new ImageIcon(new URL(movies.get(15).getImglink())));
         jLabelBild17.setText(null);
         jLabelBild17.addMouseListener(listener);
         
-        jLabelBild18.setIcon(new ImageIcon(new URL(movies.get(17).getImglink())));
+        jLabelBild18.setIcon(new ImageIcon(new URL(movies.get(16).getImglink())));
         jLabelBild18.setText(null);
         jLabelBild18.addMouseListener(listener);
         
-        jLabelBild19.setIcon(new ImageIcon(new URL(movies.get(18).getImglink())));
-        jLabelBild19.setText(null);
-        jLabelBild19.addMouseListener(listener);
-        
-        jLabelBild20.setIcon(new ImageIcon(new URL(movies.get(19).getImglink())));
+        jLabelBild20.setIcon(new ImageIcon(new URL(movies.get(17).getImglink())));
         jLabelBild20.setText(null);
         jLabelBild20.addMouseListener(listener);
+        
+        jLabelBild13.setIcon(new ImageIcon(new URL(movies.get(18).getImglink())));
+        jLabelBild13.setText(null);
+        jLabelBild13.addMouseListener(listener);
+        
+        jLabelBild16.setIcon(new ImageIcon(new URL(movies.get(19).getImglink())));
+        jLabelBild16.setText(null);
+        jLabelBild16.addMouseListener(listener);
     }
    
     @SuppressWarnings("unchecked")
@@ -344,16 +335,16 @@ public class Admin extends javax.swing.JFrame {
         jLabelBild5 = new javax.swing.JLabel();
         jLabelBild9 = new javax.swing.JLabel();
         jLabelBild4 = new javax.swing.JLabel();
-        jLabelBild17 = new javax.swing.JLabel();
+        jLabelBild18 = new javax.swing.JLabel();
         jLabelBild2 = new javax.swing.JLabel();
-        jLabelBild20 = new javax.swing.JLabel();
-        jLabelBild12 = new javax.swing.JLabel();
-        jLabelBild14 = new javax.swing.JLabel();
+        jLabelBild16 = new javax.swing.JLabel();
         jLabelBild19 = new javax.swing.JLabel();
+        jLabelBild14 = new javax.swing.JLabel();
         jLabelBild13 = new javax.swing.JLabel();
+        jLabelBild12 = new javax.swing.JLabel();
         jButtonNext = new javax.swing.JButton();
         jLabelBild15 = new javax.swing.JLabel();
-        jLabelBild16 = new javax.swing.JLabel();
+        jLabelBild17 = new javax.swing.JLabel();
         jButtonPrevious = new javax.swing.JButton();
         jLabelTop10 = new javax.swing.JLabel();
         jLabelBild8 = new javax.swing.JLabel();
@@ -363,11 +354,12 @@ public class Admin extends javax.swing.JFrame {
         jLabelBild11 = new javax.swing.JLabel();
         jLabelNewest = new javax.swing.JLabel();
         jLabelBild10 = new javax.swing.JLabel();
-        jLabelBild18 = new javax.swing.JLabel();
+        jLabelBild20 = new javax.swing.JLabel();
         jLabelBild1 = new javax.swing.JLabel();
         jButtonReturn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jButtonrentedMovies.setText("Rented Movies");
         jButtonrentedMovies.addActionListener(new java.awt.event.ActionListener() {
@@ -454,19 +446,19 @@ public class Admin extends javax.swing.JFrame {
 
         jLabelBild4.setText("jLabel4");
 
-        jLabelBild17.setText("jLabel8");
+        jLabelBild18.setText("jLabel8");
 
         jLabelBild2.setText("jLabel18");
 
-        jLabelBild20.setText("jLabel6");
+        jLabelBild16.setText("jLabel6");
 
-        jLabelBild12.setText("jLabel9");
+        jLabelBild19.setText("jLabel9");
 
         jLabelBild14.setText("jLabel4");
 
-        jLabelBild19.setText("jLabel4");
+        jLabelBild13.setText("jLabel4");
 
-        jLabelBild13.setText("jLabel18");
+        jLabelBild12.setText("jLabel18");
 
         jButtonNext.setText(">");
         jButtonNext.addActionListener(new java.awt.event.ActionListener() {
@@ -477,7 +469,7 @@ public class Admin extends javax.swing.JFrame {
 
         jLabelBild15.setText("jLabel19");
 
-        jLabelBild16.setText("jLabel7");
+        jLabelBild17.setText("jLabel7");
 
         jButtonPrevious.setText("<");
         jButtonPrevious.addActionListener(new java.awt.event.ActionListener() {
@@ -504,7 +496,7 @@ public class Admin extends javax.swing.JFrame {
 
         jLabelBild10.setText("jLabel14");
 
-        jLabelBild18.setText("jLabel14");
+        jLabelBild20.setText("jLabel14");
 
         jLabelBild1.setText("jLabel17");
 
@@ -525,47 +517,49 @@ public class Admin extends javax.swing.JFrame {
                         .addGap(35, 35, 35)
                         .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabelTop10)
-                            .addGroup(jPanelMainLayout.createSequentialGroup()
-                                .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabelBild6, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabelBild1))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabelBild2)
-                                    .addComponent(jLabelBild7, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabelBild8, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
-                                    .addComponent(jLabelBild3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabelBild4, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabelBild9, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabelBild10, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
-                                    .addComponent(jLabelBild5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addComponent(jLabelNewest)
                             .addGroup(jPanelMainLayout.createSequentialGroup()
-                                .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabelBild20, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabelBild11))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabelBild13)
-                                    .addComponent(jLabelBild16, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabelBild16, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+                                    .addComponent(jLabelBild11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabelBild17, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
-                                    .addComponent(jLabelBild19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(jLabelBild12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabelBild18, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+                                    .addComponent(jLabelBild13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabelBild14, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabelBild12, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabelBild19, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabelBild18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabelBild15, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(jLabelBild20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabelBild15, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanelMainLayout.createSequentialGroup()
+                                .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabelBild6, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+                                    .addComponent(jLabelBild1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabelBild7, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+                                    .addComponent(jLabelBild2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanelMainLayout.createSequentialGroup()
+                                        .addComponent(jLabelBild8, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabelBild9, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(22, 22, 22)
+                                        .addComponent(jLabelBild10, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanelMainLayout.createSequentialGroup()
+                                        .addComponent(jLabelBild3, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabelBild4, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabelBild5, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                     .addGroup(jPanelMainLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jButtonReturn)
@@ -573,21 +567,20 @@ public class Admin extends javax.swing.JFrame {
                         .addComponent(jButtonPrevious, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(41, 41, 41)
                         .addComponent(jButtonNext, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(98, Short.MAX_VALUE))
+                .addGap(35, 35, 35))
         );
         jPanelMainLayout.setVerticalGroup(
             jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelMainLayout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addComponent(jLabelNewest)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(30, 30, 30)
+                .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelBild1)
-                    .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabelBild3)
-                        .addComponent(jLabelBild4)
-                        .addComponent(jLabelBild5)
-                        .addComponent(jLabelBild2)))
+                    .addComponent(jLabelBild2)
+                    .addComponent(jLabelBild3)
+                    .addComponent(jLabelBild4)
+                    .addComponent(jLabelBild5))
                 .addGap(20, 20, 20)
                 .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -599,30 +592,30 @@ public class Admin extends javax.swing.JFrame {
                         .addComponent(jLabelBild7)))
                 .addGap(18, 18, 18)
                 .addComponent(jLabelTop10)
-                .addGap(19, 19, 19)
+                .addGap(30, 30, 30)
                 .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabelBild11)
                     .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabelBild19)
+                        .addComponent(jLabelBild13)
                         .addComponent(jLabelBild14)
                         .addComponent(jLabelBild15)
-                        .addComponent(jLabelBild13)))
+                        .addComponent(jLabelBild12)))
                 .addGap(20, 20, 20)
                 .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabelBild17)
-                        .addComponent(jLabelBild12)
-                        .addComponent(jLabelBild18))
+                        .addComponent(jLabelBild18)
+                        .addComponent(jLabelBild19)
+                        .addComponent(jLabelBild20))
                     .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabelBild20)
-                        .addComponent(jLabelBild16)))
-                .addGap(18, 18, 18)
+                        .addComponent(jLabelBild16)
+                        .addComponent(jLabelBild17)))
+                .addGap(1, 1, 1)
                 .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jButtonNext)
                         .addComponent(jButtonPrevious))
                     .addComponent(jButtonReturn))
-                .addGap(184, 184, 184))
+                .addGap(1, 1, 1))
         );
 
         jScrollPane2.setViewportView(jPanelMain);
@@ -651,18 +644,18 @@ public class Admin extends javax.swing.JFrame {
                         .addGap(40, 40, 40)
                         .addComponent(jComboAgeRating, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(235, 235, 235)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jComboLanguage, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(63, 63, 63)
-                                .addComponent(jComboRating, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(223, 223, 223)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jLabel1)
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButtonSearch))))))
+                                .addComponent(jButtonSearch))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jComboLanguage, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(75, 75, 75)
+                                .addComponent(jComboRating, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))))))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -684,7 +677,7 @@ public class Admin extends javax.swing.JFrame {
                             .addComponent(jButtonrentedMovies)
                             .addComponent(jButtonLogOut))))
                 .addGap(18, 18, 18)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -698,7 +691,7 @@ public class Admin extends javax.swing.JFrame {
                     .addComponent(jComboLanguage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboRating, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 425, Short.MAX_VALUE)
+                .addComponent(jScrollPane2)
                 .addContainerGap())
         );
 
@@ -765,7 +758,7 @@ public class Admin extends javax.swing.JFrame {
             language = jComboLanguage.getSelectedIndex();
      
             if(evt.getSource() == jButtonSearch){
-                movies2 = new ArrayList<>();
+                movies = new ArrayList<>();
                 try {
                     gen = getGenre(genre);
                     pri = getPrice(price);
@@ -789,14 +782,14 @@ public class Admin extends javax.swing.JFrame {
                         language2 = "";
                     }
                     Movie movie = new Movie(rs3.getString("mid"),rs3.getString("title"),rs3.getString("picture"),rs3.getString("average"), rs3.getString("description"),rs3.getString("genre"),rs3.getString("agerating"),rs3.getString("releasedate"),rs3.getString("duration"),rs3.getString("link"),language1, language2, rs3.getString("Pid"),"");
-                    movies2.add(movie);
+                    movies.add(movie);
                     }
 
-                    while(movies2.size() %10 != 0){
+                    while(movies.size() %10 != 0){
                     Movie dump = new Movie("","","http://stefano.bplaced.net/nothing.png",null,"","","","","","","","","","");
-                    movies2.add(dump);
+                    movies.add(dump);
                     }
-                    this.searchResult(movies2);
+                    this.searchResult(movies);
 
                     }else{
                     stmt = conn.createStatement();
@@ -815,13 +808,13 @@ public class Admin extends javax.swing.JFrame {
                         language2 = "";
                     }
                     Movie movie = new Movie(rs.getString("mid"),rs.getString("title"),rs.getString("picture"),rs.getString("average"), rs.getString("description"),rs.getString("genre"),rs.getString("agerating"),rs.getString("releasedate"),rs.getString("duration"),rs.getString("link"),language1, language2, rs.getString("price"),"");
-                    movies2.add(movie);
+                    movies.add(movie);
                     }
-                    while(movies2.size() %10 != 0){
+                    while(movies.size() %10 != 0){
                     Movie dump = new Movie("","","http://stefano.bplaced.net/nothing.png",null,"","","","","","","","","","");
-                    movies2.add(dump);
+                    movies.add(dump);
                     }
-                    this.searchResult(movies2);
+                    this.searchResult(movies);
                     }
 
                 } catch (        SQLException | MalformedURLException ex) {
@@ -832,10 +825,9 @@ public class Admin extends javax.swing.JFrame {
 
     private void jButtonNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNextActionPerformed
         if(jButtonNext == evt.getSource()){
-            System.out.println(movies2.size());
             seitenanzahl = seitenanzahl + 10;
                 try {
-                    this.searchResult(movies2);
+                    this.searchResult(movies);
                 } catch (MalformedURLException ex) {
                     Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -846,7 +838,7 @@ public class Admin extends javax.swing.JFrame {
         if(jButtonPrevious == evt.getSource()){
             seitenanzahl = seitenanzahl - 10;
            try {
-                    this.searchResult(movies2);
+                    this.searchResult(movies);
                 } catch (MalformedURLException ex) {
                     Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -1053,7 +1045,7 @@ class MouseImpl extends MouseAdapter {
                     Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-            if (source == jLabelBild12) {
+            if (source == jLabelBild19) {
                  try {
                     MovieInfo window = new MovieInfo(user,movies.get(11));
                     window.pack();
@@ -1063,7 +1055,7 @@ class MouseImpl extends MouseAdapter {
                 }
             }
  
-            if (source == jLabelBild13) {
+            if (source == jLabelBild12) {
                  try {
                     MovieInfo window = new MovieInfo(user,movies.get(12));
                     window.pack();
@@ -1090,7 +1082,7 @@ class MouseImpl extends MouseAdapter {
                     Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-            if (source == jLabelBild16) {
+            if (source == jLabelBild17) {
                  try {
                     MovieInfo window = new MovieInfo(user,movies.get(15));
                     window.pack();
@@ -1099,7 +1091,7 @@ class MouseImpl extends MouseAdapter {
                     Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-            if (source == jLabelBild17) {
+            if (source == jLabelBild18) {
                  try {
                     MovieInfo window = new MovieInfo(user,movies.get(16));
                     window.pack();
@@ -1108,7 +1100,7 @@ class MouseImpl extends MouseAdapter {
                     Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-            if (source == jLabelBild18) {
+            if (source == jLabelBild20) {
                  try {
                     MovieInfo window = new MovieInfo(user,movies.get(17));
                     window.pack();
@@ -1117,7 +1109,7 @@ class MouseImpl extends MouseAdapter {
                     Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }  
-            if (source == jLabelBild19) {
+            if (source == jLabelBild13) {
                  try {
                     MovieInfo window = new MovieInfo(user,movies.get(18));
                     window.pack();
@@ -1126,7 +1118,7 @@ class MouseImpl extends MouseAdapter {
                     Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-            if (source == jLabelBild20) {
+            if (source == jLabelBild16) {
                  try {
                     MovieInfo window = new MovieInfo(user,movies.get(19));
                     window.pack();
@@ -1136,7 +1128,7 @@ class MouseImpl extends MouseAdapter {
                 }     
             }
     }
-}
+    }
 }
 
 

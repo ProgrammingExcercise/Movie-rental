@@ -32,8 +32,8 @@ public class ChangeMovie extends javax.swing.JFrame {
     
     Verbindung db;
     Connection conn;
-    Statement stmt,stmt2,stmt3,stmt4;
-    ResultSet rs,rs2,rs3;
+    Statement stmt,stmt2,stmt3,stmt4,stmtDelete;
+    ResultSet rs,rs2,rs3,rsDelete;
     
       
     /*
@@ -43,7 +43,22 @@ public class ChangeMovie extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
     }//ende Konstruktor
-    
+    public void releaseArea(){
+        jTextSuchText.setText("");
+        jTextTitle.setText("");
+        jComboGenre.setSelectedIndex(0);
+        jTextDescription.setText("");
+        jTextReleaseYear.setText("");
+        jTextDuration.setText("");
+        jTextStreamlink.setText("");
+        jTextFieldImgLink.setText("");
+        jComboPriceCategory.setSelectedIndex(0);
+        jComboAgeRating.setSelectedIndex(0);
+        jLabelMovieid.setText("");
+        jLabelMovieid.setVisible(false);
+        jComboLanguage.setSelectedIndex(0); 
+        jComboLanguage2.setSelectedIndex(0);
+    }
     /*
     comboGenre ist eine Methode um das ausgewählte genre Objekt aus der Datenbank anzuzeigen
     */
@@ -144,6 +159,7 @@ public class ChangeMovie extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         jComboLanguage = new javax.swing.JComboBox();
         jComboLanguage2 = new javax.swing.JComboBox();
+        jButtonDelete = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -240,6 +256,13 @@ public class ChangeMovie extends javax.swing.JFrame {
 
         jComboLanguage2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Second", "English", "German", "Spanish" }));
 
+        jButtonDelete.setText("Delete");
+        jButtonDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDeleteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -286,7 +309,10 @@ public class ChangeMovie extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(jComboPriceCategory, 0, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jButtonChange)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jButtonDelete)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jButtonChange))
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabel15)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -372,7 +398,9 @@ public class ChangeMovie extends javax.swing.JFrame {
                         .addComponent(jButtonReturn))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(jButtonChange)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButtonChange)
+                            .addComponent(jButtonDelete))))
                 .addContainerGap())
         );
 
@@ -617,6 +645,21 @@ public class ChangeMovie extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButtonSucheActionPerformed
 
+    private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
+        if(evt.getSource() == jButtonDelete){
+            if(!(movieid.equals(""))){
+                try {
+                    stmtDelete = conn.createStatement();
+                    stmtDelete.executeUpdate("DELETE FROM movie WHERE mid = '"+movieid+"' ");
+                    JOptionPane.showMessageDialog(null,"Movie was succesfully deleted.");
+                    this.releaseArea();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ChangeMovie.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }//GEN-LAST:event_jButtonDeleteActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -656,6 +699,7 @@ public class ChangeMovie extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonChange;
+    private javax.swing.JButton jButtonDelete;
     private javax.swing.JButton jButtonReturn;
     private javax.swing.JButton jButtonSuche;
     private javax.swing.JComboBox jComboAgeRating;

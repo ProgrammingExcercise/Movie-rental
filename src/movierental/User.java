@@ -40,16 +40,17 @@ public class User extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         this.uid = "0";
+        this.setSize(870,700);
     }
     
     public User(User obj) throws SQLException, MalformedURLException, IOException{
         initComponents();
+        this.setSize(870,700);
         setLocationRelativeTo(null);
         user = obj;
         movies = Movie.getNewestAndTop10();
         this.Newest10();
         this.Top10();
-        this.pack();
         this.setVisible(true);
         jButtonPrevious.setVisible(false);
         jButtonNext.setVisible(false);
@@ -200,7 +201,6 @@ public class User extends javax.swing.JFrame {
     }
 
     public void searchResult(ArrayList<Movie> movies2) throws MalformedURLException{
-        MouseAdapter listener = new MouseImpl();
         jLabelBild1.setVisible(false);
         jLabelBild2.setVisible(false);
         jLabelBild3.setVisible(false);
@@ -228,7 +228,6 @@ public class User extends javax.swing.JFrame {
         if(!(movies2.get(0+seitenanzahl).getTitle().equals(""))){
         jLabelBild1.setIcon(new ImageIcon(new URL(movies2.get(0+seitenanzahl).getImglink())));
         jLabelBild1.setText(null);
-        jLabelBild1.addMouseListener(listener);
         jLabelBild1.setVisible(true);
         }else{
         jLabelBild1.setVisible(false);
@@ -236,7 +235,6 @@ public class User extends javax.swing.JFrame {
         if(!(movies2.get(1+seitenanzahl).getTitle().equals(""))){
         jLabelBild2.setIcon(new ImageIcon(new URL(movies2.get(1+seitenanzahl).getImglink())));
         jLabelBild2.setText(null);
-        jLabelBild2.addMouseListener(listener);
         jLabelBild2.setVisible(true);
         }else{
         jLabelBild2.setVisible(false);
@@ -244,7 +242,6 @@ public class User extends javax.swing.JFrame {
         if(!(movies2.get(2+seitenanzahl).getTitle().equals(""))){
         jLabelBild3.setIcon(new ImageIcon(new URL(movies2.get(2+seitenanzahl).getImglink())));
         jLabelBild3.setText(null);
-        jLabelBild3.addMouseListener(listener);
         jLabelBild3.setVisible(true);
         }else{
         jLabelBild3.setVisible(false);
@@ -252,7 +249,6 @@ public class User extends javax.swing.JFrame {
         if(!(movies2.get(3+seitenanzahl).getTitle().equals(""))){
         jLabelBild4.setIcon(new ImageIcon(new URL(movies2.get(3+seitenanzahl).getImglink())));
         jLabelBild4.setText(null);
-        jLabelBild4.addMouseListener(listener);
         jLabelBild4.setVisible(true);
         }else{
         jLabelBild4.setVisible(false);
@@ -260,7 +256,6 @@ public class User extends javax.swing.JFrame {
         if(!(movies2.get(4+seitenanzahl).getTitle().equals(""))){
         jLabelBild5.setIcon(new ImageIcon(new URL(movies2.get(4+seitenanzahl).getImglink())));
         jLabelBild5.setText(null);
-        jLabelBild5.addMouseListener(listener);
         jLabelBild5.setVisible(true);
         }else{
         jLabelBild5.setVisible(false);
@@ -268,7 +263,6 @@ public class User extends javax.swing.JFrame {
         if(!(movies2.get(5+seitenanzahl).getTitle().equals(""))){
         jLabelBild6.setIcon(new ImageIcon(new URL(movies2.get(5+seitenanzahl).getImglink())));
         jLabelBild6.setText(null);
-        jLabelBild6.addMouseListener(listener);
         jLabelBild6.setVisible(true);
         }else{
         jLabelBild6.setVisible(false);
@@ -276,7 +270,6 @@ public class User extends javax.swing.JFrame {
         if(!(movies2.get(6+seitenanzahl).getTitle().equals(""))){
         jLabelBild7.setIcon(new ImageIcon(new URL(movies2.get(6+seitenanzahl).getImglink())));
         jLabelBild7.setText(null);
-        jLabelBild7.addMouseListener(listener);
         jLabelBild7.setVisible(true);
         }else{
         jLabelBild7.setVisible(false);
@@ -284,7 +277,6 @@ public class User extends javax.swing.JFrame {
         if(!(movies2.get(7+seitenanzahl).getTitle().equals(""))){
         jLabelBild8.setIcon(new ImageIcon(new URL(movies2.get(7+seitenanzahl).getImglink())));
         jLabelBild8.setText(null);
-        jLabelBild8.addMouseListener(listener);
         jLabelBild8.setVisible(true);
         }else{
         jLabelBild8.setVisible(false);
@@ -292,7 +284,6 @@ public class User extends javax.swing.JFrame {
         if(!(movies2.get(8+seitenanzahl).getTitle().equals(""))){
         jLabelBild9.setIcon(new ImageIcon(new URL(movies2.get(8+seitenanzahl).getImglink())));
         jLabelBild9.setText(null);
-        jLabelBild9.addMouseListener(listener);
         jLabelBild9.setVisible(true);
         }else{
         jLabelBild9.setVisible(false);
@@ -300,7 +291,6 @@ public class User extends javax.swing.JFrame {
         if(!(movies2.get(9+seitenanzahl).getTitle().equals(""))){
         jLabelBild10.setIcon(new ImageIcon(new URL(movies2.get(9+seitenanzahl).getImglink())));
         jLabelBild10.setText(null);
-        jLabelBild10.addMouseListener(listener);
         jLabelBild10.setVisible(true);
         }else{
         jLabelBild10.setVisible(false);
@@ -453,6 +443,7 @@ public class User extends javax.swing.JFrame {
         jButtonSearch = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(833, 535));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movierental/Logo.png"))); // NOI18N
         jLabel2.setText("jLabel2");
@@ -598,9 +589,9 @@ public class User extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabelTop10)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabelBild6, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabelBild1))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabelBild6, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+                                    .addComponent(jLabelBild1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabelBild2)
@@ -619,13 +610,13 @@ public class User extends javax.swing.JFrame {
                                     .addComponent(jLabelBild5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addComponent(jLabelNewest)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabelBild20, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabelBild11))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabelBild20, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+                                    .addComponent(jLabelBild11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabelBild13)
-                                    .addComponent(jLabelBild16, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabelBild16, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+                                    .addComponent(jLabelBild13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabelBild17, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
@@ -645,14 +636,14 @@ public class User extends javax.swing.JFrame {
                         .addComponent(jButtonPrevious, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(41, 41, 41)
                         .addComponent(jButtonNext, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addGap(35, 35, 35))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addComponent(jLabelNewest)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabelBild1)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -679,7 +670,7 @@ public class User extends javax.swing.JFrame {
                         .addComponent(jLabelBild14)
                         .addComponent(jLabelBild15)
                         .addComponent(jLabelBild13)))
-                .addGap(20, 20, 20)
+                .addGap(19, 19, 19)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabelBild17)
@@ -694,7 +685,7 @@ public class User extends javax.swing.JFrame {
                         .addComponent(jButtonNext)
                         .addComponent(jButtonPrevious))
                     .addComponent(jButtonReturn))
-                .addGap(184, 184, 184))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jScrollPane2.setViewportView(jPanel1);
@@ -717,35 +708,31 @@ public class User extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jButtonVideoLibrary)
                 .addGap(18, 18, 18)
-                .addComponent(jButtonLogOut)
-                .addGap(9, 9, 9))
+                .addComponent(jButtonLogOut))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jSeparator1)
+                .addContainerGap())
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jComboGenre, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addComponent(jComboPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                .addComponent(jComboAgeRating, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(60, 60, 60)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSeparator1)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jComboGenre, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39)
-                        .addComponent(jComboPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(44, 44, 44)
-                        .addComponent(jComboAgeRating, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(50, 50, 50)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jComboLanguage, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(51, 51, 51)
-                                .addComponent(jComboRating, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(18, 18, 18)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButtonSearch)))
-                        .addGap(0, 14, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addContainerGap())
+                        .addComponent(jComboLanguage, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jComboRating, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonSearch))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -762,19 +749,23 @@ public class User extends javax.swing.JFrame {
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButtonSearch))
+                    .addComponent(jButtonSearch)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboAgeRating, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboGenre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboLanguage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboRating, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jComboPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jComboGenre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jComboRating, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jComboLanguage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jComboAgeRating, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 525, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jScrollPane2)
+                .addContainerGap())
         );
 
         pack();
@@ -840,7 +831,7 @@ public class User extends javax.swing.JFrame {
         language = jComboLanguage.getSelectedIndex();
 
         if(evt.getSource() == jButtonSearch){
-            movies2 = new ArrayList<>();
+            movies = new ArrayList<>();
             try {
                 gen = getGenre(genre);
                 pri = getPrice(price);
@@ -864,14 +855,14 @@ public class User extends javax.swing.JFrame {
                     language2 = "";
                 }
                 Movie movie = new Movie(rs3.getString("mid"),rs3.getString("title"),rs3.getString("picture"),rs3.getString("average"), rs3.getString("description"),rs3.getString("genre"),rs3.getString("agerating"),rs3.getString("releasedate"),rs3.getString("duration"),rs3.getString("link"),language1, language2, rs3.getString("Pid"),"");
-                movies2.add(movie);
+                movies.add(movie);
                 }
 
-                while(movies2.size() %10 != 0){
+                while(movies.size() %10 != 0){
                 Movie dump = new Movie("","","http://stefano.bplaced.net/nothing.png",null,"","","","","","","","","","");
-                movies2.add(dump);
+                movies.add(dump);
                 }
-                this.searchResult(movies2);
+                this.searchResult(movies);
 
                 }else{
                 stmt = conn.createStatement();
@@ -890,13 +881,13 @@ public class User extends javax.swing.JFrame {
                     language2 = "";
                 }
                 Movie movie = new Movie(rs.getString("mid"),rs.getString("title"),rs.getString("picture"),rs.getString("average"), rs.getString("description"),rs.getString("genre"),rs.getString("agerating"),rs.getString("releasedate"),rs.getString("duration"),rs.getString("link"),language1, language2, rs.getString("price"),"");
-                movies2.add(movie);
+                movies.add(movie);
                 }
-                while(movies2.size() %10 != 0){
+                while(movies.size() %10 != 0){
                 Movie dump = new Movie("","","http://stefano.bplaced.net/nothing.png",null,"","","","","","","","","","");
-                movies2.add(dump);
+                movies.add(dump);
                 }
-                this.searchResult(movies2);
+                this.searchResult(movies);
                 }
 
             } catch (        SQLException | MalformedURLException ex) {
@@ -920,7 +911,7 @@ public class User extends javax.swing.JFrame {
         if(jButtonPrevious == evt.getSource()){
             seitenanzahl = seitenanzahl - 10;
             try {
-                this.searchResult(movies2);
+                this.searchResult(movies);
             } catch (MalformedURLException ex) {
                 Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -929,10 +920,9 @@ public class User extends javax.swing.JFrame {
 
     private void jButtonNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNextActionPerformed
         if(jButtonNext == evt.getSource()){
-            System.out.println(movies2.size());
             seitenanzahl = seitenanzahl + 10;
             try {
-                this.searchResult(movies2);
+                this.searchResult(movies);
             } catch (MalformedURLException ex) {
                 Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
             }
