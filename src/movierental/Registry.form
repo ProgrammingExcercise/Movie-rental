@@ -38,20 +38,29 @@
                               <EmptySpace pref="204" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="14" pref="14" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="jLabel19" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel15" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="jTextIban" alignment="1" max="32767" attributes="0"/>
-                                          <Group type="102" attributes="0">
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="jTextBic" min="-2" pref="155" max="-2" attributes="0"/>
-                                                  <Component id="jTextCity" min="-2" pref="155" max="-2" attributes="0"/>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Group type="103" groupAlignment="1" attributes="0">
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Component id="jTextBic" min="-2" pref="155" max="-2" attributes="0"/>
+                                                      <Component id="jTextCity" min="-2" pref="155" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                                                      <Component id="jTextZipcode" min="-2" pref="73" max="-2" attributes="0"/>
+                                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                          <Component id="jTextPrename" max="32767" attributes="0"/>
+                                                          <Component id="jTextSurname" alignment="0" max="32767" attributes="0"/>
+                                                          <Component id="jTextAddress" alignment="0" min="-2" pref="153" max="-2" attributes="0"/>
+                                                      </Group>
+                                                  </Group>
                                               </Group>
                                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                           </Group>
@@ -143,18 +152,11 @@
                                           <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="jTextPrename" max="32767" attributes="0"/>
-                                      <Component id="jTextSurname" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="jTextZipcode" alignment="0" min="-2" pref="73" max="-2" attributes="0"/>
-                                      <Component id="jTextAddress" alignment="0" min="-2" pref="153" max="-2" attributes="0"/>
-                                  </Group>
                               </Group>
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace pref="24" max="32767" attributes="0"/>
+                  <EmptySpace pref="203" max="32767" attributes="0"/>
               </Group>
           </Group>
       </Group>
@@ -173,22 +175,24 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jTextUsername" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTextPrename" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jPassword" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTextSurname" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jLabel16" min="-2" pref="10" max="-2" attributes="0"/>
-              <EmptySpace min="-2" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel20" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPassword2" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="jLabel16" min="-2" pref="10" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel20" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPassword2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jTextEmail" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -206,20 +210,26 @@
                       <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jTextCity" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel15" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jTextIban" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                  <Group type="102" attributes="0">
+                      <Component id="jTextAddress" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="jTextZipcode" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jTextBic" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel19" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="jTextCity" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="jTextIban" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="jTextBic" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="jLabel19" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                   </Group>
@@ -237,31 +247,14 @@
                   <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel8" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
-                      <Component id="jTextPrename" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="jTextSurname" alignment="1" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel9" alignment="1" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                          <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jTextAddress" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
+                  <Component id="jLabel8" min="-2" pref="28" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                  <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jTextZipcode" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel11" alignment="3" min="-2" pref="16" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace pref="152" max="32767" attributes="0"/>
+                  <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                  <Component id="jLabel11" min="-2" pref="16" max="-2" attributes="0"/>
+                  <EmptySpace pref="192" max="32767" attributes="0"/>
               </Group>
           </Group>
       </Group>

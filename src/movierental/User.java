@@ -10,8 +10,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
@@ -60,23 +64,60 @@ public class User extends javax.swing.JFrame {
     }
     
     public static void register( String username, String password, String email, String birthday, String prename, String surname, String address, String zipcode, String city, String iban, String bic) throws SQLException{
+       int random = (int) (Math.round(Math.random() * 89999) + 10000);
+       
        Verbindung db = new Verbindung();
        db.start();
        Connection conn = db.getVerbindung();
        Statement stmt = conn.createStatement();
        Statement stmt2 = conn.createStatement();
+       if(!(iban.equals("") && bic.equals(""))){
        stmt2.executeUpdate("INSERT INTO BANK (`iban`, `bic`) VALUES ('"+iban+"','"+bic+"')");
        stmt.executeUpdate("INSERT INTO `movierental`.`user`(`username`, `password`, `email`, `isAdmin`, `activationCode`, `birthday`, `prename`, `surname`, `address`, `zipcode`, `city`, `bid`) VALUES "
-        + "('" + username + "',SHA2('" + password + "',0),'" + email + "', 0, '" + "123" + "',\"" +  birthday + "\",'" + prename + "','" + surname + "','" + address + "','" + zipcode + "','" + city + "', (SELECT bid FROM bank where iban = '"+iban+"' and bic = '"+bic+"')");
+        + "('" + username + "',SHA2('" + password + "',0),'" + email + "', 0, '" + random + "',\"" +  birthday + "\",'" + prename + "','" + surname + "','" + address + "','" + zipcode + "','" + city + "', (SELECT bid FROM bank where iban = '"+iban+"' and bic = '"+bic+"'))");
+       }else{
+       stmt.executeUpdate("INSERT INTO `movierental`.`user`(`username`, `password`, `email`, `isAdmin`, `activationCode`, `birthday`, `prename`, `surname`, `address`, `zipcode`, `city`) VALUES "
+        + "('" + username + "',SHA2('" + password + "',0),'" + email + "', 0, '" + random + "',\"" +  birthday + "\",'" + prename + "','" + surname + "','" + address + "','" + zipcode + "','" + city + "')");
+       }
+    
+       
+       final String mailname = "stefbasanisi@gmail.com";
+       final String mailpassword = "bigboss90";
+        
+        Properties props = new Properties();
+        props.put("mail.smtp.auth","true");
+        props.put("mail.smtp.starttls.enable","true");
+        props.put("mail.smtp.host","smtp.gmail.com");
+        props.put("mail.smtp.port","587");
+        
+        Session session = Session.getInstance(props,new javax.mail.Authenticator(){
+           @Override
+           protected PasswordAuthentication getPasswordAuthentication() {
+               return new PasswordAuthentication(mailname, mailpassword);
+           } 
+        });
+       try{
+       Message message = new MimeMessage(session);
+        message.setFrom(new InternetAddress(username));
+        message.setRecipients(Message.RecipientType.TO,InternetAddress.parse(email));
+        message.setSubject("My First Email");
+        message.setContent("<h>Your activationcode: </h>"+random,"text/html");
+        Transport.send(message);
+           System.out.println("Email sent!");
+       }catch(MessagingException e){
+           throw new RuntimeException();
+       }
     }
     
     public int login(String username, String password) throws SQLException{
+       
        Verbindung db = new Verbindung();
        db.start();
        Connection conn = db.getVerbindung();
        Statement stmt = conn.createStatement();
        
-       ResultSet rs = stmt.executeQuery("Select * from user natural join bank where username = '"+username+"' and password = SHA2('" +password+ "',0)");
+       rs = stmt.executeQuery("Select * from user where password = SHA2('" +password+ "',0) and username = '"+username+"'");
+        
        if(rs.next()){
         uid = String.valueOf(rs.getInt("uid"));
         this.username = rs.getString("username");
@@ -95,7 +136,7 @@ public class User extends javax.swing.JFrame {
         iban = rs.getString("iban");
         bic = rs.getString("bic");
         lastLogin = rs.getString("lastLogin");
-        
+       
        if(activated.equals("1")){
            JOptionPane.showMessageDialog(null,"Successfully logged in.");
            stmt.executeUpdate("UPDATE user SET lastLogin = now() where username ='"+username+"'");
@@ -109,11 +150,13 @@ public class User extends javax.swing.JFrame {
            }
                
            return 0;
+       
        }
-       }else{
+      }else{
            JOptionPane.showMessageDialog(null,"Wrong username or password!");
-            return 0;
-       }
+           return 0;
+       }  
+       
 }
     
     public int checkAdmin(){
