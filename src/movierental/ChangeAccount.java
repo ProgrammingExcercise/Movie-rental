@@ -22,8 +22,8 @@ public class ChangeAccount extends javax.swing.JFrame {
         jLabelUserId.setVisible(false);
         jLabelUserId.setText(user.getUid());
         Uid = jLabelUserId.getText();
-        jPassword.setText(user.getPassword());
-        jPassword2.setText(user.getPassword());
+        jPassword.setText("********");
+        jPassword2.setText("********");
         jLabelUsername.setText(user.getUsername());
         jTextEmail.setText(user.getEmail());
         jLabelBirthday.setText(user.getBirthday());
@@ -34,13 +34,15 @@ public class ChangeAccount extends javax.swing.JFrame {
         jTextCity.setText(user.getCity());
         String iban = user.getIban();
         System.out.println(Uid);
-        if(!iban.equals("")){
+        if(!iban.equals("0"))
             iban = "******************" + iban.substring(iban.length()-4,iban.length());
-        }
+        else
+            iban = "";
         String bic = user.getBic();
-        if(!bic.equals("")){
-             bic = "*******" + bic.substring(bic.length()-4,bic.length());
-        }
+        if(!bic.equals("0"))
+            bic = "*******" + bic.substring(bic.length()-4,bic.length());
+        else 
+            bic = "";
         jTextIban.setText(iban);
         jTextBic.setText(bic);
         

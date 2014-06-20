@@ -7,6 +7,8 @@
 package movierental;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -54,7 +56,7 @@ public class Account extends javax.swing.JFrame {
             bic = "";
         jLabelIban.setText(iban);
         jLabelBic.setText(bic);
-        
+       
     }
     
 
@@ -287,26 +289,21 @@ public class Account extends javax.swing.JFrame {
                                      null, options, options[1]);
             if(option == 0) // pressing OK button
             {
-                Verbindung db = new Verbindung();
-                db.start();
-                Connection conn = db.getVerbindung();
-                    Statement stmt;
+                String newpass;
                 try {
-                    stmt = conn.createStatement();
-                    System.out.println(String.valueOf(pass.getPassword()));
-                    ResultSet rs = stmt.executeQuery("SELECT SHA2('"+String.valueOf(pass.getPassword())+"',0) as password");
-                    if(!(user.getPassword().equals(rs.getString("password")))){
-                        JOptionPane.showMessageDialog(null, "Password wrong!");
-                    }else{
-                        try {
-                          new ChangeAccount(user).setVisible(true);
-                            setVisible(false);
-                        } catch (SQLException ex) {
-                            Logger.getLogger(Account.class.getName()).log(Level.SEVERE, null, ex);
-                        }
+                    newpass = User.encrypt(String.valueOf(pass.getPassword()));
+                if(!(user.getPassword().equals(newpass))){
+                    JOptionPane.showMessageDialog(null, "Password wrong!");
+                }else{
+                    try {
+                      new ChangeAccount(user).setVisible(true);
+                        setVisible(false);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Account.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                }  catch (SQLException ex) {
-                    System.out.println(ex.getMessage());
+                }
+                } catch (UnsupportedEncodingException | NoSuchAlgorithmException ex) {
+                    Logger.getLogger(Account.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }    

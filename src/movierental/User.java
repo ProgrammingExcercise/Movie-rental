@@ -3,8 +3,11 @@ package movierental;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -63,7 +66,7 @@ public class User extends javax.swing.JFrame {
         
     }
     
-    public static void register( String username, String password, String email, String birthday, String prename, String surname, String address, String zipcode, String city, String iban, String bic) throws SQLException{
+    public static void register( String username, String password, String email, String birthday, String prename, String surname, String address, String zipcode, String city, String iban, String bic) throws SQLException, UnsupportedEncodingException, NoSuchAlgorithmException{
        int random = (int) (Math.round(Math.random() * 89999) + 10000);
        
        Verbindung db = new Verbindung();
@@ -74,10 +77,10 @@ public class User extends javax.swing.JFrame {
        if(!(iban.equals("") && bic.equals(""))){
        stmt2.executeUpdate("INSERT INTO BANK (`iban`, `bic`) VALUES ('"+iban+"','"+bic+"')");
        stmt.executeUpdate("INSERT INTO `movierental`.`user`(`username`, `password`, `email`, `isAdmin`, `activationCode`, `birthday`, `prename`, `surname`, `address`, `zipcode`, `city`, `bid`) VALUES "
-        + "('" + username + "',SHA2('" + password + "',0),'" + email + "', 0, '" + random + "',\"" +  birthday + "\",'" + prename + "','" + surname + "','" + address + "','" + zipcode + "','" + city + "', (SELECT bid FROM bank where iban = '"+iban+"' and bic = '"+bic+"'))");
+        + "('" + username + "', '"+User.encrypt(password)+"', '" + email + "', 0, '" + random + "',\"" +  birthday + "\",'" + prename + "','" + surname + "','" + address + "','" + zipcode + "','" + city + "', (SELECT bid FROM bank where iban = '"+iban+"' and bic = '"+bic+"'))");
        }else{
        stmt.executeUpdate("INSERT INTO `movierental`.`user`(`username`, `password`, `email`, `isAdmin`, `activationCode`, `birthday`, `prename`, `surname`, `address`, `zipcode`, `city`, `bid`) VALUES "
-        + "('" + username + "',SHA2('" + password + "',0),'" + email + "', 0, '" + random + "',\"" +  birthday + "\",'" + prename + "','" + surname + "','" + address + "','" + zipcode + "','" + city + "', '0')");
+        + "('" + username + "', '"+User.encrypt(password)+"', '" + email + "', 0, '" + random + "',\"" +  birthday + "\",'" + prename + "','" + surname + "','" + address + "','" + zipcode + "','" + city + "', '0')");
        }
     
        
@@ -109,13 +112,13 @@ public class User extends javax.swing.JFrame {
        }
     }
     
-    public int login(String username, String password) throws SQLException{
+    public int login(String username, String password) throws SQLException, UnsupportedEncodingException, NoSuchAlgorithmException{
        
        Verbindung db = new Verbindung();
        db.start();
        Connection conn = db.getVerbindung();
        Statement stmt = conn.createStatement();
-       rs = stmt.executeQuery("Select * from user natural join bank where password = SHA2('" +password+ "',0) and username = '"+username+"'");
+       rs = stmt.executeQuery("Select * from user natural join bank where password = '" +User.encrypt(password)+ "' and username = '"+username+"'");
         
        if(rs.next()){
         uid = String.valueOf(rs.getInt("uid"));
@@ -1012,7 +1015,21 @@ public class User extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jButtonNextActionPerformed
-
+    public static String encrypt(String password) throws UnsupportedEncodingException, NoSuchAlgorithmException{
+    MessageDigest md   = MessageDigest.getInstance("SHA-256"); //make sure it exists, there are other algorithms, but I prefer SHA for simple and relatively quick hashing
+        
+        md.update(password.getBytes("UTF-8")); //I'd rather specify the encoding. It's platform dependent otherwise. 
+        byte[] digestBuff = md.digest();
+        
+        StringBuffer sb = new StringBuffer();
+        for (int i = 0; i < digestBuff.length; i++) {
+         sb.append(Integer.toString((digestBuff[i] & 0xff) + 0x100, 16).substring(1));
+        }
+ 
+        return sb.toString();
+    }
+ 
+    
     public static void main(String args[]) throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
         UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
         java.awt.EventQueue.invokeLater(new Runnable() {
