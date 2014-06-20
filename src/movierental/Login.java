@@ -661,12 +661,16 @@ public class Login extends javax.swing.JFrame {
             User user = new User();
             try {
                 if( (user.login(jTextUsername.getText(),new String(jPassword.getPassword())) ) == 1 ){
+                                System.out.println("bla");
+
                     dispose();
                     if(user.checkAdmin() == 1){
                         new Admin(user).setVisible(true);              
                 }else{
                         setVisible(false);
                         new User(user).setVisible(true);
+                                    System.out.println("blax");
+
                     }
                 }
                 

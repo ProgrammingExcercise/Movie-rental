@@ -293,8 +293,8 @@ public class MovieInfo extends javax.swing.JFrame {
     private void jButtonRentMovieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRentMovieActionPerformed
         if(user.getUid().equals("0")){
             JOptionPane.showMessageDialog(null, "Please log in first.");
-        }else if(user.getPrename().equals("") || user.getSurname().equals("")|| user.getAddress().equals("")|| user.getZipcode().equals("")|| user.getCity().equals("")|| user.getIban().equals("")|| user.getBic().equals("")){
-            JOptionPane.showMessageDialog(null, "You have to change your Account Information and fill in all fields.");
+        }else if(user.getPrename().equals("") || user.getSurname().equals("")|| user.getAddress().equals("")|| user.getZipcode().equals("")|| user.getCity().equals("")|| user.getIban().equals("0")|| user.getBic().equals("0")){
+            JOptionPane.showMessageDialog(null, "You have to change your account information and fill in all fields.");
         }else{
             try {
                 new Rent(user, movie).setVisible(true);

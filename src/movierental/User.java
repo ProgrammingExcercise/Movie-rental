@@ -76,8 +76,8 @@ public class User extends javax.swing.JFrame {
        stmt.executeUpdate("INSERT INTO `movierental`.`user`(`username`, `password`, `email`, `isAdmin`, `activationCode`, `birthday`, `prename`, `surname`, `address`, `zipcode`, `city`, `bid`) VALUES "
         + "('" + username + "',SHA2('" + password + "',0),'" + email + "', 0, '" + random + "',\"" +  birthday + "\",'" + prename + "','" + surname + "','" + address + "','" + zipcode + "','" + city + "', (SELECT bid FROM bank where iban = '"+iban+"' and bic = '"+bic+"'))");
        }else{
-       stmt.executeUpdate("INSERT INTO `movierental`.`user`(`username`, `password`, `email`, `isAdmin`, `activationCode`, `birthday`, `prename`, `surname`, `address`, `zipcode`, `city`) VALUES "
-        + "('" + username + "',SHA2('" + password + "',0),'" + email + "', 0, '" + random + "',\"" +  birthday + "\",'" + prename + "','" + surname + "','" + address + "','" + zipcode + "','" + city + "')");
+       stmt.executeUpdate("INSERT INTO `movierental`.`user`(`username`, `password`, `email`, `isAdmin`, `activationCode`, `birthday`, `prename`, `surname`, `address`, `zipcode`, `city`, `bid`) VALUES "
+        + "('" + username + "',SHA2('" + password + "',0),'" + email + "', 0, '" + random + "',\"" +  birthday + "\",'" + prename + "','" + surname + "','" + address + "','" + zipcode + "','" + city + "', '0')");
        }
     
        
@@ -115,8 +115,8 @@ public class User extends javax.swing.JFrame {
        db.start();
        Connection conn = db.getVerbindung();
        Statement stmt = conn.createStatement();
-       
-       rs = stmt.executeQuery("Select * from user where password = SHA2('" +password+ "',0) and username = '"+username+"'");
+        System.out.println("funktion");
+       rs = stmt.executeQuery("Select * from user natural join bank where password = SHA2('" +password+ "',0) and username = '"+username+"'");
         
        if(rs.next()){
         uid = String.valueOf(rs.getInt("uid"));
@@ -156,7 +156,7 @@ public class User extends javax.swing.JFrame {
            JOptionPane.showMessageDialog(null,"Wrong username or password!");
            return 0;
        }  
-       
+              
 }
     
     public int checkAdmin(){
