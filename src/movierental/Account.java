@@ -43,9 +43,15 @@ public class Account extends javax.swing.JFrame {
         jLabelZipcode.setText(user.getZipcode());
         jLabelCity.setText(user.getCity());
         String iban = user.getIban();
-        iban = "******************" + iban.substring(iban.length()-4,iban.length());
+        if(!iban.equals("0"))
+            iban = "******************" + iban.substring(iban.length()-4,iban.length());
+        else
+            iban = "";
         String bic = user.getBic();
-        bic = "*******" + bic.substring(bic.length()-4,bic.length());
+        if(!bic.equals("0"))
+            bic = "*******" + bic.substring(bic.length()-4,bic.length());
+        else 
+            bic = "";
         jLabelIban.setText(iban);
         jLabelBic.setText(bic);
         
@@ -287,6 +293,7 @@ public class Account extends javax.swing.JFrame {
                     Statement stmt;
                 try {
                     stmt = conn.createStatement();
+                    System.out.println(String.valueOf(pass.getPassword()));
                     ResultSet rs = stmt.executeQuery("SELECT SHA2('"+String.valueOf(pass.getPassword())+"',0) as password");
                     if(!(user.getPassword().equals(rs.getString("password")))){
                         JOptionPane.showMessageDialog(null, "Password wrong!");
@@ -299,7 +306,7 @@ public class Account extends javax.swing.JFrame {
                         }
                     }
                 }  catch (SQLException ex) {
-                    Logger.getLogger(Account.class.getName()).log(Level.SEVERE, null, ex);
+                    System.out.println(ex.getMessage());
                 }
             }
         }    

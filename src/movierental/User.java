@@ -115,7 +115,6 @@ public class User extends javax.swing.JFrame {
        db.start();
        Connection conn = db.getVerbindung();
        Statement stmt = conn.createStatement();
-        System.out.println("funktion");
        rs = stmt.executeQuery("Select * from user natural join bank where password = SHA2('" +password+ "',0) and username = '"+username+"'");
         
        if(rs.next()){
