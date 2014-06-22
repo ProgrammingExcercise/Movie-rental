@@ -53,7 +53,7 @@ public class Movie {
     }
     
     
-    public static void addMovie(String title,String genre,String agerating,String description,String releaseyear,String duration,String streamlink,String imglink,String pricecat,String language,String language2) throws SQLException{
+    public static void addMovie(String title,String genre,String agerating,String description,String releaseyear,String duration,String streamlink,String imglink,String price,String language,String language2) throws SQLException{
         
         Verbindung db = new Verbindung();
         db.start();
@@ -61,8 +61,11 @@ public class Movie {
 
 
         Statement stmt = conn.createStatement();
-        stmt.executeUpdate("INSERT INTO `movierental`.`movie`(`title`, `genre`, `ageRating`, `description`, `releaseDate`, `duration`, `link`, `Picture`, `Pid`) VALUES "
-                           + "('" + title + "','" + genre + "','" + agerating + "','" + description + "','" +  releaseyear + "','" + duration + "','" + streamlink + "','" + imglink + "','" + pricecat +"')");
+        System.out.println("Price: " + price);
+        System.out.println("Query: \"INSERT INTO movie(`title`, `genre`, `ageRating`, `description`, `releaseYear`, `duration`, `picture`, `price`) VALUES \"\n" +
+"                           + \"('\" + title + \"','\" + genre + \"','\" + agerating + \"',\\\"\" + description + \"\\\",'\" +  releaseyear + \"','\" + duration + \"','\" + imglink + \"','\" + price +\"')\") );");
+        stmt.executeUpdate("INSERT INTO movie(`title`, `genre`, `ageRating`, `description`, `releaseYear`, `duration`, `picture`, `price`) VALUES "
+                           + "('" + title + "','" + genre + "','" + agerating + "',\"" + description + "\",'" +  releaseyear + "','" + duration + "','" + imglink + "','" + price +"')");
 
         Statement stmt2 = conn.createStatement();
         stmt2.executeUpdate("INSERT INTO haslang (`Mid`,`Language`) VALUES ((SELECT mid FROM movie WHERE title = '"+ title +"'),'"+ language + "')");
@@ -74,19 +77,19 @@ public class Movie {
         JOptionPane.showMessageDialog(null, "Movie was added.");
         }
     }
-    public static void changeMovie(String title,String genre,String agerating,String description,String releaseyear,String duration,String streamlink,String imglink,String pricecat){
+    public static void changeMovie(String title,String genre,String agerating,String description,String releaseyear,String duration,String streamlink,String imglink,String price){
         Verbindung db = new Verbindung();
         db.start();
         Connection conn = db.getVerbindung();
 
         try {
            Statement stmt = conn.createStatement();
-            stmt.executeUpdate("INSERT INTO `movierental`.`movie`(`title`, `genre`, `ageRating`, `description`, `releaseDate`, `duration`, `link`, `Picture`, `Pid`) VALUES "
-            + "('" + title + "','" + genre + "','" + agerating + "','" + description + "','" +  releaseyear + "','" + duration + "','" + streamlink + "','" + imglink + "','" + pricecat +"')");
+            stmt.executeUpdate("INSERT INTO `movierental`.`movie`(`title`, `genre`, `ageRating`, `description`, `releaseYear`, `duration`, `picture`, `price`) VALUES "
+            + "('" + title + "','" + genre + "','" + agerating + "','" + description + "','" +  releaseyear + "','" + duration + "','" + imglink + "','" + price +"')");
         } catch (SQLException ex) {
             Logger.getLogger(AddMovie.class.getName()).log(Level.SEVERE, null, ex);
         }
-        JOptionPane.showMessageDialog(null, "Movie was added."+ pricecat);
+        JOptionPane.showMessageDialog(null, "Movie was added.");
     }
 
     public static ArrayList<Movie> getNewestAndTop10() throws SQLException{
@@ -96,7 +99,7 @@ public class Movie {
        db.start();
        conn = db.getVerbindung();
        Statement stmt = conn.createStatement();     
-       ResultSet rs = stmt.executeQuery("Select *, avg(rating) as average from movie natural join pricecat natural left join rates group by mid order by mid desc LIMIT 0,10");
+       ResultSet rs = stmt.executeQuery("Select *, avg(rating) as average from movie natural left join rates group by mid order by mid desc LIMIT 0,10");
        
        Statement stmt2 = conn.createStatement();
        while(rs.next()){
@@ -110,14 +113,14 @@ public class Movie {
         if(lang2.equals(lang))
             lang2 = "";
         
-        Movie movie = new Movie(rs.getString("mid"),rs.getString("title"),rs.getString("picture"),rs.getString("average"), rs.getString("description"),rs.getString("genre"),rs.getString("agerating"),rs.getString("releasedate"),rs.getString("duration"),rs.getString("link"),lang, lang2, rs.getString("price"),"");
+        Movie movie = new Movie(rs.getString("mid"),rs.getString("title"),rs.getString("picture"),rs.getString("average"), rs.getString("description"),rs.getString("genre"),rs.getString("agerating"),rs.getString("releaseyear"),rs.getString("duration"),rs.getString("streamlink"),lang, lang2, rs.getString("price"),"");
         movies.add(movie);
        }
        
        // Top10
     
        Statement stmt3 = conn.createStatement();     
-       ResultSet rs2 = stmt3.executeQuery("Select *, avg(rating) as average from movie natural join pricecat natural left join rates  group by mid order by average desc LIMIT 0,10");
+       ResultSet rs2 = stmt3.executeQuery("Select *, avg(rating) as average from movie natural left join rates  group by mid order by average desc LIMIT 0,10");
        
        Statement stmt4 = conn.createStatement();
        while(rs2.next()){
@@ -131,7 +134,7 @@ public class Movie {
         if(lang2.equals(lang))
             lang2 = "";
         
-        Movie movie = new Movie(rs2.getString("mid"),rs2.getString("title"),rs2.getString("picture"),rs2.getString("average"), rs2.getString("description"),rs2.getString("genre"),rs2.getString("agerating"),rs2.getString("releasedate"),rs2.getString("duration"),rs2.getString("link"),lang, lang2, rs2.getString("price"),"");
+        Movie movie = new Movie(rs2.getString("mid"),rs2.getString("title"),rs2.getString("picture"),rs2.getString("average"), rs2.getString("description"),rs2.getString("genre"),rs2.getString("agerating"),rs2.getString("releaseyear"),rs2.getString("duration"),rs2.getString("streamlink"),lang, lang2, rs2.getString("price"),"");
         movies.add(movie);
        }
        return movies;

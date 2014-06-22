@@ -6,7 +6,9 @@
 
 package movierental;
 
+import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -445,7 +447,7 @@ public class Registry extends javax.swing.JFrame {
                         }else{    
                             try {
                             User.register(username, password, email, birthday, prename, surname, address, zipcode, city, iban, bic);
-                            } catch (SQLException ex) {
+                            } catch (SQLException | UnsupportedEncodingException | NoSuchAlgorithmException ex) {
                             Logger.getLogger(Registry.class.getName()).log(Level.SEVERE, null, ex);
                             }
                             

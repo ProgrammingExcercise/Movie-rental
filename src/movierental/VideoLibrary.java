@@ -18,6 +18,7 @@ public class VideoLibrary extends javax.swing.JFrame {
     public VideoLibrary(User obj) throws SQLException {
         initComponents();
         setLocationRelativeTo(null);
+        setResizable(false);
         user = obj;
           
         this.listMovies();
@@ -31,14 +32,14 @@ public class VideoLibrary extends javax.swing.JFrame {
        db.start();
        Connection conn = db.getVerbindung();
        Statement stmt = conn.createStatement();
-       ResultSet rs = stmt.executeQuery("Select *,DATEDIFF(time,now()) as deadline from rents natural join movie natural join user natural join pricecat where uid = '"+user.getUid()+"' having deadline >= 0 order by deadline");
+       ResultSet rs = stmt.executeQuery("Select *,DATEDIFF(time,now()) as deadline from rents natural join movie natural join user where uid = '"+user.getUid()+"' having deadline >= 0 order by deadline");
        
        while(rs.next()){
            Movie movie = new Movie(rs.getString("mid"),rs.getString("title"),rs.getString("picture"), null, rs.getString("description"),rs.getString("genre"),rs.getString("agerating"),rs.getString("releasedate"),rs.getString("duration"),rs.getString("link"), "", "", rs.getString("price"), rs.getString("deadline"));
            movies.add(movie);
        } 
        
-       while(movies.size() % 5 != 0){
+       while(movies.size() % 5 != 0 || movies.isEmpty()){
            Movie dump = new Movie("", "", "", null, "", "", "","", "", "", "", "", "", "");
            movies.add(dump);
        }

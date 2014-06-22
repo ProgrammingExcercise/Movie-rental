@@ -26,6 +26,7 @@ public class Overview extends javax.swing.JFrame {
     public Overview() throws SQLException {
         initComponents();
         setLocationRelativeTo(null);
+        setResizable(false);
         Verbindung db = new Verbindung();
         db.start();
         Connection conn = db.getVerbindung();

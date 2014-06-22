@@ -3,8 +3,10 @@ package movierental;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -663,19 +665,17 @@ public class Login extends javax.swing.JFrame {
                 if( (user.login(jTextUsername.getText(),new String(jPassword.getPassword())) ) == 1 ){
                     dispose();
                     if(user.checkAdmin() == 1){
-                        new Admin(user).setVisible(true);              
-                }else{
+                        new Admin(user).setVisible(true);
+                    }else{
                         setVisible(false);
                         new User(user).setVisible(true);
                     }
                 }
-                
-            } catch (SQLException ex) {
-                
+            } catch (SQLException | UnsupportedEncodingException | NoSuchAlgorithmException ex) {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IOException ex) {
                 Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
         }
     }//GEN-LAST:event_jButtonLoginActionPerformed
 
@@ -756,7 +756,7 @@ public class Login extends javax.swing.JFrame {
                         
                         }else{
                         stmt = conn.createStatement();
-                        rs = stmt.executeQuery("SELECT *,avg(rating) as average FROM movie natural join haslang natural left join rates natural join pricecat WHERE title LIKE '%"+ suchetext +"%' and genre LIKE '%" + gen + "%' and Pid LIKE '%" + pri + "%' and ageRating LIKE '%"+ age +"%' and Language LIKE '%"+ lang +"%' group by mid");
+                        rs = stmt.executeQuery("SELECT *,avg(rating) as average FROM movie natural join haslang natural left join rates WHERE title LIKE '%"+ suchetext +"%' and genre LIKE '%" + gen + "%' and Pid LIKE '%" + pri + "%' and ageRating LIKE '%"+ age +"%' and Language LIKE '%"+ lang +"%' group by mid");
                         stmtSearch = conn.createStatement();
                         
                         while(rs.next()){

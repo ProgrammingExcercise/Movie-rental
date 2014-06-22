@@ -18,6 +18,7 @@ public class ForgottenPassword extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         pack();
+        setResizable(false);
         setVisible(true);
     }
 

@@ -27,8 +27,8 @@ public class ChangeMovie extends javax.swing.JFrame {
      ChangeMovie Variablen 
      */
      
-    String movieid,title,genre,imglink,streamlink,description,duration,releaseyear,suchetext,agerating,pricecat,answer,language,language2;
-    int age,price,combogenre,comboagerating,combopricecat,combolanguage,combolanguage2;
+    String movieid,title,genre,imglink,streamlink,description,duration,releaseyear,price,suchetext,agerating,pricecat,answer,language,language2;
+    int age,combogenre,comboagerating,combopricecat,combolanguage,combolanguage2;
     
     Verbindung db;
     Connection conn;
@@ -42,6 +42,7 @@ public class ChangeMovie extends javax.swing.JFrame {
     public ChangeMovie() {
         initComponents();
         setLocationRelativeTo(null);
+        setResizable(false);
     }//ende Konstruktor
     public void releaseArea(){
         jTextSuchText.setText("");
@@ -100,13 +101,13 @@ public class ChangeMovie extends javax.swing.JFrame {
     /*
     comboPricecat ist eine Methode um das ausgewählte Pricecat Objekt aus der Datenbank anzuzeigen
     */
-    public static int comboPricecat(int combo){
-         if(combo == 1){
-       return 0;
-       }else if(combo == 2){
-       return 1;
+    public static int comboPricecat(String combo){
+       if(combo == "3.99"){
+            return 0;
+       }else if(combo == "2.99"){
+            return 1;
        }else{ 
-       return 2;
+            return 2;
        }// ende if bedingung
     }// ende der methode comboPricecat
     public static int comboLanguage(String lang){
@@ -490,16 +491,16 @@ public class ChangeMovie extends javax.swing.JFrame {
                 if(rs.getRow() <= 1){
                 
                     
-                    movieid = rs.getString(1);
-                    title = rs.getString(2);
-                    genre = rs.getString(3);
-                    age = rs.getInt(4);
-                    description = rs.getString(5);
-                    releaseyear = rs.getString(6);
-                    duration = rs.getString(7);
-                    streamlink = rs.getString(8);
-                    imglink = rs.getString(9);
-                    price = rs.getInt(10);
+                    movieid = rs.getString("mid");
+                    title = rs.getString("title");
+                    genre = rs.getString("genre");
+                    age = rs.getInt("agerating");
+                    description = rs.getString("description");
+                    releaseyear = rs.getString("releasedate");
+                    duration = rs.getString("duration");
+                    streamlink = rs.getString("streamlink");
+                    imglink = rs.getString("picture");
+                    price = rs.getString("price");
                     
                     stmt4 = conn.createStatement();
                     rs3 = stmt4.executeQuery("SELECT Language FROM haslang WHERE Mid = '"+ movieid+"' ");
@@ -603,7 +604,7 @@ public class ChangeMovie extends javax.swing.JFrame {
                     duration = rs2.getString(7);
                     streamlink = rs2.getString(8);
                     imglink = rs2.getString(9);
-                    price = rs2.getInt(10);
+                    price = rs2.getString("price");
                     
                     stmt4 = conn.createStatement();
                     rs3 = stmt4.executeQuery("SELECT Language FROM haslang WHERE Mid = '"+movieid+"' ");

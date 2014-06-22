@@ -35,7 +35,8 @@ public class Rent extends javax.swing.JFrame {
     
     public Rent(User obj, Movie obj2) throws MalformedURLException, SQLException {
         initComponents();
-        setLocationRelativeTo(null);        
+        setLocationRelativeTo(null);     
+        setResizable(false);
         user = obj;
         movie = obj2;
         Date now = new Date();

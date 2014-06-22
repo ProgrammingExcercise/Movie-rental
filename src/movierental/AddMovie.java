@@ -22,7 +22,7 @@ import static movierental.Movie.addMovie;
  */
 
 public class AddMovie extends javax.swing.JFrame {
-    String title,genre,agerating,imglink,streamlink,description,duration,releaseyear,pricecat,language,language2;
+    String title,genre,agerating,imglink,streamlink,description,duration,releaseyear,price,language,language2;
     
     
     /**
@@ -31,6 +31,8 @@ public class AddMovie extends javax.swing.JFrame {
     public AddMovie() {
         initComponents();
         setLocationRelativeTo(null);
+        setResizable(false);
+
     }
     
     public void releaseArea(){
@@ -88,6 +90,8 @@ public class AddMovie extends javax.swing.JFrame {
 
         jLabel6.setText("Age Rating :");
 
+        jTextStreamlink.setEnabled(false);
+
         jTextReleaseYear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextReleaseYearActionPerformed(evt);
@@ -121,7 +125,7 @@ public class AddMovie extends javax.swing.JFrame {
 
         jComboAgeRating.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "0", "6", "12", "16", "18" }));
 
-        jComboPriceCat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3" }));
+        jComboPriceCat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "3.99", "2.99", "1.99" }));
 
         jButtonReturn.setText("Return");
         jButtonReturn.addActionListener(new java.awt.event.ActionListener() {
@@ -297,7 +301,7 @@ public class AddMovie extends javax.swing.JFrame {
        duration = jTextDuration.getText();
        releaseyear = jTextReleaseYear.getText();
        description = jTextAreaDescription.getText();
-       pricecat = (String) jComboPriceCat.getSelectedItem();
+       price = (String) jComboPriceCat.getSelectedItem();
        imglink = jTextImg.getText();
        streamlink = jTextStreamlink.getText();
        language =  (String) jComboLanguage.getSelectedItem();
@@ -307,7 +311,7 @@ public class AddMovie extends javax.swing.JFrame {
        
        if(evt.getSource() == jButtonAdd){
           
-       if(title.equals("") || genre.equals("") || agerating.equals("") || duration.equals("") || releaseyear.equals("") || description.equals("") || pricecat.equals("") || imglink.equals("")|| streamlink.equals("") || language.equals("First") )
+       if(title.equals("") || genre.equals("") || agerating.equals("") || duration.equals("") || releaseyear.equals("") || description.equals("") || price.equals("") || imglink.equals("") || language.equals("First") )
        {    
            JOptionPane.showMessageDialog(null, "Please fill all fields.");
            
@@ -315,7 +319,7 @@ public class AddMovie extends javax.swing.JFrame {
           
        }else{
           try {
-               addMovie(title,genre,agerating,description,releaseyear,duration,streamlink,imglink,pricecat,language,language2);
+               addMovie(title,genre,agerating,description,releaseyear,duration,streamlink,imglink,price,language,language2);
            } catch (SQLException ex) {
                Logger.getLogger(AddMovie.class.getName()).log(Level.SEVERE, null, ex);
            }

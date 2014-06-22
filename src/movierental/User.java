@@ -59,7 +59,10 @@ public class User extends javax.swing.JFrame {
         this.Newest10();
         this.Top10();
         this.setVisible(true);
-        jLabelLastLogin.setText("Your last login was on the " + user.lastLogin);
+        if(!(user.lastLogin == null) )
+            jLabelLastLogin.setText("Your last login was on the " + user.lastLogin + ".");
+        else
+            jLabelLastLogin.setText("This is your first login.");
         jButtonPrevious.setVisible(false);
         jButtonNext.setVisible(false);
         jButtonReturn.setVisible(false);
@@ -955,7 +958,7 @@ public class User extends javax.swing.JFrame {
 
                 }else{
                 stmt = conn.createStatement();
-                rs = stmt.executeQuery("SELECT *,avg(rating) as average FROM movie natural join haslang natural left join rates natural join pricecat WHERE title LIKE '%"+ suchetext +"%' and genre LIKE '%" + gen + "%' and Pid LIKE '%" + pri + "%' and ageRating LIKE '%"+ age +"%' and Language LIKE '%"+ lang +"%' group by mid");
+                rs = stmt.executeQuery("SELECT *,avg(rating) as average FROM movie natural join haslang natural left join rates WHERE title LIKE '%"+ suchetext +"%' and genre LIKE '%" + gen + "%' and price LIKE '%" + pri + "%' and ageRating LIKE '%"+ age +"%' and Language LIKE '%"+ lang +"%' group by mid");
                 stmtSearch = conn.createStatement();
 
                 while(rs.next()){
