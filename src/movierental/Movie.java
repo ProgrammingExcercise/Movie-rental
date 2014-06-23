@@ -43,7 +43,6 @@ public class Movie {
     this.language2 = language2;
     this.price = price;
     this.deadline = deadline;
-    
     }
 
     

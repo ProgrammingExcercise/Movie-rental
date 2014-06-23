@@ -40,7 +40,10 @@ public class MovieInfo extends javax.swing.JFrame {
         }else{
             jLabelLanguage.setText(movie.getLanguage() + ", " + movie.getLanguage2());
         }
-        jLabelDescription.setText(movie.getDescription());
+        String description = "<html><body>"+ movie.getDescription()+"</body></html>";
+        
+        
+        jLabelDescription.setText(description);
         jLabelImgLink.setIcon(new ImageIcon(new URL(movie.getImglink())));
         jLabelImgLink.setText(null);
         
@@ -169,10 +172,6 @@ public class MovieInfo extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel10)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabelDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel11)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabelLanguage, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -194,8 +193,12 @@ public class MovieInfo extends javax.swing.JFrame {
                                     .addComponent(jLabelRelease, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabelGenre, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabelDuration, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jLabelTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(157, 157, 157)))
+                            .addComponent(jLabelTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel10)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabelDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(13, 13, 13)))
                 .addGap(27, 27, 27))
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -209,12 +212,13 @@ public class MovieInfo extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(103, 103, 103)
-                        .addComponent(jLabel5))
+                        .addComponent(jLabel5)
+                        .addGap(124, 124, 124))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabelTitle)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel12)
                                     .addComponent(jLabelRelease))
@@ -240,10 +244,10 @@ public class MovieInfo extends javax.swing.JFrame {
                             .addComponent(jLabel11)
                             .addComponent(jLabelLanguage))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel10)
-                            .addComponent(jLabelDescription))))
-                .addGap(124, 124, 124)
+                            .addComponent(jLabelDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(85, 85, 85)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonRentMovie)
                     .addComponent(jButtonReturn)
@@ -270,9 +274,6 @@ public class MovieInfo extends javax.swing.JFrame {
             try {
                 stmt = conn.createStatement();
                 ResultSet rs = stmt.executeQuery("SELECT * FROM rates where uid = '"+user.getUid()+"' and mid = '"+movie.getMid()+"' ");
-                System.out.println(user.getUid());
-                System.out.println(movie.getMid());
-                System.out.println(rs.next());
                 if( rs.first() ){
                     JOptionPane.showMessageDialog(null, "You have already rated this movie!");
                 } else {        
