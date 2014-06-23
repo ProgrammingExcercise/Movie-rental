@@ -61,6 +61,8 @@ public class Account extends javax.swing.JFrame {
         }
         jLabelIban.setText(iban);
         jLabelBic.setText(bic);
+        
+        
        
     }
     

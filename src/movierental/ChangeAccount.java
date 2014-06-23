@@ -344,8 +344,6 @@ public class ChangeAccount extends javax.swing.JFrame {
     private void jButtonChangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonChangeActionPerformed
         if(evt.getSource() == jButtonChange){
             try {
-                if(jPassword.getPassword().equals("********"))
-                    password = user.getPassword();
                 user.changeInformation(new String(jPassword.getPassword()), new String(jPassword2.getPassword()), jTextEmail.getText(), jTextPrename.getText(), jTextSurname.getText(), jTextAddress.getText(), jTextZipcode.getText(), jTextCity.getText(), jTextIban.getText(), jTextBic.getText());
                 setVisible(false);
                 new Account(user).setVisible(true);
