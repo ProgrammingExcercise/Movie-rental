@@ -33,19 +33,19 @@ public class RentedMovies extends javax.swing.JFrame {
 
         // Last 24 Hours
         Statement stmt = conn.createStatement();
-        ResultSet rs24 = stmt.executeQuery("SELECT * FROM movierental.rents WHERE DATEDIFF(now(), time) < 1");
+        ResultSet rs24 = stmt.executeQuery("SELECT * FROM rents WHERE DATEDIFF(now(), time) < 1");
         rs24.last();
         jLabel24Hours.setText(String.valueOf(rs24.getRow()) + " Movies");
         
         // Last 7 Days
         Statement stmt2 = conn.createStatement();
-        ResultSet rs7 = stmt2.executeQuery("SELECT * FROM movierental.rents WHERE DATEDIFF(now(), time) < 7");
+        ResultSet rs7 = stmt2.executeQuery("SELECT * FROM rents WHERE DATEDIFF(now(), time) < 7");
         rs7.last();
         jLabel7Days.setText(String.valueOf(rs7.getRow()) + " Movies");
        
         // Last 30 Days
         Statement stmt3 = conn.createStatement();
-        ResultSet rs30 = stmt3.executeQuery("SELECT * FROM movierental.rents WHERE DATEDIFF(now(), time) < 30");
+        ResultSet rs30 = stmt3.executeQuery("SELECT * FROM rents WHERE DATEDIFF(now(), time) < 30");
         rs30.last();
         jLabel30Days.setText(String.valueOf(rs30.getRow()) + " Movies");
     }

@@ -84,7 +84,7 @@ public class Movie {
 
         try {
            Statement stmt = conn.createStatement();
-            stmt.executeUpdate("INSERT INTO `movierental`.`movie`(`title`, `genre`, `ageRating`, `description`, `releaseYear`, `duration`, `picture`, `price`) VALUES "
+            stmt.executeUpdate("INSERT INTO `movie`(`title`, `genre`, `ageRating`, `description`, `releaseYear`, `duration`, `picture`, `price`) VALUES "
             + "('" + title + "','" + genre + "','" + agerating + "','" + description + "','" +  releaseyear + "','" + duration + "','" + imglink + "','" + price +"')");
         } catch (SQLException ex) {
             Logger.getLogger(AddMovie.class.getName()).log(Level.SEVERE, null, ex);

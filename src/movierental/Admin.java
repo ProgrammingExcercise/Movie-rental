@@ -84,7 +84,7 @@ public class Admin extends javax.swing.JFrame {
             case 5:
                 return "18";
             default:
-                return "%";
+                return "18";
         }
     }
     public static String getRating(int r){
@@ -787,7 +787,7 @@ public class Admin extends javax.swing.JFrame {
 
                     if(!(rate.equals("%"))){
                     stmt4 = conn.createStatement();
-                    rs3 = stmt4.executeQuery("SELECT *,avg(rating) as average FROM movierental.movie natural left join rates natural join haslang WHERE title LIKE '%"+ suchetext +"%' and genre LIKE '%" + gen + "%' and price LIKE '%" + pri + "%' and ageRating <= '"+ age +"' and Language LIKE '%"+ lang +"%' group by mid having average >= "+rate+"");
+                    rs3 = stmt4.executeQuery("SELECT *,avg(rating) as average FROM movie natural left join rates natural join haslang WHERE title LIKE '%"+ suchetext +"%' and genre LIKE '%" + gen + "%' and price LIKE '%" + pri + "%' and ageRating <= '"+ age +"' and Language LIKE '%"+ lang +"%' group by mid having average >= "+rate+"");
                     stmtSearch = conn.createStatement();
 
                     while(rs3.next()){

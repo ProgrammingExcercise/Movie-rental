@@ -225,6 +225,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextStreamlink">
+      <Properties>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextStreamlinkActionPerformed"/>
       </Events>
@@ -324,12 +327,15 @@
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="3">
-            <StringItem index="0" value="1"/>
-            <StringItem index="1" value="2"/>
-            <StringItem index="2" value="3"/>
+            <StringItem index="0" value="3.99"/>
+            <StringItem index="1" value="2.99"/>
+            <StringItem index="2" value="1.99"/>
           </StringArray>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboPriceCategoryActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonReturn">
       <Properties>

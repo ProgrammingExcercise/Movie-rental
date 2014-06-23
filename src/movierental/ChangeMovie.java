@@ -102,9 +102,9 @@ public class ChangeMovie extends javax.swing.JFrame {
     comboPricecat ist eine Methode um das ausgewählte Pricecat Objekt aus der Datenbank anzuzeigen
     */
     public static int comboPricecat(String combo){
-       if(combo == "3.99"){
+       if(combo.equals("3.99")){
             return 0;
-       }else if(combo == "2.99"){
+       }else if(combo.equals("2.99")){
             return 1;
        }else{ 
             return 2;
@@ -170,6 +170,7 @@ public class ChangeMovie extends javax.swing.JFrame {
 
         jLabel6.setText("Age Rating :");
 
+        jTextStreamlink.setEnabled(false);
         jTextStreamlink.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextStreamlinkActionPerformed(evt);
@@ -221,7 +222,12 @@ public class ChangeMovie extends javax.swing.JFrame {
 
         jComboAgeRating.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "0", "6", "12", "16", "18" }));
 
-        jComboPriceCategory.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3" }));
+        jComboPriceCategory.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "3.99", "2.99", "1.99" }));
+        jComboPriceCategory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboPriceCategoryActionPerformed(evt);
+            }
+        });
 
         jButtonReturn.setText("Return");
         jButtonReturn.addActionListener(new java.awt.event.ActionListener() {
@@ -457,7 +463,7 @@ public class ChangeMovie extends javax.swing.JFrame {
            try {
                stmt2 = conn.createStatement();
                stmt2.executeUpdate("UPDATE movie SET title='"+ title + "', genre='"+ genre +"', ageRating='"+ agerating +"', description='"+ description 
-                                   + "', releaseYear='"+ releaseyear +"', duration='"+ duration + "', link='"+ streamlink + "', Picture='"+ imglink + "', Pid='"+ pricecat + "' WHERE mid = '"+ movieid + "'");
+                                   + "', releaseYear='"+ releaseyear +"', duration='"+ duration + "', streamlink='"+ streamlink + "', Picture='"+ imglink + "', price='"+ pricecat + "' WHERE mid = '"+ movieid + "'");
                JOptionPane.showMessageDialog(null, "Change was succesfull.");
                this.dispose();
                
@@ -660,6 +666,10 @@ public class ChangeMovie extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jButtonDeleteActionPerformed
+
+    private void jComboPriceCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboPriceCategoryActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboPriceCategoryActionPerformed
 
     /**
      * @param args the command line arguments
