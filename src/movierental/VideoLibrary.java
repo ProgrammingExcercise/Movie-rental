@@ -35,7 +35,7 @@ public class VideoLibrary extends javax.swing.JFrame {
        ResultSet rs = stmt.executeQuery("Select *,DATEDIFF(time,now()) as deadline from rents natural join movie natural join user where uid = '"+user.getUid()+"' having deadline >= 0 order by deadline");
        
        while(rs.next()){
-           Movie movie = new Movie(rs.getString("mid"),rs.getString("title"),rs.getString("picture"), null, rs.getString("description"),rs.getString("genre"),rs.getString("agerating"),rs.getString("releasedate"),rs.getString("duration"),rs.getString("link"), "", "", rs.getString("price"), rs.getString("deadline"));
+           Movie movie = new Movie(rs.getString("mid"),rs.getString("title"),rs.getString("picture"), null, rs.getString("description"),rs.getString("genre"),rs.getString("agerating"),rs.getString("releaseYear"),rs.getString("duration"),rs.getString("link"), "", "", rs.getString("price"), rs.getString("deadline"));
            movies.add(movie);
        } 
        

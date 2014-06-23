@@ -457,7 +457,7 @@ public class ChangeMovie extends javax.swing.JFrame {
            try {
                stmt2 = conn.createStatement();
                stmt2.executeUpdate("UPDATE movie SET title='"+ title + "', genre='"+ genre +"', ageRating='"+ agerating +"', description='"+ description 
-                                   + "', releaseDate='"+ releaseyear +"', duration='"+ duration + "', link='"+ streamlink + "', Picture='"+ imglink + "', Pid='"+ pricecat + "' WHERE mid = '"+ movieid + "'");
+                                   + "', releaseYear='"+ releaseyear +"', duration='"+ duration + "', link='"+ streamlink + "', Picture='"+ imglink + "', Pid='"+ pricecat + "' WHERE mid = '"+ movieid + "'");
                JOptionPane.showMessageDialog(null, "Change was succesfull.");
                this.dispose();
                
@@ -496,7 +496,7 @@ public class ChangeMovie extends javax.swing.JFrame {
                     genre = rs.getString("genre");
                     age = rs.getInt("agerating");
                     description = rs.getString("description");
-                    releaseyear = rs.getString("releasedate");
+                    releaseyear = rs.getString("releaseYear");
                     duration = rs.getString("duration");
                     streamlink = rs.getString("streamlink");
                     imglink = rs.getString("picture");

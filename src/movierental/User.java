@@ -32,7 +32,7 @@ import static movierental.Admin.getRating;
 
 public class User extends javax.swing.JFrame {
     User user;
-    String uid, username, password, email, isAdmin, activationCode="123", activated, lastLogin, birthday, prename, surname, street, zipcode, city, iban, bic;
+    String uid, username, password, email, isAdmin, activCode="123", activated, lastLogin, birthday, prename, surname, street, zipcode, city, iban, bic;
     ArrayList<Movie> movies = new ArrayList<>();
     ArrayList<Movie> movies2 = new ArrayList<>();
     String suchetext,gen,pri,age,rate,lang;
@@ -107,7 +107,7 @@ public class User extends javax.swing.JFrame {
         message.setFrom(new InternetAddress(username));
         message.setRecipients(Message.RecipientType.TO,InternetAddress.parse(email));
         message.setSubject("My First Email");
-        message.setContent("<h>Your activationcode: </h>"+random,"text/html");
+        message.setContent("<h>Your activCode: </h>"+random,"text/html");
         Transport.send(message);
        }catch(MessagingException e){
            throw new RuntimeException();
@@ -131,7 +131,7 @@ public class User extends javax.swing.JFrame {
         isAdmin = rs.getString("isAdmin");
         lastLogin = rs.getString("lastLogin");
         activated = String.valueOf(rs.getInt("activated"));
-        activationCode = rs.getString("activCode");
+        activCode = rs.getString("activCode");
         birthday = rs.getString("birthday");
         prename = rs.getString("prename");
         surname = rs.getString("surname");
@@ -147,7 +147,7 @@ public class User extends javax.swing.JFrame {
            stmt.executeUpdate("UPDATE user SET lastLogin = now() where username ='"+username+"'");
            return 1;
        }else{
-           if(activationCode.equals(JOptionPane.showInputDialog("You aren't activated.\n Please enter your activation code: "))){
+           if(activCode.equals(JOptionPane.showInputDialog("You aren't activated.\n Please enter your activation code: "))){
                stmt.executeUpdate("UPDATE user SET activated = 1 where username = '"+username+"' ");
                JOptionPane.showMessageDialog(null, "Activation successfull! You can now login.");
            }else{
@@ -933,7 +933,7 @@ public class User extends javax.swing.JFrame {
 
                 if(!(rate.equals("%"))){
                 stmt4 = conn.createStatement();
-                rs3 = stmt4.executeQuery("SELECT *,avg(rating) as average FROM movierental.movie natural left join rates natural join haslang WHERE title LIKE '%"+ suchetext +"%' and genre LIKE '%" + gen + "%' and Pid LIKE '%" + pri + "%' and ageRating LIKE '%"+ age +"%' and Language LIKE '%"+ lang +"%' group by mid having average >= "+rate+"");
+                rs3 = stmt4.executeQuery("SELECT *,avg(rating) as average FROM movierental.movie natural left join rates natural join haslang WHERE title LIKE '%"+ suchetext +"%' and genre LIKE '%" + gen + "%' and price LIKE '%" + pri + "%' and ageRating <= '"+ age +"' and Language LIKE '%"+ lang +"%' group by mid having average >= "+rate+"");
                 stmtSearch = conn.createStatement();
 
                 while(rs3.next()){
@@ -946,7 +946,7 @@ public class User extends javax.swing.JFrame {
                 if(language2.equals(language1)){
                     language2 = "";
                 }
-                Movie movie = new Movie(rs3.getString("mid"),rs3.getString("title"),rs3.getString("picture"),rs3.getString("average"), rs3.getString("description"),rs3.getString("genre"),rs3.getString("agerating"),rs3.getString("releasedate"),rs3.getString("duration"),rs3.getString("link"),language1, language2, rs3.getString("Pid"),"");
+                Movie movie = new Movie(rs3.getString("mid"),rs3.getString("title"),rs3.getString("picture"),rs3.getString("average"), rs3.getString("description"),rs3.getString("genre"),rs3.getString("agerating"),rs3.getString("releaseYear"),rs3.getString("duration"),rs3.getString("streamlink"),language1, language2, rs3.getString("price"),"");
                 movies.add(movie);
                 }
 
@@ -958,7 +958,7 @@ public class User extends javax.swing.JFrame {
 
                 }else{
                 stmt = conn.createStatement();
-                rs = stmt.executeQuery("SELECT *,avg(rating) as average FROM movie natural join haslang natural left join rates WHERE title LIKE '%"+ suchetext +"%' and genre LIKE '%" + gen + "%' and price LIKE '%" + pri + "%' and ageRating LIKE '%"+ age +"%' and Language LIKE '%"+ lang +"%' group by mid");
+                rs = stmt.executeQuery("SELECT *,avg(rating) as average FROM movie natural join haslang natural left join rates WHERE title LIKE '%"+ suchetext +"%' and genre LIKE '%" + gen + "%' and price LIKE '%" + pri + "%' and ageRating <= '"+ age +"' and Language LIKE '%"+ lang +"%' group by mid");
                 stmtSearch = conn.createStatement();
 
                 while(rs.next()){
@@ -972,7 +972,7 @@ public class User extends javax.swing.JFrame {
                 if(language2.equals(language1)){
                     language2 = "";
                 }
-                Movie movie = new Movie(rs.getString("mid"),rs.getString("title"),rs.getString("picture"),rs.getString("average"), rs.getString("description"),rs.getString("genre"),rs.getString("agerating"),rs.getString("releasedate"),rs.getString("duration"),rs.getString("link"),language1, language2, rs.getString("price"),"");
+                Movie movie = new Movie(rs.getString("mid"),rs.getString("title"),rs.getString("picture"),rs.getString("average"), rs.getString("description"),rs.getString("genre"),rs.getString("agerating"),rs.getString("releaseYear"),rs.getString("duration"),rs.getString("streamlink"),language1, language2, rs.getString("price"),"");
                 movies.add(movie);
                 }
                 while(movies.size() %10 != 0){

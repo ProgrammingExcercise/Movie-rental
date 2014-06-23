@@ -20,11 +20,11 @@ import javax.swing.JOptionPane;
  * @author Acer
  */
 public class Movie {
-    String mid, title, imglink, rating, description, genre, agerating, releasedate, duration, link, language, language2, price, deadline;
+    String mid, title, imglink, rating, description, genre, agerating, releaseYear, duration, link, language, language2, price, deadline;
     ArrayList<Movie> movies;
     static Verbindung db;
     static Connection conn;
-    Movie(String mid,String title,String imglink, String rating, String description,String genre,String agerating,String releasedate,String duration,String link, String language, String language2, String price, String deadline){
+    Movie(String mid,String title,String imglink, String rating, String description,String genre,String agerating,String releaseYear,String duration,String link, String language, String language2, String price, String deadline){
     this.mid = mid;
     this.title = title;
     this.imglink = imglink;
@@ -36,7 +36,7 @@ public class Movie {
     this.description = description;
     this.genre = genre;
     this.agerating = agerating;
-    this.releasedate = releasedate;
+    this.releaseYear = releaseYear;
     this.duration = duration;
     this.link = link;
     this.language = language;
@@ -168,8 +168,8 @@ public class Movie {
         return agerating;
     }
 
-    public String getReleasedate() {
-        return releasedate;
+    public String getreleaseYear() {
+        return releaseYear;
     }
 
     public String getDuration() {

@@ -27,7 +27,7 @@ public class Login extends javax.swing.JFrame {
     
     Login login;
     User user = new User();
-    String uid, username, password, email, isAdmin, activationCode="123", activated, lastLogin, birthday, prename, surname, address, zipcode, city, iban, bic;
+    String uid, username, password, email, isAdmin, activCode, activated, lastLogin, birthday, prename, surname, address, zipcode, city, iban, bic;
     ArrayList<Movie> movies = new ArrayList<>();
     ArrayList<Movie> movies2 = new ArrayList<>();
     String suchetext,gen,pri,age,rate,lang;
@@ -54,29 +54,29 @@ public class Login extends javax.swing.JFrame {
     
     public void searchResult(ArrayList<Movie> movies2) throws MalformedURLException{
                 
-                        jLabelBild1.setVisible(false);
-                        jLabelBild2.setVisible(false);
-                        jLabelBild3.setVisible(false);
-                        jLabelBild4.setVisible(false);
-                        jLabelBild5.setVisible(false);
-                        jLabelBild6.setVisible(false);
-                        jLabelBild7.setVisible(false);
-                        jLabelBild8.setVisible(false);
-                        jLabelBild9.setVisible(false);
-                        jLabelBild10.setVisible(false);
-                        jLabelBild11.setVisible(false);
-                        jLabelBild19.setVisible(false);
-                        jLabelBild12.setVisible(false);
-                        jLabelBild14.setVisible(false);
-                        jLabelBild15.setVisible(false);
-                        jLabelBild17.setVisible(false);
-                        jLabelBild18.setVisible(false);
-                        jLabelBild20.setVisible(false);
-                        jLabelBild13.setVisible(false);
-                        jLabelBild16.setVisible(false);
-                        
-                        jLabelTop10.setVisible(false);
-                        jLabelNewest.setText("Search Result for '"+ suchetext +"':");
+        jLabelBild1.setVisible(false);
+        jLabelBild2.setVisible(false);
+        jLabelBild3.setVisible(false);
+        jLabelBild4.setVisible(false);
+        jLabelBild5.setVisible(false);
+        jLabelBild6.setVisible(false);
+        jLabelBild7.setVisible(false);
+        jLabelBild8.setVisible(false);
+        jLabelBild9.setVisible(false);
+        jLabelBild10.setVisible(false);
+        jLabelBild11.setVisible(false);
+        jLabelBild19.setVisible(false);
+        jLabelBild12.setVisible(false);
+        jLabelBild14.setVisible(false);
+        jLabelBild15.setVisible(false);
+        jLabelBild17.setVisible(false);
+        jLabelBild18.setVisible(false);
+        jLabelBild20.setVisible(false);
+        jLabelBild13.setVisible(false);
+        jLabelBild16.setVisible(false);
+
+        jLabelTop10.setVisible(false);
+        jLabelNewest.setText("Search Result for '"+ suchetext +"':");
                         
         if(!(movies2.get(0+seitenanzahl).getTitle().equals(""))){
         jLabelBild1.setIcon(new ImageIcon(new URL(movies2.get(0+seitenanzahl).getImglink())));
@@ -731,7 +731,7 @@ public class Login extends javax.swing.JFrame {
                         
                         if(!(rate.equals("%"))){
                         stmt4 = conn.createStatement();
-                        rs3 = stmt4.executeQuery("SELECT *,avg(rating) as average FROM movierental.movie natural left join rates natural join haslang WHERE title LIKE '%"+ suchetext +"%' and genre LIKE '%" + gen + "%' and Pid LIKE '%" + pri + "%' and ageRating LIKE '%"+ age +"%' and Language LIKE '%"+ lang +"%' group by mid having average >= "+rate+"");
+                        rs3 = stmt4.executeQuery("SELECT *,avg(rating) as average FROM movierental.movie natural left join rates natural join haslang WHERE title LIKE '%"+ suchetext +"%' and genre LIKE '%" + gen + "%' and price >= '"+ pri + "' and ageRating <= '"+ age +"' and Language LIKE '%"+ lang +"%' group by mid having average >= "+rate+"");
                         stmtSearch = conn.createStatement();
                         
                         while(rs3.next()){
@@ -744,7 +744,7 @@ public class Login extends javax.swing.JFrame {
                         if(language2.equals(language1)){
                             language2 = "";
                         }
-                        Movie movie = new Movie(rs3.getString("mid"),rs3.getString("title"),rs3.getString("picture"),rs3.getString("average"), rs3.getString("description"),rs3.getString("genre"),rs3.getString("agerating"),rs3.getString("releasedate"),rs3.getString("duration"),rs3.getString("link"),language1, language2, rs3.getString("Pid"),"");
+                        Movie movie = new Movie(rs3.getString("mid"),rs3.getString("title"),rs3.getString("picture"),rs3.getString("average"), rs3.getString("description"),rs3.getString("genre"),rs3.getString("agerating"),rs3.getString("releaseYear"),rs3.getString("duration"),rs3.getString("streamlink"),language1, language2, rs3.getString("price"),"");
                         movies.add(movie);
                         }
                         
@@ -756,7 +756,7 @@ public class Login extends javax.swing.JFrame {
                         
                         }else{
                         stmt = conn.createStatement();
-                        rs = stmt.executeQuery("SELECT *,avg(rating) as average FROM movie natural join haslang natural left join rates WHERE title LIKE '%"+ suchetext +"%' and genre LIKE '%" + gen + "%' and Pid LIKE '%" + pri + "%' and ageRating LIKE '%"+ age +"%' and Language LIKE '%"+ lang +"%' group by mid");
+                        rs = stmt.executeQuery("SELECT *,avg(rating) as average FROM movie natural join haslang natural left join rates WHERE title LIKE '%"+ suchetext +"%' and genre LIKE '%" + gen + "%' and price LIKE '%" + pri + "%' and ageRating <= '"+ age +"' and Language LIKE '%"+ lang +"%' group by mid");
                         stmtSearch = conn.createStatement();
                         
                         while(rs.next()){
@@ -770,7 +770,7 @@ public class Login extends javax.swing.JFrame {
                         if(language2.equals(language1)){
                             language2 = "";
                         }
-                        Movie movie = new Movie(rs.getString("mid"),rs.getString("title"),rs.getString("picture"),rs.getString("average"), rs.getString("description"),rs.getString("genre"),rs.getString("agerating"),rs.getString("releasedate"),rs.getString("duration"),rs.getString("link"),language1, language2, rs.getString("price"),"");
+                        Movie movie = new Movie(rs.getString("mid"),rs.getString("title"),rs.getString("picture"),rs.getString("average"), rs.getString("description"),rs.getString("genre"),rs.getString("agerating"),rs.getString("releaseYear"),rs.getString("duration"),rs.getString("streamlink"),language1, language2, rs.getString("price"),"");
                         movies.add(movie);
                         }
                         while(movies.size() %10 != 0){

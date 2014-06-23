@@ -787,7 +787,7 @@ public class Admin extends javax.swing.JFrame {
 
                     if(!(rate.equals("%"))){
                     stmt4 = conn.createStatement();
-                    rs3 = stmt4.executeQuery("SELECT *,avg(rating) as average FROM movierental.movie natural left join rates natural join haslang WHERE title LIKE '%"+ suchetext +"%' and genre LIKE '%" + gen + "%' and Pid LIKE '%" + pri + "%' and ageRating LIKE '%"+ age +"%' and Language LIKE '%"+ lang +"%' group by mid having average >= "+rate+"");
+                    rs3 = stmt4.executeQuery("SELECT *,avg(rating) as average FROM movierental.movie natural left join rates natural join haslang WHERE title LIKE '%"+ suchetext +"%' and genre LIKE '%" + gen + "%' and price LIKE '%" + pri + "%' and ageRating <= '"+ age +"' and Language LIKE '%"+ lang +"%' group by mid having average >= "+rate+"");
                     stmtSearch = conn.createStatement();
 
                     while(rs3.next()){
@@ -800,7 +800,7 @@ public class Admin extends javax.swing.JFrame {
                     if(language2.equals(language1)){
                         language2 = "";
                     }
-                    Movie movie = new Movie(rs3.getString("mid"),rs3.getString("title"),rs3.getString("picture"),rs3.getString("average"), rs3.getString("description"),rs3.getString("genre"),rs3.getString("agerating"),rs3.getString("releasedate"),rs3.getString("duration"),rs3.getString("link"),language1, language2, rs3.getString("Pid"),"");
+                    Movie movie = new Movie(rs3.getString("mid"),rs3.getString("title"),rs3.getString("picture"),rs3.getString("average"), rs3.getString("description"),rs3.getString("genre"),rs3.getString("agerating"),rs3.getString("releaseYear"),rs3.getString("duration"),rs3.getString("streamlink"),language1, language2, rs3.getString("price"),"");
                     movies.add(movie);
                     }
 
@@ -812,7 +812,7 @@ public class Admin extends javax.swing.JFrame {
 
                     }else{
                     stmt = conn.createStatement();
-                    rs = stmt.executeQuery("SELECT *,avg(rating) as average FROM movie natural join haslang natural left join rates WHERE title LIKE '%"+ suchetext +"%' and genre LIKE '%" + gen + "%' and Pid LIKE '%" + pri + "%' and ageRating LIKE '%"+ age +"%' and Language LIKE '%"+ lang +"%' group by mid");
+                    rs = stmt.executeQuery("SELECT *,avg(rating) as average FROM movie natural join haslang natural left join rates WHERE title LIKE '%"+ suchetext +"%' and genre LIKE '%" + gen + "%' and price LIKE '%" + pri + "%' and ageRating <= '"+ age +"' and Language LIKE '%"+ lang +"%' group by mid");
                     stmtSearch = conn.createStatement();
 
                     while(rs.next()){
@@ -826,7 +826,7 @@ public class Admin extends javax.swing.JFrame {
                     if(language2.equals(language1)){
                         language2 = "";
                     }
-                    Movie movie = new Movie(rs.getString("mid"),rs.getString("title"),rs.getString("picture"),rs.getString("average"), rs.getString("description"),rs.getString("genre"),rs.getString("agerating"),rs.getString("releasedate"),rs.getString("duration"),rs.getString("link"),language1, language2, rs.getString("price"),"");
+                    Movie movie = new Movie(rs.getString("mid"),rs.getString("title"),rs.getString("picture"),rs.getString("average"), rs.getString("description"),rs.getString("genre"),rs.getString("agerating"),rs.getString("releaseYear"),rs.getString("duration"),rs.getString("streamlink"),language1, language2, rs.getString("price"),"");
                     movies.add(movie);
                     }
                     while(movies.size() %10 != 0){
