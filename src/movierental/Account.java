@@ -26,8 +26,9 @@ import javax.swing.JPasswordField;
  */
 public class Account extends javax.swing.JFrame {
 
+    
     User user;
-    String password;
+    String password, iban, bic;
     public Account() {
         initComponents();
     }
@@ -42,19 +43,22 @@ public class Account extends javax.swing.JFrame {
         jLabelBirthday.setText(user.getBirthday());
         jLabelPrename.setText(user.getPrename());
         jLabelSurname.setText(user.getSurname());
-        jLabelAddress.setText(user.getAddress());
+        jLabelAddress.setText(user.getStreet());
         jLabelZipcode.setText(user.getZipcode());
         jLabelCity.setText(user.getCity());
-        String iban = user.getIban();
-        if(!iban.equals("0"))
+        if(user.getIban() != null){
+            iban = user.getIban();
             iban = "******************" + iban.substring(iban.length()-4,iban.length());
-        else
+        }else{
             iban = "";
-        String bic = user.getBic();
-        if(!bic.equals("0"))
+        }
+        if(user.getBic() != null){
+            bic = user.getBic();
             bic = "*******" + bic.substring(bic.length()-4,bic.length());
-        else 
+        }
+        else{
             bic = "";
+        }
         jLabelIban.setText(iban);
         jLabelBic.setText(bic);
        

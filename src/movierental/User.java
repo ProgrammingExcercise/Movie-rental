@@ -32,7 +32,7 @@ import static movierental.Admin.getRating;
 
 public class User extends javax.swing.JFrame {
     User user;
-    String uid, username, password, email, isAdmin, activationCode="123", activated, lastLogin, birthday, prename, surname, address, zipcode, city, iban, bic;
+    String uid, username, password, email, isAdmin, activationCode="123", activated, lastLogin, birthday, prename, surname, street, zipcode, city, iban, bic;
     ArrayList<Movie> movies = new ArrayList<>();
     ArrayList<Movie> movies2 = new ArrayList<>();
     String suchetext,gen,pri,age,rate,lang;
@@ -69,7 +69,7 @@ public class User extends javax.swing.JFrame {
         
     }
     
-    public static void register( String username, String password, String email, String birthday, String prename, String surname, String address, String zipcode, String city, String iban, String bic) throws SQLException, UnsupportedEncodingException, NoSuchAlgorithmException{
+    public static void register( String username, String password, String email, String birthday, String prename, String surname, String street, String zipcode, String city, String iban, String bic) throws SQLException, UnsupportedEncodingException, NoSuchAlgorithmException{
        int random = (int) (Math.round(Math.random() * 89999) + 10000);
        
        Verbindung db = new Verbindung();
@@ -79,11 +79,11 @@ public class User extends javax.swing.JFrame {
        Statement stmt2 = conn.createStatement();
        if(!(iban.equals("") && bic.equals(""))){
        stmt2.executeUpdate("INSERT INTO BANK (`iban`, `bic`) VALUES ('"+iban+"','"+bic+"')");
-       stmt.executeUpdate("INSERT INTO `movierental`.`user`(`username`, `password`, `email`, `isAdmin`, `activationCode`, `birthday`, `prename`, `surname`, `address`, `zipcode`, `city`, `bid`) VALUES "
-        + "('" + username + "', '"+User.encrypt(password)+"', '" + email + "', 0, '" + random + "',\"" +  birthday + "\",'" + prename + "','" + surname + "','" + address + "','" + zipcode + "','" + city + "', (SELECT bid FROM bank where iban = '"+iban+"' and bic = '"+bic+"'))");
+       stmt.executeUpdate("INSERT INTO user(`username`, `password`, `email`, `isAdmin`, `activCode`, `birthday`, `prename`, `surname`, `street`, `zipcode`, `city`, `bid`) VALUES "
+        + "('" + username + "', '"+User.encrypt(password)+"', '" + email + "', 0, '" + random + "',\"" +  birthday + "\",'" + prename + "','" + surname + "','" + street + "','" + zipcode + "','" + city + "', (SELECT bid FROM bank where iban = '"+iban+"' and bic = '"+bic+"'))");
        }else{
-       stmt.executeUpdate("INSERT INTO `movierental`.`user`(`username`, `password`, `email`, `isAdmin`, `activationCode`, `birthday`, `prename`, `surname`, `address`, `zipcode`, `city`, `bid`) VALUES "
-        + "('" + username + "', '"+User.encrypt(password)+"', '" + email + "', 0, '" + random + "',\"" +  birthday + "\",'" + prename + "','" + surname + "','" + address + "','" + zipcode + "','" + city + "', '0')");
+       stmt.executeUpdate("INSERT INTO user(`username`, `password`, `email`, `isAdmin`, `activCode`, `birthday`, `prename`, `surname`, `street`, `zipcode`, `city`) VALUES "
+        + "('" + username + "', '"+User.encrypt(password)+"', '" + email + "', 0, '" + random + "',\"" +  birthday + "\",'" + prename + "','" + surname + "','" + street + "','" + zipcode + "','" + city + "')");
        }
     
        
@@ -109,10 +109,10 @@ public class User extends javax.swing.JFrame {
         message.setSubject("My First Email");
         message.setContent("<h>Your activationcode: </h>"+random,"text/html");
         Transport.send(message);
-           System.out.println("Email sent!");
        }catch(MessagingException e){
            throw new RuntimeException();
        }
+       JOptionPane.showMessageDialog(null, "Registration was succesfull. Please check your emails.");
     }
     
     public int login(String username, String password) throws SQLException, UnsupportedEncodingException, NoSuchAlgorithmException{
@@ -121,7 +121,7 @@ public class User extends javax.swing.JFrame {
        db.start();
        Connection conn = db.getVerbindung();
        Statement stmt = conn.createStatement();
-       rs = stmt.executeQuery("Select * from user natural join bank where password = '" +User.encrypt(password)+ "' and username = '"+username+"'");
+       rs = stmt.executeQuery("Select * from user natural left join bank where password = '" +User.encrypt(password)+ "' and username = '"+username+"'");
         
        if(rs.next()){
         uid = String.valueOf(rs.getInt("uid"));
@@ -131,11 +131,11 @@ public class User extends javax.swing.JFrame {
         isAdmin = rs.getString("isAdmin");
         lastLogin = rs.getString("lastLogin");
         activated = String.valueOf(rs.getInt("activated"));
-        activationCode = rs.getString("activationCode");
+        activationCode = rs.getString("activCode");
         birthday = rs.getString("birthday");
         prename = rs.getString("prename");
         surname = rs.getString("surname");
-        address = rs.getString("address");
+        street = rs.getString("street");
         zipcode = rs.getString("zipcode");
         city = rs.getString("city");
         iban = rs.getString("iban");
@@ -179,7 +179,7 @@ public class User extends javax.swing.JFrame {
             return 0;
     }
     
-    public int changeInformation(String password, String password2, String email, String prename, String surname, String address, String zipcode, String city, String iban, String bic) throws SQLException{
+    public int changeInformation(String password, String password2, String email, String prename, String surname, String address, String zipcode, String city, String iban, String bic) throws SQLException, UnsupportedEncodingException, NoSuchAlgorithmException{
         Verbindung db = new Verbindung();
         db.start();
         Connection conn = db.getVerbindung();
@@ -197,7 +197,7 @@ public class User extends javax.swing.JFrame {
                 return 0;
             }
             else{
-                String query = "UPDATE user SET password = SHA2('"+password+"',0) , email = '"+email+"', prename = '"+prename+"' , surname = '" + surname + "' , address = '" + address + "' , zipcode = '" + zipcode + "', city = '" + city + "' WHERE uid = '" + this.uid + "' ";
+                String query = "UPDATE user SET password = '"+encrypt(password)+"' , email = '"+email+"', prename = '"+prename+"' , surname = '" + surname + "' , street = '" + address + "' , zipcode = '" + zipcode + "', city = '" + city + "' WHERE uid = '" + this.uid + "' ";
                 stmt.executeUpdate(query);
                 JOptionPane.showMessageDialog(null, "Account information successfully changed.");
                 return 1;
@@ -244,8 +244,8 @@ public class User extends javax.swing.JFrame {
         return surname;
     }
 
-    public String getAddress() {
-        return address;
+    public String getStreet() {
+        return street;
     }
 
     public String getZipcode() {

@@ -2,6 +2,8 @@ package movierental;
 
 import java.awt.Window;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -12,7 +14,7 @@ import javax.swing.JOptionPane;
 
 public class ChangeAccount extends javax.swing.JFrame {
     User user;
-    String Uid;
+    String Uid, iban, bic;
     Verbindung db;
     Connection conn;
     Statement stmt;
@@ -32,19 +34,22 @@ public class ChangeAccount extends javax.swing.JFrame {
         jLabelBirthday.setText(user.getBirthday());
         jTextPrename.setText(user.getPrename());
         jTextSurname.setText(user.getSurname());
-        jTextAddress.setText(user.getAddress());
+        jTextAddress.setText(user.getStreet());
         jTextZipcode.setText(user.getZipcode());
         jTextCity.setText(user.getCity());
-        String iban = user.getIban();
-        if(!iban.equals("0"))
+        if(user.getIban() != null){
+            iban = user.getIban();
             iban = "******************" + iban.substring(iban.length()-4,iban.length());
-        else
+        }else{
             iban = "";
-        String bic = user.getBic();
-        if(!bic.equals("0"))
+        }
+        if(user.getBic() != null){
+            bic = user.getBic();
             bic = "*******" + bic.substring(bic.length()-4,bic.length());
-        else 
+        }
+        else{
             bic = "";
+        }
         jTextIban.setText(iban);
         jTextBic.setText(bic);
         
@@ -339,10 +344,12 @@ public class ChangeAccount extends javax.swing.JFrame {
     private void jButtonChangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonChangeActionPerformed
         if(evt.getSource() == jButtonChange){
             try {
+                if(jPassword.getPassword().equals("********"))
+                    password = user.getPassword();
                 user.changeInformation(new String(jPassword.getPassword()), new String(jPassword2.getPassword()), jTextEmail.getText(), jTextPrename.getText(), jTextSurname.getText(), jTextAddress.getText(), jTextZipcode.getText(), jTextCity.getText(), jTextIban.getText(), jTextBic.getText());
                 setVisible(false);
                 new Account(user).setVisible(true);
-                } catch (SQLException ex) {
+                } catch (SQLException | UnsupportedEncodingException | NoSuchAlgorithmException ex) {
                     Logger.getLogger(ChangeAccount.class.getName()).log(Level.SEVERE, null, ex);
 
             }
