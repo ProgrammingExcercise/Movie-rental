@@ -293,9 +293,9 @@ public class MovieInfo extends javax.swing.JFrame {
 
     private void jButtonRentMovieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRentMovieActionPerformed
         if(user.getUid().equals("0")){
-            JOptionPane.showMessageDialog(null, "Please log in first.");
-        }else if(user.getPrename().equals("") || user.getSurname().equals("")|| user.getStreet().equals("")|| user.getZipcode().equals("")|| user.getCity().equals("")|| user.getIban().equals("0")|| user.getBic().equals("0")){
+        }else if(user.getPrename().equals("") || user.getSurname().equals("")|| user.getStreet().equals("")|| user.getZipcode().equals("")|| user.getCity().equals("")|| user.getIban() == null|| user.getBic() == null || user.getIban().equals("") || user.getBic().equals("")){
             JOptionPane.showMessageDialog(null, "You have to change your account information and fill in all fields.");
+            System.out.println("Iban: " + user.getIban());
         }else{
             try {
                 new Rent(user, movie).setVisible(true);

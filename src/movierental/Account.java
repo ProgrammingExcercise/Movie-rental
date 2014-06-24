@@ -46,13 +46,13 @@ public class Account extends javax.swing.JFrame {
         jLabelAddress.setText(user.getStreet());
         jLabelZipcode.setText(user.getZipcode());
         jLabelCity.setText(user.getCity());
-        if(user.getIban() != null){
+        if(user.getIban() != null && !(user.getIban().equals(""))){
             iban = user.getIban();
             iban = "******************" + iban.substring(iban.length()-4,iban.length());
         }else{
             iban = "";
         }
-        if(user.getBic() != null){
+        if(user.getBic() != null && !(user.getBic().equals(""))){
             bic = user.getBic();
             bic = "*******" + bic.substring(bic.length()-4,bic.length());
         }
@@ -302,20 +302,16 @@ public class Account extends javax.swing.JFrame {
             if(option == 0) // pressing OK button
             {
                 String newpass;
-                try {
-                    newpass = User.encrypt(String.valueOf(pass.getPassword()));
+                newpass = String.valueOf(pass.getPassword());
                 if(!(user.getPassword().equals(newpass))){
                     JOptionPane.showMessageDialog(null, "Password wrong!");
                 }else{
                     try {
-                      new ChangeAccount(user).setVisible(true);
+                        new ChangeAccount(user).setVisible(true);
                         setVisible(false);
                     } catch (SQLException ex) {
                         Logger.getLogger(Account.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                }
-                } catch (UnsupportedEncodingException | NoSuchAlgorithmException ex) {
-                    Logger.getLogger(Account.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }    

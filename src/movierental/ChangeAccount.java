@@ -7,17 +7,24 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 public class ChangeAccount extends javax.swing.JFrame {
     User user;
-    String Uid, iban, bic;
     Verbindung db;
     Connection conn;
     Statement stmt;
+    String uid,username,email,prename,surname,address,password,password2,birthday,day,month,year,city,zipcode,bic,iban;
+    String pattern = "^[_A-Za-z0-9-](?=.*[!@#$%]).{7,50}";
+    String emailreg = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+    String dayreg = "(0?[1-9]|[12][0-9]|3[01])";
+    String monthreg = "(0?[1-9]|1[012])";
+    String yearreg = "((19|20)\\d\\d)";
+    String ibanreg = "[a-zA-Z]{2}[0-9]{2}[a-zA-Z0-9]{4}[0-9]{7}([a-zA-Z0-9]?){0,16}";
+    String bicreg = "([a-zA-Z]{4}[a-zA-Z]{2}[a-zA-Z0-9]{2}([a-zA-Z0-9]{3})?)";
     
     public ChangeAccount(User user) throws SQLException {
         initComponents();
@@ -26,9 +33,9 @@ public class ChangeAccount extends javax.swing.JFrame {
         this.user = user;
         jLabelUserId.setVisible(false);
         jLabelUserId.setText(user.getUid());
-        Uid = jLabelUserId.getText();
-        jPassword.setText("********");
-        jPassword2.setText("********");
+        uid = jLabelUserId.getText();
+        jPassword.setText(user.getPassword());
+        jPassword2.setText(user.getPassword());
         jLabelUsername.setText(user.getUsername());
         jTextEmail.setText(user.getEmail());
         jLabelBirthday.setText(user.getBirthday());
@@ -37,13 +44,13 @@ public class ChangeAccount extends javax.swing.JFrame {
         jTextAddress.setText(user.getStreet());
         jTextZipcode.setText(user.getZipcode());
         jTextCity.setText(user.getCity());
-        if(user.getIban() != null){
+        if(user.getIban() != null && !(user.getIban().equals(""))){
             iban = user.getIban();
             iban = "******************" + iban.substring(iban.length()-4,iban.length());
         }else{
             iban = "";
         }
-        if(user.getBic() != null){
+        if(user.getBic() != null && !(user.getBic().equals(""))){
             bic = user.getBic();
             bic = "*******" + bic.substring(bic.length()-4,bic.length());
         }
@@ -342,16 +349,52 @@ public class ChangeAccount extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextEmailActionPerformed
 
     private void jButtonChangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonChangeActionPerformed
-        if(evt.getSource() == jButtonChange){
-            try {
-                user.changeInformation(new String(jPassword.getPassword()), new String(jPassword2.getPassword()), jTextEmail.getText(), jTextPrename.getText(), jTextSurname.getText(), jTextAddress.getText(), jTextZipcode.getText(), jTextCity.getText(), jTextIban.getText(), jTextBic.getText());
-                setVisible(false);
-                new Account(user).setVisible(true);
-                } catch (SQLException | UnsupportedEncodingException | NoSuchAlgorithmException ex) {
-                    Logger.getLogger(ChangeAccount.class.getName()).log(Level.SEVERE, null, ex);
+        password = new String(jPassword.getPassword());
+        password2 = new String(jPassword2.getPassword());
+        email = jTextEmail.getText();
+        prename = jTextPrename.getText();
+        surname = jTextSurname.getText();
+        address = jTextAddress.getText();
+        zipcode = jTextZipcode.getText();
+        city = jTextCity.getText();
+        iban = jTextIban.getText();
+        bic = jTextBic.getText();
+        if(password.equals("") || email.equals("")){
+                JOptionPane.showMessageDialog(null, "Please fill in all mandatory fields.");
+            }else{
+                
+                if(!(password.matches(pattern))){
+                    JOptionPane.showMessageDialog(null, "Password must have at least 8 characters and 1 special sign.");
+                }else if(!password.equals(password2)){
+                    JOptionPane.showMessageDialog(null, "The two passwords aren't the same.");
+                }else if(!(email.matches(emailreg))){
+                    JOptionPane.showMessageDialog(null, "Please enter a correct email address.");
+                }else if(!iban.equals("") && !iban.matches(ibanreg)){
+                    JOptionPane.showMessageDialog(null,"Please enter a correct iban.");                    
+                }else if(!bic.equals("") && !bic.matches(bicreg)){
+                    JOptionPane.showMessageDialog(null,"Please enter a correct bic.");                    
+                }else{    
+                    try {
+                        user.setPassword(new String(jPassword.getPassword()));
+                        user.setEmail(jTextEmail.getText());
+                        user.setPrename(jTextPrename.getText());
+                        user.setSurname(jTextSurname.getText());
+                        user.setStreet(jTextAddress.getText());
+                        user.setZipcode(jTextZipcode.getText());
+                        user.city = jTextCity.getText();
+                        user.setIban(jTextIban.getText());
+                        user.setBic(jTextBic.getText());
+                        user.changeInformation(new String(jPassword.getPassword()), new String(jPassword2.getPassword()), jTextEmail.getText(), jTextPrename.getText(), jTextSurname.getText(), jTextAddress.getText(), jTextZipcode.getText(), jTextCity.getText(), jTextIban.getText(), jTextBic.getText());
 
-            }
-        }
+                        setVisible(false);
+                        new Account(user).setVisible(true);
+                        } catch (SQLException | UnsupportedEncodingException | NoSuchAlgorithmException ex) {
+                            Logger.getLogger(ChangeAccount.class.getName()).log(Level.SEVERE, null, ex);
+                }   
+                    setVisible(false);
+                } 
+                }
+            
     }//GEN-LAST:event_jButtonChangeActionPerformed
 
     private void jButtonReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReturnActionPerformed
@@ -368,7 +411,7 @@ public class ChangeAccount extends javax.swing.JFrame {
                 conn = db.getVerbindung();
                 
                 stmt = conn.createStatement();
-                stmt.executeUpdate("DELETE FROM user WHERE Uid = '"+Uid+"'");
+                stmt.executeUpdate("DELETE FROM user WHERE Uid = '"+uid+"'");
                 System.gc();  
                 for (Window window : Window.getWindows()) {  
                     window.dispose();  

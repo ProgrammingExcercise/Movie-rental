@@ -69,7 +69,7 @@ public class User extends javax.swing.JFrame {
         
     }
     
-    public static void register( String username, String password, String email, String birthday, String prename, String surname, String street, String zipcode, String city, String iban, String bic) throws SQLException, UnsupportedEncodingException, NoSuchAlgorithmException{
+    public static boolean register( String username, String password, String email, String birthday, String prename, String surname, String street, String zipcode, String city, String iban, String bic) throws SQLException, UnsupportedEncodingException, NoSuchAlgorithmException{
        int random = (int) (Math.round(Math.random() * 89999) + 10000);
        
        Verbindung db = new Verbindung();
@@ -77,18 +77,30 @@ public class User extends javax.swing.JFrame {
        Connection conn = db.getVerbindung();
        Statement stmt = conn.createStatement();
        Statement stmt2 = conn.createStatement();
-       if(!(iban.equals("") && bic.equals(""))){
-       stmt2.executeUpdate("INSERT INTO BANK (`iban`, `bic`) VALUES ('"+iban+"','"+bic+"')");
-       stmt.executeUpdate("INSERT INTO user(`username`, `password`, `email`, `isAdmin`, `activCode`, `birthday`, `prename`, `surname`, `street`, `zipcode`, `city`, `bid`) VALUES "
-        + "('" + username + "', '"+User.encrypt(password)+"', '" + email + "', 0, '" + random + "',\"" +  birthday + "\",'" + prename + "','" + surname + "','" + street + "','" + zipcode + "','" + city + "', (SELECT bid FROM bank where iban = '"+iban+"' and bic = '"+bic+"'))");
+       Statement stmt3 = conn.createStatement();
+       Statement stmt4 = conn.createStatement();
+       ResultSet rs = stmt3.executeQuery("SELECT * from user WHERE username = '"+username+"'");
+       ResultSet rs2 = stmt4.executeQuery("SELECT * from user WHERE email = '"+email+"'");
+       if(rs.next()){
+           JOptionPane.showMessageDialog(null, "Username already exists.");
+           return false;
+       }else if(rs2.next()){
+           JOptionPane.showMessageDialog(null, "Email already exists.");       
+           return false;
        }else{
-       stmt.executeUpdate("INSERT INTO user(`username`, `password`, `email`, `isAdmin`, `activCode`, `birthday`, `prename`, `surname`, `street`, `zipcode`, `city`) VALUES "
-        + "('" + username + "', '"+User.encrypt(password)+"', '" + email + "', 0, '" + random + "',\"" +  birthday + "\",'" + prename + "','" + surname + "','" + street + "','" + zipcode + "','" + city + "')");
+       
+       if(!(iban.equals("") && bic.equals(""))){
+            stmt2.executeUpdate("INSERT INTO BANK (`iban`, `bic`) VALUES ('"+iban+"','"+bic+"')");
+            stmt.executeUpdate("INSERT INTO user(`username`, `password`, `email`, `isAdmin`, `activCode`, `birthday`, `prename`, `surname`, `street`, `zipcode`, `city`, `bid`) VALUES "
+             + "('" + username + "', '"+User.encrypt(password)+"', '" + email + "', 0, '" + random + "',\"" +  birthday + "\",'" + prename + "','" + surname + "','" + street + "','" + zipcode + "','" + city + "', (SELECT bid FROM bank where iban = '"+iban+"' and bic = '"+bic+"'))");
+       }else{
+            stmt.executeUpdate("INSERT INTO user(`username`, `password`, `email`, `isAdmin`, `activCode`, `birthday`, `prename`, `surname`, `street`, `zipcode`, `city`) VALUES "
+             + "('" + username + "', '"+User.encrypt(password)+"', '" + email + "', 0, '" + random + "',\"" +  birthday + "\",'" + prename + "','" + surname + "','" + street + "','" + zipcode + "','" + city + "')");
        }
     
        
-       final String mailname = "stefbasanisi@gmail.com";
-       final String mailpassword = "bigboss90";
+       final String mailname = "moviejunkie.progex@gmail.com";
+       final String mailpassword = "moviejunkie";
         
         Properties props = new Properties();
         props.put("mail.smtp.auth","true");
@@ -106,17 +118,21 @@ public class User extends javax.swing.JFrame {
        Message message = new MimeMessage(session);
         message.setFrom(new InternetAddress(username));
         message.setRecipients(Message.RecipientType.TO,InternetAddress.parse(email));
-        message.setSubject("My First Email");
-        message.setContent("<h>Your activCode: </h>"+random,"text/html");
+        message.setSubject("Complete your registration");
+        message.setContent("<h><img src='http://s7.directupload.net/images/140624/7zf3ocup.png'><br><p>Congratulations! <br><br> To finish your registration please enter this activation code after logging in: "+random+"</p></h>","text/html");
         Transport.send(message);
        }catch(MessagingException e){
            throw new RuntimeException();
        }
        JOptionPane.showMessageDialog(null, "Registration was succesfull. Please check your emails.");
+        }
+       return true;
     }
     
     public int login(String username, String password) throws SQLException, UnsupportedEncodingException, NoSuchAlgorithmException{
        
+       this.username = username;
+       this.password = password; 
        Verbindung db = new Verbindung();
        db.start();
        Connection conn = db.getVerbindung();
@@ -125,8 +141,6 @@ public class User extends javax.swing.JFrame {
         
        if(rs.next()){
         uid = String.valueOf(rs.getInt("uid"));
-        this.username = rs.getString("username");
-        this.password = rs.getString("password");
         email = rs.getString("email");
         isAdmin = rs.getString("isAdmin");
         lastLogin = rs.getString("lastLogin");
@@ -188,15 +202,11 @@ public class User extends javax.swing.JFrame {
             //Überprüfung ob Email bereits vorhanden
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery("Select * from user where email = '"+email+"' and uid != '"+this.uid+"'");
-
+            
             if(rs.next()){
-                JOptionPane.showMessageDialog(null,"EMail already used!");
+                JOptionPane.showMessageDialog(null,"Email already used.");
                 return 0;
-            }else if(!password.equals(password2)){
-                JOptionPane.showMessageDialog(null,"The two passwords aren't the same!");
-                return 0;
-            }
-            else{
+            }else{
                 String query = "UPDATE user SET password = '"+encrypt(password)+"' , email = '"+email+"', prename = '"+prename+"' , surname = '" + surname + "' , street = '" + address + "' , zipcode = '" + zipcode + "', city = '" + city + "' WHERE uid = '" + this.uid + "' ";
                 stmt.executeUpdate(query);
                 JOptionPane.showMessageDialog(null, "Account information successfully changed.");
@@ -271,6 +281,47 @@ public class User extends javax.swing.JFrame {
     public void setUid(String uid) {
         this.uid = uid;
     }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPrename(String prename) {
+        this.prename = prename;
+    }
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public void setZipcode(String zipcode) {
+        this.zipcode = zipcode;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public void setIban(String iban) {
+        this.iban = iban;
+    }
+
+    public void setBic(String bic) {
+        this.bic = bic;
+    }
+    
+    
 
    public void searchResult(ArrayList<Movie> movies2) throws MalformedURLException{
         jLabelBild1.setVisible(false);
