@@ -68,7 +68,23 @@ public class User extends javax.swing.JFrame {
         jButtonReturn.setVisible(false);
         
     }
+    public static String randomString(){
+        int random = (int) (Math.round(Math.random() * 89999) + 10000);
+      
+        StringBuffer buffer = new StringBuffer();
+
+        String characters ="!$%&?#abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!$%&?#";
+        
+        int charactersLength = characters.length();
+        for (int i = 0; i < 8; i++) {
+			double index = Math.random() * charactersLength;
+			buffer.append(characters.charAt((int) index));
+		}
+                        double index = Math.random() * charactersLength;
+                        //buffer.append(sonder.charAt((int) index));
+       return buffer.toString();
     
+    }
     public static boolean register( String username, String password, String email, String birthday, String prename, String surname, String street, String zipcode, String city, String iban, String bic) throws SQLException, UnsupportedEncodingException, NoSuchAlgorithmException{
        int random = (int) (Math.round(Math.random() * 89999) + 10000);
        
@@ -216,7 +232,7 @@ public class User extends javax.swing.JFrame {
             }   
     }
 
-    public static boolean forgottenPassword(String username, String email) throws SQLException{
+    public static boolean forgottenPassword(String username, String email) throws SQLException, UnsupportedEncodingException, NoSuchAlgorithmException{
        Verbindung db = new Verbindung();
        db.start();
        Connection conn = db.getVerbindung();
@@ -224,6 +240,37 @@ public class User extends javax.swing.JFrame {
        ResultSet rs = stmt.executeQuery("Select * from user where username = '"+username+"' and email = '"+email+"' ");
        
        if(rs.next()){
+       
+       final String mailname = "moviejunkie.progex@gmail.com";
+       final String mailpassword = "moviejunkie";
+        
+        Properties props = new Properties();
+        props.put("mail.smtp.auth","true");
+        props.put("mail.smtp.starttls.enable","true");
+        props.put("mail.smtp.host","smtp.gmail.com");
+        props.put("mail.smtp.port","587");
+        
+        Session session = Session.getInstance(props,new javax.mail.Authenticator(){
+           @Override
+           protected PasswordAuthentication getPasswordAuthentication() {
+               return new PasswordAuthentication(mailname, mailpassword);
+           } 
+        });
+       try{
+       Message message = new MimeMessage(session);
+        message.setFrom(new InternetAddress(username));
+        message.setRecipients(Message.RecipientType.TO,InternetAddress.parse(email));
+        message.setSubject("New Password");
+        String rand = randomString();
+        message.setContent("<h>Your new password: </h>"+rand,"text/html");
+        Transport.send(message);
+        Statement stmt2 = conn.createStatement();
+        stmt2.executeUpdate("UPDATE user SET password = '"+encrypt(rand)+"' WHERE username = '"+username+"'");
+        
+       }catch(MessagingException e){
+           throw new RuntimeException();
+       }
+           
            JOptionPane.showMessageDialog(null, "A new password has been sent to your email address.");
            return true;
        }else{
@@ -574,7 +621,7 @@ public class User extends javax.swing.JFrame {
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/movierental/Logo.png"))); // NOI18N
         jLabel2.setText("jLabel2");
 
-        jComboPrice.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Price", "Category 1", "Category 2", "Category 3" }));
+        jComboPrice.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Price", "3.99", "2.99", "1.99" }));
         jComboPrice.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboPriceItemStateChanged(evt);

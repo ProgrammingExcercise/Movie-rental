@@ -6,6 +6,11 @@
 
 package movierental;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 /**
  *
  * @author stefano
@@ -15,13 +20,19 @@ public class MovieRental {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        // TODO code application logic here
-        int abc = 5;
-        int def = 8;
-        int xyz = 12;
-        int dscd= 23;
-        
+    public static void main(String[] args) throws SQLException {
+       
+       String password = "stefano!";
+       String username = "stefano";
+       Verbindung db = new Verbindung();
+       db.start();
+       Connection conn = db.getVerbindung();
+       Statement stmt = conn.createStatement();
+       
+       ResultSet rs = stmt.executeQuery("Select * from user where password = SHA2('" +password+ "',0) and username = '"+username+"'");
+       if(rs.next()){
+           System.out.println(rs.getString("Uid"));
+       }
     }
     
 }
