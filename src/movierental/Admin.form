@@ -55,11 +55,11 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                       <Component id="jComboGenre" min="-2" pref="117" max="-2" attributes="0"/>
-                      <EmptySpace pref="44" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Component id="jComboPrice" min="-2" pref="117" max="-2" attributes="0"/>
-                      <EmptySpace pref="44" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Component id="jComboAgeRating" min="-2" pref="129" max="-2" attributes="0"/>
-                      <EmptySpace pref="44" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
@@ -70,7 +70,7 @@
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="jComboLanguage" min="-2" pref="124" max="-2" attributes="0"/>
-                              <EmptySpace pref="44" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                               <Component id="jComboRating" min="-2" pref="117" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -132,9 +132,9 @@
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="4">
             <StringItem index="0" value="Price"/>
-            <StringItem index="1" value="Category 1"/>
-            <StringItem index="2" value="Category 2"/>
-            <StringItem index="3" value="Category 3"/>
+            <StringItem index="1" value="3.99"/>
+            <StringItem index="2" value="2.99"/>
+            <StringItem index="3" value="1.99"/>
           </StringArray>
         </Property>
       </Properties>
