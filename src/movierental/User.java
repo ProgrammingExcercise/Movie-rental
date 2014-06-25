@@ -224,7 +224,7 @@ public class User extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null,"Email already used.");
                 return 0;
             }else{
-                stmt2.executeUpdate("INSERT INTO bank (iban,bic) values ('"+iban+"', '"+bic+"')");
+                stmt2.executeUpdate("INSERT INTO bank (iban,bic) values ('"+iban+"', '"+bic+"') ON DUPLICATE KEY UPDATE iban = '"+iban+"'");
                 String query = "UPDATE user SET password = '"+encrypt(password)+"' , email = '"+email+"', prename = '"+prename+"' , surname = '" + surname + "' , street = '" + address + "' , zipcode = '" + zipcode + "', city = '" + city + "', bid = (SELECT bid from bank where iban = '"+iban+"') WHERE uid = '" + this.uid + "' ";
                 stmt.executeUpdate(query);
                 JOptionPane.showMessageDialog(null, "Account information successfully changed.");
@@ -1193,14 +1193,14 @@ class MouseImpl extends MouseAdapter {
         Object source = e.getSource();
         if (source == jLabelBild1) {
             try {
-                new MovieInfo(user,movies.get(0)).setVisible(true);
+                new MovieInfo(user,movies.get(0+seitenanzahl)).setVisible(true);
             } catch (MalformedURLException ex) {
                 Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         if (source == jLabelBild2) {
              try {
-                MovieInfo window = new MovieInfo(user,movies.get(1));
+                MovieInfo window = new MovieInfo(user,movies.get(1+seitenanzahl));
                 window.pack();
                 window.setVisible(true);
             } catch (MalformedURLException ex) {
@@ -1210,7 +1210,7 @@ class MouseImpl extends MouseAdapter {
 
         if (source == jLabelBild3) {
              try {
-                MovieInfo window = new MovieInfo(user,movies.get(2));
+                MovieInfo window = new MovieInfo(user,movies.get(2+seitenanzahl));
                 window.pack();
                 window.setVisible(true);
             } catch (MalformedURLException ex) {
@@ -1219,7 +1219,7 @@ class MouseImpl extends MouseAdapter {
         }
         if (source == jLabelBild4) {
              try {
-                MovieInfo window = new MovieInfo(user,movies.get(3));
+                MovieInfo window = new MovieInfo(user,movies.get(3+seitenanzahl));
                 window.pack();
                 window.setVisible(true);
             } catch (MalformedURLException ex) {
@@ -1228,7 +1228,7 @@ class MouseImpl extends MouseAdapter {
         }
         if (source == jLabelBild5) {
              try {
-                MovieInfo window = new MovieInfo(user,movies.get(4));
+                MovieInfo window = new MovieInfo(user,movies.get(4+seitenanzahl));
                 window.pack();
                 window.setVisible(true);
             } catch (MalformedURLException ex) {
@@ -1237,7 +1237,7 @@ class MouseImpl extends MouseAdapter {
         }
         if (source == jLabelBild6) {
              try {
-                MovieInfo window = new MovieInfo(user,movies.get(5));
+                MovieInfo window = new MovieInfo(user,movies.get(5+seitenanzahl));
                 window.pack();
                 window.setVisible(true);
             } catch (MalformedURLException ex) {
@@ -1246,7 +1246,7 @@ class MouseImpl extends MouseAdapter {
         }
         if (source == jLabelBild7) {
              try {
-                MovieInfo window = new MovieInfo(user,movies.get(6));
+                MovieInfo window = new MovieInfo(user,movies.get(6+seitenanzahl));
                 window.pack();
                 window.setVisible(true);
             } catch (MalformedURLException ex) {
@@ -1255,7 +1255,7 @@ class MouseImpl extends MouseAdapter {
         }
         if (source == jLabelBild8) {
              try {
-                MovieInfo window = new MovieInfo(user,movies.get(7));
+                MovieInfo window = new MovieInfo(user,movies.get(7+seitenanzahl));
                 window.pack();
                 window.setVisible(true);
             } catch (MalformedURLException ex) {
@@ -1264,7 +1264,7 @@ class MouseImpl extends MouseAdapter {
         }  
         if (source == jLabelBild9) {
              try {
-                MovieInfo window = new MovieInfo(user,movies.get(8));
+                MovieInfo window = new MovieInfo(user,movies.get(8+seitenanzahl));
                 window.pack();
                 window.setVisible(true);
             } catch (MalformedURLException ex) {
@@ -1273,7 +1273,7 @@ class MouseImpl extends MouseAdapter {
         }
         if (source == jLabelBild10) {
              try {
-                MovieInfo window = new MovieInfo(user,movies.get(9));
+                MovieInfo window = new MovieInfo(user,movies.get(9+seitenanzahl));
                 window.pack();
                 window.setVisible(true);
             } catch (MalformedURLException ex) {
@@ -1282,14 +1282,14 @@ class MouseImpl extends MouseAdapter {
         }
         if (source == jLabelBild11) {
             try {
-                new MovieInfo(user,movies.get(10)).setVisible(true);
+                new MovieInfo(user,movies.get(10+seitenanzahl)).setVisible(true);
             } catch (MalformedURLException ex) {
                 Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         if (source == jLabelBild19) {
              try {
-                MovieInfo window = new MovieInfo(user,movies.get(11));
+                MovieInfo window = new MovieInfo(user,movies.get(11+seitenanzahl));
                 window.pack();
                 window.setVisible(true);
             } catch (MalformedURLException ex) {
@@ -1299,7 +1299,7 @@ class MouseImpl extends MouseAdapter {
 
         if (source == jLabelBild12) {
              try {
-                MovieInfo window = new MovieInfo(user,movies.get(12));
+                MovieInfo window = new MovieInfo(user,movies.get(12+seitenanzahl));
                 window.pack();
                 window.setVisible(true);
             } catch (MalformedURLException ex) {
@@ -1308,7 +1308,7 @@ class MouseImpl extends MouseAdapter {
         }
         if (source == jLabelBild14) {
              try {
-                MovieInfo window = new MovieInfo(user,movies.get(13));
+                MovieInfo window = new MovieInfo(user,movies.get(13+seitenanzahl));
                 window.pack();
                 window.setVisible(true);
             } catch (MalformedURLException ex) {
@@ -1317,7 +1317,7 @@ class MouseImpl extends MouseAdapter {
         }
         if (source == jLabelBild15) {
              try {
-                MovieInfo window = new MovieInfo(user,movies.get(14));
+                MovieInfo window = new MovieInfo(user,movies.get(14+seitenanzahl));
                 window.pack();
                 window.setVisible(true);
             } catch (MalformedURLException ex) {
@@ -1326,7 +1326,7 @@ class MouseImpl extends MouseAdapter {
         }
         if (source == jLabelBild17) {
              try {
-                MovieInfo window = new MovieInfo(user,movies.get(15));
+                MovieInfo window = new MovieInfo(user,movies.get(15+seitenanzahl));
                 window.pack();
                 window.setVisible(true);
             } catch (MalformedURLException ex) {
@@ -1335,7 +1335,7 @@ class MouseImpl extends MouseAdapter {
         }
         if (source == jLabelBild18) {
              try {
-                MovieInfo window = new MovieInfo(user,movies.get(16));
+                MovieInfo window = new MovieInfo(user,movies.get(16+seitenanzahl));
                 window.pack();
                 window.setVisible(true);
             } catch (MalformedURLException ex) {
@@ -1344,7 +1344,7 @@ class MouseImpl extends MouseAdapter {
         }
         if (source == jLabelBild20) {
              try {
-                MovieInfo window = new MovieInfo(user,movies.get(17));
+                MovieInfo window = new MovieInfo(user,movies.get(17+seitenanzahl));
                 window.pack();
                 window.setVisible(true);
             } catch (MalformedURLException ex) {
@@ -1353,7 +1353,7 @@ class MouseImpl extends MouseAdapter {
         }  
         if (source == jLabelBild13) {
              try {
-                MovieInfo window = new MovieInfo(user,movies.get(18));
+                MovieInfo window = new MovieInfo(user,movies.get(18+seitenanzahl));
                 window.pack();
                 window.setVisible(true);
             } catch (MalformedURLException ex) {
@@ -1362,7 +1362,7 @@ class MouseImpl extends MouseAdapter {
         }
         if (source == jLabelBild16) {
              try {
-                MovieInfo window = new MovieInfo(user,movies.get(19));
+                MovieInfo window = new MovieInfo(user,movies.get(19+seitenanzahl));
                 window.pack();
                 window.setVisible(true);
             } catch (MalformedURLException ex) {
