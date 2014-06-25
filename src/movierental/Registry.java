@@ -32,7 +32,8 @@ public class Registry extends javax.swing.JFrame {
     public Registry() {
         initComponents();
         setLocationRelativeTo(null);
-        jTextUsername.setToolTipText("beispiel@gmx.de");
+        jTextEmail.setToolTipText("example@gmx.de");
+        jPassword.setToolTipText("special signs: !@#$%");
     }
 
     @SuppressWarnings("unchecked")

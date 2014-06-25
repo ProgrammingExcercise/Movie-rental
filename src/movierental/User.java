@@ -73,7 +73,7 @@ public class User extends javax.swing.JFrame {
       
         StringBuffer buffer = new StringBuffer();
 
-        String characters ="!$%&?#abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!$%&?#";
+        String characters ="!@#$%abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%";
         
         int charactersLength = characters.length();
         for (int i = 0; i < 8; i++) {
@@ -262,7 +262,7 @@ public class User extends javax.swing.JFrame {
         message.setRecipients(Message.RecipientType.TO,InternetAddress.parse(email));
         message.setSubject("New Password");
         String rand = randomString();
-        message.setContent("<h>Your new password: </h>"+rand,"text/html");
+        message.setContent("<img src='http://s7.directupload.net/images/140624/7zf3ocup.png'><h>Your new password: </h>"+rand,"text/html");
         Transport.send(message);
         Statement stmt2 = conn.createStatement();
         stmt2.executeUpdate("UPDATE user SET password = '"+encrypt(rand)+"' WHERE username = '"+username+"'");
