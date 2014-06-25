@@ -108,7 +108,7 @@ public class User extends javax.swing.JFrame {
        if(!(iban.equals("") && bic.equals(""))){
             stmt2.executeUpdate("INSERT INTO BANK (`iban`, `bic`) VALUES ('"+iban+"','"+bic+"')");
             stmt.executeUpdate("INSERT INTO user(`username`, `password`, `email`, `isAdmin`, `activCode`, `birthday`, `prename`, `surname`, `street`, `zipcode`, `city`, `bid`) VALUES "
-             + "('" + username + "', '"+User.encrypt(password)+"', '" + email + "', 0, '" + random + "',\"" +  birthday + "\",'" + prename + "','" + surname + "','" + street + "','" + zipcode + "','" + city + "', (SELECT bid FROM bank where iban = '"+iban+"' and bic = '"+bic+"'))");
+             + "('" + username + "', '"+User.encrypt(password)+"', '" + email + "', 0, '" + random + "',\"" +  birthday + "\",'" + prename + "','" + surname + "','" + street + "','" + zipcode + "','" + city + "', (SELECT bid FROM bank where iban = '"+iban+"' and bic = '"+bic+"' LIMIT 0,1))");
        }else{
             stmt.executeUpdate("INSERT INTO user(`username`, `password`, `email`, `isAdmin`, `activCode`, `birthday`, `prename`, `surname`, `street`, `zipcode`, `city`) VALUES "
              + "('" + username + "', '"+User.encrypt(password)+"', '" + email + "', 0, '" + random + "',\"" +  birthday + "\",'" + prename + "','" + surname + "','" + street + "','" + zipcode + "','" + city + "')");
@@ -218,12 +218,14 @@ public class User extends javax.swing.JFrame {
             //Überprüfung ob Email bereits vorhanden
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery("Select * from user where email = '"+email+"' and uid != '"+this.uid+"'");
+            Statement stmt2 = conn.createStatement();
             
             if(rs.next()){
                 JOptionPane.showMessageDialog(null,"Email already used.");
                 return 0;
             }else{
-                String query = "UPDATE user SET password = '"+encrypt(password)+"' , email = '"+email+"', prename = '"+prename+"' , surname = '" + surname + "' , street = '" + address + "' , zipcode = '" + zipcode + "', city = '" + city + "' WHERE uid = '" + this.uid + "' ";
+                stmt2.executeUpdate("INSERT INTO bank (iban,bic) values ('"+iban+"', '"+bic+"')");
+                String query = "UPDATE user SET password = '"+encrypt(password)+"' , email = '"+email+"', prename = '"+prename+"' , surname = '" + surname + "' , street = '" + address + "' , zipcode = '" + zipcode + "', city = '" + city + "', bid = (SELECT bid from bank where iban = '"+iban+"') WHERE uid = '" + this.uid + "' ";
                 stmt.executeUpdate(query);
                 JOptionPane.showMessageDialog(null, "Account information successfully changed.");
                 return 1;

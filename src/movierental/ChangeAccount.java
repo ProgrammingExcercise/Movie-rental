@@ -17,7 +17,7 @@ public class ChangeAccount extends javax.swing.JFrame {
     Verbindung db;
     Connection conn;
     Statement stmt;
-    String uid,username,email,prename,surname,address,password,password2,birthday,day,month,year,city,zipcode,bic,iban;
+    String uid,username,email,prename,surname,address,password,password2,birthday,day,month,year,city,zipcode,bic,iban,bichidden,ibanhidden;
     String pattern = "^[_A-Za-z0-9-](?=.*[!@#$%]).{7,50}";
     String emailreg = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
     String dayreg = "(0?[1-9]|[12][0-9]|3[01])";
@@ -46,19 +46,21 @@ public class ChangeAccount extends javax.swing.JFrame {
         jTextCity.setText(user.getCity());
         if(user.getIban() != null && !(user.getIban().equals(""))){
             iban = user.getIban();
-            iban = "******************" + iban.substring(iban.length()-4,iban.length());
+            ibanhidden = "******************" + iban.substring(iban.length()-4,iban.length());
+            jTextIban.setText(ibanhidden);
         }else{
             iban = "";
+            jTextIban.setText(iban);
         }
         if(user.getBic() != null && !(user.getBic().equals(""))){
             bic = user.getBic();
-            bic = "*******" + bic.substring(bic.length()-4,bic.length());
+            bichidden = "****" + bic.substring(bic.length()-4,bic.length());
+            jTextBic.setText(bichidden);
         }
         else{
             bic = "";
+            jTextBic.setText(bic);
         }
-        jTextIban.setText(iban);
-        jTextBic.setText(bic);
         
     }
 
@@ -369,9 +371,9 @@ public class ChangeAccount extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "The two passwords aren't the same.");
                 }else if(!(email.matches(emailreg))){
                     JOptionPane.showMessageDialog(null, "Please enter a correct email address.");
-                }else if(!iban.equals("") && !iban.matches(ibanreg)){
+                }else if(!(iban.equals("")||iban.startsWith("*")) && !(iban.matches(ibanreg)||iban.startsWith("*"))){
                     JOptionPane.showMessageDialog(null,"Please enter a correct iban.");                    
-                }else if(!bic.equals("") && !bic.matches(bicreg)){
+                }else if(!(bic.equals("")||bic.startsWith("*")) && !(bic.matches(bicreg)||bic.startsWith("*"))){
                     JOptionPane.showMessageDialog(null,"Please enter a correct bic.");                    
                 }else{    
                     try {
@@ -382,9 +384,12 @@ public class ChangeAccount extends javax.swing.JFrame {
                         user.setStreet(jTextAddress.getText());
                         user.setZipcode(jTextZipcode.getText());
                         user.city = jTextCity.getText();
-                        user.setIban(jTextIban.getText());
-                        user.setBic(jTextBic.getText());
-                        user.changeInformation(new String(jPassword.getPassword()), new String(jPassword2.getPassword()), jTextEmail.getText(), jTextPrename.getText(), jTextSurname.getText(), jTextAddress.getText(), jTextZipcode.getText(), jTextCity.getText(), jTextIban.getText(), jTextBic.getText());
+                        if(!jTextIban.getText().startsWith("*"))
+                            user.setIban(jTextIban.getText());
+                        if(!jTextBic.getText().startsWith("*"))
+                            user.setBic(jTextBic.getText());
+                        System.out.println("Iban: " + user.getIban());
+                        user.changeInformation(new String(jPassword.getPassword()), new String(jPassword2.getPassword()), jTextEmail.getText(), jTextPrename.getText(), jTextSurname.getText(), jTextAddress.getText(), jTextZipcode.getText(), jTextCity.getText(), user.getIban(), user.getBic());
 
                         setVisible(false);
                         new Account(user).setVisible(true);
