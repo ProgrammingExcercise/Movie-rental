@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import org.apache.commons.lang.StringEscapeUtils;
 
 
 
@@ -447,7 +448,7 @@ public class ChangeMovie extends javax.swing.JFrame {
        agerating = (String) jComboAgeRating.getSelectedItem();
        duration = jTextDuration.getText();
        releaseyear = jTextReleaseYear.getText();
-       description = jTextDescription.getText();
+       description = StringEscapeUtils.escapeJavaScript(jTextDescription.getText());
        pricecat = (String) jComboPriceCategory.getSelectedItem();
        imglink = jTextFieldImgLink.getText();
        streamlink = jTextStreamlink.getText();
@@ -543,55 +544,55 @@ public class ChangeMovie extends javax.swing.JFrame {
                }else{
                     rs.beforeFirst();
                     while(rs.next()){
-                        liste.add(rs.getString(2));
+                        liste.add(rs.getString("title"));
                          }
                     switch (liste.size()){
-                        case 2:
-                    Object Res = JOptionPane.showInputDialog(null,
-                    "Choose One?", "More than 1 hit",
-                    JOptionPane.QUESTION_MESSAGE, null, new String[] { liste.get(0), liste.get(1) },
-                    liste.get(0));
-                    if(!(Res == null)){
-                    answer = Res.toString();
-                    }else{
-                        JOptionPane.showMessageDialog(null, "Search operation aborted");
-                    }
+                    case 2:
+                        Object Res = JOptionPane.showInputDialog(null,
+                        "Choose One?", "More than 1 hit",
+                        JOptionPane.QUESTION_MESSAGE, null, new String[] { liste.get(0), liste.get(1) },
+                        liste.get(0));
+                        if(!(Res == null)){
+                        answer = Res.toString();
+                        }else{
+                            JOptionPane.showMessageDialog(null, "Search operation aborted");
+                        }
                         break;
-                        case 3:
-                    Object Resp = JOptionPane.showInputDialog(null,
-                    "Choose One?", "More than 1 hit",
-                    JOptionPane.QUESTION_MESSAGE, null, new String[] { liste.get(0), liste.get(1),liste.get(2) },
-                    liste.get(0));
-                    if(!(Resp == null)){
-                    answer = Resp.toString();
-                    }else{
-                        JOptionPane.showMessageDialog(null, "Search operation aborted");
-                    }
-                        break;
-                        case 4:
-                    Object Respo = JOptionPane.showInputDialog(null,
-                    "Choose One?", "More than 1 hit",
-                    JOptionPane.QUESTION_MESSAGE, null, new String[] { liste.get(0), liste.get(1),liste.get(2),liste.get(3) },
-                    liste.get(0));
-                    if(!(Respo == null)){
-                    answer = Respo.toString();
+                    case 3:
+                        Object Resp = JOptionPane.showInputDialog(null,
+                        "Choose One?", "More than 1 hit",
+                        JOptionPane.QUESTION_MESSAGE, null, new String[] { liste.get(0), liste.get(1),liste.get(2) },
+                        liste.get(0));
+                        if(!(Resp == null)){
+                        answer = Resp.toString();
+                        }else{
+                            JOptionPane.showMessageDialog(null, "Search operation aborted");
+                        }
+                            break;
+                    case 4:
+                        Object Respo = JOptionPane.showInputDialog(null,
+                        "Choose One?", "More than 1 hit",
+                        JOptionPane.QUESTION_MESSAGE, null, new String[] { liste.get(0), liste.get(1),liste.get(2),liste.get(3) },
+                        liste.get(0));
+                        if(!(Respo == null)){
+                        answer = Respo.toString();
+                        }else{
+                            JOptionPane.showMessageDialog(null, "Search operation aborted");
+                        }
+                         break;
+                    case 5:
+                        Object Respon = JOptionPane.showInputDialog(null,
+                        "Choose One?", "More than 1 hit",
+                        JOptionPane.QUESTION_MESSAGE, null, new String[] { liste.get(0), liste.get(1),liste.get(2),liste.get(3),liste.get(4) },
+                        liste.get(0));
+                        if(!(Respon == null)){
+                        answer = Respon.toString();
                     }else{
                         JOptionPane.showMessageDialog(null, "Search operation aborted");
                     }
                          break;
-                         case 5:
-                    Object Respon = JOptionPane.showInputDialog(null,
-                    "Choose One?", "More than 1 hit",
-                    JOptionPane.QUESTION_MESSAGE, null, new String[] { liste.get(0), liste.get(1),liste.get(2),liste.get(3),liste.get(4) },
-                    liste.get(0));
-                    if(!(Respon == null)){
-                    answer = Respon.toString();
-                    }else{
-                        JOptionPane.showMessageDialog(null, "Search operation aborted");
-                    }
-                         break;
-                         case 6:
-                    JOptionPane.showMessageDialog(null, "Please be more accurate.");
+                    case 6:
+                        JOptionPane.showMessageDialog(null, "Please be more accurate.");
                     
                          break;
                     }
@@ -601,52 +602,52 @@ public class ChangeMovie extends javax.swing.JFrame {
                    
                     if(rs2.next()){
                         
-                    movieid = rs2.getString(1);
-                    title = rs2.getString(2);
-                    genre = rs2.getString(3);
-                    age = rs2.getInt(4);
-                    description = rs2.getString(5);
-                    releaseyear = rs2.getString(6);
-                    duration = rs2.getString(7);
-                    streamlink = rs2.getString(8);
-                    imglink = rs2.getString(9);
-                    price = rs2.getString("price");
-                    
-                    stmt4 = conn.createStatement();
-                    rs3 = stmt4.executeQuery("SELECT Language FROM haslang WHERE Mid = '"+movieid+"' ");
-                    
-                    rs3.first();
-                    language = rs3.getString("Language");
-                    if(rs3.next()){
-                    language2 = rs3.getString("Language");
-                    combolanguage2 = comboLanguage(language2);
-                    jComboLanguage2.setSelectedIndex(combolanguage2);
-                    }
-                    combogenre = comboGenre(genre);
-                    comboagerating = comboAgerating(age);
-                    combopricecat = comboPricecat(price);
-                    combolanguage = comboLanguage(language);
-                   
-                   
-                    jTextTitle.setText(title);
-                    jComboGenre.setSelectedIndex(combogenre);
-                    jTextDescription.setText(description);
-                    jTextReleaseYear.setText(releaseyear);
-                    jTextDuration.setText(duration);
-                    jTextStreamlink.setText(streamlink);
-                    jTextFieldImgLink.setText(imglink);
-                    jComboPriceCategory.setSelectedIndex(combopricecat);
-                    jComboAgeRating.setSelectedIndex(comboagerating);
-                    jLabelMovieid.setText(movieid);
-                    jLabelMovieid.setVisible(false);
-                    jComboLanguage.setSelectedIndex(combolanguage);
-                    
-                    }
+                        movieid = rs2.getString("mid");
+                        title = rs2.getString("title");
+                        genre = rs2.getString("genre");
+                        age = rs2.getInt("ageRating");
+                        description = rs2.getString("description");
+                        releaseyear = rs2.getString("releaseYear");
+                        duration = rs2.getString("duration");
+                        streamlink = rs2.getString("streamlink");
+                        imglink = rs2.getString("picture");
+                        price = rs2.getString("price");
+
+                        stmt4 = conn.createStatement();
+                        rs3 = stmt4.executeQuery("SELECT Language FROM haslang WHERE Mid = '"+movieid+"' ");
+
+                        rs3.first();
+                        language = rs3.getString("Language");
+                        if(rs3.next()){
+                            language2 = rs3.getString("Language");
+                            combolanguage2 = comboLanguage(language2);
+                            jComboLanguage2.setSelectedIndex(combolanguage2);
+                        }
+                        combogenre = comboGenre(genre);
+                        comboagerating = comboAgerating(age);
+                        combopricecat = comboPricecat(price);
+                        combolanguage = comboLanguage(language);
+
+
+                        jTextTitle.setText(title);
+                        jComboGenre.setSelectedIndex(combogenre);
+                        jTextDescription.setText(description);
+                        jTextReleaseYear.setText(releaseyear);
+                        jTextDuration.setText(duration);
+                        jTextStreamlink.setText(streamlink);
+                        jTextFieldImgLink.setText(imglink);
+                        jComboPriceCategory.setSelectedIndex(combopricecat);
+                        jComboAgeRating.setSelectedIndex(comboagerating);
+                        jLabelMovieid.setText(movieid);
+                        jLabelMovieid.setVisible(false);
+                        jComboLanguage.setSelectedIndex(combolanguage);
+
+                        }
                }
               
              
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "No match found");
+                JOptionPane.showMessageDialog(null, "No match found" + ex.getMessage());
             }
             }
         

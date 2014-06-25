@@ -61,14 +61,12 @@ public class Admin extends javax.swing.JFrame {
         }
     }
     public static String getPrice(int p){
-        if(p == 0){
-        return "%";
-        }else if(p == 1){
-        return "1";
+        if(p == 0 || p == 1){
+        return "3.99";
         }else if(p == 2){
-        return "2";
+        return "2.99";
         }else{
-        return "3";
+        return "1.99";
         }
     }
     public static String getAgerating(int a){
@@ -784,7 +782,7 @@ public class Admin extends javax.swing.JFrame {
 
                     if(!(rate.equals("%"))){
                     stmt4 = conn.createStatement();
-                    rs3 = stmt4.executeQuery("SELECT *,avg(rating) as average FROM movie natural left join rates natural join haslang WHERE title LIKE '%"+ suchetext +"%' and genre LIKE '%" + gen + "%' and price LIKE '%" + pri + "%' and ageRating <= '"+ age +"' and Language LIKE '%"+ lang +"%' group by mid having average >= "+rate+"");
+                    rs3 = stmt4.executeQuery("SELECT *,avg(rating) as average FROM movie natural left join rates natural join haslang WHERE title LIKE '%"+ suchetext +"%' and genre LIKE '%" + gen + "%' and price <= '" + pri + "'  and ageRating <= '"+ age +"' and Language LIKE '%"+ lang +"%' group by mid having average >= "+rate+"");
                     stmtSearch = conn.createStatement();
 
                     while(rs3.next()){
@@ -809,7 +807,7 @@ public class Admin extends javax.swing.JFrame {
 
                     }else{
                     stmt = conn.createStatement();
-                    rs = stmt.executeQuery("SELECT *,avg(rating) as average FROM movie natural join haslang natural left join rates WHERE title LIKE '%"+ suchetext +"%' and genre LIKE '%" + gen + "%' and price LIKE '%" + pri + "%' and ageRating <= '"+ age +"' and Language LIKE '%"+ lang +"%' group by mid");
+                    rs = stmt.executeQuery("SELECT *,avg(rating) as average FROM movie natural join haslang natural left join rates WHERE title LIKE '%"+ suchetext +"%' and genre LIKE '%" + gen + "%' and price <= '" + pri + "'  and ageRating <= '"+ age +"' and Language LIKE '%"+ lang +"%' group by mid");
                     stmtSearch = conn.createStatement();
 
                     while(rs.next()){

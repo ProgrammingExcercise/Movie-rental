@@ -1033,7 +1033,9 @@ public class User extends javax.swing.JFrame {
 
                 if(!(rate.equals("%"))){
                 stmt4 = conn.createStatement();
-                rs3 = stmt4.executeQuery("SELECT *,avg(rating) as average FROM movie natural left join rates natural join haslang WHERE title LIKE '%"+ suchetext +"%' and genre LIKE '%" + gen + "%' and price LIKE '%" + pri + "%' and ageRating <= '"+ age +"' and Language LIKE '%"+ lang +"%' group by mid having average >= "+rate+"");
+                rs3 = stmt4.executeQuery("SELECT *,avg(rating) as average FROM movie natural left join rates natural join haslang WHERE title LIKE '%"+ suchetext +"%' and genre LIKE '%" + gen + "%' and price <= '" + pri + "' and ageRating <= '"+ age +"' and Language LIKE '%"+ lang +"%' group by mid having average >= "+rate+"");
+       
+                    
                 stmtSearch = conn.createStatement();
 
                 while(rs3.next()){
@@ -1058,7 +1060,7 @@ public class User extends javax.swing.JFrame {
 
                 }else{
                 stmt = conn.createStatement();
-                rs = stmt.executeQuery("SELECT *,avg(rating) as average FROM movie natural join haslang natural left join rates WHERE title LIKE '%"+ suchetext +"%' and genre LIKE '%" + gen + "%' and price LIKE '%" + pri + "%' and ageRating <= '"+ age +"' and Language LIKE '%"+ lang +"%' group by mid");
+                rs = stmt.executeQuery("SELECT *,avg(rating) as average FROM movie natural join haslang natural left join rates WHERE title LIKE '%"+ suchetext +"%' and genre LIKE '%" + gen + "%' and price <= '" + pri + "' and ageRating <= '"+ age +"' and Language LIKE '%"+ lang +"%' group by mid");
                 stmtSearch = conn.createStatement();
 
                 while(rs.next()){

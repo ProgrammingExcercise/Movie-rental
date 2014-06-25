@@ -377,6 +377,9 @@ public class ChangeAccount extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null,"Please enter a correct bic.");                    
                 }else{    
                     try {
+
+                        if(user.changeInformation(new String(jPassword.getPassword()), new String(jPassword2.getPassword()), jTextEmail.getText(), jTextPrename.getText(), jTextSurname.getText(), jTextAddress.getText(), jTextZipcode.getText(), jTextCity.getText(), user.getIban(), user.getBic()) == 1){
+
                         user.setPassword(new String(jPassword.getPassword()));
                         user.setEmail(jTextEmail.getText());
                         user.setPrename(jTextPrename.getText());
@@ -389,14 +392,13 @@ public class ChangeAccount extends javax.swing.JFrame {
                         if(!jTextBic.getText().startsWith("*"))
                             user.setBic(jTextBic.getText());
                         System.out.println("Iban: " + user.getIban());
-                        user.changeInformation(new String(jPassword.getPassword()), new String(jPassword2.getPassword()), jTextEmail.getText(), jTextPrename.getText(), jTextSurname.getText(), jTextAddress.getText(), jTextZipcode.getText(), jTextCity.getText(), user.getIban(), user.getBic());
-
-                        setVisible(false);
+                            setVisible(false);
                         new Account(user).setVisible(true);
+                        setVisible(false);
+                        }
                         } catch (SQLException | UnsupportedEncodingException | NoSuchAlgorithmException ex) {
                             Logger.getLogger(ChangeAccount.class.getName()).log(Level.SEVERE, null, ex);
                 }   
-                    setVisible(false);
                 } 
                 }
             

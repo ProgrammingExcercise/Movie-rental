@@ -14,11 +14,8 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import org.apache.commons.lang.StringEscapeUtils;
 
-/**
- *
- * @author Acer
- */
 public class Movie {
     String mid, title, imglink, rating, description, genre, agerating, releaseYear, duration, link, language, language2, price, deadline;
     ArrayList<Movie> movies;
@@ -60,9 +57,6 @@ public class Movie {
 
 
         Statement stmt = conn.createStatement();
-        System.out.println("Price: " + price);
-        System.out.println("Query: \"INSERT INTO movie(`title`, `genre`, `ageRating`, `description`, `releaseYear`, `duration`, `picture`, `price`) VALUES \"\n" +
-"                           + \"('\" + title + \"','\" + genre + \"','\" + agerating + \"',\\\"\" + description + \"\\\",'\" +  releaseyear + \"','\" + duration + \"','\" + imglink + \"','\" + price +\"')\") );");
         stmt.executeUpdate("INSERT INTO movie(`title`, `genre`, `ageRating`, `description`, `releaseYear`, `duration`, `picture`, `price`) VALUES "
                            + "('" + title + "','" + genre + "','" + agerating + "',\"" + description + "\",'" +  releaseyear + "','" + duration + "','" + imglink + "','" + price +"')");
 

@@ -15,6 +15,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 import static movierental.Movie.addMovie;
+import org.apache.commons.lang.StringEscapeUtils;
 
 /**
  *
@@ -300,7 +301,7 @@ public class AddMovie extends javax.swing.JFrame {
        agerating = (String) jComboAgeRating.getSelectedItem();
        duration = jTextDuration.getText();
        releaseyear = jTextReleaseYear.getText();
-       description = jTextAreaDescription.getText();
+       description = StringEscapeUtils.escapeJavaScript(jTextAreaDescription.getText());
        price = (String) jComboPriceCat.getSelectedItem();
        imglink = jTextImg.getText();
        streamlink = jTextStreamlink.getText();
