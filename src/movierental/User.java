@@ -208,7 +208,7 @@ public class User extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null,"Email already used.");
                 return 0;
             }else{
-                stmt2.executeUpdate("INSERT INTO bank (iban,bic) values ('"+iban+"', '"+bic+"')");
+                stmt2.executeUpdate("INSERT INTO bank (iban,bic) values ('"+iban+"', '"+bic+"') ON DUPLICATE KEY UPDATE iban = '"+iban+"' ");
                 String query = "UPDATE user SET password = '"+encrypt(password)+"' , email = '"+email+"', prename = '"+prename+"' , surname = '" + surname + "' , street = '" + address + "' , zipcode = '" + zipcode + "', city = '" + city + "', bid = (SELECT bid from bank where iban = '"+iban+"') WHERE uid = '" + this.uid + "' ";
                 stmt.executeUpdate(query);
                 JOptionPane.showMessageDialog(null, "Account information successfully changed.");
