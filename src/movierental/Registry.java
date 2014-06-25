@@ -32,6 +32,7 @@ public class Registry extends javax.swing.JFrame {
     public Registry() {
         initComponents();
         setLocationRelativeTo(null);
+        setResizable(false);
         jTextUsername.setToolTipText("beispiel@gmx.de");
     }
 

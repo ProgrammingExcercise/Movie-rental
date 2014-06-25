@@ -657,10 +657,12 @@ public class ChangeMovie extends javax.swing.JFrame {
         if(evt.getSource() == jButtonDelete){
             if(!(movieid.equals(""))){
                 try {
+                    if(JOptionPane.showConfirmDialog(null, "Do you really want to delete this movie?") == 0){
                     stmtDelete = conn.createStatement();
                     stmtDelete.executeUpdate("DELETE FROM movie WHERE mid = '"+movieid+"' ");
                     JOptionPane.showMessageDialog(null,"Movie was succesfully deleted.");
                     this.releaseArea();
+                    }
                 } catch (SQLException ex) {
                     Logger.getLogger(ChangeMovie.class.getName()).log(Level.SEVERE, null, ex);
                 }

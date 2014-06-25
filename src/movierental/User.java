@@ -32,7 +32,7 @@ import static movierental.Admin.getRating;
 
 public class User extends javax.swing.JFrame {
     User user;
-    String uid, username, password, email, isAdmin, activCode="123", activated, lastLogin, birthday, prename, surname, street, zipcode, city, iban, bic;
+    String uid, username, password, email, isAdmin, activCode="123", activated,  lastLogin, birthday, prename, surname, street, zipcode, city, iban, bic;
     ArrayList<Movie> movies = new ArrayList<>();
     ArrayList<Movie> movies2 = new ArrayList<>();
     String suchetext,gen,pri,age,rate,lang;
@@ -224,6 +224,7 @@ public class User extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null,"Email already used.");
                 return 0;
             }else{
+                
                 stmt2.executeUpdate("INSERT INTO bank (iban,bic) values ('"+iban+"', '"+bic+"') ON DUPLICATE KEY UPDATE iban = '"+iban+"'");
                 String query = "UPDATE user SET password = '"+encrypt(password)+"' , email = '"+email+"', prename = '"+prename+"' , surname = '" + surname + "' , street = '" + address + "' , zipcode = '" + zipcode + "', city = '" + city + "', bid = (SELECT bid from bank where iban = '"+iban+"') WHERE uid = '" + this.uid + "' ";
                 stmt.executeUpdate(query);
