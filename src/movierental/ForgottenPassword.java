@@ -61,7 +61,7 @@ public class ForgottenPassword extends javax.swing.JFrame {
 
         jLabel3.setText("Please enter your username and email address to reset your password.");
 
-        jLabel4.setText("Email");
+        jLabel4.setText("Email:");
 
         jLabel5.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
         jLabel5.setText("Forgotten Password");
@@ -81,7 +81,7 @@ public class ForgottenPassword extends javax.swing.JFrame {
                             .addComponent(jLabel5)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, Short.MAX_VALUE)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE)
                                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

@@ -37,11 +37,17 @@ public class Overview extends javax.swing.JFrame {
         rs.next();
         jLabelUsers.setText(rs.getString("amount") + " Users");
         
-        // Amount of movies
+        // Amount of active movies
         Statement stmt2 = conn.createStatement();
-        ResultSet rs2 = stmt2.executeQuery("SELECT count(*) as amount FROM movie");
+        ResultSet rs2 = stmt2.executeQuery("SELECT count(*) as amount FROM movie where inactive = 0");
         rs2.next();
-        jLabelMovies.setText(rs2.getString("amount") + " Movies");
+        jLabelActive.setText(rs2.getString("amount") + " Movies");
+        
+        // Amount of all movies
+        Statement stmt3 = conn.createStatement();
+        ResultSet rs3 = stmt3.executeQuery("SELECT count(*) as amount FROM movie");
+        rs3.next();
+        jLabelInactive.setText(rs3.getString("amount") + " Movies");
     }
 
     /**
@@ -57,9 +63,11 @@ public class Overview extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabelMovies = new javax.swing.JLabel();
+        jLabelActive = new javax.swing.JLabel();
         jLabelUsers = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jLabelInactive = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -69,11 +77,11 @@ public class Overview extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
         jLabel1.setText("Overview");
 
-        jLabel4.setText("Amount of movies: ");
+        jLabel4.setText("Amount of movies(only active): ");
 
         jLabel5.setText("Amount of users: ");
 
-        jLabelMovies.setText("34 Movies");
+        jLabelActive.setText("34 Movies");
 
         jLabelUsers.setText("8 Movies");
 
@@ -83,6 +91,10 @@ public class Overview extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+
+        jLabel6.setText("Amount of movies(with inactive): ");
+
+        jLabelInactive.setText("34 Movies");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -99,12 +111,14 @@ public class Overview extends javax.swing.JFrame {
                             .addComponent(jLabel1)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel4)
                                     .addComponent(jLabel5))
-                                .addGap(106, 106, 106)
+                                .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabelMovies)
-                                    .addComponent(jLabelUsers)))))
+                                    .addComponent(jLabelActive)
+                                    .addComponent(jLabelUsers)
+                                    .addComponent(jLabelInactive)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(25, 25, 25)
                         .addComponent(jButton1)))
@@ -123,8 +137,12 @@ public class Overview extends javax.swing.JFrame {
                 .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jLabelMovies))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 143, Short.MAX_VALUE)
+                    .addComponent(jLabelActive))
+                .addGap(39, 39, 39)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabelInactive))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(18, 18, 18))
         );
@@ -158,7 +176,9 @@ public class Overview extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabelMovies;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabelActive;
+    private javax.swing.JLabel jLabelInactive;
     private javax.swing.JLabel jLabelUsers;
     // End of variables declaration//GEN-END:variables
 }

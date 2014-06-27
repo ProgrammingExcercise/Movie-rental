@@ -218,7 +218,7 @@ public class Rent extends javax.swing.JFrame {
                 if(rs.next()){
                     if(JOptionPane.showConfirmDialog(null, "Do you want to extend the Deadline of the movie "+movie.getTitle()+"?") == 0 ){
                     Statement stmtupdate = conn.createStatement();
-                    stmtupdate.executeUpdate("UPDATE rents SET time = (SELECT DATE_ADD( time , INTERVAL 2 DAY) ) where uid = '"+user.getUid()+"' and mid = '"+movie.getMid()+"'");
+                    stmtupdate.executeUpdate("UPDATE rents SET deadline = (SELECT DATE_ADD( deadline , INTERVAL 2 DAY) ), time = now() where uid = '"+user.getUid()+"' and mid = '"+movie.getMid()+"'");
                     JOptionPane.showMessageDialog(null, "Congratulations! You have extended the deadline for two days.");
                     dispose();
                     new VideoLibrary(user).setVisible(true);
@@ -226,7 +226,7 @@ public class Rent extends javax.swing.JFrame {
              }else{
                 if(JOptionPane.showConfirmDialog(null, "Do you want to rent the movie "+movie.getTitle()+"?") == 0 ){
                 Statement stmtinsert = conn.createStatement();
-                stmt.executeUpdate("INSERT INTO rents (uid, mid, time) VALUES ('"+user.getUid()+"', '"+movie.getMid()+"', (SELECT DATE_ADD( {fn curdate()} , INTERVAL 2 DAY)) )");
+                stmt.executeUpdate("INSERT INTO rents (uid, mid, deadline, time) VALUES ('"+user.getUid()+"', '"+movie.getMid()+"', (SELECT DATE_ADD( {fn curdate()} , INTERVAL 2 DAY)), now() )");
                 JOptionPane.showMessageDialog(null, "Congratulations! You can now watch the movie in your video library.");                       
                 dispose();
                 new VideoLibrary(user).setVisible(true);
