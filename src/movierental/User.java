@@ -23,11 +23,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-import static movierental.Admin.getAgerating;
-import static movierental.Admin.getGenre;
-import static movierental.Admin.getLanguage;
-import static movierental.Admin.getPrice;
-import static movierental.Admin.getRating;
 
 
 public class User extends javax.swing.JFrame {
@@ -41,7 +36,7 @@ public class User extends javax.swing.JFrame {
     Connection conn;
     Statement stmt,stmt2,stmt3,stmt4,stmtNewest,stmtNewest2,stmtSearch,stmtTop10,stmt2Top10;
     ResultSet rs,rs2,rs3,rsNewest,rsNewest2,rsSearch,rsTop10,rs2Top10;
-    static int seitenanzahl = 0;
+    static int seitenanzahl = 0; // Checks wether the user has pressed next after searching
     
     public User(){
         initComponents();
@@ -55,11 +50,11 @@ public class User extends javax.swing.JFrame {
         this.setSize(870,700);
         setLocationRelativeTo(null);
         user = obj;
-        movies = Movie.getNewestAndTop10();
+        movies = Movie.getNewestAndTop10(); 
         this.Newest10();
         this.Top10();
         this.setVisible(true);
-        if(!(user.lastLogin == null) )
+        if(!(user.lastLogin == null) ) // If isn't the user's first login
             jLabelLastLogin.setText("Your last login was on the " + user.lastLogin + ".");
         else
             jLabelLastLogin.setText("This is your first login.");
@@ -68,23 +63,9 @@ public class User extends javax.swing.JFrame {
         jButtonReturn.setVisible(false);
         
     }
-    public static String randomString(){
-        int random = (int) (Math.round(Math.random() * 89999) + 10000);
-      
-        StringBuffer buffer = new StringBuffer();
-
-        String characters ="!$%&?#abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!$%&?#";
-        
-        int charactersLength = characters.length();
-        for (int i = 0; i < 8; i++) {
-			double index = Math.random() * charactersLength;
-			buffer.append(characters.charAt((int) index));
-		}
-                        double index = Math.random() * charactersLength;
-                        //buffer.append(sonder.charAt((int) index));
-       return buffer.toString();
     
-    }
+    
+    //Responsible for checking wether username, email are used; insertion into database; sending the email
     public static boolean register( String username, String password, String email, String birthday, String prename, String surname, String street, String zipcode, String city, String iban, String bic) throws SQLException, UnsupportedEncodingException, NoSuchAlgorithmException{
        int random = (int) (Math.round(Math.random() * 89999) + 10000);
        
@@ -145,6 +126,7 @@ public class User extends javax.swing.JFrame {
        return true;
     }
     
+    //Checks entered login-data and wether the user is activated or not. Returns 1 if successfull, 0 if not.
     public int login(String username, String password) throws SQLException, UnsupportedEncodingException, NoSuchAlgorithmException{
        
        this.username = username;
@@ -198,6 +180,7 @@ public class User extends javax.swing.JFrame {
         return Integer.parseInt(this.isAdmin);
     }
     
+    //Insert into database if a user rents a movie
     public int rentMovie(String mid) throws SQLException{
         Verbindung db = new Verbindung();
         db.start();
@@ -209,30 +192,28 @@ public class User extends javax.swing.JFrame {
             return 0;
     }
     
+    //Changing of user's account information
     public int changeInformation(String password, String password2, String email, String prename, String surname, String address, String zipcode, String city, String iban, String bic) throws SQLException, UnsupportedEncodingException, NoSuchAlgorithmException{
         Verbindung db = new Verbindung();
         db.start();
         Connection conn = db.getVerbindung();
 
-        //Eingabe des alten Passworts
-            //Überprüfung ob Email bereits vorhanden
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("Select * from user where email = '"+email+"' and uid != '"+this.uid+"'");
-            Statement stmt2 = conn.createStatement();
-            
-            if(rs.next()){
-                JOptionPane.showMessageDialog(null,"Email already used.");
-                return 0;
-            }else{
-                
-                stmt2.executeUpdate("INSERT INTO bank (iban,bic) values ('"+iban+"', '"+bic+"') ON DUPLICATE KEY UPDATE iban = '"+iban+"'");
-                String query = "UPDATE user SET password = '"+encrypt(password)+"' , email = '"+email+"', prename = '"+prename+"' , surname = '" + surname + "' , street = '" + address + "' , zipcode = '" + zipcode + "', city = '" + city + "', bid = (SELECT bid from bank where iban = '"+iban+"') WHERE uid = '" + this.uid + "' ";
-                stmt.executeUpdate(query);
-                JOptionPane.showMessageDialog(null, "Account information successfully changed.");
-                return 1;
-            }   
-    }
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery("Select * from user where email = '"+email+"' and uid != '"+this.uid+"'"); //Überprüfung ob Email bereits vorhanden
+        Statement stmt2 = conn.createStatement();
 
+        if(rs.next()){
+            JOptionPane.showMessageDialog(null,"Email already used.");
+            return 0;
+        }else{
+            stmt2.executeUpdate("INSERT INTO bank (iban,bic) values ('"+iban+"', '"+bic+"') ON DUPLICATE KEY UPDATE iban = '"+iban+"'");
+            String query = "UPDATE user SET password = '"+encrypt(password)+"' , email = '"+email+"', prename = '"+prename+"' , surname = '" + surname + "' , street = '" + address + "' , zipcode = '" + zipcode + "', city = '" + city + "', bid = (SELECT bid from bank where iban = '"+iban+"') WHERE uid = '" + this.uid + "' ";
+            stmt.executeUpdate(query);
+            JOptionPane.showMessageDialog(null, "Account information successfully changed.");
+            return 1;
+        }   
+    }
+    //Checks wether user and email exissts and then sends an email with a new random password to email-address
     public static boolean forgottenPassword(String username, String email) throws SQLException, UnsupportedEncodingException, NoSuchAlgorithmException{
        Verbindung db = new Verbindung();
        db.start();
@@ -278,6 +259,24 @@ public class User extends javax.swing.JFrame {
            JOptionPane.showMessageDialog(null, "Wrong username or email.");        
            return false;
        }
+    }
+    
+    public static String randomString(){
+        int random = (int) (Math.round(Math.random() * 89999) + 10000);
+      
+        StringBuffer buffer = new StringBuffer();
+
+        String characters ="!$%&?#abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!$%&?#";
+        
+        int charactersLength = characters.length();
+        for (int i = 0; i < 8; i++) {
+			double index = Math.random() * charactersLength;
+			buffer.append(characters.charAt((int) index));
+		}
+                        double index = Math.random() * charactersLength;
+                        //buffer.append(sonder.charAt((int) index));
+       return buffer.toString();
+    
     }
     
     public String getUid() {
@@ -371,8 +370,7 @@ public class User extends javax.swing.JFrame {
         this.bic = bic;
     }
     
-    
-
+   // Shows the result of the search
    public void searchResult(ArrayList<Movie> movies2) throws MalformedURLException{
         jLabelBild1.setVisible(false);
         jLabelBild2.setVisible(false);
@@ -481,6 +479,7 @@ public class User extends javax.swing.JFrame {
              jButtonPrevious.setVisible(false);
          }
      }
+   // Shows the Newest10 Movies
    public void Newest10() throws SQLException, MalformedURLException, IOException{
         MouseAdapter listener = new MouseImpl();
            
@@ -525,6 +524,7 @@ public class User extends javax.swing.JFrame {
         jLabelBild10.setText(null);
         jLabelBild10.addMouseListener(listener);
     }
+   // Shows the Top10 Movies
    public void Top10() throws SQLException, MalformedURLException{
        MouseAdapter listener = new MouseImpl();
        
@@ -1026,11 +1026,11 @@ public class User extends javax.swing.JFrame {
         if(evt.getSource() == jButtonSearch){
             movies = new ArrayList<>();
             try {
-                gen = getGenre(genre);
-                pri = getPrice(price);
-                age = getAgerating(agerating);
-                rate = getRating(rating);
-                lang = getLanguage(language);
+                gen = Admin.getGenre(genre);
+                pri = Admin.getPrice(price);
+                age = Admin.getAgerating(agerating);
+                rate = Admin.getRating(rating);
+                lang = Admin.getLanguage(language);
 
                 if(!(rate.equals("%"))){
                 stmt4 = conn.createStatement();
@@ -1054,7 +1054,7 @@ public class User extends javax.swing.JFrame {
                 }
 
                 while(movies.size() %10 != 0){
-                Movie dump = new Movie("","","http://stefano.bplaced.net/nothing.png",null,"","","","","","","","","","");
+                Movie dump = new Movie("","","",null,"","","","","","","","","","");
                 movies.add(dump);
                 }
                 this.searchResult(movies);
@@ -1121,6 +1121,8 @@ public class User extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jButtonNextActionPerformed
+    
+    //Encrypting a Password with SHA-256
     public static String encrypt(String password) throws UnsupportedEncodingException, NoSuchAlgorithmException{
     MessageDigest md   = MessageDigest.getInstance("SHA-256"); //make sure it exists, there are other algorithms, but I prefer SHA for simple and relatively quick hashing
         
@@ -1190,7 +1192,8 @@ public class User extends javax.swing.JFrame {
     private javax.swing.JTextPane jTextSearch;
     // End of variables declaration//GEN-END:variables
 
-class MouseImpl extends MouseAdapter {
+    //Mouselistener
+    class MouseImpl extends MouseAdapter {
     @Override
     public void mouseClicked(MouseEvent e) {
         Object source = e.getSource();

@@ -11,141 +11,126 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class VideoLibrary extends javax.swing.JFrame {
+
     User user;
-    static int count = 0;
+    static int count = 0; // Counts at which page the user is
     ArrayList<Movie> movies;
-    
+
     public VideoLibrary(User obj) throws SQLException {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
         user = obj;
-          
+
         this.listMovies();
-    }       
-    
-    public void listMovies() throws SQLException{
-       jButtonNext.setVisible(false);
-       jButtonPrevious.setVisible(false);
-       movies = new ArrayList<>();           
-       Verbindung db = new Verbindung();
-       db.start();
-       Connection conn = db.getVerbindung();
-       Statement stmt = conn.createStatement();
-       ResultSet rs = stmt.executeQuery("Select *,DATEDIFF(time,now()) as deadline from rents natural join movie natural join user where uid = '"+user.getUid()+"' having deadline >= 0 order by deadline");
-       
-       while(rs.next()){
-           Movie movie = new Movie(rs.getString("mid"),rs.getString("title"),rs.getString("picture"), null, rs.getString("description"),rs.getString("genre"),rs.getString("agerating"),rs.getString("releaseYear"),rs.getString("duration"),rs.getString("streamlink"), "", "", rs.getString("price"), rs.getString("deadline"));
-           movies.add(movie);
-       } 
-       
-       while(movies.size() % 5 != 0 || movies.isEmpty()){
-           Movie dump = new Movie("", "", "", null, "", "", "","", "", "", "", "", "", "");
-           movies.add(dump);
-       }
-       
-        jLabelTitle1.setVisible(true);
-        jLabelDeadline1.setVisible(true);
-        jButtonExtend1.setVisible(true);
-        jButtonWatchMovie1.setVisible(true);
-        jLabelTitle2.setVisible(true);
-        jLabelDeadline2.setVisible(true);
-        jButtonExtend2.setVisible(true);
-        jButtonWatchMovie2.setVisible(true);
-        jLabelTitle3.setVisible(true);
-        jLabelDeadline3.setVisible(true);
-        jButtonExtend3.setVisible(true);
-        jButtonWatchMovie3.setVisible(true);
-        jLabelTitle4.setVisible(true);
-        jLabelDeadline4.setVisible(true);
-        jButtonExtend4.setVisible(true);
-        jButtonWatchMovie4.setVisible(true);
-        jLabelTitle5.setVisible(true);
-        jLabelDeadline5.setVisible(true);
-        jButtonExtend5.setVisible(true);
-        jButtonWatchMovie5.setVisible(true);
-       
-       if(movies.get(0+count).getTitle().isEmpty()){
-        jLabelTitle1.setVisible(false);
-        jLabelDeadline1.setVisible(false);
-        jButtonExtend1.setVisible(false);
-        jButtonWatchMovie1.setVisible(false);
-       }else{
-         jLabelTitle1.setText(movies.get(0+count).getTitle());
-         if(movies.get(0+count).getDeadline().equals("1")){
-             jLabelDeadline1.setText(movies.get(0+count).getDeadline() + " Day left");
-         }else{
-            jLabelDeadline1.setText(movies.get(0+count).getDeadline() + " Days left");             
-         }       
-       }
-       
-       if(movies.get(1+count).getTitle().isEmpty()){
-        jLabelTitle2.setVisible(false);
-        jLabelDeadline2.setVisible(false);
-        jButtonExtend2.setVisible(false);
-        jButtonWatchMovie2.setVisible(false);
-       }else{
-         jLabelTitle2.setText(movies.get(1+count).getTitle());
-         if(movies.get(1+count).getDeadline().equals("1")){
-             jLabelDeadline2.setText(movies.get(1+count).getDeadline() + " Day left");
-         }else{
-            jLabelDeadline2.setText(movies.get(1+count).getDeadline() + " Days left");             
-         }
-       }
-       
-       if(movies.get(2+count).getTitle().isEmpty()){
-        jLabelTitle3.setVisible(false);
-        jLabelDeadline3.setVisible(false);
-        jButtonExtend3.setVisible(false);
-        jButtonWatchMovie3.setVisible(false);
-       }else{
-         jLabelTitle3.setText(movies.get(2+count).getTitle());
-         if(movies.get(2+count).getDeadline().equals("1")){
-             jLabelDeadline3.setText(movies.get(2+count).getDeadline() + " Day left");
-         }else{
-            jLabelDeadline3.setText(movies.get(2+count).getDeadline() + " Days left");             
-         }       }
-       
-       if(movies.get(3+count).getTitle().isEmpty()){
-        jLabelTitle4.setVisible(false);
-        jLabelDeadline4.setVisible(false);
-        jButtonExtend4.setVisible(false);
-        jButtonWatchMovie4.setVisible(false);
-       }else{
-         jLabelTitle4.setText(movies.get(3+count).getTitle());
-         if(movies.get(3+count).getDeadline().equals("1")){
-             jLabelDeadline4.setText(movies.get(3+count).getDeadline() + " Day left");
-         }else{
-            jLabelDeadline4.setText(movies.get(3+count).getDeadline() + " Days left");             
-         }       }
-       
-       if(movies.get(4+count).getTitle().isEmpty()){
-        jLabelTitle5.setVisible(false);
-        jLabelDeadline5.setVisible(false);
-        jButtonExtend5.setVisible(false);
-        jButtonWatchMovie5.setVisible(false);
-       }else{
-         jLabelTitle5.setText(movies.get(4+count).getTitle());
-         if(movies.get(4+count).getDeadline().equals("1")){
-             jLabelDeadline5.setText(movies.get(4+count).getDeadline() + " Day left");
-         }else{
-            jLabelDeadline5.setText(movies.get(4+count).getDeadline() + " Days left");             
-         }       }
-       
-       if(movies.size()-count > 5){
-            jButtonNext.setVisible(true);
-       }else{
-            jButtonNext.setVisible(false);           
-       }
-       
-       if(count != 0){
-           jButtonPrevious.setVisible(true);
-       }else{
-           jButtonPrevious.setVisible(false);
-       }
-       
     }
-    
+
+    //Connects to the database, get's all rented movies of this user and shows them.
+    public void listMovies() throws SQLException {
+        jButtonNext.setVisible(false);
+        jButtonPrevious.setVisible(false);
+        movies = new ArrayList<>();
+        Verbindung db = new Verbindung();
+        db.start();
+        Connection conn = db.getVerbindung();
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery("Select *,DATEDIFF(deadline,now()) as deadlinex from rents natural join movie natural join user where uid = '" + user.getUid() + "' having deadlinex >= 0 order by deadlinex");
+
+        while (rs.next()) {
+            Movie movie = new Movie(rs.getString("mid"), rs.getString("title"), rs.getString("picture"), null, rs.getString("description"), rs.getString("genre"), rs.getString("agerating"), rs.getString("releaseYear"), rs.getString("duration"), rs.getString("streamlink"), "", "", rs.getString("price"), rs.getString("deadlinex"));
+            movies.add(movie);
+        }
+
+        //Fill up the Arraylist with dump movies
+        while (movies.size() % 5 != 0 || movies.isEmpty()) {
+            Movie dump = new Movie("", "", "", null, "", "", "", "", "", "", "", "", "", "");
+            movies.add(dump);
+        }
+
+        if (movies.get(0 + count).getTitle().isEmpty()) {
+            jLabelTitle1.setVisible(false);
+            jLabelDeadline1.setVisible(false);
+            jButtonExtend1.setVisible(false);
+            jButtonWatchMovie1.setVisible(false);
+        } else {
+            jLabelTitle1.setText(movies.get(0 + count).getTitle());
+            if (movies.get(0 + count).getDeadline().equals("1")) {
+                jLabelDeadline1.setText(movies.get(0 + count).getDeadline() + " Day left");
+            } else {
+                jLabelDeadline1.setText(movies.get(0 + count).getDeadline() + " Days left");
+            }
+        }
+
+        if (movies.get(1 + count).getTitle().isEmpty()) {
+            jLabelTitle2.setVisible(false);
+            jLabelDeadline2.setVisible(false);
+            jButtonExtend2.setVisible(false);
+            jButtonWatchMovie2.setVisible(false);
+        } else {
+            jLabelTitle2.setText(movies.get(1 + count).getTitle());
+            if (movies.get(1 + count).getDeadline().equals("1")) {
+                jLabelDeadline2.setText(movies.get(1 + count).getDeadline() + " Day left");
+            } else {
+                jLabelDeadline2.setText(movies.get(1 + count).getDeadline() + " Days left");
+            }
+        }
+
+        if (movies.get(2 + count).getTitle().isEmpty()) {
+            jLabelTitle3.setVisible(false);
+            jLabelDeadline3.setVisible(false);
+            jButtonExtend3.setVisible(false);
+            jButtonWatchMovie3.setVisible(false);
+        } else {
+            jLabelTitle3.setText(movies.get(2 + count).getTitle());
+            if (movies.get(2 + count).getDeadline().equals("1")) {
+                jLabelDeadline3.setText(movies.get(2 + count).getDeadline() + " Day left");
+            } else {
+                jLabelDeadline3.setText(movies.get(2 + count).getDeadline() + " Days left");
+            }
+        }
+
+        if (movies.get(3 + count).getTitle().isEmpty()) {
+            jLabelTitle4.setVisible(false);
+            jLabelDeadline4.setVisible(false);
+            jButtonExtend4.setVisible(false);
+            jButtonWatchMovie4.setVisible(false);
+        } else {
+            jLabelTitle4.setText(movies.get(3 + count).getTitle());
+            if (movies.get(3 + count).getDeadline().equals("1")) {
+                jLabelDeadline4.setText(movies.get(3 + count).getDeadline() + " Day left");
+            } else {
+                jLabelDeadline4.setText(movies.get(3 + count).getDeadline() + " Days left");
+            }
+        }
+
+        if (movies.get(4 + count).getTitle().isEmpty()) {
+            jLabelTitle5.setVisible(false);
+            jLabelDeadline5.setVisible(false);
+            jButtonExtend5.setVisible(false);
+            jButtonWatchMovie5.setVisible(false);
+        } else {
+            jLabelTitle5.setText(movies.get(4 + count).getTitle());
+            if (movies.get(4 + count).getDeadline().equals("1")) {
+                jLabelDeadline5.setText(movies.get(4 + count).getDeadline() + " Day left");
+            } else {
+                jLabelDeadline5.setText(movies.get(4 + count).getDeadline() + " Days left");
+            }
+        }
+
+        if (movies.size() - count > 5) {
+            jButtonNext.setVisible(true);
+        } else {
+            jButtonNext.setVisible(false);
+        }
+
+        if (count != 0) {
+            jButtonPrevious.setVisible(true);
+        } else {
+            jButtonPrevious.setVisible(false);
+        }
+
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -417,10 +402,14 @@ public class VideoLibrary extends javax.swing.JFrame {
 
     private void jButtonExtend1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExtend1ActionPerformed
         try {
-            dispose();
-            Rent rent = new Rent(user, movies.get(0+count));
-            rent.setPrevious(1);
-            rent.setVisible(true);
+            if (user.getPrename().equals("") || user.getSurname().equals("") || user.getStreet().equals("") || user.getZipcode().equals("") || user.getCity().equals("") || user.getIban() == null || user.getBic() == null || user.getIban().equals("") || user.getBic().equals("")) {
+                JOptionPane.showMessageDialog(null, "You have to change your account information and fill in all fields.");
+            } else {
+                dispose();
+                Rent rent = new Rent(user, movies.get(0 + count));
+                rent.setPrevious(1);
+                rent.setVisible(true);
+            }
         } catch (MalformedURLException ex) {
             Logger.getLogger(VideoLibrary.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -430,10 +419,14 @@ public class VideoLibrary extends javax.swing.JFrame {
 
     private void jButtonExtend2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExtend2ActionPerformed
         try {
-            dispose();
-            Rent rent = new Rent(user, movies.get(1+count));
-            rent.setPrevious(1);
-            rent.setVisible(true);
+            if (user.getPrename().equals("") || user.getSurname().equals("") || user.getStreet().equals("") || user.getZipcode().equals("") || user.getCity().equals("") || user.getIban() == null || user.getBic() == null || user.getIban().equals("") || user.getBic().equals("")) {
+                JOptionPane.showMessageDialog(null, "You have to change your account information and fill in all fields.");
+            } else {
+                dispose();
+                Rent rent = new Rent(user, movies.get(1 + count));
+                rent.setPrevious(1);
+                rent.setVisible(true);
+            }
         } catch (MalformedURLException ex) {
             Logger.getLogger(VideoLibrary.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -443,20 +436,28 @@ public class VideoLibrary extends javax.swing.JFrame {
 
     private void jButtonExtend3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExtend3ActionPerformed
         try {
-            dispose();
-            Rent rent = new Rent(user, movies.get(2+count));
-            rent.setPrevious(1);
-            rent.setVisible(true);
+            if (user.getPrename().equals("") || user.getSurname().equals("") || user.getStreet().equals("") || user.getZipcode().equals("") || user.getCity().equals("") || user.getIban() == null || user.getBic() == null || user.getIban().equals("") || user.getBic().equals("")) {
+                JOptionPane.showMessageDialog(null, "You have to change your account information and fill in all fields.");
+            } else {
+                dispose();
+                Rent rent = new Rent(user, movies.get(2 + count));
+                rent.setPrevious(1);
+                rent.setVisible(true);
+            }
         } catch (MalformedURLException | SQLException ex) {
             Logger.getLogger(VideoLibrary.class.getName()).log(Level.SEVERE, null, ex);
         }    }//GEN-LAST:event_jButtonExtend3ActionPerformed
 
     private void jButtonExtend4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExtend4ActionPerformed
         try {
-            dispose();
-            Rent rent = new Rent(user, movies.get(3+count));
-            rent.setPrevious(1);
-            rent.setVisible(true);
+            if (user.getPrename().equals("") || user.getSurname().equals("") || user.getStreet().equals("") || user.getZipcode().equals("") || user.getCity().equals("") || user.getIban() == null || user.getBic() == null || user.getIban().equals("") || user.getBic().equals("")) {
+                JOptionPane.showMessageDialog(null, "You have to change your account information and fill in all fields.");
+            } else {
+                dispose();
+                Rent rent = new Rent(user, movies.get(3 + count));
+                rent.setPrevious(1);
+                rent.setVisible(true);
+            }
         } catch (MalformedURLException | SQLException ex) {
             Logger.getLogger(VideoLibrary.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -464,10 +465,14 @@ public class VideoLibrary extends javax.swing.JFrame {
 
     private void jButtonExtend5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExtend5ActionPerformed
         try {
-            dispose();
-            Rent rent = new Rent(user, movies.get(4+count));
-            rent.setPrevious(1);
-            rent.setVisible(true);
+            if (user.getPrename().equals("") || user.getSurname().equals("") || user.getStreet().equals("") || user.getZipcode().equals("") || user.getCity().equals("") || user.getIban() == null || user.getBic() == null || user.getIban().equals("") || user.getBic().equals("")) {
+                JOptionPane.showMessageDialog(null, "You have to change your account information and fill in all fields.");
+            } else {
+                dispose();
+                Rent rent = new Rent(user, movies.get(4 + count));
+                rent.setPrevious(1);
+                rent.setVisible(true);
+            }
         } catch (MalformedURLException | SQLException ex) {
             Logger.getLogger(VideoLibrary.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -584,5 +589,4 @@ public class VideoLibrary extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelTitle5;
     // End of variables declaration//GEN-END:variables
 
-   
 }

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package movierental;
 
@@ -14,7 +9,6 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import org.apache.commons.lang.StringEscapeUtils;
 
 public class Movie {
     String mid, title, imglink, rating, description, genre, agerating, releaseYear, duration, link, language, language2, price, deadline;
@@ -48,13 +42,12 @@ public class Movie {
         this.imglink = imglink;
     }
     
-    
+    //Connects to the database and inserts the new movie.
     public static void addMovie(String title,String genre,String agerating,String description,String releaseyear,String duration,String streamlink,String imglink,String price,String language,String language2) throws SQLException{
         
         Verbindung db = new Verbindung();
         db.start();
         Connection conn = db.getVerbindung();
-
 
         Statement stmt = conn.createStatement();
         stmt.executeUpdate("INSERT INTO movie(`title`, `genre`, `ageRating`, `description`, `releaseYear`, `duration`, `picture`, `price`) VALUES "
@@ -70,6 +63,8 @@ public class Movie {
         JOptionPane.showMessageDialog(null, "Movie was added.");
         }
     }
+    
+    //Connects to the database and 
     public static void changeMovie(String title,String genre,String agerating,String description,String releaseyear,String duration,String streamlink,String imglink,String price){
         Verbindung db = new Verbindung();
         db.start();
@@ -87,7 +82,7 @@ public class Movie {
     }
 
     public static ArrayList<Movie> getNewestAndTop10() throws SQLException{
-       //Newest10
+       //Newest10 are stored in "movies"
        ArrayList<Movie> movies = new ArrayList<>();
        db = new Verbindung();
        db.start();
@@ -111,8 +106,8 @@ public class Movie {
         movies.add(movie);
        }
        
-       // Top10
-    
+       //Top10 are stored in "movies"
+   
        Statement stmt3 = conn.createStatement();     
        ResultSet rs2 = stmt3.executeQuery("Select *, avg(rating) as average from movie natural left join rates  group by mid order by average desc LIMIT 0,10");
        
@@ -189,7 +184,5 @@ public class Movie {
     public String getDeadline() {
         return deadline;
     }
-    
-    
     
 }
