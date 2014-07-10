@@ -47,6 +47,27 @@ public class VideoLibrary extends javax.swing.JFrame {
             movies.add(dump);
         }
 
+        jLabelTitle1.setVisible(true);
+        jLabelDeadline1.setVisible(true);
+        jButtonExtend1.setVisible(true);
+        jButtonWatchMovie1.setVisible(true);
+        jLabelTitle2.setVisible(true);
+        jLabelDeadline2.setVisible(true);
+        jButtonExtend2.setVisible(true);
+        jButtonWatchMovie2.setVisible(true);
+        jLabelTitle3.setVisible(true);
+        jLabelDeadline3.setVisible(true);
+        jButtonExtend3.setVisible(true);
+        jButtonWatchMovie3.setVisible(true);
+        jLabelTitle4.setVisible(true);
+        jLabelDeadline4.setVisible(true);
+        jButtonExtend4.setVisible(true);
+        jButtonWatchMovie4.setVisible(true);
+        jLabelTitle5.setVisible(true);
+        jLabelDeadline5.setVisible(true);
+        jButtonExtend5.setVisible(true);
+        jButtonWatchMovie5.setVisible(true);
+
         if (movies.get(0 + count).getTitle().isEmpty()) {
             jLabelTitle1.setVisible(false);
             jLabelDeadline1.setVisible(false);
@@ -288,29 +309,25 @@ public class VideoLibrary extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel1))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel1)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jButtonReturn)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButtonPrevious))
+                                .addComponent(jButtonPrevious)
+                                .addGap(0, 0, 0))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabelTitle1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabelTitle1, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
                                     .addComponent(jLabelTitle2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabelTitle3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(18, 18, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabelDeadline1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -325,10 +342,10 @@ public class VideoLibrary extends javax.swing.JFrame {
                                             .addComponent(jButtonWatchMovie2, javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addComponent(jButtonWatchMovie3, javax.swing.GroupLayout.Alignment.TRAILING)))))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabelTitle4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabelTitle5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(18, 18, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabelDeadline4, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -338,7 +355,7 @@ public class VideoLibrary extends javax.swing.JFrame {
                                         .addComponent(jLabelDeadline5, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jButtonWatchMovie5)))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(12, 12, 12)
@@ -348,8 +365,8 @@ public class VideoLibrary extends javax.swing.JFrame {
                                 .addComponent(jButtonExtend1)
                                 .addComponent(jButtonExtend3, javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(jButtonExtend4, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jButtonExtend5, javax.swing.GroupLayout.Alignment.TRAILING)))
-                        .addGap(45, 45, 45))))
+                                .addComponent(jButtonExtend5, javax.swing.GroupLayout.Alignment.TRAILING)))))
+                .addGap(45, 45, 45))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

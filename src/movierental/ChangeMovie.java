@@ -647,7 +647,7 @@ public class ChangeMovie extends javax.swing.JFrame {
               
              
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "No match found" + ex.getMessage());
+                JOptionPane.showMessageDialog(null, "No match found");
             }
             }
         
@@ -659,7 +659,7 @@ public class ChangeMovie extends javax.swing.JFrame {
                 try {
                     if(JOptionPane.showConfirmDialog(null, "Do you really want to delete this movie?") == 0){
                     stmtDelete = conn.createStatement();
-                    stmtDelete.executeUpdate("DELETE FROM movie WHERE mid = '"+movieid+"' ");
+                    stmtDelete.executeUpdate("UPDATE movie SET inactive = '1' where mid = '"+movieid+"'");
                     JOptionPane.showMessageDialog(null,"Movie was succesfully deleted.");
                     this.releaseArea();
                     }

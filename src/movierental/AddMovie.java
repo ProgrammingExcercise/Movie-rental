@@ -1,15 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package movierental;
 
-
-import java.sql.Connection;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -17,18 +9,10 @@ import javax.swing.JOptionPane;
 import static movierental.Movie.addMovie;
 import org.apache.commons.lang.StringEscapeUtils;
 
-/**
- *
- * @author stefano
- */
-
 public class AddMovie extends javax.swing.JFrame {
     String title,genre,agerating,imglink,streamlink,description,duration,releaseyear,price,language,language2;
     
     
-    /**
-     * Creates new form AddMovie
-     */
     public AddMovie() {
         initComponents();
         setLocationRelativeTo(null);
@@ -46,6 +30,8 @@ public class AddMovie extends javax.swing.JFrame {
         jTextDuration.setText("");
         jTextReleaseYear.setText("");
         jComboPriceCat.setSelectedIndex(0);
+        jComboLanguage.setSelectedIndex(0);
+        jComboLanguage2.setSelectedIndex(0);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -295,7 +281,6 @@ public class AddMovie extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonReturnActionPerformed
 
     private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddActionPerformed
-       
        title = jTextTitle.getText();
        genre = (String) jComboGenre.getSelectedItem();
        agerating = (String) jComboAgeRating.getSelectedItem();
@@ -308,16 +293,12 @@ public class AddMovie extends javax.swing.JFrame {
        language =  (String) jComboLanguage.getSelectedItem();
        language2 = (String) jComboLanguage2.getSelectedItem();
        
-       
-       
        if(evt.getSource() == jButtonAdd){
           
        if(title.equals("") || genre.equals("") || agerating.equals("") || duration.equals("") || releaseyear.equals("") || description.equals("") || price.equals("") || imglink.equals("") || language.equals("First") )
        {    
            JOptionPane.showMessageDialog(null, "Please fill all fields.");
            
-          
-          
        }else{
           try {
                addMovie(title,genre,agerating,description,releaseyear,duration,streamlink,imglink,price,language,language2);
@@ -329,15 +310,7 @@ public class AddMovie extends javax.swing.JFrame {
        }
     }//GEN-LAST:event_jButtonAddActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -345,18 +318,10 @@ public class AddMovie extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AddMovie.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AddMovie.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AddMovie.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(AddMovie.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
 
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {

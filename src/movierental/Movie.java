@@ -88,7 +88,7 @@ public class Movie {
        db.start();
        conn = db.getVerbindung();
        Statement stmt = conn.createStatement();     
-       ResultSet rs = stmt.executeQuery("Select *, avg(rating) as average from movie natural left join rates group by mid order by mid desc LIMIT 0,10");
+       ResultSet rs = stmt.executeQuery("Select *, avg(rating) as average from movie natural left join rates where inactive = 0 group by mid order by mid desc LIMIT 0,10");
        
        Statement stmt2 = conn.createStatement();
        while(rs.next()){
@@ -109,7 +109,7 @@ public class Movie {
        //Top10 are stored in "movies"
    
        Statement stmt3 = conn.createStatement();     
-       ResultSet rs2 = stmt3.executeQuery("Select *, avg(rating) as average from movie natural left join rates  group by mid order by average desc LIMIT 0,10");
+       ResultSet rs2 = stmt3.executeQuery("Select *, avg(rating) as average from movie natural left join rates where inactive = 0 group by mid order by average desc LIMIT 0,10");
        
        Statement stmt4 = conn.createStatement();
        while(rs2.next()){

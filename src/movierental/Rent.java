@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package movierental;
 
 import java.net.MalformedURLException;
@@ -32,20 +31,21 @@ public class Rent extends javax.swing.JFrame {
     Movie movie;
     User user;
     static int previous = 0;
-    
+
     public Rent(User obj, Movie obj2) throws MalformedURLException, SQLException {
         initComponents();
-        setLocationRelativeTo(null);     
+        setLocationRelativeTo(null);
         setResizable(false);
         user = obj;
         movie = obj2;
         Date now = new Date();
         Calendar calendar = new GregorianCalendar();
         calendar.setTime(now);         // add 5 days to calendar instance
-        if(!movie.getDeadline().equals(""))
-            calendar.add(Calendar.DAY_OF_MONTH,Integer.valueOf(movie.getDeadline())+2);
-        else
-            calendar.add(Calendar.DAY_OF_MONTH,2);
+        if (!movie.getDeadline().equals("")) {
+            calendar.add(Calendar.DAY_OF_MONTH, Integer.valueOf(movie.getDeadline()) + 2);
+        } else {
+            calendar.add(Calendar.DAY_OF_MONTH, 2);
+        }
 
         Date future = calendar.getTime(); // get the date instance
         DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");         // print out the dates...
@@ -55,7 +55,6 @@ public class Rent extends javax.swing.JFrame {
         jLabelTitle.setText(movie.getTitle());
         jLabelPrice.setText(movie.getPrice() + "€");
     }
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -187,15 +186,15 @@ public class Rent extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReturnActionPerformed
-        if(evt.getSource() == jButtonReturn){
+        if (evt.getSource() == jButtonReturn) {
             dispose();
-            if(Rent.previous == 0){
+            if (Rent.previous == 0) {
                 try {
                     new MovieInfo(user, movie).setVisible(true);
                 } catch (MalformedURLException ex) {
                     Logger.getLogger(Rent.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            }else{
+            } else {
                 try {
                     new VideoLibrary(user).setVisible(true);
                 } catch (SQLException ex) {
@@ -206,47 +205,54 @@ public class Rent extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonReturnActionPerformed
 
     private void jButtonRentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRentActionPerformed
-        
-       Verbindung db = new Verbindung();
-       db.start();
-       Connection conn = db.getVerbindung();
-       if(jCheckDirectDebitPayment.isSelected() && jCheckGTC.isSelected()){
+
+        Verbindung db = new Verbindung();
+        db.start();
+        Connection conn = db.getVerbindung();
+        if (jCheckDirectDebitPayment.isSelected() && jCheckGTC.isSelected()) {
             JOptionPane.setDefaultLocale(Locale.ENGLISH);
             try {
                 Statement stmt = conn.createStatement();
-                ResultSet rs = stmt.executeQuery("Select * from rents where uid = '"+user.getUid()+"' and mid = '"+movie.getMid()+"'");
-                if(rs.next()){
-                    if(JOptionPane.showConfirmDialog(null, "Do you want to extend the Deadline of the movie "+movie.getTitle()+"?") == 0 ){
+                ResultSet rs = stmt.executeQuery("Select *,DATEDIFF(deadline,now()) as deadlinex from rents where uid = '" + user.getUid() + "' and mid = '" + movie.getMid() + "'");
+                if (rs.next()) {
                     Statement stmtupdate = conn.createStatement();
-                    stmtupdate.executeUpdate("UPDATE rents SET deadline = (SELECT DATE_ADD( deadline , INTERVAL 2 DAY) ), time = now() where uid = '"+user.getUid()+"' and mid = '"+movie.getMid()+"'");
-                    JOptionPane.showMessageDialog(null, "Congratulations! You have extended the deadline for two days.");
-                    dispose();
-                    new VideoLibrary(user).setVisible(true);
+                    if (Integer.parseInt(rs.getString("deadlinex")) < 0) {
+                        if (JOptionPane.showConfirmDialog(null, "Do you want to rent the movie " + movie.getTitle() + "?") == 0) {
+                            stmtupdate.executeUpdate("UPDATE rents SET deadline = (SELECT DATE_ADD( now() , INTERVAL 2 DAY) ), time = now() where uid = '" + user.getUid() + "' and mid = '" + movie.getMid() + "'");
+                            JOptionPane.showMessageDialog(null, "Congratulations! You can now watch the movie in your video library.");
+                            dispose();
+                            new VideoLibrary(user).setVisible(true);
+                        }
+                    } else {
+                        if (JOptionPane.showConfirmDialog(null, "Do you want to extend the Deadline of the movie " + movie.getTitle() + "?") == 0) {
+                            stmtupdate.executeUpdate("UPDATE rents SET deadline = (SELECT DATE_ADD( deadline , INTERVAL 2 DAY) ), time = now() where uid = '" + user.getUid() + "' and mid = '" + movie.getMid() + "'");
+                            JOptionPane.showMessageDialog(null, "Congratulations! You have extended the deadline for two days.");
+                            dispose();
+                            new VideoLibrary(user).setVisible(true);
+                        }
                     }
-             }else{
-                if(JOptionPane.showConfirmDialog(null, "Do you want to rent the movie "+movie.getTitle()+"?") == 0 ){
-                Statement stmtinsert = conn.createStatement();
-                stmt.executeUpdate("INSERT INTO rents (uid, mid, deadline, time) VALUES ('"+user.getUid()+"', '"+movie.getMid()+"', (SELECT DATE_ADD( {fn curdate()} , INTERVAL 2 DAY)), now() )");
-                JOptionPane.showMessageDialog(null, "Congratulations! You can now watch the movie in your video library.");                       
-                dispose();
-                new VideoLibrary(user).setVisible(true);
+                } else {
+                    if (JOptionPane.showConfirmDialog(null, "Do you want to rent the movie " + movie.getTitle() + "?") == 0) {
+                        Statement stmtinsert = conn.createStatement();
+                        stmt.executeUpdate("INSERT INTO rents (uid, mid, deadline, time) VALUES ('" + user.getUid() + "', '" + movie.getMid() + "', (SELECT DATE_ADD( {fn curdate()} , INTERVAL 2 DAY)), now() )");
+                        JOptionPane.showMessageDialog(null, "Congratulations! You can now watch the movie in your video library.");
+                        dispose();
+                        new VideoLibrary(user).setVisible(true);
+                    }
                 }
-              }
             } catch (SQLException ex) {
                 Logger.getLogger(Rent.class.getName()).log(Level.SEVERE, null, ex);
             }
-       }else{
-           JOptionPane.showMessageDialog(null, "Please accept the Direct Debit Payment and the GTC!");
-       }
-       
+        } else {
+            JOptionPane.showMessageDialog(null, "Please accept the Direct Debit Payment and the GTC!");
+        }
+
     }//GEN-LAST:event_jButtonRentActionPerformed
 
     public static void setPrevious(int previous) {
         Rent.previous = previous;
     }
 
-    
-    
     /**
      * @param args the command line arguments
      */
